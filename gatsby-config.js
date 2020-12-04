@@ -5,7 +5,7 @@ module.exports = {
     author: 'Strapi team'
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-react-helmet',`gatsby-plugin-material-ui`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -19,7 +19,8 @@ module.exports = {
         apiURL: 'http://localhost:1337',
         contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
           'article',
-          'user'
+          'user',
+          'human'
         ],
         queryLimit: 1000,
       },
