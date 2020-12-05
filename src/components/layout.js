@@ -10,6 +10,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
+import Nav from "./nav"
 import "./layout.css"
 
 const Layout = ({ children }) => {
@@ -25,6 +26,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
+    <Nav />
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{
@@ -34,6 +36,7 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
+        
         <footer style={{
           marginTop: `2rem`
         }}>

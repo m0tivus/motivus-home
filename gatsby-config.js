@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'My super blog',
+    title: 'Motivus',
     description: 'Gatsby blog with Strapi',
     author: 'Strapi team'
   },
