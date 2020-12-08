@@ -1,19 +1,25 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { Router } from "@reach/router"
+
+import Aboutpage from "./about"
 
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Pricing from "../components/ClientOptions"
+
+
 
 
 const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-      <h1>Motivus home</h1>
+  <div>
     
-    <Link to="/blog/">blog</Link>
-    <Link to="/about/">About us</Link>
-  </Layout>
+    <Layout>
+      <SEO title="Home" />
+      <Pricing />
+    </Layout>
+  </div>
 )
 
 export default IndexPage

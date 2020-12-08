@@ -11,25 +11,25 @@ const useStyles = makeStyles({
     position: 'fixed',
     display: `flex`,
     justifyContent: `space-between`,
-    border: '1px solid green',
-    right: '0px',
+    /*border: '1px solid green',*/
+    padding: '0px',
   },
   navDisplayFlex: {
     display: `flex`,
     justifyContent: `space-between`,
-    border: '1px solid red',
+    /*border: '1px solid red',*/
   },
   linkText: {
     textDecoration: `none`,
     textTransform: `uppercase`,
     color: `white`,
-    border: '2px solid blue',
+    /*border: '2px solid blue',*/
   }
 });
 
 
 const navLinks = [
-  { title: `Home`, path: `` },
+  { title: `Home`, path: `/` },
   { title: `Software Factory`, path: `/software-factory` },
   { title: `About`, path: `/about` },
   { title: `Blog`, path: `/blog` },
@@ -47,11 +47,11 @@ return(
       className={classes.navDisplayFlex}
       >
         {navLinks.map(({ title, path }) => (
-          <a href={path} key={title} className={classes.linkText}>
+          <Link to={path} key={title} className={classes.linkText}>
             <ListItem button>
               <ListItemText primary={title} />
             </ListItem>
-          </a>
+          </Link>
         ))}
       </List>
     </Container>

@@ -125,11 +125,9 @@ export default function Aboutpage ({data}) {
   
 
   return (
-    <React.Fragment>
+    <Layout>
       <SEO title="About us" />
       <CssBaseline />
-      
-      <main>
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="lg">
@@ -173,19 +171,7 @@ export default function Aboutpage ({data}) {
             ))}
           </Grid>
         </Container>
-      </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
-        </Typography>
-        <Copyright />
-      </footer>
-      {/* End footer */}
-    </React.Fragment>
+    </Layout>
   
   );
 }

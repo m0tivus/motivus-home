@@ -9,7 +9,7 @@ import SEO from "../components/seo"
 
 const BlogPage = ({data}) => (
   <Layout>
-    <SEO title="Blog" />
+    <SEO title="Blog" description="Blog Data" />
       <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
