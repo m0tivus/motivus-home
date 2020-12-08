@@ -4,19 +4,15 @@ import Link from '@material-ui/core/Link';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 
 const useStyles = makeStyles((theme) => ({
   
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
-    marginTop: theme.spacing(8),
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(6),
-      paddingBottom: theme.spacing(6),
-    },
+    marginTop: '100px',
+    width: '100%',
   },
 }));
 
@@ -41,8 +37,23 @@ export default function Footer() {
 
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="md" component="footer" className={classes.footer}>
-        <Copyright />
+      <Container component="footer"  className={classes.footer}>
+        <Grid container spacing={1} 
+        container
+        direction="row"
+        alignItems="center" >
+          <Grid item xs={4} container justify="flex-start" alignItems="center">
+          <img src={'/gobierno.png'} height="50"></img>
+          </Grid >
+          <Grid item xs={4}>
+            <Container>
+              <Copyright />
+            </Container>
+          </Grid>
+          <Grid item xs={4} container justify="flex-end" alignItems="center">
+            <img src={'/corfo.gif'} height="50" ></img>
+          </Grid>
+        </Grid>
       </Container>
       </React.Fragment>
   );

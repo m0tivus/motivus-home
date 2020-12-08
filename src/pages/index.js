@@ -8,6 +8,7 @@ import Aboutpage from "./about"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Pricing from "../components/ClientOptions"
+import Features from "../components/Features"
 
 
 
@@ -18,6 +19,7 @@ const IndexPage = () => (
     <Layout>
       <SEO title="Home" />
       <Pricing />
+      <Features></Features>
     </Layout>
   </div>
 )
