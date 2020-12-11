@@ -14,7 +14,7 @@ import Nav from "./nav"
 
 import Footer from "./Footer" 
 
-const Layout = ({ children }) => {
+const Layout = ({ children, ...props }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-    <Nav />
+    <Nav {... props} />
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{

@@ -92,22 +92,22 @@ const SocialNetworks = ( {networks} ) => (
               switch (icon) {
                 case 'github':
                   return(
-                  <Link href={url}>
+                  <Link href={url} key={url}>
                     <GitHubIcon/>  
                   </Link>)
                 case 'linkedin':
                   return(
-                  <Link href={url}>
+                  <Link href={url} key={url}>
                     <LinkedInIcon/>  
                   </Link>)
                 case 'web':
                   return(
-                  <Link href={url}>
+                  <Link href={url} key={url}>
                     <HttpIcon/>  
                   </Link>)
                 case 'reddit':
                   return(
-                  <Link href={url}>
+                  <Link href={url} key={url}>
                     <RedditIcon/>  
                   </Link>)
               }}
@@ -120,12 +120,12 @@ const SocialNetworks = ( {networks} ) => (
 
 
 
-export default function Aboutpage ({data}) {
+export default function Aboutpage ({data, ...props}) {
   const classes = useStyles();
   
 
   return (
-    <Layout>
+    <Layout {... props}>
       <SEO title="About us" />
       <CssBaseline />
         {/* Hero unit */}

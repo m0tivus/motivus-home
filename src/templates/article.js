@@ -7,10 +7,11 @@ import SEO from '../components/seo'
 
 
 
-const ArticleTemplate = ({ data }) => (
-  <Layout>
+const ArticleTemplate = ({ data, ...props}) => (
+  <Layout { ...props}>
     <SEO title={data.strapiArticle.title} description={data.strapiArticle.abstract}/>
     <h1>{data.strapiArticle.title}</h1>
+    
     <p>by <Link to={`/authors/User_${data.strapiArticle.author.id}`}>{data.strapiArticle.author.username}</Link></p>
     <Img fixed={data.strapiArticle.image.childImageSharp.fixed}/>
     <ReactMarkdown

@@ -8,6 +8,10 @@ import { PlayCircleFilledWhite } from '@material-ui/icons';
 import ContactUsInfo from './ContactUsInfo'
 
 const useStyles = makeStyles((theme) => ({
+  body:{
+    margin:'0',
+  },
+  
   root: {
     flexGrow: 1,
     padding: 0,
@@ -23,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     backgroundColor: 'white',
     padding: '20%',
+    margin: '0px',
     
   },
 
@@ -34,11 +39,12 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     color: 'white',
     padding: '15%',
+    margin: '0px',
 
   },
 }));
 
-export default function CenteredGrid() {
+export default function CenteredGrid(props) {
   const classes = useStyles();
 
   return (

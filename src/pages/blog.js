@@ -7,8 +7,8 @@ import Img from 'gatsby-image'
 import SEO from "../components/seo"
 
 
-const BlogPage = ({data}) => (
-  <Layout>
+const BlogPage = ({data, ...props}) => (
+  <Layout {...props}>
     <SEO title="Blog" description="Blog Data" />
       <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
@@ -17,7 +17,7 @@ const BlogPage = ({data}) => (
       {data.allStrapiArticle.edges.map(document => (
         <li key={document.node.id}>
           <h2>
-            <Link to={`/${document.node.id}`}>{document.node.title}</Link>
+            <Link state={{to: 3, from: 3 }} to={`/${document.node.id}`}>{document.node.title}</Link>
           </h2>
           <Img fixed={document.node.image.childImageSharp.fixed}/>
           <p>{document.node.abstract}</p>

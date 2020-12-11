@@ -13,10 +13,10 @@ import Features from "../components/Features"
 
 
 
-const IndexPage = () => (
+const IndexPage = (props) => (
   <div>
     
-    <Layout>
+    <Layout {... props}>
       <SEO title="Home" />
       <Pricing />
       <Features></Features>

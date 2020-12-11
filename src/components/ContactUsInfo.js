@@ -37,10 +37,12 @@ export default function ContatUsInfo() {
         <Grid item xs={6}></Grid>
         <Grid item xs={6}>
           <Grid itme xs={12}>Lorem ipsum dolor sit amet</Grid>
-          
         </Grid>
         <Grid item xs={6}>
-          <Typography  variant="h6" color="textPrimary"><Grid itme xs={12}>Info@motivus.cl</Grid></Typography>
+          <Typography  variant="h6" color="Primary">
+            <Grid itme xs={12}>Info@motivus.cl
+            </Grid>
+          </Typography>
         </Grid>
       </Grid>
     </div>
