@@ -17,7 +17,7 @@ const BlogPage = ({data, ...props}) => (
       {data.allStrapiArticle.edges.map(document => (
         <li key={document.node.id}>
           <h2>
-            <Link state={{to: 3, from: 3 }} to={`/${document.node.id}`}>{document.node.title}</Link>
+            <Link to={`/blog/${document.node.id}`}>{document.node.title}</Link>
           </h2>
           <Img fixed={document.node.image.childImageSharp.fixed}/>
           <p>{document.node.abstract}</p>
