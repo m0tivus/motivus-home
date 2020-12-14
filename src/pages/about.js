@@ -144,12 +144,12 @@ export default function Aboutpage ({data, ...props}) {
         <Container className={classes.cardGrid} maxWidth="lg">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {data.allStrapiHuman.edges.map((card) => (
+            {data.allSanityHuman.edges.map((card) => (
               <Grid item key={card.node.id} xs={12} sm={6} md={4} lg={4} xl={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image={card.node.photography.childImageSharp.fixed.src}
+                    image={card.node.photography.asset.fixed.src}
                     title={card.node.name}
                   />
                   <CardContent className={classes.cardContent}>
@@ -162,8 +162,8 @@ export default function Aboutpage ({data, ...props}) {
                     </Typography> 
                   </CardContent>
                   <CardActions>
-                  { !_.isNull(card.node.social)
-                    ? <SocialNetworks networks={card.node.social.networks}/>
+                  { !_.isNull(true)
+                    ? <SocialNetworks networks={card.node.networks}/>
                     : <span></span>}
                   </CardActions>
                 </Card>
@@ -180,27 +180,25 @@ export default function Aboutpage ({data, ...props}) {
 
 export const humanQuery = graphql`  
   query AboutQuery {
-    allStrapiHuman {
+    allSanityHuman {
       edges {
         node {
           id
           photography {
-            childImageSharp {
+            asset {
               fixed(width: 400, height: 400) {
-                ...GatsbyImageSharpFixed
+                ...GatsbySanityImageFixed
               }
             }
           }
           name
           description
           role
-          social{
-            networks{
-              icon
-              url
-            }
+          networks{
+            icon
+            url
           }
-        }
+        } 
       }
     }
   }

@@ -14,12 +14,12 @@ const BlogPage = ({data, ...props}) => (
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
     <ul>
-      {data.allStrapiArticle.edges.map(document => (
+      {data.allSanityPost.edges.map(document => (
         <li key={document.node.id}>
           <h2>
             <Link to={`/blog/${document.node.id}`}>{document.node.title}</Link>
           </h2>
-          <Img fixed={document.node.image.childImageSharp.fixed}/>
+          <Img fixed={document.node.image.asset.fixed}/>
           <p>{document.node.abstract}</p>
         </li>
       ))}
@@ -32,14 +32,14 @@ export default BlogPage
 
 export const pageQuery = graphql`  
   query IndexQuery {
-    allStrapiArticle {
+    allSanityPost {
       edges {
         node {
           id
           image {
-            childImageSharp {
+            asset {
               fixed(width: 200, height: 200) {
-                ...GatsbyImageSharpFixed
+                ...GatsbySanityImageFixed
               }
             }
           }

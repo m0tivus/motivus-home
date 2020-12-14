@@ -11,9 +11,16 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
-      },
+      }, 
     },
     {
+      resolve: "gatsby-source-sanity",
+      options: {
+        projectId: "2g00hyzc",
+        dataset: "production",
+      },
+    },
+    /*{
       resolve: 'gatsby-source-strapi',
       options: {
         apiURL: 'http://localhost:1337',
@@ -24,7 +31,7 @@ module.exports = {
         ],
         queryLimit: 1000,
       },
-    },
+    },*/
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
