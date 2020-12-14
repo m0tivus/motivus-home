@@ -1,0 +1,159 @@
+/*-------------------------------vertical-------------------------*/
+
+.navverver{
+  font-size: 1em;
+}
+
+.nav-listver{
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  justify-content: space-evenly;
+  list-style-type: none;
+  /*border: 1px solid blue;*/
+  margin: 0px;
+  padding: 0px;
+  align-items: flex-end;
+  
+  
+}
+
+.nav-itemver{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+  color: #999999;
+  /*border: 1px solid green;*/
+  text-decoration: none;
+  transition: color 0.5s ease-in-out;
+  transition: width .5s ease, background-color .5s ease;
+
+
+}
+.nav-itemver:hover{
+  /*border: 1px solid red;*/
+  color: black;
+  
+}
+
+.nav-itemver:after{
+  content: '';
+  display: flex;
+  margin: auto;
+  height: 1px;
+  width: 0px;
+  background: transparent;
+  transition: width .5s ease, background-color .5s ease;
+  
+}
+.nav-itemver:hover:after{
+  width: 20px;
+  background: black;
+  
+}
+
+.active-nav-itemver{
+  display: flex;
+  color: black;
+  font-weight: bold;
+  
+}
+
+.active-nav-itemver:after{
+  content: '';
+  display: flex;
+  height: 2px;
+  width: 20px;
+  background: black;  
+  transition: width 0s ease;
+}
+
+/*-----------------------------------horizonral-------------------------*/
+
+.navhor{
+  font-size: 1em;
+}
+
+.nav-listhor{
+  display: flex;
+  width: auto;
+  flex-direction: row;
+  justify-content: space-evenly;
+  list-style-type: none;
+  /*border: 1px solid blue;*/
+  margin: 0px;
+  padding: 0px;
+  align-items: center;
+  
+  
+}
+
+.nav-itemhor{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  color: #999999;
+  /*border: 1px solid green;*/
+  text-decoration: none;
+  transition: font-size 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out;
+  
+
+
+}
+.nav-itemhor:hover{
+  /*border: 1px solid red;*/
+  color: black;
+}
+
+.nav-itemhor:after{
+  content: '';
+  display: flex;
+  margin: auto;
+  height: 1px;
+  width: 0px;
+  background: transparent;
+  transition: width .5s ease, background-color .5s ease;
+}
+.nav-itemhor:hover:after{
+  width: 100%;
+  background: black;
+}
+
+.active-nav-itemhor{
+  color: black;
+  font-weight: bold;
+
+}
+
+.active-nav-itemhor:after{
+  content: '';
+  display: flex;
+  height: 2px;
+  width: 100%;
+  background: black;
+  transition: width 0s ease;
+
+}
+
+/*-------------------test-------------*/
+.quadrado {
+  width: 100px;
+  height: 100px;
+  background: #000;
+  transition: opacity 1s ease-in-out;
+  transition: font-size 0.5s ease-in-out;
+}
+
+@keyframes crescendo {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
