@@ -1,8 +1,15 @@
 /*-------------------------------vertical-------------------------*/
 
-.navverver{
+.navver{
+  position: fixed;
+  display: flex;
   font-size: 1em;
+  width: auto;
+  /*border: 1px solid blue;*/
+  right:5%;
+  top: 5%;
 }
+
 
 .nav-listver{
   display: flex;
@@ -28,17 +35,19 @@
   /*border: 1px solid green;*/
   text-decoration: none;
   transition: color 0.5s ease-in-out;
-  transition: width .5s ease, background-color .5s ease;
+  
 
 
 }
 .nav-itemver:hover{
+  display: flex;
   /*border: 1px solid red;*/
-  color: black;
-  
+  color:#5d25ca;
+  transition: color 0.5s ease-in-out;
 }
 
 .nav-itemver:after{
+  display: flex;
   content: '';
   display: flex;
   margin: auto;
@@ -50,13 +59,13 @@
 }
 .nav-itemver:hover:after{
   width: 20px;
-  background: black;
+  background: #ff8fff;
   
 }
 
 .active-nav-itemver{
   display: flex;
-  color: black;
+  color: #5d25ca;
   font-weight: bold;
   
 }
@@ -66,14 +75,22 @@
   display: flex;
   height: 2px;
   width: 20px;
-  background: black;  
+  background:  #ff8fff;  
   transition: width 0s ease;
 }
 
 /*-----------------------------------horizonral-------------------------*/
 
 .navhor{
+  position: fixed;
+  display:  flex;
   font-size: 1em;
+  width: 100%;
+  /*border: 1px solid blue;*/
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  top: 25px;
 }
 
 .nav-listhor{
@@ -82,7 +99,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   list-style-type: none;
-  /*border: 1px solid blue;*/
+  /*border: 1px solid red;*/
   margin: 0px;
   padding: 0px;
   align-items: center;
@@ -95,11 +112,10 @@
   width: 100%;
   flex-direction: column;
   align-items: center;
-  padding: 5px;
+  padding: 15px;
   color: #999999;
   /*border: 1px solid green;*/
   text-decoration: none;
-  transition: font-size 0.5s ease-in-out;
   transition: color 0.5s ease-in-out;
   
 
@@ -107,7 +123,7 @@
 }
 .nav-itemhor:hover{
   /*border: 1px solid red;*/
-  color: black;
+  color: #5d25ca;
 }
 
 .nav-itemhor:after{
@@ -121,11 +137,11 @@
 }
 .nav-itemhor:hover:after{
   width: 100%;
-  background: black;
+  background: #ff8fff;
 }
 
 .active-nav-itemhor{
-  color: black;
+  color:  #5d25ca;
   font-weight: bold;
 
 }
@@ -135,7 +151,7 @@
   display: flex;
   height: 2px;
   width: 100%;
-  background: black;
+  background: #ff8fff;
   transition: width 0s ease;
 
 }

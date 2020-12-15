@@ -1,0 +1,69 @@
+.background{
+  background: rgb(93,37,202);
+  background: radial-gradient(circle, rgba(93,37,202,1) 0%, rgba(48,20,102,1) 100%);
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+
+.nav{
+  position: fixed;
+  display: flex;
+  font-size: 1.6em;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  animation-name: drop;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  
+}
+
+@keyframes drop {
+  from {opacity: 0; left: -50px;}
+  to {opacity: 1; left: 0px;}
+ }
+
+
+.nav-list{
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  /*border: 1px solid red;*/
+  margin: auto;
+  padding: 0px;
+  align-items: flex-start;
+  
+}
+
+.nav-item{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  color: white;
+  /*border: 1px solid green;*/
+  text-decoration: none;
+  transition: color 0.5s ease-in-out;
+  background-color: transparent;
+  
+}
+
+.active-nav-item{
+  display: flex;
+  color: #ff8fff;
+  font-weight: bold;
+  
+}
+
+.active-nav-item::before{
+  content: '';
+  display: flex;
+  height: 3px;
+  margin-right: 5px;
+  width: 20px;
+  background:  #cc5de7;  
+  transition: width 0s ease;
+}
