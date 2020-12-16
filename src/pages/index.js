@@ -7,8 +7,9 @@ import Aboutpage from "./about"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Pricing from "../components/ClientOptions"
+import Intro from "../components/ClientOptions"
 import Features from "../components/Features"
+import HowItWorks from "../components/HowItWorks"
 
 
 
@@ -18,7 +19,8 @@ const IndexPage = (props) => (
     
     <Layout {... props}>
       <SEO title="Home" />
-      <Pricing />
+      <Intro />
+      <HowItWorks></HowItWorks>
       <Features></Features>
     </Layout>
   </div>

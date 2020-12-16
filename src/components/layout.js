@@ -8,11 +8,14 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { createMuiTheme, ThemeProvider, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import Header from "./header"
 import Nav from "./nav"
-import MobielNav from "./mobileNav"
+import MobileNav from "./mobileNav"
 import Footer from "./Footer" 
+import Theme2 from "./StyleTheme";
 
 const Layout = ({ children, ...props }) => {
   const data = useStaticQuery(graphql`
@@ -25,21 +28,29 @@ const Layout = ({ children, ...props }) => {
     }
   `)
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
-    <>
-    <MobielNav {... props} />
     
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-        }}
-      >
-        <main>{children}</main> 
-      <Footer></Footer> 
-      </div>
-    </>
+    
+    <Theme2>
+      {matches
+      ? <MobileNav {... props} />
+      :
+      <Nav {... props}/>
+      }
+        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <div
+          style={{
+            margin: `0 auto`,
+            maxWidth: 960,
+          }}
+        >
+          <main>{children}</main> 
+        <Footer></Footer> 
+        </div> 
+    </Theme2>
   )
 }
 

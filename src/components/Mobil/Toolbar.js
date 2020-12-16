@@ -2,22 +2,24 @@ import React from "react";
 import { fade, makeStyles, withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Box } from "@material-ui/core";
+import Toolbar from '@material-ui/core/Toolbar';
+import { Box, Typography } from "@material-ui/core";
 import Theme2 from '../StyleTheme';
-
+import AppBar from '@material-ui/core/AppBar';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
 
 const styles = Theme => ({
   grow: {
+    position: 'fixed',
     flexGrow: 1,
     
+    width: '100%',
+    bottom:'0%',
   },
   menuButton: {
-    left: '20px',
+    left: '0px',
   },
   
-  root: {
-    postion: 'fixed',
-  }
  
 });
 
@@ -36,16 +38,21 @@ class ToolbarComponent extends React.Component {
     return (
       <div className={classes.grow}>
          <Theme2>
-            <Box position="fixed" display="flex"  width="100vw" border="1px solid green" bottom={0} >
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                color="secondary"
-                aria-label="open drawer"
-                onClick={this.props.openDrawerHandler}
-              >
-                <MenuIcon />
-              </IconButton>
+            <Box display="flex" width='100%' alignItems="flex-end" bottom="0%">
+              <AppBar position="static">
+                <Toolbar >
+                  <IconButton
+                    edge="start"
+                    className={classes.menuButton}
+                    color="secondary"
+                    aria-label="open drawer"
+                    onClick={this.props.openDrawerHandler}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                  <Typography>Motivus | Get Started!</Typography>
+                </Toolbar>
+              </AppBar>
             </Box>
         </Theme2>
        
