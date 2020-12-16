@@ -32,12 +32,13 @@ const theme2 = createMuiTheme({
     },
 
     background: {
-      paper: '#9468e9',
-      default: '#613bb6',
+      paper: '#fff',
+      default: '#fff',
     },
 
     text: {
-      primary: '#fff',
+      primary: '#000000',
+      
     },
   },
   overrides: {

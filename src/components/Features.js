@@ -8,8 +8,10 @@ import Grid from '@material-ui/core/Grid';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 
 const useStyles = makeStyles((theme) => ({
+  
 root:{
   padding: theme.spacing(8, 0, 6),
+  
 },
 head:{
   paddingBottom: '50px',
@@ -19,22 +21,32 @@ head:{
 const featuresContent = [
   {
     name: 'Secure',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum diam massa, pulvinar facilisis ligula dapibus viverra. Praesent augue urna, ultrices eu molestie non, bibendum ac neque. In quis facilisis arcu. Cras pretium dapibus bibendum. Sed consequat, lacus nec vulputate laoreet, odio est pharetra dolor, non aliquam risus enim id mi.',
+    description: 'Your data and files are safe.',
     icon: <FitnessCenterIcon fontSize="large" />,
   },
   {
     name: 'Collaborative',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum diam massa, pulvinar facilisis ligula dapibus viverra. Praesent augue urna, ultrices eu molestie non, bibendum ac neque. In quis facilisis arcu. Cras pretium dapibus bibendum. Sed consequat, lacus nec vulputate laoreet, odio est pharetra dolor, non aliquam risus enim id mi.',
+    description: 'People working together.',
     icon: <FitnessCenterIcon fontSize="large"/>,
   },
   {
     name: 'Democratic',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum diam massa, pulvinar facilisis ligula dapibus viverra. Praesent augue urna, ultrices eu molestie non, bibendum ac neque. In quis facilisis arcu. Cras pretium dapibus bibendum. Sed consequat, lacus nec vulputate laoreet, odio est pharetra dolor, non aliquam risus enim id mi.',
+    description: 'Available for everyone.',
     icon: <FitnessCenterIcon fontSize="large"/>,
   },
   {
     name: 'Green',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum diam massa, pulvinar facilisis ligula dapibus viverra. Praesent augue urna, ultrices eu molestie non, bibendum ac neque. In quis facilisis arcu. Cras pretium dapibus bibendum. Sed consequat, lacus nec vulputate laoreet, odio est pharetra dolor, non aliquam risus enim id mi.',
+    description: 'No need for server farms.',
+    icon: <FitnessCenterIcon fontSize="large"/>,
+  },
+  {
+    name: 'Easy',
+    description: 'No coding skills needed.',
+    icon: <FitnessCenterIcon fontSize="large"/>,
+  },
+  {
+    name: 'Distributed',
+    description: 'Compute anywhere around the world.',
     icon: <FitnessCenterIcon fontSize="large"/>,
   },
 ]
@@ -50,17 +62,15 @@ export default function Features() {
       <CssBaseline />
       <Container className={classes.root}>
         <Grid container direction="row" className={classes.head}>
-          <Grid item container xs={12} justify="center"   >
-          <Typography variant='h3'> Features </Typography>
+          <Grid  item container xs={12} justify="center"   >
+          <Typography variant='h3' color="primary"> Features </Typography>
           </Grid>
         </Grid>
-        <Grid container spacing={6}  
+        <Grid id="2"container  
           direction="row"
           alignItems="center" >
           {featuresContent.map(feature => (
-            <Grid item xs={12} sm={6} md={6} lg={6}>
-              <Grid container
-              irection="row">
+            <Grid id="3"container xs={12} sm={6} md={6} lg={6} style={{ padding:'10px 30px' }} >
                 <Grid item xs={2} container justify="center">
                   {feature.icon}
                 </Grid>
@@ -68,9 +78,11 @@ export default function Features() {
                   <Typography variant='h4'>
                     {feature.name}
                   </Typography>
+                  <p style={{ hyphens: 'auto', textJustify: 'auto' }}>
                   {feature.description}
+                  </p>
                 </Grid>
-              </Grid>
+              
             </Grid>
           ))}
         </Grid>

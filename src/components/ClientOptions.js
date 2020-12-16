@@ -11,16 +11,10 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Theme2 from './StyleTheme';
 
 
 const useStyles = makeStyles((theme) => ({
-  '@global': {
-    ul: {
-      margin: 0,
-      padding: 0,
-      listStyle: 'none',
-    },
-  },
   
   toolbar: {
     flexWrap: 'wrap',
@@ -32,7 +26,18 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1, 1.5),
   },
   heroContent: {
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(0, 0, 6),
+  },
+  cardDistribution: {
+    padding: '10px',
+  },
+  cardside:{
+    padding: "10px",
+    height: '350px',
+  },
+  cardmid:{
+    padding: "10px",
+    height: '450px',
   },
   cardHeader: {
     backgroundColor:
@@ -45,73 +50,78 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
 
   },
+
+  test:
+  {
+    color: theme.palette.primary.light,
+      
+  }
+
 }));
 
 const tiers = [
   {
-    title: 'User host',
-    subheader: 'Motivus embedded',
-    price: '0',
-    description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
-    buttonText: 'Get token',
+    title: 'I want to embed Motivus on my website',
+    description: [
+      'Host the Motivus application on your website and get paid whenever users process through it.'
+  ],
+    position: 'side',
+    buttonText: 'Host the Floating Tool',
     buttonVariant: 'outlined',
   },
   {
-    title: 'Client',
-    subheader: 'Need processing',
-    price: '15',
+    title:  'I want to process data!',
     description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
+      'Program your own drivers to work with the Motivus cluster and start processing. Get tokens',
+      'Want to process data but not sure where to begin? Visit our Software Factory to create a tailored made solution for your business.',
     ],
+    position: 'mid',
     buttonText: 'Contact us',
     buttonVariant: 'contained',
   },
   {
-    title: 'User node',
-    subheader: 'Help science',
-    price: '30',
+    title: 'I want to share my computer power',
     description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
+      'Share your computer power with researchers all around the world and get paid.',
     ],
-    buttonText: 'Start processing',
+    position: 'side',
+    buttonText: 'Start sharing',
     buttonVariant: 'outlined',
   },
 ];
 
 
-export default function Pricing() {
+export default function Intro() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
-      <CssBaseline />
+   
+    <Theme2>
       
       {/* Hero unit */}
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
-        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+        <Typography  variant="h1" align="center"  color="primary">
           Motivus
         </Typography>
-        <Typography variant="h5" align="center" color="textSecondary" component="p">
-          Quickly build an effective pricing table for your potential customers with this layout.
-          It&apos;s built with default Material-UI components with little customization.
+        <Typography variant="h5" align="center" color="textPrimary" component="subtitle" display='block' gutterBottom>
+        High Performance Computing Network.
+        </Typography>
+        <Typography variant="body1" align="center" color="textSecondary" component="subtitle" display='block' gutterBottom>
+        Undertake the most demanding data processing tasks with our High Performance Computing Network. From cracking DNA structures to identifying societal behavior patterns, we make distributed computing a collaborative, democratic and accessible endeavor by empowering data scientists of all technical levels as well as the common computer user. 
+        </Typography>
+        <Typography variant="h5" align="center" color="secondary" component="subtitle" display='block' gutterBottom>
+        Join us in our revolution of decentralized computing power by selecting one of the following options:
         </Typography>
       </Container>
       {/* End hero unit */}
       <Container maxWidth="lg" component="main">
-        <Grid container spacing={5} alignItems="flex-end">
+        <Grid container alignItems="center" >
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
-              <Card>
+            <Grid item key={tier.title} xs={12} sm={4} md={4} className={classes.cardDistribution}>
+              <Card className={tier.position === "mid" ? classes.cardmid : classes.cardside }>
                 <CardHeader
                   title={tier.title}
-                  subheader={tier.subheader}
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
                   action={tier.title === 'Pro' ? <StarIcon /> : null}
@@ -126,16 +136,16 @@ export default function Pricing() {
                       /mo
                     </Typography>*/}
                   </div>
-                  <ul>
+                  
                     {tier.description.map((line) => (
-                      <Typography component="li" variant="subtitle1" align="center" key={line}>
+                      <p style={{ hyphens: 'auto', textJustify: 'auto' }}>
                         {line}
-                      </Typography>
+                      </p>
                     ))}
-                  </ul>
+                  
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
+                  <Button fullWidth variant={tier.buttonVariant} color="primary" style={{bottom:'0'}}>
                     {tier.buttonText}
                   </Button>
                 </CardActions>
@@ -144,6 +154,6 @@ export default function Pricing() {
           ))}
         </Grid>
       </Container>
-    </React.Fragment>
+    </Theme2>
   );
 }
