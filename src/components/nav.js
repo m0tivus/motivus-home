@@ -35,8 +35,8 @@ const Nav = () => {
 
   return (
     <div>
-      <Box width="100%" display="flex" height = "100px"/>
-      <Fade in={!checkedHorizontal} timeout={1000}>
+      <Box width="100%" display="flex" height = "150px"/>
+      <Fade in={!checkedHorizontal} timeout={500}>
           <nav className={navStyles.navver}>
             <ul className={navStyles.navListver}>
               {routes.map(({ name, route, partialy }) => (
@@ -47,7 +47,7 @@ const Nav = () => {
             </ul>
           </nav>
       </Fade>
-      <Fade in={checkedHorizontal} timeout={1000}>
+      <Fade in={checkedHorizontal} timeout={500}>
         <nav className={navStyles.navhor}>
           <ul className={navStyles.navListhor}>
             {routes.map(({ name, route, partialy }) => (
