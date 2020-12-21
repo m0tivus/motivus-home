@@ -1,18 +1,17 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import React from 'react'
+import { Link, graphql } from 'gatsby'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import Divider from '@material-ui/core/Divider';
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import Divider from '@material-ui/core/Divider'
 import styles from '../styles/blog.module.css'
 
 const useStyles = makeStyles((theme) => ({
@@ -22,19 +21,15 @@ const useStyles = makeStyles((theme) => ({
   heroContent: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
-    
   },
 
-  root:{
-    
-  },
-  
+  root: {},
+
   cardGrid: {
     paddingTop: theme.spacing(5),
     paddingBottom: theme.spacing(5),
     margin: 'auto',
     width: 'auto',
-    
   },
   card: {
     height: '100%',
@@ -53,58 +48,55 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
-}));
+}))
 
+const BlogPage = ({ data, ...props }) => {
+  const classes = useStyles()
 
+  return (
+    <Layout {...props}>
+      <SEO title='Blog' description='Blog Data' />
 
-const BlogPage = ({data, ...props}) => {
-  const classes = useStyles();
-  
-  return(
-  <Layout {...props}>
-    <SEO title="Blog" description="Blog Data" />
-     
-      {data.allSanityPost.edges.map(document => (
-        
-      <Grid item key={document.node.id} xs={12} sm={6} >
-        <Card className={classes.card}>
-          <CardActionArea >
-          <Link to={`/blog/${document.node.slug.current}`}>
-          <CardMedia
-              className={classes.cardMedia}
-              image={document.node.image.asset.fixed.src}
-            /></Link>
-          </CardActionArea>
-          <CardContent className={classes.cardContent}>
-            <Link  
-              className={styles.title} 
-              to={`/blog/${document.node.slug.current}`}>
-              {document.node.title} 
-            </Link>
-            <Divider/>
-            <Typography>
-            {document.node.abstract}
-            </Typography> 
-          </CardContent>
-          <CardActions>
-             <p>date</p>
-          </CardActions>
-        </Card>
-      </Grid>
+      {data.allSanityPost.edges.map((document) => (
+        <Grid item key={document.node.id} xs={12} sm={6}>
+          <Card className={classes.card}>
+            <CardActionArea>
+              <Link to={`/blog/${document.node.slug.current}`}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={document.node.image.asset.fixed.src}
+                />
+              </Link>
+            </CardActionArea>
+            <CardContent className={classes.cardContent}>
+              <Link
+                className={styles.title}
+                to={`/blog/${document.node.slug.current}`}
+              >
+                {document.node.title}
+              </Link>
+              <Divider />
+              <Typography>{document.node.abstract}</Typography>
+            </CardContent>
+            <CardActions>
+              <p>date</p>
+            </CardActions>
+          </Card>
+        </Grid>
       ))}
-  </Layout>
+    </Layout>
   )
 }
 
 export default BlogPage
 
-export const pageQuery = graphql`  
+export const pageQuery = graphql`
   query IndexQuery {
     allSanityPost {
       edges {
         node {
           id
-          slug{
+          slug {
             current
           }
           image {

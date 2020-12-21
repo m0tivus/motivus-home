@@ -1,6 +1,5 @@
-
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 const theme2 = createMuiTheme({
@@ -38,7 +37,6 @@ const theme2 = createMuiTheme({
 
     text: {
       primary: '#000000',
-      
     },
   },
   overrides: {
@@ -54,12 +52,7 @@ const theme2 = createMuiTheme({
 })
 
 const Theme2 = ({ children }) => {
-
-  return (
-    <ThemeProvider theme={theme2}>
-     {children}
-    </ThemeProvider>
-  )
+  return <ThemeProvider theme={theme2}>{children}</ThemeProvider>
 }
 
 Theme2.propTypes = {

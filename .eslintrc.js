@@ -34,5 +34,6 @@ module.exports = {
     'react/jsx-uses-vars': 'error',
     'no-multi-spaces': 'error',
     'comma-dangle': ['error', 'always-multiline'],
+    'no-console': 'warn'
   },
 }
