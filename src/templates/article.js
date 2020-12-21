@@ -52,3 +52,24 @@ export default function AricleTemplate ({data, ...props}) {
 
 
 
+export const query = graphql`
+  query ArticleTemplate($id: String!) {
+    sanityPost(id: {eq: $id}) {
+      title
+      _rawContent(resolveReferences: {maxDepth: 5})
+      abstract 
+      image {
+          asset {
+            fixed(width: 960, height: 400) {
+              ...GatsbySanityImageFixed
+            }
+          }
+        }
+      author {
+        id
+        name
+        
+      }
+    }
+  }
+`
