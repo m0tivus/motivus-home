@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+
 .background{
   background: rgb(93,37,202);
   background: radial-gradient(circle, rgba(93,37,202,1) 0%, rgba(48,20,102,1) 100%);
@@ -11,6 +15,8 @@
   position: fixed;
   display: flex;
   font-size: 1.6em;
+  font-family: 'Asap', sans-serif;
+  font-weight: 400;
   width: 100vw;
   height: 100vh;
   background-color: transparent;
@@ -42,7 +48,7 @@
   width: 100%;
   flex-direction: row;
   align-items: center;
-  padding: 10px;
+  padding-bottom: 20px;
   color: white;
   /*border: 1px solid green;*/
   text-decoration: none;
@@ -54,7 +60,8 @@
 .active-nav-item{
   display: flex;
   color: #ff8fff;
-  font-weight: bold;
+  font-weight: 700;
+  font-style: italic;
   
 }
 

@@ -1,41 +1,103 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react'
+import { Link, graphql } from 'gatsby'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import Divider from '@material-ui/core/Divider'
+import styles from '../styles/blog.module.css'
 
+const useStyles = makeStyles((theme) => ({
+  icon: {
+    marginRight: theme.spacing(2),
+  },
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+  },
 
-import Layout from "../components/layout"
-import Img from 'gatsby-image'
-import SEO from "../components/seo"
+  root: {},
 
+  cardGrid: {
+    paddingTop: theme.spacing(5),
+    paddingBottom: theme.spacing(5),
+    margin: 'auto',
+    width: 'auto',
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '0%', // 16:9
+    height: '400px',
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
+  },
+}))
 
-const BlogPage = ({data, ...props}) => (
-  <Layout {...props}>
-    <SEO title="Blog" description="Blog Data" />
-      <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <ul>
-      {data.allSanityPost.edges.map(document => (
-        <li key={document.node.id}>
-          <h2>
-            <Link to={`/blog/${document.node.id}`}>{document.node.title}</Link>
-          </h2>
-          <Img fixed={document.node.image.asset.fixed}/>
-          <p>{document.node.abstract}</p>
-        </li>
+const BlogPage = ({ data, ...props }) => {
+  const classes = useStyles()
+
+  return (
+    <Layout {...props}>
+      <SEO title='Blog' description='Blog Data' />
+
+      {data.allSanityPost.edges.map((document) => (
+        <Grid item key={document.node.id} xs={12} sm={6}>
+          <Card className={classes.card}>
+            <CardActionArea>
+              <Link to={`/blog/${document.node.slug.current}`}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={document.node.image.asset.fixed.src}
+                />
+              </Link>
+            </CardActionArea>
+            <CardContent className={classes.cardContent}>
+              <Link
+                className={styles.title}
+                to={`/blog/${document.node.slug.current}`}
+              >
+                {document.node.title}
+              </Link>
+              <Divider />
+              <Typography>{document.node.abstract}</Typography>
+            </CardContent>
+            <CardActions>
+              <p>date</p>
+            </CardActions>
+          </Card>
+        </Grid>
       ))}
-    </ul>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+    </Layout>
+  )
+}
 
 export default BlogPage
 
-export const pageQuery = graphql`  
+export const pageQuery = graphql`
   query IndexQuery {
     allSanityPost {
       edges {
         node {
           id
+          slug {
+            current
+          }
           image {
             asset {
               fixed(width: 200, height: 200) {

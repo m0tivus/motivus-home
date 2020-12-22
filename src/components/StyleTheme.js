@@ -1,17 +1,88 @@
-
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 const theme2 = createMuiTheme({
   typography: {
     fontFamily: 'Asap',
 
-    h4: {
-      fontWeight: 'bold',
+    h1: {
+      fontWeight: '700',
       fontStyle: 'italic',
-      fontSize: '1.5rem',
+      fontSize: '5rem',
       lineHeight: 1.334,
+      letterSpacing: '0em',
+    },
+
+    h2: {
+      fontWeight: '600',
+      fontStyle: 'italic',
+      fontSize: '3rem',
+      lineHeight: 1.2,
+      letterSpacing: '0em',
+    },
+
+    h3: {
+      fontWeight: '500',
+      fontStyle: 'italic',
+      fontSize: '2.5rem',
+      lineHeight: 1.167,
+      letterSpacing: '0em',
+    },
+
+    h4: {
+      fontWeight: '400',
+      fontStyle: 'italic',
+      fontSize: '1.85rem',
+      lineHeight: 1.235,
+      letterSpacing: '0em',
+    },
+
+    h5: {
+      fontWeight: '600',
+      fontFamily: 'Roboto',
+      fontSize: '1.2rem',
+      lineHeight: 1.334,
+      letterSpacing: '0em',
+    },
+
+    h6: {
+      fontWeight: '500',
+      fontFamily: 'Roboto',
+      fontSize: '1rem',
+      lineHeight: 1.25,
+      letterSpacing: '0em',
+    },
+
+    subtitle1: {
+      fontWeight: '400',
+      fontFamily: 'Roboto',
+      fontSize: '1rem',
+      lineHeight: 1.75,
+      letterSpacing: '0em',
+    },
+
+    subtitle2: {
+      fontWeight: '400',
+      fontFamily: 'Roboto',
+      fontSize: '0.875rem',
+      lineHeight: 1.58,
+      letterSpacing: '0em',
+    },
+
+    body1: {
+      fontWeight: '400',
+      fontFamily: 'Roboto',
+      fontSize: '1rem',
+      lineHeight: 1.5,
+      letterSpacing: '0em',
+    },
+
+    body2: {
+      fontWeight: '300',
+      fontFamily: 'Roboto',
+      fontSize: '1rem',
+      lineHeight: 1.5,
       letterSpacing: '0em',
     },
   },
@@ -38,7 +109,7 @@ const theme2 = createMuiTheme({
 
     text: {
       primary: '#000000',
-      
+      secondary: '#424242',
     },
   },
   overrides: {
@@ -54,12 +125,7 @@ const theme2 = createMuiTheme({
 })
 
 const Theme2 = ({ children }) => {
-
-  return (
-    <ThemeProvider theme={theme2}>
-     {children}
-    </ThemeProvider>
-  )
+  return <ThemeProvider theme={theme2}>{children}</ThemeProvider>
 }
 
 Theme2.propTypes = {

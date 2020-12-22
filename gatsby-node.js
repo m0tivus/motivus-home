@@ -24,6 +24,9 @@ exports.createPages = ({ actions, graphql }) => {
         edges {
           node {
             id
+            slug{
+              current
+            }
           }
         }
       }
@@ -32,10 +35,11 @@ exports.createPages = ({ actions, graphql }) => {
     // Create pages for each article.
     result.data.allSanityPost.edges.forEach(({ node }) => {
       createPage({
-        path: `blog/${node.id}`,
+        path: `blog/${node.slug.current}`,
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: node.id,
+
         },
       })
     })
