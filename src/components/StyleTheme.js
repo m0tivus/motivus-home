@@ -6,8 +6,32 @@ const theme2 = createMuiTheme({
   typography: {
     fontFamily: 'Asap',
 
+    h1: {
+      fontWeight: '700',
+      fontStyle: 'italic',
+      fontSize: '5rem',
+      lineHeight: 1.334,
+      letterSpacing: '0em',
+    },
+
+    h2: {
+      fontWeight: '600',
+      fontStyle: 'italic',
+      fontSize: '3rem',
+      lineHeight: 1.334,
+      letterSpacing: '0em',
+    },
+
+    h3: {
+      fontWeight: '500',
+      fontStyle: 'italic',
+      fontSize: '2.5rem',
+      lineHeight: 1.334,
+      letterSpacing: '0em',
+    },
+
     h4: {
-      fontWeight: 'bold',
+      fontWeight: '400',
       fontStyle: 'italic',
       fontSize: '1.5rem',
       lineHeight: 1.334,

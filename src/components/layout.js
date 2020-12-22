@@ -20,6 +20,7 @@ import Nav from './nav'
 import MobileNav from './mobileNav'
 import Footer from './Footer'
 import Theme2 from './StyleTheme'
+import SocialMedia from './SocialMedia'
 
 const Layout = ({ children, ...props }) => {
   const data = useStaticQuery(graphql`
@@ -39,6 +40,7 @@ const Layout = ({ children, ...props }) => {
     <Theme2>
       {matches ? <MobileNav {...props} /> : <Nav {...props} />}
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
+      {!matches && <SocialMedia></SocialMedia>}
       <div
         style={{
           margin: '0 auto',

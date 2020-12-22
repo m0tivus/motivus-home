@@ -1,26 +1,24 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import { Container } from '@material-ui/core';
-import AddressForm from "./ContactUsForm"
-import { PlayCircleFilledWhite } from '@material-ui/icons';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import { Container } from '@material-ui/core'
+import ContactUsForm from './ContactUsForm'
+import { PlayCircleFilledWhite } from '@material-ui/icons'
 import ContactUsInfo from './ContactUsInfo'
 
-
 const useStyles = makeStyles((theme) => ({
-  body:{
-    margin:'0',
+  body: {
+    margin: '0',
   },
-  
+
   root: {
     flexGrow: 1,
     padding: 0,
     margin: 0,
     height: '100%',
-    
   },
- 
+
   info: {
     padding: theme.spacing(0),
     textAlign: 'center',
@@ -29,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     padding: '20%',
     margin: '0px',
-    
   },
 
   fill: {
@@ -41,29 +38,28 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     padding: '15%',
     margin: '0px',
-
   },
-}));
+}))
 
 export default function CenteredGrid(props) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <React.Fragment>
-    <Container className={classes.root} maxWidth="false">
-      <Grid container spacing={0}>
-        <Grid item xs={12}  md={6} lg={6}>
-         <Container className={classes.info}>
-          <ContactUsInfo></ContactUsInfo>
-          </Container>
+      <Container className={classes.root} maxWidth='false'>
+        <Grid container spacing={0}>
+          <Grid item xs={12} md={6} lg={6}>
+            <Container className={classes.info}>
+              <ContactUsInfo></ContactUsInfo>
+            </Container>
+          </Grid>
+          <Grid item xs={12} md={6} lg={6}>
+            <Container className={classes.fill}>
+              <ContactUsForm onClose={props.onClose} />
+            </Container>
+          </Grid>
         </Grid>
-        <Grid item xs={12}  md={6} lg={6}>
-          <Container className={classes.fill}>
-          <AddressForm />
-          </Container>
-         </Grid>
-       </Grid>   
-    </Container>
+      </Container>
     </React.Fragment>
-  );
+  )
 }

@@ -1,21 +1,20 @@
-import React from 'react';
+import React from 'react'
 
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import StarIcon from '@material-ui/icons/StarBorder';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Theme2 from './StyleTheme';
-
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardHeader from '@material-ui/core/CardHeader'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Grid from '@material-ui/core/Grid'
+import StarIcon from '@material-ui/icons/StarBorder'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Theme2 from './StyleTheme'
+import { FormatItalic, PlayCircleFilledWhite } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
-  
   toolbar: {
     flexWrap: 'wrap',
   },
@@ -31,46 +30,44 @@ const useStyles = makeStyles((theme) => ({
   cardDistribution: {
     padding: '10px',
   },
-  cardside:{
-    padding: "10px",
-    height: '350px',
+  cardside: {
+    padding: '10px',
+    background: 'linear-gradient(45deg, #5d25ca 30%, #cc5de7 90%)',
   },
-  cardmid:{
-    padding: "10px",
-    height: '450px',
+  cardmid: {
+    padding: '10px',
+    background: 'linear-gradient(45deg, #cc5de7 30%, #5d25ca 90%)',
   },
   cardHeader: {
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
+    color: 'white',
+    fontFamily: 'Asap, san serif',
+    fontWeight: '700',
+    fontStyle: 'italic',
   },
   cardPricing: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'baseline',
     marginBottom: theme.spacing(2),
-
   },
 
-  test:
-  {
+  test: {
     color: theme.palette.primary.light,
-      
-  }
-
-}));
+  },
+}))
 
 const tiers = [
   {
     title: 'I want to embed Motivus on my website',
     description: [
-      'Host the Motivus application on your website and get paid whenever users process through it.'
-  ],
+      'Host the Motivus application on your website and get paid whenever users process through it.',
+    ],
     position: 'side',
     buttonText: 'Host the Floating Tool',
     buttonVariant: 'outlined',
   },
   {
-    title:  'I want to process data!',
+    title: 'I want to process data!',
     description: [
       'Program your own drivers to work with the Motivus cluster and start processing. Get tokens',
       'Want to process data but not sure where to begin? Visit our Software Factory to create a tailored made solution for your business.',
@@ -88,45 +85,81 @@ const tiers = [
     buttonText: 'Start sharing',
     buttonVariant: 'outlined',
   },
-];
-
+]
 
 export default function Intro() {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
-   
     <Theme2>
-      
       {/* Hero unit */}
-      <Container maxWidth="sm" component="main" className={classes.heroContent}>
-        <Typography  variant="h1" align="center"  color="primary">
+      <Container maxWidth='sm' component='main' className={classes.heroContent}>
+        <Typography variant='h1' align='center' color='primary'>
           Motivus
         </Typography>
-        <Typography variant="h5" align="center" color="textPrimary" component="subtitle" display='block' gutterBottom>
-        High Performance Computing Network.
+        <Typography
+          variant='h5'
+          align='center'
+          color='textPrimary'
+          component='subtitle'
+          display='block'
+          gutterBottom
+        >
+          High Performance Computing Network.
         </Typography>
-        <Typography variant="body1" align="center" color="textSecondary" component="subtitle" display='block' gutterBottom>
-        Undertake the most demanding data processing tasks with our High Performance Computing Network. From cracking DNA structures to identifying societal behavior patterns, we make distributed computing a collaborative, democratic and accessible endeavor by empowering data scientists of all technical levels as well as the common computer user. 
+        <Typography
+          variant='body1'
+          align='center'
+          color='textSecondary'
+          component='subtitle'
+          display='block'
+          gutterBottom
+        >
+          Undertake the most demanding data processing tasks with our High
+          Performance Computing Network. From cracking DNA structures to
+          identifying societal behavior patterns, we make distributed computing
+          a collaborative, democratic and accessible endeavor by empowering data
+          scientists of all technical levels as well as the common computer
+          user.
         </Typography>
-        <Typography variant="h5" align="center" color="secondary" component="subtitle" display='block' gutterBottom>
-        Join us in our revolution of decentralized computing power by selecting one of the following options:
+        <Typography
+          variant='h5'
+          align='center'
+          color='secondary'
+          component='subtitle'
+          display='block'
+          gutterBottom
+        >
+          Join us in our revolution of decentralized computing power by
+          selecting one of the following options:
         </Typography>
       </Container>
       {/* End hero unit */}
-      <Container maxWidth="lg" component="main">
-        <Grid container alignItems="center" >
+      <Container maxWidth='lg' component='main'>
+        <Grid container alignItems='center'>
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={4} md={4} className={classes.cardDistribution}>
-              <Card className={tier.position === "mid" ? classes.cardmid : classes.cardside }>
+            <Grid
+              item
+              key={tier.title}
+              xs={12}
+              sm={4}
+              md={4}
+              className={classes.cardDistribution}
+            >
+              <Card
+                boxShadow={3}
+                className={
+                  tier.position === 'mid' ? classes.cardmid : classes.cardside
+                }
+              >
                 <CardHeader
                   title={tier.title}
-                  titleTypographyProps={{ align: 'center' }}
+                  titleTypographyProps={{ variant: 'h4', align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
                   className={classes.cardHeader}
                 />
+
                 <CardContent>
                   <div className={classes.cardPricing}>
                     {/*<Typography component="h2" variant="h3" color="textPrimary">
@@ -136,16 +169,29 @@ export default function Intro() {
                       /mo
                     </Typography>*/}
                   </div>
-                  
-                    {tier.description.map((line) => (
-                      <p style={{ hyphens: 'auto', textJustify: 'auto' }}>
-                        {line}
-                      </p>
-                    ))}
-                  
+
+                  {tier.description.map((line) => (
+                    <p
+                      style={{
+                        hyphens: 'auto',
+                        textJustify: 'auto',
+                        color: 'white',
+                        fontSize: '1rem',
+                        fontFamily: 'roboto, san-serof',
+                        fontWeight: '300',
+                      }}
+                    >
+                      {line}
+                    </p>
+                  ))}
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary" style={{bottom:'0'}}>
+                  <Button
+                    fullWidth
+                    variant={tier.buttonVariant}
+                    color='secondary'
+                    size='large'
+                  >
                     {tier.buttonText}
                   </Button>
                 </CardActions>
@@ -155,5 +201,5 @@ export default function Intro() {
         </Grid>
       </Container>
     </Theme2>
-  );
+  )
 }

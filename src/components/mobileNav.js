@@ -1,36 +1,36 @@
-import React from "react";
-import ToolbarComponent from "./Mobil/Toolbar";
-import DrawerComponent from "./Mobil/Drawer";
+import React from 'react'
+import ToolbarComponent from './Mobil/Toolbar'
+import DrawerComponent from './Mobil/Drawer'
 
 class MobileNav extends React.Component {
   state = {
-    left: false
-  };
+    left: false,
+  }
 
   toggleDrawer = () => {
     // if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
     //   return;
     // }
 
-    this.setState({ left: false });
-  };
+    this.setState({ left: false })
+  }
 
   openDrawer = () => {
     this.setState({
-      left: true
-    });
-  };
+      left: true,
+    })
+  }
 
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <ToolbarComponent openDrawerHandler={this.openDrawer} />
         <DrawerComponent
           left={this.state.left}
           toggleDrawerHandler={this.toggleDrawer}
         />
       </div>
-    );
+    )
   }
 }
-export default MobileNav;
+export default MobileNav

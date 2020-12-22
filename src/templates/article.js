@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import PortableText from '../components/PortableText'
 import SEO from '../components/seo'
-import { Box, Grid, Typography } from '@material-ui/core'
+import { Box, Divider, Grid, Typography } from '@material-ui/core'
 import '../components/layout.css'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -36,7 +36,7 @@ export default function AricleTemplate({ data, ...props }) {
         >
           <Grid container>
             <Grid item xs={12}>
-              <Typography variant='h3' color='primary' bottomgutter>
+              <Typography variant='h2' color='primary' bottomgutter>
                 {data.sanityPost.title}
               </Typography>
             </Grid>
@@ -76,7 +76,7 @@ export const query = graphql`
       abstract
       image {
         asset {
-          fixed(width: 960, height: 400) {
+          fixed(width: 960) {
             ...GatsbySanityImageFixed
           }
         }

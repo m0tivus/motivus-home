@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 
 /*-------------------------------vertical-------------------------*/
 
@@ -65,6 +65,7 @@
 .nav-itemver:hover:after{
   width: 20px;
   background: #ff8fff;
+  margin-left: 5px;
   
 }
 
@@ -73,6 +74,7 @@
   color: #5d25ca;
   font-weight: 600;
   font-style: italic;
+  
   
 }
 
@@ -83,6 +85,7 @@
   width: 20px;
   background:  #ff8fff;  
   transition: width 0s ease;
+  margin-left: 5px;
 }
 
 /*-----------------------------------horizonral-------------------------*/

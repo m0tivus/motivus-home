@@ -1,15 +1,8 @@
-import React from "react"
-import { Link } from "gatsby"
+import { navigate } from 'gatsby'
+import React from 'react'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import CenteredGrid from "../components/ContactUs"
+import ContactUs from '../components/ContactUs'
 
-const Contact = () => (
-  
-    
-    <CenteredGrid>
-    </CenteredGrid>
-)
+const Contact = () => <ContactUs onClose={() => navigate('/')}></ContactUs>
 
 export default Contact

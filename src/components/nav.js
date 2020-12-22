@@ -3,17 +3,19 @@ import React from 'react'
 import { Box, Fade } from '@material-ui/core'
 import navStyles from '../styles/nav.module.css'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
+import ContactUsDrawer from './ContactUsDrawer'
 
 const routes = [
   { name: 'HOME', route: '/', partialy: false },
   { name: 'SOFTWARE FACTORY', route: '/softwarefactory', partialy: false },
   { name: 'ABOUT', route: '/about', partialy: false },
   { name: 'BLOG', route: '/blog', partialy: true },
-  { name: 'CONTACT US', route: '/contact', partialy: false },
+  /*{ name: 'CONTACT US', route: '/contact', partialy: false },*/
 ]
 
 const Nav = () => {
   const [checkedHorizontal, setcheckedHorizontal] = React.useState(true)
+  const [openContact, setOpenContact] = React.useState(false)
 
   useScrollPosition(
     ({ currPos }) => {
@@ -26,6 +28,14 @@ const Nav = () => {
     },
     [checkedHorizontal],
   )
+
+  const toggleDrawer = () => {
+    setOpenContact(false)
+  }
+
+  const openDrawer = () => {
+    setOpenContact(true)
+  }
 
   return (
     <div>
@@ -45,6 +55,11 @@ const Nav = () => {
                 </Link>
               </li>
             ))}
+            <li>
+              <div onClick={openDrawer} className={navStyles.navItemver}>
+                CONTACT US
+              </div>
+            </li>
           </ul>
         </nav>
       </Fade>
@@ -63,9 +78,18 @@ const Nav = () => {
                 </Link>
               </li>
             ))}
+            <li>
+              <div onClick={openDrawer} className={navStyles.navItemhor}>
+                CONTACT US
+              </div>
+            </li>
           </ul>
         </nav>
       </Fade>
+      <ContactUsDrawer
+        open={openContact}
+        onClose={toggleDrawer}
+      ></ContactUsDrawer>
     </div>
   )
 }
