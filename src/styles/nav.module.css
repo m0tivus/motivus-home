@@ -5,7 +5,7 @@
 .navver{
   position: fixed;
   display: flex;
-  font-size: 1.1em;
+  font-size: 0.9rem;
   font-family: 'Asap', sans-serif;
   width: auto;
   /*border: 1px solid blue;*/
@@ -33,7 +33,7 @@
   width: 100%;
   flex-direction: row;
   align-items: center;
-  padding-bottom: 2px;
+  padding-bottom: 0px;
   color: #999999;
   /*border: 1px solid green;*/
   text-decoration: none;
@@ -94,7 +94,7 @@
   font-family: 'Asap', sans-serif;
   position: fixed;
   display:  flex;
-  font-size: 1.1em;
+  font-size: 0.9rem;
   width: 100%;
   /*border: 1px solid blue;*/
   margin: auto;

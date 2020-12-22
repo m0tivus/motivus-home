@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import Theme2 from './StyleTheme'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 import IconButton from '@material-ui/core/IconButton'
+import { Grow } from '@material-ui/core'
 
 const useStylesReddit = makeStyles((theme) => ({
   root: {
@@ -84,61 +85,74 @@ export default function AddressForm(props) {
         justify='flex-end'
         alignItems='flex-start'
       >
-        <CustomButton aria-label='close' onClick={props.onClose}>
-          <CancelOutlinedIcon fontSize='large' />
-        </CustomButton>
+        <Grow in timeout={1000}>
+          <CustomButton aria-label='close' onClick={props.onClose}>
+            <CancelOutlinedIcon fontSize='large' />
+          </CustomButton>
+        </Grow>
       </Grid>
 
       <Grid container spacing={8}>
         <Grid item xs={12} sm={12}>
-          <CustomeTextField
-            required
-            id='Name'
-            name='Name'
-            label='Name'
-            fullWidth
-            autoComplete='given-name'
-          />
+          <Grow in timeout={1000}>
+            <CustomeTextField
+              required
+              id='Name'
+              name='Name'
+              label='Name'
+              fullWidth
+              autoComplete='given-name'
+            />
+          </Grow>
         </Grid>
 
         <Grid item xs={12}>
-          <CustomeTextField
-            required
-            id='email'
-            name='email'
-            label='Email address'
-            fullWidth
-            autoComplete='give-email'
-          />
+          <Grow in timeout={2000}>
+            <CustomeTextField
+              required
+              id='email'
+              name='email'
+              label='Email address'
+              fullWidth
+              autoComplete='give-email'
+            />
+          </Grow>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Grow in timeout={2500}>
+            <CustomeTextField
+              id='Telephon'
+              name='Telephon'
+              label='Telephone'
+              fullWidth
+              autoComplete='give-telephon'
+            />
+          </Grow>
         </Grid>
         <Grid item xs={12}>
-          <CustomeTextField
-            id='Telephon'
-            name='Telephon'
-            label='Telephone'
-            fullWidth
-            autoComplete='give-telephon'
-          />
+          <Grow in timeout={3000}>
+            <CustomeTextField
+              required
+              id='country'
+              name='country'
+              label='Country'
+              fullWidth
+              autoComplete='give-country'
+            />
+          </Grow>
         </Grid>
         <Grid item xs={12}>
-          <CustomeTextField
-            required
-            id='country'
-            name='country'
-            label='Country'
-            fullWidth
-            autoComplete='give-country'
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <CustomeTextField
-            id='Your message'
-            required
-            name='Your message'
-            label='Your message'
-            multiline
-            fullWidth
-          />
+          <Grow in timeout={3500}>
+            <CustomeTextField
+              id='Your message'
+              required
+              name='Your message'
+              label='Your message'
+              multiline
+              fullWidth
+            />
+          </Grow>
         </Grid>
         <Grid
           item
@@ -148,10 +162,12 @@ export default function AddressForm(props) {
           justify='flex-end'
           alignItems='flex-start'
         >
-          <Button color='secondary' variant='outlined' size='large'>
-            {' '}
-            Send message{' '}
-          </Button>
+          <Grow in timeout={3500}>
+            <Button color='secondary' variant='outlined' size='large'>
+              {' '}
+              Send message{' '}
+            </Button>
+          </Grow>
         </Grid>
       </Grid>
     </Theme2>

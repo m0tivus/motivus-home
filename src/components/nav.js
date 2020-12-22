@@ -13,9 +13,8 @@ const routes = [
   /*{ name: 'CONTACT US', route: '/contact', partialy: false },*/
 ]
 
-const Nav = () => {
+const Nav = ({ openContact, setOpenContact, ...props }) => {
   const [checkedHorizontal, setcheckedHorizontal] = React.useState(true)
-  const [openContact, setOpenContact] = React.useState(false)
 
   useScrollPosition(
     ({ currPos }) => {

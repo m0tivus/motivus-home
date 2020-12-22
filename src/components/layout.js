@@ -21,6 +21,7 @@ import MobileNav from './mobileNav'
 import Footer from './Footer'
 import Theme2 from './StyleTheme'
 import SocialMedia from './SocialMedia'
+import { set } from 'lodash'
 
 const Layout = ({ children, ...props }) => {
   const data = useStaticQuery(graphql`
@@ -33,12 +34,26 @@ const Layout = ({ children, ...props }) => {
     }
   `)
 
+  const [openContact, setOpenContact] = React.useState(false)
+
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <Theme2>
-      {matches ? <MobileNav {...props} /> : <Nav {...props} />}
+      {matches ? (
+        <MobileNav
+          {...props}
+          openContact={openContact}
+          setOpenContact={setOpenContact}
+        />
+      ) : (
+        <Nav
+          {...props}
+          openContact={openContact}
+          setOpenContact={setOpenContact}
+        />
+      )}
       <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
       {!matches && <SocialMedia></SocialMedia>}
       <div
