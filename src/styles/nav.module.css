@@ -39,6 +39,7 @@
   text-decoration: none;
   font-weight: 400;
   transition: color 0.5s ease-in-out;
+  cursor: pointer;
   
 
 
@@ -129,6 +130,7 @@
   /*border: 1px solid green;*/
   text-decoration: none;
   transition: color 0.5s ease-in-out;
+  cursor: pointer;
   
 
 
