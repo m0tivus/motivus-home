@@ -1,8 +1,11 @@
-import { Box, Typography } from '@material-ui/core'
-import { Link } from 'gatsby'
+import { Box, Button, Typography } from '@material-ui/core'
+
 import React from 'react'
+import ContactToggle from '../../contexts/ContactToggle'
 
 export default function Ending() {
+  const [, setOpenContact] = React.useContext(ContactToggle)
+
   return (
     <Box py={8} mx={4}>
       <Typography
@@ -14,7 +17,16 @@ export default function Ending() {
         Please contact us using the form below to request a meeting, and we’ll
         create the best tailored solution for your data science needs.
       </Typography>
-      <Link to='/contact'>Request a meeting.</Link>
+      <Box p={2} display='flex' width='100%' justifyContent='center'>
+        <Button
+          onClick={() => setOpenContact(true)}
+          variant='outlined'
+          color='secondary'
+          size='large'
+        >
+          Request a meeting.
+        </Button>
+      </Box>
     </Box>
   )
 }
