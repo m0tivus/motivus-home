@@ -1,0 +1,22 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.1.0
+
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn run build
+      - run: sudo apt-get -y -qq install awscli
+      - run: aws s3 sync public/ s3://motivus.cl  --region us-east-1 --delete
+
+workflows:
+  main:
+    jobs:
+      - build:
+          filters:
+            branches:
+                only:
+                  - master
