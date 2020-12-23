@@ -9,7 +9,8 @@ jobs:
       - checkout
       - run: yarn install
       - run: yarn run build
-      - run: apt-get update && apt-get install -y awscli
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y awscli
       - run: aws s3 sync public/ s3://motivus.cl  --region us-east-1 --delete
 
 workflows:
