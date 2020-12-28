@@ -14,6 +14,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -26,6 +27,8 @@ import HttpIcon from '@material-ui/icons/Http';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import RedditIcon from '@material-ui/icons/Reddit';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import { CenterFocusStrong } from "@material-ui/icons";
+import Fade from '@material-ui/core/Fade';
 
 
 function Copyright() {
@@ -71,6 +74,14 @@ const useStyles = makeStyles((theme) => ({
   cardMedia: {
     paddingTop: '0%', // 16:9
     height: '400px',
+  },
+  description:{
+    display: 'flex',
+    background: 'white',
+    height: '100%',
+    alignItems: 'center',
+    padding: '15px'
+   
   },
   cardContent: {
     flexGrow: 1,
@@ -122,6 +133,11 @@ const SocialNetworks = ( {networks} ) => (
 export default function Aboutpage ({data, ...props}) {
   const classes = useStyles();
   
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = () => {
+    setChecked((prev) => !prev);
+  };
 
   return (
     <Layout {... props}>
@@ -142,23 +158,27 @@ export default function Aboutpage ({data, ...props}) {
         </div>
         <Container className={classes.cardGrid} maxWidth="lg">
           {/* End hero unit */}
-          <Grid container spacing={4}>
+          <Grid container spacing={4} >
             {data.allSanityHuman.edges.map((card) => (
               <Grid item key={card.node.id} xs={12} sm={6} md={4} lg={4} xl={4}>
-                <Card className={classes.card}>
+                <Card className={classes.card} onMouseOver={handleChange}>
                   <CardMedia
                     className={classes.cardMedia}
                     image={card.node.photography.asset.fixed.src}
                     title={card.node.name}
-                  />
+                  >
+                    <Fade in={checked}>
+                      <Box className={classes.description}>
+                        <Typography color="secondary" align="justify">
+                          {card.node.description}
+                        </Typography> 
+                      </Box>
+                    </Fade>
+                  </CardMedia>
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
                     {card.node.name}
                     </Typography>
-                    <Typography>
-                    {card.node.description}
-                    
-                    </Typography> 
                   </CardContent>
                   <CardActions>
                   { !_.isNull(true)

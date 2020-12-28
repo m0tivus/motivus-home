@@ -21,7 +21,7 @@ const reference = [
   {
     label: 'Cristianaguirre.com',
     citation: 'Cada día sabemos más y entendemos menos',
-    author: 'Cristian Aguirre',
+    author: 'Pablo Loaiza',
   },
 ]
 
