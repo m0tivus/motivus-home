@@ -6,6 +6,8 @@ import { Box, Divider, Typography } from '@material-ui/core'
 
 import step1 from '../../../static/needs.svg'
 import step2 from '../../../static/algorithm.svg'
+import step3 from '../../../static/Implementing.svg'
+import step4 from '../../../static/validation.svg'
 
 const steps = [
   {
@@ -24,14 +26,14 @@ const steps = [
     title: 'Implementing',
     content:
       'This is the moment in which you take charge of your data. Our team will go step by step through the process of utilizing your application so that you can start extracting quality information from your data resources. Our goal is that you can become an expert in processing your data.',
-    image: '/Diagrama2.png',
+    image: step3,
   },
   {
     title: 'Validation',
     content:
       'In the last stage we’ll validate that your process achieves the objectives we set out to meet. Validation will also tell us about the long term impact of your software solution, and how it can be upgraded as time goes by.',
     image:
-      'https://images.unsplash.com/photo-1589149098258-3e9102cd63d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2137&q=80',
+      step4,
   },
 ]
 
