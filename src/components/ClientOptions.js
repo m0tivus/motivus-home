@@ -13,6 +13,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Theme2 from './StyleTheme'
 import { FormatItalic, PlayCircleFilledWhite } from '@material-ui/icons'
+import ContactToggle from '../contexts/ContactToggle'
+import { navigate } from 'gatsby'
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -56,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const tiers = [
+const getTiers = (onClickEmbed, onClickProcess, onClickShare) => [
   {
     title: 'I want to embed Motivus on my website',
     description: [
@@ -65,6 +67,7 @@ const tiers = [
     position: 'side',
     buttonText: 'Host the Floating Tool',
     buttonVariant: 'outlined',
+    onClick: onClickEmbed,
   },
   {
     title: 'I want to process data!',
@@ -75,6 +78,7 @@ const tiers = [
     position: 'mid',
     buttonText: 'Contact us',
     buttonVariant: 'contained',
+    onClick: onClickProcess,
   },
   {
     title: 'I want to share my computer power',
@@ -84,11 +88,22 @@ const tiers = [
     position: 'side',
     buttonText: 'Start sharing',
     buttonVariant: 'outlined',
+    onClick: onClickShare,
   },
 ]
 
 export default function Intro() {
+  const [, setOpenContact] = React.useContext(ContactToggle)
   const classes = useStyles()
+  const tiers = getTiers(
+    () =>
+      setTimeout(() => {
+        navigate('/blog/hola-mundo')
+      }, 200),
+    () => setOpenContact(true),
+    // eslint-disable-next-line no-undef
+    () => window.Motivus.openFloatingTool(),
+  )
 
   return (
     <Theme2>
@@ -189,6 +204,7 @@ export default function Intro() {
                   <Button
                     fullWidth
                     variant={tier.buttonVariant}
+                    onClick={tier.onClick}
                     color='secondary'
                     size='large'
                   >
