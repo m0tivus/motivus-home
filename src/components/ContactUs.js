@@ -8,10 +8,6 @@ import { PlayCircleFilledWhite } from '@material-ui/icons'
 import ContactUsInfo from './ContactUsInfo'
 
 const useStyles = makeStyles((theme) => ({
-  body: {
-    margin: '0',
-  },
-
   root: {
     flexGrow: 1,
     padding: 0,
@@ -20,9 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   info: {
-    padding: theme.spacing(0),
     textAlign: 'center',
-    color: theme.palette.text.secondary,
     height: '100vh',
     backgroundColor: 'white',
     padding: '20%',
@@ -30,13 +24,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   fill: {
-    padding: theme.spacing(0),
     textAlign: 'center',
-    color: theme.palette.text.secondary,
     backgroundColor: '#5d25ca',
-    height: '100vh',
+    height: '100%',
     color: 'white',
-    padding: '15%',
+    padding: '10% 15% 10% 15%',
     margin: '0px',
   },
 }))
@@ -47,7 +39,7 @@ export default function CenteredGrid(props) {
   return (
     <React.Fragment>
       <Container className={classes.root} maxWidth='false'>
-        <Grid container spacing={0}>
+        <Grid container>
           <Grid item xs={12} md={6} lg={6}>
             <Container className={classes.info}>
               <ContactUsInfo></ContactUsInfo>

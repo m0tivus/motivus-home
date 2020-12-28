@@ -150,6 +150,7 @@ export default function AddressForm(props) {
               name='Your message'
               label='Your message'
               multiline
+              rows={3}
               fullWidth
             />
           </Grow>
