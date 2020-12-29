@@ -146,7 +146,7 @@ function HumanCard(props) {
         >
           <Fade in={checked}>
             <Box className={classes.description}>
-              <Typography color='secondary' align='justify'>
+              <Typography color='primary' align='justify'>
                 {data.node.description}
               </Typography>
             </Box>
@@ -155,6 +155,9 @@ function HumanCard(props) {
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant='h5' component='h2'>
             {data.node.name}
+          </Typography>
+          <Typography variant='subtitle1' color='secondary'>
+            {data.node.role}
           </Typography>
         </CardContent>
         <CardActions>
@@ -183,10 +186,10 @@ export default function Aboutpage({ data, ...props }) {
             component='h1'
             variant='h2'
             align='center'
-            color='textPrimary'
+            color='primary'
             gutterBottom
           >
-            Equipo Motivus
+            Motivus Team
           </Typography>
           <Typography
             variant='h5'
@@ -194,9 +197,9 @@ export default function Aboutpage({ data, ...props }) {
             color='textSecondary'
             paragraph
           >
-            Something short and leading about the collection below—its contents,
-            the creator, etc. Make it short and sweet, but not too short so
-            folks don&apos;t simply skip over it entirely.
+            Our team is made up of smart and curious human beings that love to
+            interact with technology, get to know them a little bit more by
+            hovering over their profiles.
           </Typography>
         </Container>
       </div>
@@ -218,6 +221,7 @@ export const humanQuery = graphql`
       edges {
         node {
           id
+          role
           photography {
             asset {
               fixed(width: 400, height: 400) {

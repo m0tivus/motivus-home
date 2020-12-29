@@ -11,7 +11,7 @@ const reference = [
   {
     label: 'Dairylink',
     citation: 'No hay caminos para la paz; la paz es el camino',
-    author: 'Carlos aguirre',
+    author: 'Pablo Loaiza',
   },
   {
     label: 'Vigía Covid',
@@ -21,7 +21,7 @@ const reference = [
   {
     label: 'Cristianaguirre.com',
     citation: 'Cada día sabemos más y entendemos menos',
-    author: 'Pablo Loaiza',
+    author: 'Cristián Aguirre',
   },
 ]
 

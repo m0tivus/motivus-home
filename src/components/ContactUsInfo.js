@@ -20,8 +20,9 @@ export default function ContatUsInfo() {
         <Grid container spacing={4}>
           <Grid item xs={12}></Grid>
           <Grid item xs={12}>
-            <Typography variant='h4' color='Primary'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <Typography variant='h4' color='primary'>
+              Want to get in touch? We’d love to hear from you! Please complete
+              this form to contact us.
             </Typography>
           </Grid>
           <Grid item xs={6}>
@@ -41,13 +42,17 @@ export default function ContatUsInfo() {
           <Grid item xs={6}></Grid>
           <Grid item xs={6}>
             <Grid itme xs={12}>
-              Lorem ipsum dolor sit amet
+              <Typography variant='h6' color='primary'>
+                If you prefer, write us an email !
+              </Typography>
             </Grid>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant='h6' color='Primary'>
+            <Typography variant='h5' color='secondary'>
               <Grid itme xs={12}>
-                Info@motivus.cl
+                <a href='mailto:info@motivus.cl?Subject=Contact%20form%20Motivus'>
+                  info@motivus.cl
+                </a>
               </Grid>
             </Typography>
           </Grid>
