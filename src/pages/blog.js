@@ -100,7 +100,7 @@ export const pageQuery = graphql`
           }
           image {
             asset {
-              fixed(width: 200, height: 200) {
+              fixed(width: 960) {
                 ...GatsbySanityImageFixed
               }
             }
