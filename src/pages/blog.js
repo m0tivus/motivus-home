@@ -57,37 +57,38 @@ const BlogPage = ({ data, ...props }) => {
   return (
     <Layout {...props}>
       <SEO title='Blog' description='Blog Data' />
-
-      {data.allSanityPost.edges.map((document) => (
-        <Grid item key={document.node.id} xs={12} sm={6}>
-          <Card className={classes.card}>
-            <CardActionArea>
-              <Link to={`/blog/${document.node.slug.current}`}>
-                <CardMedia
-                  className={classes.cardMedia}
-                  image={document.node.image.asset.fixed.src}
-                />
-              </Link>
-            </CardActionArea>
-            <CardContent className={classes.cardContent}>
-              <Link
-                className={styles.title}
-                to={`/blog/${document.node.slug.current}`}
-              >
-                {document.node.title}
-              </Link>
-              <Divider />
-              <Typography>{document.node.abstract}</Typography>
-            </CardContent>
-            <CardActions>
-              {document.node.author.name},{' '}
-              {formatISO(parseJSON(document.node.publishedAt), {
-                representation: 'date',
-              })}
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
+      <Grid container spacing={2}>
+        {data.allSanityPost.edges.map((document) => (
+          <Grid item key={document.node.id} xs={12} sm={6}>
+            <Card className={classes.card}>
+              <CardActionArea>
+                <Link to={`/blog/${document.node.slug.current}`}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image={document.node.image.asset.fixed.src}
+                  />
+                </Link>
+              </CardActionArea>
+              <CardContent className={classes.cardContent}>
+                <Link
+                  className={styles.title}
+                  to={`/blog/${document.node.slug.current}`}
+                >
+                  {document.node.title}
+                </Link>
+                <Divider />
+                <Typography>{document.node.abstract}</Typography>
+              </CardContent>
+              <CardActions>
+                {document.node.author.name},{' '}
+                {formatISO(parseJSON(document.node.publishedAt), {
+                  representation: 'date',
+                })}
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
     </Layout>
   )
 }

@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
     fontStyle: 'italic',
   },
+
   cardPricing: {
     display: 'flex',
     justifyContent: 'center',
@@ -109,13 +110,10 @@ export default function Intro() {
     <Theme2>
       {/* Hero unit */}
       <Container maxWidth='sm' component='main' className={classes.heroContent}>
-        <Typography variant='h1' align='center' color='primary'>
-          Motivus
-        </Typography>
         <Typography
-          variant='h5'
+          variant='h3'
           align='center'
-          color='textPrimary'
+          color='Primary'
           component='subtitle'
           display='block'
           gutterBottom
