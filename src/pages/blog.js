@@ -12,6 +12,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import Divider from '@material-ui/core/Divider'
 import styles from '../styles/blog.module.css'
+import parseJSON from 'date-fns/parseJSON'
+import formatISO from 'date-fns/formatISO'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -78,7 +80,10 @@ const BlogPage = ({ data, ...props }) => {
               <Typography>{document.node.abstract}</Typography>
             </CardContent>
             <CardActions>
-              <p>date</p>
+              {document.node.author.name},{' '}
+              {formatISO(parseJSON(document.node.publishedAt), {
+                representation: 'date',
+              })}
             </CardActions>
           </Card>
         </Grid>
@@ -107,6 +112,11 @@ export const pageQuery = graphql`
           }
           title
           abstract
+          author {
+            id
+            name
+          }
+          publishedAt
         }
       }
     }

@@ -7,6 +7,8 @@ import SEO from '../components/seo'
 import { Box, Divider, Grid, Typography } from '@material-ui/core'
 import '../components/layout.css'
 import { makeStyles } from '@material-ui/core/styles'
+import parseJSON from 'date-fns/parseJSON'
+import formatISO from 'date-fns/formatISO'
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -41,9 +43,10 @@ export default function AricleTemplate({ data, ...props }) {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Link to={`/authors/User_${data.sanityPost.author.id}`}>
-                {data.sanityPost.author.name}
-              </Link>
+              {data.sanityPost.author.name},{' '}
+              {formatISO(parseJSON(data.sanityPost.publishedAt), {
+                representation: 'date',
+              })}
             </Grid>
           </Grid>
         </Box>
@@ -85,6 +88,7 @@ export const query = graphql`
         id
         name
       }
+      publishedAt
     }
   }
 `

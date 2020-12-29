@@ -1,11 +1,17 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
+
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
-import FitnessCenterIcon from '@material-ui/icons/FitnessCenter'
+
+import SecuritySharpIcon from '@material-ui/icons/SecuritySharp'
+import GroupSharpIcon from '@material-ui/icons/GroupSharp'
+import NaturePeopleRoundedIcon from '@material-ui/icons/NaturePeopleRounded'
+import WidgetsRoundedIcon from '@material-ui/icons/WidgetsRounded'
+import BubbleChartRoundedIcon from '@material-ui/icons/BubbleChartRounded'
+import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,32 +26,32 @@ const featuresContent = [
   {
     name: 'Secure',
     description: 'Your data and files are safe.',
-    icon: <FitnessCenterIcon fontSize='large' />,
+    icon: <SecuritySharpIcon fontSize='large' />,
   },
   {
     name: 'Collaborative',
     description: 'People working together.',
-    icon: <FitnessCenterIcon fontSize='large' />,
+    icon: <GroupSharpIcon fontSize='large' />,
   },
   {
     name: 'Democratic',
     description: 'Available for everyone.',
-    icon: <FitnessCenterIcon fontSize='large' />,
+    icon: <MenuBookRoundedIcon fontSize='large' />,
   },
   {
     name: 'Green',
     description: 'No need for server farms.',
-    icon: <FitnessCenterIcon fontSize='large' />,
+    icon: <NaturePeopleRoundedIcon fontSize='large' />,
   },
   {
     name: 'Easy',
     description: 'No coding skills needed.',
-    icon: <FitnessCenterIcon fontSize='large' />,
+    icon: <WidgetsRoundedIcon fontSize='large' />,
   },
   {
     name: 'Distributed',
     description: 'Compute anywhere around the world.',
-    icon: <FitnessCenterIcon fontSize='large' />,
+    icon: <BubbleChartRoundedIcon fontSize='large' />,
   },
 ]
 
