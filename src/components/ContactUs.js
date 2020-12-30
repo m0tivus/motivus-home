@@ -2,10 +2,11 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import { Container } from '@material-ui/core'
+import { Container, useTheme } from '@material-ui/core'
 import ContactUsForm from './ContactUsForm'
 import { PlayCircleFilledWhite } from '@material-ui/icons'
 import ContactUsInfo from './ContactUsInfo'
+import { SnackbarProvider } from 'notistack'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,13 +32,16 @@ const useStyles = makeStyles((theme) => ({
     padding: '10% 15% 10% 15%',
     margin: '0px',
   },
+  infoSnack: {
+    backgroundColor: `${theme.palette.secondary.main} !important`,
+  },
 }))
 
-export default function CenteredGrid(props) {
+export default function ContactUs(props) {
   const classes = useStyles()
 
   return (
-    <React.Fragment>
+    <SnackbarProvider classes={{ variantInfo: classes.infoSnack }}>
       <Container className={classes.root} maxWidth='false'>
         <Grid container>
           <Grid item xs={12} md={6} lg={6}>
@@ -52,6 +56,6 @@ export default function CenteredGrid(props) {
           </Grid>
         </Grid>
       </Container>
-    </React.Fragment>
+    </SnackbarProvider>
   )
 }
