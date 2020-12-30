@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'Motivus',
-    description: 'Gatsby blog with Strapi',
-    author: 'Strapi team',
+    description: 'High performance computing network',
+    author: 'Motivus',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

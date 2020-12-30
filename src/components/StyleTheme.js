@@ -113,7 +113,11 @@ const theme2 = createMuiTheme({
     },
   },
   overrides: {
-    // Style sheet name ⚛️
+    MuiDrawer: {
+      modal: {
+        zIndex: 999999,
+      },
+    },
     MuiTab: {
       // Name of the rule
       textColorSecondary: {

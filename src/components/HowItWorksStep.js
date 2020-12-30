@@ -11,20 +11,26 @@ import step3 from '../../static/result.svg'
 const steps = [
   {
     title: 'Problem',
-    content:
-      'Every Data Science task requires a different set of tools and drivers to perform in the best way possible. During this stage we’ll gather all the information we can to understand what is exactly what you need in order to solve your data science problems.',
+    george:
+      'Let’s say George, a protein researcher, has a data science problem that needs a high performance computing solution. He can’t afford a supercomputer or other cloud computing services.',
+    andrew:
+      'Andrew, a stay at home dad, is looking for new ways to make money while taking care of his kids.',
     image: step1,
   },
   {
-    title: 'Colaboration',
-    content:
-      'Knowing what your objectives are, our team will start programming the functionality of the application. This means designing the algorithm utilizing Motivus infrastructure to ensure its quality. Program all of the functionality of the application. Run with your team to give all knowledge so that you can use it.',
+    title: 'Enter Motivus',
+    george:
+      'George is able to solve his data science problem by using not only Andrew’s processing power, but also the power of thousands of other computers spread around the world.',
+    andrew:
+      'Andrew is able to use his computer to rent part of its processing power to George. The more Andrew let’s George use his computer resources, the more money he makes.',
     image: step2,
   },
   {
-    title: 'Result',
-    content:
-      'This is the moment in which you take charge of your data. Our team will go step by step through the process of utilizing your application so that you can start extracting quality information from your data resources. Our goal is that you can become an expert in processing your data.',
+    title: 'Outcome',
+    george:
+      'George walks out of Motivus with 3D models of proteins that will help him create a vaccine.',
+    andrew:
+      'At the same time, Andrew logs out with some extra earnings that will allow him to buy his daughter a new toy. Both George and Andrew’s data and privacy are safe thanks to Motivus’ technology.',
     image: step3,
   },
 ]
@@ -51,8 +57,8 @@ export default function Steps() {
     <div className={classes.root}>
       <Grid container>
         <Grid item sm={12} className={classes.girdElement}>
-          <Typography variant='h3' align='center'>
-            How It Work
+          <Typography variant='h3' align='center' color='primary'>
+            How It Works
           </Typography>
         </Grid>
         {steps.map((step, index) => (
@@ -80,8 +86,17 @@ export default function Steps() {
                   variant='body1'
                   align='justify'
                   color='textSecondary'
+                  gutterBottom
                 >
-                  {step.content}
+                  {step.george}
+                </Typography>
+                <Typography
+                  variant='body1'
+                  align='justify'
+                  color='textSecondary'
+                  gutterBottom
+                >
+                  {step.andrew}
                 </Typography>
               </Box>
             </Grid>

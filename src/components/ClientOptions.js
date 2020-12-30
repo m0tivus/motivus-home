@@ -57,6 +57,10 @@ const useStyles = makeStyles((theme) => ({
   test: {
     color: theme.palette.primary.light,
   },
+  bold: {
+    fontWeight: 400,
+    color: theme.palette.secondary.main,
+  },
 }))
 
 const getTiers = (onClickEmbed, onClickProcess, onClickShare) => [
@@ -110,7 +114,7 @@ export default function Intro() {
   return (
     <Theme2>
       {/* Hero unit */}
-      <Container maxWidth='sm' component='main' className={classes.heroContent}>
+      <Container component='main' className={classes.heroContent}>
         <Typography
           variant='h3'
           align='center'
@@ -119,33 +123,25 @@ export default function Intro() {
           display='block'
           gutterBottom
         >
-          High Performance Computing Network.
+          Join the revolution in big data processing!
         </Typography>
+
         <Typography
-          variant='body1'
+          variant='body2'
           align='center'
-          color='textSecondary'
+          color='textPrimary'
           component='subtitle'
           display='block'
           gutterBottom
         >
-          Undertake the most demanding data processing tasks with our High
-          Performance Computing Network. From cracking DNA structures to
-          identifying societal behavior patterns, we make distributed computing
-          a collaborative, democratic and accessible endeavor by empowering data
-          scientists of all technical levels as well as the common computer
-          user.
-        </Typography>
-        <Typography
-          variant='h5'
-          align='center'
-          color='secondary'
-          component='subtitle'
-          display='block'
-          gutterBottom
-        >
-          Join us in our revolution of decentralized computing power by
-          selecting one of the following options:
+          Motivus is a collaborative
+          <span className={classes.bold}>
+            {' '}
+            High Performance Computing Network.
+          </span>{' '}
+          With our framework you can process big volumes of data, and also earn
+          extra income by renting your computer power to process data.
+          <br></br> Choose one of the following options to begin:
         </Typography>
       </Container>
       {/* End hero unit */}
