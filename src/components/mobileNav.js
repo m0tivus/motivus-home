@@ -1,36 +1,36 @@
 import React from 'react'
 import ToolbarComponent from './Mobil/Toolbar'
 import DrawerComponent from './Mobil/Drawer'
+import ContactUsDrawer from './ContactUsDrawer'
 
-class MobileNav extends React.Component {
-  state = {
-    left: false,
+const MobileNav = ({ openContact, setOpenContact, ...props }) => {
+  const [openNavigator, setOpenNavigator] = React.useState(false)
+
+  const toggleNavigatorDrawer = () => {
+    setOpenNavigator((prev) => !prev)
   }
 
-  toggleDrawer = () => {
-    // if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-    //   return;
-    // }
-
-    this.setState({ left: false })
+  const openNavigatorDrawer = () => {
+    setOpenNavigator(true)
   }
 
-  openDrawer = () => {
-    this.setState({
-      left: true,
-    })
+  const toggleDrawer = () => {
+    setOpenContact(false)
   }
 
-  render() {
-    return (
-      <div className='App'>
-        <ToolbarComponent openDrawerHandler={this.openDrawer} />
-        <DrawerComponent
-          left={this.state.left}
-          toggleDrawerHandler={this.toggleDrawer}
-        />
-      </div>
-    )
-  }
+  return (
+    <div className='App'>
+      <ToolbarComponent openDrawerHandler={openNavigatorDrawer} />
+      <DrawerComponent
+        left={openNavigator}
+        toggleDrawerHandler={toggleNavigatorDrawer}
+      />
+      <ContactUsDrawer
+        open={openContact}
+        onClose={toggleDrawer}
+      ></ContactUsDrawer>
+    </div>
+  )
 }
+
 export default MobileNav

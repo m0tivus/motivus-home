@@ -1,5 +1,5 @@
 import { Box, IconButton } from '@material-ui/core'
-import { Facebook, GitHub, LinkedIn } from '@material-ui/icons'
+import { Facebook, GitHub, LinkedIn, Twitter } from '@material-ui/icons'
 import { navigate } from 'gatsby'
 
 import React from 'react'
@@ -27,11 +27,16 @@ export default function SocialMedia() {
       >
         <img alt='logoMotivus' src={logo} height='200px'></img>
       </Box>
-      {/*<Box>
-        <IconButton color='primary'>
-          <Facebook />
-        </IconButton>
-      </Box>*/}
+      {
+        <Box>
+          <IconButton
+            color='primary'
+            onClick={() => window.open('https://twitter.com/MotivusHPCN')}
+          >
+            <Twitter />
+          </IconButton>
+        </Box>
+      }
       <Box>
         <IconButton
           color='primary'
