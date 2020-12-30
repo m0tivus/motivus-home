@@ -66,7 +66,8 @@ const getTiers = (onClickEmbed, onClickProcess, onClickShare) => [
       'Host the Motivus application on your website and get paid whenever users process through it.',
     ],
     position: 'side',
-    buttonText: 'Host the Floating Tool',
+    buttonText: 'Coming soon',
+    // buttonText: 'Host the Floating Tool',
     buttonVariant: 'outlined',
     onClick: onClickEmbed,
   },
@@ -99,7 +100,7 @@ export default function Intro() {
   const tiers = getTiers(
     () =>
       setTimeout(() => {
-        navigate('/blog/hola-mundo')
+        // navigate('/blog/hola-mundo')
       }, 200),
     () => setOpenContact(true),
     // eslint-disable-next-line no-undef

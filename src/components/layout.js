@@ -23,6 +23,7 @@ import Theme2 from './StyleTheme'
 import SocialMedia from './SocialMedia'
 import { set } from 'lodash'
 import ContactToggle from '../contexts/ContactToggle'
+import { SnackbarProvider } from 'notistack'
 
 const Layout = ({ children, ...props }) => {
   const data = useStaticQuery(graphql`
@@ -41,34 +42,38 @@ const Layout = ({ children, ...props }) => {
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
-    <ContactToggle.Provider value={[openContact, setOpenContact]}>
-      <Theme2>
-        {matches ? (
-          <MobileNav
-            {...props}
-            openContact={openContact}
-            setOpenContact={setOpenContact}
-          />
-        ) : (
-          <Nav
-            {...props}
-            openContact={openContact}
-            setOpenContact={setOpenContact}
-          />
-        )}
-        <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
-        {!matches && <SocialMedia></SocialMedia>}
-        <div
-          style={{
-            margin: '0 auto',
-            maxWidth: 960,
-          }}
-        >
-          <main>{children}</main>
-          <Footer></Footer>
-        </div>
-      </Theme2>
-    </ContactToggle.Provider>
+    <SnackbarProvider
+      classes={{ variantInfo: { backgroundColor: theme.palette.primary.main } }}
+    >
+      <ContactToggle.Provider value={[openContact, setOpenContact]}>
+        <Theme2>
+          {matches ? (
+            <MobileNav
+              {...props}
+              openContact={openContact}
+              setOpenContact={setOpenContact}
+            />
+          ) : (
+            <Nav
+              {...props}
+              openContact={openContact}
+              setOpenContact={setOpenContact}
+            />
+          )}
+          <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
+          {!matches && <SocialMedia></SocialMedia>}
+          <div
+            style={{
+              margin: '0 auto',
+              maxWidth: 960,
+            }}
+          >
+            <main>{children}</main>
+            <Footer></Footer>
+          </div>
+        </Theme2>
+      </ContactToggle.Provider>
+    </SnackbarProvider>
   )
 }
 

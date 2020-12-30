@@ -3,10 +3,11 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
-import Theme2 from './StyleTheme'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 import IconButton from '@material-ui/core/IconButton'
-import { Grow } from '@material-ui/core'
+import { Grow, useTheme } from '@material-ui/core'
+import { useForm, ValidationError } from '@formspree/react'
+import { SnackbarProvider, useSnackbar } from 'notistack'
 
 const useStylesReddit = makeStyles((theme) => ({
   root: {
@@ -74,9 +75,26 @@ function CustomButton(props) {
   return <IconButton className={classes.customHoverFocus} {...props} />
 }
 
-export default function AddressForm(props) {
+export default function ContactUsForm({ onClose, ...props }) {
+  const [state, handleSubmit] = useForm('xzbkkogo')
+  const { enqueueSnackbar } = useSnackbar()
+
+  React.useEffect(() => {
+    if (state.succeeded) {
+      enqueueSnackbar('Thank you for your message!', {
+        variant: 'info',
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center',
+        },
+        preventDuplicate: true,
+      })
+      setTimeout(() => onClose(), 3500)
+    }
+  }, [enqueueSnackbar, onClose, state.succeeded])
+
   return (
-    <Theme2>
+    <form onSubmit={handleSubmit}>
       <Grid
         item
         xs={12}
@@ -86,7 +104,7 @@ export default function AddressForm(props) {
         alignItems='flex-start'
       >
         <Grow in timeout={1000}>
-          <CustomButton aria-label='close' onClick={props.onClose}>
+          <CustomButton aria-label='close' onClick={onClose}>
             <CancelOutlinedIcon fontSize='large' />
           </CustomButton>
         </Grow>
@@ -97,13 +115,14 @@ export default function AddressForm(props) {
           <Grow in timeout={1000}>
             <CustomeTextField
               required
-              id='Name'
-              name='Name'
+              id='name'
+              name='name'
               label='Name'
               fullWidth
               autoComplete='given-name'
             />
           </Grow>
+          <ValidationError prefix='Name' field='name' errors={state.errors} />
         </Grid>
 
         <Grid item xs={12}>
@@ -117,18 +136,24 @@ export default function AddressForm(props) {
               autoComplete='give-email'
             />
           </Grow>
+          <ValidationError prefix='Email' field='email' errors={state.errors} />
         </Grid>
 
         <Grid item xs={12}>
           <Grow in timeout={2500}>
             <CustomeTextField
-              id='Telephon'
-              name='Telephon'
+              id='telephone'
+              name='telephone'
               label='Telephone'
               fullWidth
               autoComplete='give-telephon'
             />
           </Grow>
+          <ValidationError
+            prefix='Telephone'
+            field='telephone'
+            errors={state.errors}
+          />
         </Grid>
         <Grid item xs={12}>
           <Grow in timeout={3000}>
@@ -141,19 +166,29 @@ export default function AddressForm(props) {
               autoComplete='give-country'
             />
           </Grow>
+          <ValidationError
+            prefix='Country'
+            field='country'
+            errors={state.errors}
+          />
         </Grid>
         <Grid item xs={12}>
           <Grow in timeout={3500}>
             <CustomeTextField
-              id='Your message'
+              id='message'
               required
-              name='Your message'
+              name='message'
               label='Your message'
               multiline
               rows={3}
               fullWidth
             />
           </Grow>
+          <ValidationError
+            prefix='Message'
+            field='message'
+            errors={state.errors}
+          />
         </Grid>
         <Grid
           item
@@ -164,13 +199,19 @@ export default function AddressForm(props) {
           alignItems='flex-start'
         >
           <Grow in timeout={3500}>
-            <Button color='secondary' variant='outlined' size='large'>
+            <Button
+              color='secondary'
+              variant='outlined'
+              size='large'
+              type='submit'
+              disabled={state.submitting || state.succeeded}
+            >
               {' '}
               Send message{' '}
             </Button>
           </Grow>
         </Grid>
       </Grid>
-    </Theme2>
+    </form>
   )
 }
