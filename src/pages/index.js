@@ -8,7 +8,7 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Intro from '../components/ClientOptions'
 import Features from '../components/Features'
-import HowItWorks from '../components/HowItWorks'
+import HowItWorks from '../components/HowItWorksStep'
 
 const IndexPage = (props) => (
   <div>
