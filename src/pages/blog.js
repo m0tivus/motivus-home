@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Card from '@material-ui/core/Card'
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardMedia: {
     paddingTop: '0%', // 16:9
-    height: '400px',
+    height: '300px',
   },
   cardContent: {
     flexGrow: 1,
@@ -64,8 +65,9 @@ const BlogPage = ({ data, ...props }) => {
               <CardActionArea>
                 <Link to={`/blog/${document.node.slug.current}`}>
                   <CardMedia
-                    className={classes.cardMedia}
-                    image={document.node.image.asset.fixed.src}
+                    component={() => (
+                      <Img fluid={document.node.image.asset.fluid}></Img>
+                    )}
                   />
                 </Link>
               </CardActionArea>
@@ -106,8 +108,8 @@ export const pageQuery = graphql`
           }
           image {
             asset {
-              fixed(width: 960) {
-                ...GatsbySanityImageFixed
+              fluid(maxWidth: 960) {
+                ...GatsbySanityImageFluid
               }
             }
           }
