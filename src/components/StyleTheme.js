@@ -85,6 +85,12 @@ const theme2 = createMuiTheme({
       lineHeight: 1.5,
       letterSpacing: '0em',
     },
+
+    caption: {
+      fontFamily: 'Roboto',
+      fontWeight: 300,
+      fontSize: '0.85rem',
+    },
   },
 
   palette: {
@@ -112,18 +118,13 @@ const theme2 = createMuiTheme({
       secondary: '#424242',
     },
   },
-  overrides: {
-    MuiDrawer: {
-      modal: {
-        zIndex: 999999,
-      },
-    },
-    MuiTab: {
-      // Name of the rule
-      textColorSecondary: {
-        // Some CSS
-        color: '#aaa',
-      },
+
+  overrides: {},
+  MuiTab: {
+    // Name of the rule
+    textColorSecondary: {
+      // Some CSS
+      color: '#aaa',
     },
   },
 })

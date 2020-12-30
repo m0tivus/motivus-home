@@ -9,18 +9,16 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 
 const reference = [
   {
-    label: 'Dairylink',
-    citation: 'No hay caminos para la paz; la paz es el camino',
-    author: 'Pablo Loaiza',
+    label: 'ARN Folding',
+    citation:
+      'Motivus was exactly what I needed, they were able to implement my code in a friendly way, so that anyone that has a scientific data problem can ingest a sequence and work with it in the platform',
+    author: 'Simón Poblete',
   },
   {
-    label: 'Vigía Covid',
-    citation: 'Haz el amor y no la guerra',
-    author: 'Claudio Verdugo',
-  },
-  {
-    label: 'Cristianaguirre.com',
-    citation: 'Cada día sabemos más y entendemos menos',
+    label: 'cristianaguirre.com',
+    citation:
+      // eslint-disable-next-line quotes
+      "The solution was very specific to our needs. The team showed an incredible work ethic, listening to our requirements and applying the changes needed to fulfill the client's needs. Motivus showed seriousness, responsability and comitment to the work",
     author: 'Cristián Aguirre',
   },
 ]
@@ -60,11 +58,12 @@ function SwipeableTextMobileStepper() {
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
+          interval={15000}
         >
           {reference.map((step, index) => (
             <div key={step.label}>
               {Math.abs(activeStep - index) <= 2 ? (
-                <Box maxWidth='550px' margin='auto'>
+                <Box maxWidth='960px' margin='auto'>
                   <Typography
                     align='center'
                     className={classes.citation}
