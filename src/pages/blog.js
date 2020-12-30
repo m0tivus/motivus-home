@@ -15,6 +15,8 @@ import Divider from '@material-ui/core/Divider'
 import styles from '../styles/blog.module.css'
 import parseJSON from 'date-fns/parseJSON'
 import formatISO from 'date-fns/formatISO'
+import Styles from '../styles/blog.module.css'
+import { Box } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -50,6 +52,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+
+  author: {
+    fontWeight: 500,
+    fontFamily: 'Roboto',
+    fontSize: '0.9rem',
+    color: '#cc5de7',
+  },
 }))
 
 const BlogPage = ({ data, ...props }) => {
@@ -72,20 +81,33 @@ const BlogPage = ({ data, ...props }) => {
                 </Link>
               </CardActionArea>
               <CardContent className={classes.cardContent}>
-                <Link
-                  className={styles.title}
-                  to={`/blog/${document.node.slug.current}`}
-                >
-                  {document.node.title}
-                </Link>
+                <Box p={1}>
+                  <Link
+                    className={Styles.title}
+                    to={`/blog/${document.node.slug.current}`}
+                  >
+                    {document.node.title}
+                  </Link>
+                </Box>
                 <Divider />
-                <Typography>{document.node.abstract}</Typography>
+                <Box p={1}>
+                  <Typography align='justify' variant='body2'>
+                    {document.node.abstract}
+                  </Typography>
+                </Box>
               </CardContent>
               <CardActions>
-                {document.node.author.name},{' '}
-                {formatISO(parseJSON(document.node.publishedAt), {
-                  representation: 'date',
-                })}
+                <Box p={1}>
+                  <Typography variant='caption' gutterBottom>
+                    <span className={classes.author}>
+                      {document.node.author.name}
+                    </span>
+                    ,{' '}
+                    {formatISO(parseJSON(document.node.publishedAt), {
+                      representation: 'date',
+                    })}
+                  </Typography>
+                </Box>
               </CardActions>
             </Card>
           </Grid>
