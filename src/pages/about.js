@@ -92,25 +92,25 @@ const SocialNetworks = ({ networks }) => (
         switch (icon) {
           case 'github':
             return (
-              <Link href={url} key={url}>
+              <Link target='_blank' rel='noopener' href={url} key={url}>
                 <GitHubIcon />
               </Link>
             )
           case 'linkedin':
             return (
-              <Link href={url} key={url}>
+              <Link target='_blank' rel='noopener' href={url} key={url}>
                 <LinkedInIcon />
               </Link>
             )
           case 'web':
             return (
-              <Link href={url} key={url}>
+              <Link target='_blank' rel='noopener' href={url} key={url}>
                 <HttpIcon />
               </Link>
             )
           case 'reddit':
             return (
-              <Link href={url} key={url}>
+              <Link target='_blank' rel='noopener' href={url} key={url}>
                 <RedditIcon />
               </Link>
             )
