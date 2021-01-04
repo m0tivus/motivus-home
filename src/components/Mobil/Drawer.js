@@ -1,7 +1,7 @@
 import React from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import { Link } from 'gatsby'
-import { Box, Dialog } from '@material-ui/core'
+import { Box, Dialog, Slide } from '@material-ui/core'
 import navStyles from '../../styles/mobileNav.module.css'
 import Grow from '@material-ui/core/Grow'
 
@@ -12,6 +12,10 @@ const routes = [
   { name: 'BLOG', route: '/blog', partialy: true },
   { name: 'CONTACT US', route: '/contact', partialy: false },
 ]
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction='right' ref={ref} {...props} />
+})
 
 class DrawerComponent extends React.Component {
   state = {
@@ -27,7 +31,7 @@ class DrawerComponent extends React.Component {
         fullScreen
         open={this.props.open}
         onClose={this.props.toggleDrawerHandler}
-        TransitionComponent
+        TransitionComponent={Transition}
       >
         <div
           role='presentation'
