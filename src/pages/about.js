@@ -46,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
   },
 
   root: {},
@@ -117,8 +116,8 @@ const SocialNetworks = ({ networks }) => (
         }
       })
     ) : (
-        <p>hola mundo</p>
-      )}
+      <p>hola mundo</p>
+    )}
   </Container>
 )
 
@@ -164,8 +163,8 @@ function HumanCard(props) {
           {!_.isNull(true) ? (
             <SocialNetworks networks={data.node.networks} />
           ) : (
-              <span></span>
-            )}
+            <span></span>
+          )}
         </CardActions>
       </Card>
     </Grid>

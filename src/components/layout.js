@@ -10,6 +10,7 @@ import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import {
   createMuiTheme,
+  makeStyles,
   ThemeProvider,
   useTheme,
 } from '@material-ui/core/styles'
@@ -25,6 +26,13 @@ import { set } from 'lodash'
 import ContactToggle from '../contexts/ContactToggle'
 import { SnackbarProvider } from 'notistack'
 
+const useStyles = makeStyles((theme) => ({
+  content: {
+    [theme.breakpoints.down('md')]: {
+      padding: theme.spacing(8, 0, 6),
+    },
+  },
+}))
 const Layout = ({ children, ...props }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -39,6 +47,7 @@ const Layout = ({ children, ...props }) => {
   const [openContact, setOpenContact] = React.useState(false)
 
   const theme = useTheme()
+  const  classes  = useStyles()
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
@@ -61,14 +70,14 @@ const Layout = ({ children, ...props }) => {
             />
           )}
           <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
-          {!matches && <SocialMedia></SocialMedia>}
+          <SocialMedia />
           <div
             style={{
               margin: '0 auto',
               maxWidth: 960,
             }}
           >
-            <main>{children}</main>
+            <main className={classes.content}>{children}</main>
             <Footer></Footer>
           </div>
         </Theme2>
