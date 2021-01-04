@@ -1,7 +1,7 @@
 import React from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import { Link } from 'gatsby'
-import { Box } from '@material-ui/core'
+import { Box, Dialog, Slide } from '@material-ui/core'
 import navStyles from '../../styles/mobileNav.module.css'
 import Grow from '@material-ui/core/Grow'
 
@@ -13,16 +13,26 @@ const routes = [
   { name: 'CONTACT US', route: '/contact', partialy: false },
 ]
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction='right' ref={ref} {...props} />
+})
+
 class DrawerComponent extends React.Component {
   state = {
     left: false,
+    open: false,
   }
 
   render() {
     const { classes } = this.props
 
-    const sideList = (side) => (
-      <Box width='100vw' height='100%'>
+    return (
+      <Dialog
+        fullScreen
+        open={this.props.open}
+        onClose={this.props.toggleDrawerHandler}
+        TransitionComponent={Transition}
+      >
         <div
           role='presentation'
           onClick={this.props.toggleDrawerHandler}
@@ -46,13 +56,7 @@ class DrawerComponent extends React.Component {
           </nav>
           <Box className={navStyles.background} />
         </div>
-      </Box>
-    )
-
-    return (
-      <Drawer open={this.props.left} onClose={this.props.toggleDrawerHandler}>
-        {sideList('left')}
-      </Drawer>
+      </Dialog>
     )
   }
 }

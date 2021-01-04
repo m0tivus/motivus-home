@@ -22,7 +22,7 @@ const MobileNav = ({ openContact, setOpenContact, ...props }) => {
     <div className='App'>
       <ToolbarComponent openDrawerHandler={openNavigatorDrawer} />
       <DrawerComponent
-        left={openNavigator}
+        open={openNavigator}
         toggleDrawerHandler={toggleNavigatorDrawer}
       />
       <ContactUsDrawer
