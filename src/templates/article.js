@@ -19,75 +19,79 @@ const useStyles = makeStyles((theme) => ({
   author: {
     fontWeight: 600,
     fontSize: '1.2rem',
-    color: '#cc5de7',
+    color: theme.palette.secondary.main,
   },
 }))
+const Content = ({ data, ...props }) => {
+  const classes = useStyles()
+  return (
+    <React.Fragment>
+      <SEO
+        title={data.sanityPost.title}
+        description={data.sanityPost.abstract}
+      />
+      <Box display='flex' width='100%' justifyContent='center'>
+        <Box
+          pl={5}
+          pb={2}
+          pt={2}
+          display='flex'
+          width='90%'
+          className={classes.header}
+          boxShadow={2}
+        >
+          <Grid container>
+            <Grid item xs={12}>
+              <Typography variant='h2' color='primary' bottomgutter>
+                {data.sanityPost.title}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Box
+                display='flex'
+                flexDirection='row'
+                justifyContent='flex-start'
+                alignItems='center'
+              >
+                <Typography variant='body2'>
+                  <span className={classes.author}>
+                    {data.sanityPost.author.name}
+                  </span>
+                  ,{' '}
+                  {formatISO(parseJSON(data.sanityPost.publishedAt), {
+                    representation: 'date',
+                  })}
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+      <Box display='flex' width='100%' justifyContent='center' boxShadow={6}>
+        <Img fixed={data.sanityPost.image.asset.fixed} />
+      </Box>
+      <Box display='flex' width='100%' justifyContent='center'>
+        <Box
+          p={5}
+          display='flex'
+          width='90%'
+          justifyContent='center'
+          boxShadow={2}
+        >
+          {data.sanityPost._rawContent && (
+            <PortableText blocks={data.sanityPost._rawContent} />
+          )}
+        </Box>
+      </Box>
+    </React.Fragment>
+  )
+}
 
 export default function AricleTemplate({ data, ...props }) {
-  const classes = useStyles()
-
   return (
-    <Theme2>
-      <Layout {...props}>
-        <SEO
-          title={data.sanityPost.title}
-          description={data.sanityPost.abstract}
-        />
-        <Box display='flex' width='100%' justifyContent='center'>
-          <Box
-            pl={5}
-            pb={2}
-            pt={2}
-            display='flex'
-            width='90%'
-            className={classes.header}
-            boxShadow={2}
-          >
-            <Grid container>
-              <Grid item xs={12}>
-                <Typography variant='h2' color='primary' bottomgutter>
-                  {data.sanityPost.title}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Box
-                  display='flex'
-                  flexDirection='row'
-                  justifyContent='flex-start'
-                  alignItems='center'
-                >
-                  <Typography variant='body2'>
-                    <span className={classes.author}>
-                      {data.sanityPost.author.name}
-                    </span>
-                    ,{' '}
-                    {formatISO(parseJSON(data.sanityPost.publishedAt), {
-                      representation: 'date',
-                    })}
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-        <Box display='flex' width='100%' justifyContent='center' boxShadow={6}>
-          <Img fixed={data.sanityPost.image.asset.fixed} />
-        </Box>
-        <Box display='flex' width='100%' justifyContent='center'>
-          <Box
-            p={5}
-            display='flex'
-            width='90%'
-            justifyContent='center'
-            boxShadow={2}
-          >
-            {data.sanityPost._rawContent && (
-              <PortableText blocks={data.sanityPost._rawContent} />
-            )}
-          </Box>
-        </Box>
-      </Layout>
-    </Theme2>
+    <Layout {...props}>
+      <Content data={data} />
+    </Layout>
   )
 }
 
