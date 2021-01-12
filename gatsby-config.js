@@ -5,6 +5,17 @@ module.exports = {
     author: 'Motivus',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-187016068-1',
+        head: true,
+        anonymize: true,
+        respectDNT: true,
+        pageTransitionDelay: 0,
+        cookieDomain: 'motivus.cl',
+      },
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-material-ui',
     {
