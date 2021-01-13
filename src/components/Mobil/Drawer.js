@@ -1,9 +1,7 @@
 import React from 'react'
-import Drawer from '@material-ui/core/Drawer'
 import { Link } from 'gatsby'
-import { Box, Dialog, makeStyles, Slide } from '@material-ui/core'
+import { Box, Dialog, Slide } from '@material-ui/core'
 import navStyles from '../../styles/mobileNav.module.css'
-import Grow from '@material-ui/core/Grow'
 
 const routes = [
   { name: 'HOME', route: '/', partialy: false },
@@ -17,28 +15,20 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='right' ref={ref} {...props} />
 })
 
-const useStyles = makeStyles({
-  mobileFullScreen: {
-    height: '150vh',
-    overflowY: 'hidden',
-    paddingTop: '-25vh',
-  },
-})
 const DrawerComponent = (props) => {
-  const classes = useStyles()
   return (
     <Dialog
       fullScreen
       open={props.open}
       onClose={props.toggleDrawerHandler}
       TransitionComponent={Transition}
-      className={classes.mobileFullScreen}
     >
       <div
         role='presentation'
         onClick={props.toggleDrawerHandler}
         onKeyDown={props.toggleDrawerHandler}
       >
+        <Box className={navStyles.background} />
         <nav className={navStyles.nav}>
           <ul className={navStyles.navList}>
             {routes.map(({ name, route, partialy }) => (
@@ -55,7 +45,6 @@ const DrawerComponent = (props) => {
             ))}
           </ul>
         </nav>
-        <Box className={navStyles.background} />
       </div>
     </Dialog>
   )
