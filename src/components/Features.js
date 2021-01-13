@@ -13,6 +13,8 @@ import WidgetsRoundedIcon from '@material-ui/icons/WidgetsRounded'
 import BubbleChartRoundedIcon from '@material-ui/icons/BubbleChartRounded'
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded'
 
+import { Link } from 'gatsby'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(8, 0, 6),
@@ -25,7 +27,16 @@ const useStyles = makeStyles((theme) => ({
 const featuresContent = [
   {
     name: 'Secure',
-    description: 'Your data and files are safe.',
+    description: (
+      <React.Fragment>
+        {' '}
+        Your data and files are safe.{' '}
+        <Link to='/blog/importance-cyber-security-motivus'>
+          {' '}
+          Read more.{' '}
+        </Link>{' '}
+      </React.Fragment>
+    ),
     icon: <SecuritySharpIcon fontSize='large' />,
   },
   {

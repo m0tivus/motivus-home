@@ -78,7 +78,7 @@ const getTiers = (onClickEmbed, onClickProcess, onClickShare) => [
   {
     title: 'I want to process data!',
     description: [
-      'Program your own drivers to work with the Motivus cluster and start processing. Get tokens',
+      'Program your own drivers to work with the Motivus cluster and start processing.',
       'Want to process data but not sure where to begin? Visit our Software Factory to create a tailored made solution for your business.',
     ],
     position: 'mid',
@@ -123,7 +123,7 @@ export default function Intro() {
           display='block'
           gutterBottom
         >
-          Join the revolution in big data processing!
+          Join the revolution in distributed computing!
         </Typography>
 
         <Typography
