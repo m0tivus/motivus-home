@@ -8,7 +8,7 @@ import logo from '../../static/logoVertical.svg'
 export default function SocialMedia() {
   return (
     <Box
-      display='flex'
+      display={['none', 'none', 'none', 'flex']}
       position='fixed'
       height='100vh'
       left='5%'

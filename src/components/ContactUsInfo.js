@@ -27,16 +27,16 @@ export default function ContatUsInfo() {
           </Grid>
           <Grid item xs={6}>
             <Grid itme xs={12}>
-              Chile,
+              <Typography variant='body1'>Chile,</Typography>
             </Grid>
             <Grid itme xs={12}>
-              Perez Rosales 640,
+              <Typography variant='body1'>Perez Rosales 640,</Typography>
             </Grid>
             <Grid itme xs={12}>
-              Office 21,
+              <Typography variant='body1'>Office 21,</Typography>
             </Grid>
             <Grid itme xs={12}>
-              Valdivia.{' '}
+              <Typography variant='body1'>Valdivia. </Typography>
             </Grid>
           </Grid>
           <Grid item xs={6}></Grid>

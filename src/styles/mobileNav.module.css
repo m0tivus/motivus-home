@@ -5,14 +5,16 @@
 .background{
   background: rgb(93,37,202);
   background: radial-gradient(circle, rgba(93,37,202,1) 0%, rgba(48,20,102,1) 100%);
+  position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
+  bottom: 0;
+  min-height: -webkit-fill-available;
 }
 
 
 .nav{
-  position: fixed;
+  position: relative;
   display: flex;
   font-size: 1.6em;
   font-family: 'Asap', sans-serif;

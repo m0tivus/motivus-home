@@ -119,7 +119,13 @@ const theme2 = createMuiTheme({
     },
   },
 
-  overrides: {},
+  overrides: {
+    MuiTypography: {
+      gutterBottom: {
+        marginBottom: 16,
+      },
+    },
+  },
   MuiTab: {
     // Name of the rule
     textColorSecondary: {
