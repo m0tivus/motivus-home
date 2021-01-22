@@ -16,6 +16,10 @@ import { FormatItalic, PlayCircleFilledWhite } from '@material-ui/icons'
 import ContactToggle from '../contexts/ContactToggle'
 import { navigate } from 'gatsby'
 
+import sharePower from '../../static/sharePower.svg'
+import scientist from '../../static/scientist.svg'
+import script from '../../static/script.svg'
+
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     flexWrap: 'wrap',
@@ -34,11 +38,13 @@ const useStyles = makeStyles((theme) => ({
   },
   cardside: {
     padding: '10px',
-    background: 'linear-gradient(45deg, #5d25ca 30%, #cc5de7 90%)',
+
+    background: 'linear-gradient(0deg, #6338b5 10%, #9468e9 100%)',
   },
   cardmid: {
     padding: '10px',
-    background: 'linear-gradient(45deg, #cc5de7 30%, #5d25ca 90%)',
+
+    background: 'linear-gradient(0deg, #6338b5 10%, #9468e9 100%)',
   },
   cardHeader: {
     color: 'white',
@@ -65,14 +71,15 @@ const useStyles = makeStyles((theme) => ({
 
 const getTiers = (onClickEmbed, onClickProcess, onClickShare) => [
   {
-    title: 'I want to embed Motivus on my website',
+    title: 'I want to monetize my website',
     description: [
-      'Host the Motivus application on your website and get paid whenever users process through it.',
+      'Host the Motivus FloatingTool on your website and get paid whenever users process through it.',
     ],
     position: 'side',
     buttonText: 'Coming soon',
     // buttonText: 'Host the Floating Tool',
     buttonVariant: 'outlined',
+    image: script,
     onClick: onClickEmbed,
   },
   {
@@ -84,6 +91,7 @@ const getTiers = (onClickEmbed, onClickProcess, onClickShare) => [
     position: 'mid',
     buttonText: 'Contact us',
     buttonVariant: 'contained',
+    image: scientist,
     onClick: onClickProcess,
   },
   {
@@ -94,6 +102,7 @@ const getTiers = (onClickEmbed, onClickProcess, onClickShare) => [
     position: 'side',
     buttonText: 'Start sharing',
     buttonVariant: 'outlined',
+    image: sharePower,
     onClick: onClickShare,
   },
 ]
@@ -171,6 +180,7 @@ export default function Intro() {
                 />
 
                 <CardContent>
+                  <img src={tier.image} alt={tier.image}></img>
                   <div className={classes.cardPricing}>
                     {/*<Typography component="h2" variant="h3" color="textPrimary">
                      ${tier.price}
