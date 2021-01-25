@@ -47,10 +47,15 @@ const useStyles = makeStyles((theme) => ({
     background: 'linear-gradient(0deg, #6338b5 10%, #9468e9 100%)',
   },
   cardHeader: {
-    color: 'white',
     fontFamily: 'Asap, san serif',
-    fontWeight: '700',
+    fontWeight: '500',
     fontStyle: 'italic',
+    fontSize: '1.7rem',
+    color: 'white',
+  },
+  colorTitle: {
+    color: theme.palette.secondary.light,
+    fontWeight: '700',
   },
 
   cardPricing: {
@@ -67,11 +72,16 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     color: theme.palette.secondary.main,
   },
+  button: {
+    fontFamily: 'asap',
+    fontSize: ' 1.1rem',
+    fontWeight: '600',
+  },
 }))
 
 const getTiers = (onClickEmbed, onClickProcess, onClickShare) => [
   {
-    title: 'I want to monetize my website',
+    title: ' monetize my website',
     description: [
       'Host the Motivus FloatingTool on your website and get paid whenever users process through it.',
     ],
@@ -83,7 +93,7 @@ const getTiers = (onClickEmbed, onClickProcess, onClickShare) => [
     onClick: onClickEmbed,
   },
   {
-    title: 'I want to process data!',
+    title: ' process data!',
     description: [
       'Program your own drivers to work with the Motivus cluster and start processing.',
       'Want to process data but not sure where to begin? Visit our Software Factory to create a tailored made solution for your business.',
@@ -95,7 +105,7 @@ const getTiers = (onClickEmbed, onClickProcess, onClickShare) => [
     onClick: onClickProcess,
   },
   {
-    title: 'I want to share my computer power',
+    title: ' share my computer power',
     description: [
       'Share your computer power with researchers all around the world and get paid.',
     ],
@@ -172,12 +182,14 @@ export default function Intro() {
                   tier.position === 'mid' ? classes.cardmid : classes.cardside
                 }
               >
-                <CardHeader
-                  title={tier.title}
-                  titleTypographyProps={{ variant: 'h4', align: 'center' }}
-                  subheaderTypographyProps={{ align: 'center' }}
+                <Typography
+                  align='center'
                   className={classes.cardHeader}
-                />
+                  gutterBottom
+                >
+                  I want to
+                  <span className={classes.colorTitle}>{tier.title}</span>
+                </Typography>
 
                 <CardContent>
                   <img src={tier.image} alt={tier.image}></img>
@@ -210,8 +222,8 @@ export default function Intro() {
                     fullWidth
                     variant={tier.buttonVariant}
                     onClick={tier.onClick}
+                    className={classes.button}
                     color='secondary'
-                    size='large'
                   >
                     {tier.buttonText}
                   </Button>
