@@ -62,7 +62,7 @@ export class StaticSite extends Construct {
       {
         aliasConfiguration: {
           acmCertRef: certificateArn,
-          names: [props.domainName],
+          names: [props.domainName, siteDomain],
           sslMethod: cloudfront.SSLMethod.SNI,
           securityPolicy: cloudfront.SecurityPolicyProtocol.TLS_V1_1_2016,
         },
@@ -90,11 +90,11 @@ export class StaticSite extends Construct {
       zone,
     })
 
-    new HttpsRedirect(this, 'Redirect', {
-      zone,
-      recordNames: [siteDomain, props.domainName],
-      targetDomain: props.domainName,
-    })
+    // new HttpsRedirect(this, 'Redirect', {
+    //   zone,
+    //   recordNames: [siteDomain, props.domainName],
+    //   targetDomain: props.domainName,
+    // })
 
     // Deploy site contents to S3 bucket
     new s3deploy.BucketDeployment(this, 'DeployWithInvalidation', {
