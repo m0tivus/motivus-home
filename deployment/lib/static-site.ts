@@ -51,6 +51,7 @@ export class StaticSite extends Construct {
         domainName: props.domainName,
         hostedZone: zone,
         region: 'us-east-1',
+        subjectAlternativeNames: [siteDomain],
       },
     ).certificateArn
     new cdk.CfnOutput(this, 'Certificate', { value: certificateArn })
