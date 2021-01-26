@@ -127,7 +127,7 @@ export default function Intro() {
       }, 200),
     () => setOpenContact(true),
     // eslint-disable-next-line no-undef
-    () => window.Motivus.openFloatingTool(),
+    () => window.Motivus.startProcessing(),
   )
 
   return (
