@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardHeader from '@material-ui/core/CardHeader'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import StarIcon from '@material-ui/icons/StarBorder'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
@@ -15,6 +16,7 @@ import Theme2 from './StyleTheme'
 import { FormatItalic, PlayCircleFilledWhite } from '@material-ui/icons'
 import ContactToggle from '../contexts/ContactToggle'
 import { navigate } from 'gatsby'
+import ReactPlayer from 'react-player/youtube'
 
 import sharePower from '../../static/sharePower.svg'
 import scientist from '../../static/scientist.svg'
@@ -127,7 +129,7 @@ export default function Intro() {
       }, 200),
     () => setOpenContact(true),
     // eslint-disable-next-line no-undef
-    () => window.Motivus.startProcessing(),
+    () => window.Motivus.openFloatingTool(),
   )
 
   return (
@@ -162,6 +164,13 @@ export default function Intro() {
           extra income by renting your computer power to process data.
           <br></br> Choose one of the following options to begin:
         </Typography>
+        <Box justifyContent='center' display='flex'>
+          <ReactPlayer
+            url='https://youtu.be/IKHK4zPUCd0'
+            width='854px'
+            height='480px'
+          />
+        </Box>
       </Container>
       {/* End hero unit */}
       <Container maxWidth='lg' component='main'>
