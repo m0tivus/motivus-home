@@ -168,6 +168,12 @@ export default function Intro() {
             url='https://youtu.be/IKHK4zPUCd0'
             width='854px'
             height='480px'
+            controls
+            config={{
+              youtube: {
+                embedOptions: { controls: 1 },
+              },
+            }}
           />
         </Box>
       </Container>
