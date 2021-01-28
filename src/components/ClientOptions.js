@@ -162,7 +162,6 @@ export default function Intro() {
           </span>{' '}
           With our framework you can process big volumes of data, and also earn
           extra income by renting your computer power to process data.
-          <br></br> Choose one of the following options to begin:
         </Typography>
         <Box justifyContent='center' display='flex'>
           <ReactPlayer
