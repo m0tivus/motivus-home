@@ -68,50 +68,57 @@ const BlogPage = ({ data, ...props }) => {
     <Layout {...props}>
       <SEO title='Blog' description='Blog Data' />
       <Grid container spacing={2}>
-        {data.allSanityPost.edges.map((document) => (
-          <Grid item key={document.node.id} xs={12} sm={6}>
-            <Card className={classes.card}>
-              <CardActionArea>
-                <Link to={`/blog/${document.node.slug.current}`}>
-                  <CardMedia
-                    component={() => (
-                      <Img fluid={document.node.image.asset.fluid}></Img>
-                    )}
-                  />
-                </Link>
-              </CardActionArea>
-              <CardContent className={classes.cardContent}>
-                <Box p={1}>
-                  <Link
-                    className={Styles.title}
-                    to={`/blog/${document.node.slug.current}`}
-                  >
-                    {document.node.title}
+        {data.allSanityPost.edges
+          .sort(function (x, y) {
+            return (
+              new Date(y.node.publishedAt).getTime() -
+              new Date(x.node.publishedAt).getTime()
+            )
+          })
+          .map((document) => (
+            <Grid item key={document.node.id} xs={12} sm={6}>
+              <Card className={classes.card}>
+                <CardActionArea>
+                  <Link to={`/blog/${document.node.slug.current}`}>
+                    <CardMedia
+                      component={() => (
+                        <Img fluid={document.node.image.asset.fluid}></Img>
+                      )}
+                    />
                   </Link>
-                </Box>
-                <Divider />
-                <Box p={1}>
-                  <Typography align='justify' variant='body2'>
-                    {document.node.abstract}
-                  </Typography>
-                </Box>
-              </CardContent>
-              <CardActions>
-                <Box p={1}>
-                  <Typography variant='caption' gutterBottom>
-                    <span className={classes.author}>
-                      {document.node.author.name}
-                    </span>
-                    ,{' '}
-                    {formatISO(parseJSON(document.node.publishedAt), {
-                      representation: 'date',
-                    })}
-                  </Typography>
-                </Box>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
+                </CardActionArea>
+                <CardContent className={classes.cardContent}>
+                  <Box p={1}>
+                    <Link
+                      className={Styles.title}
+                      to={`/blog/${document.node.slug.current}`}
+                    >
+                      {document.node.title}
+                    </Link>
+                  </Box>
+                  <Divider />
+                  <Box p={1}>
+                    <Typography align='justify' variant='body2'>
+                      {document.node.abstract}
+                    </Typography>
+                  </Box>
+                </CardContent>
+                <CardActions>
+                  <Box p={1}>
+                    <Typography variant='caption' gutterBottom>
+                      <span className={classes.author}>
+                        {document.node.author.name}
+                      </span>
+                      ,{' '}
+                      {formatISO(parseJSON(document.node.publishedAt), {
+                        representation: 'date',
+                      })}
+                    </Typography>
+                  </Box>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
       </Grid>
     </Layout>
   )

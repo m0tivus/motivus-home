@@ -205,9 +205,13 @@ export default function Aboutpage({ data, ...props }) {
       <Container className={classes.cardGrid} maxWidth='lg'>
         {/* End hero unit */}
         <Grid container spacing={4}>
-          {data.allSanityHuman.edges.map((card) => (
-            <HumanCard data={card}></HumanCard>
-          ))}
+          {data.allSanityHuman.edges
+            .sort(function (x, y) {
+              return x.node.name.localeCompare(y.node.name)
+            })
+            .map((card) => (
+              <HumanCard data={card}></HumanCard>
+            ))}
         </Grid>
       </Container>
     </Layout>
