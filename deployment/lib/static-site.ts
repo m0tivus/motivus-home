@@ -91,11 +91,11 @@ export class StaticSite extends Construct {
       zone,
     })
 
-    // new HttpsRedirect(this, 'Redirect', {
-    //   zone,
-    //   recordNames: [siteDomain, props.domainName],
-    //   targetDomain: props.domainName,
-    // })
+    new HttpsRedirect(this, 'Redirect', {
+      zone,
+      recordNames: [siteDomain, props.domainName],
+      targetDomain: props.domainName,
+    })
 
     // Deploy site contents to S3 bucket
     new s3deploy.BucketDeployment(this, 'DeployWithInvalidation', {
