@@ -1,0 +1,850 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree"
+      },
+      "motivus-home": {
+        "id": "motivus-home",
+        "path": "motivus-home",
+        "children": {
+          "motivus-home": {
+            "id": "motivus-home",
+            "path": "motivus-home/motivus-home",
+            "children": {
+              "Zone": {
+                "id": "Zone",
+                "path": "motivus-home/motivus-home/Zone"
+              },
+              "Site": {
+                "id": "Site",
+                "path": "motivus-home/motivus-home/Site"
+              },
+              "SiteBucket": {
+                "id": "SiteBucket",
+                "path": "motivus-home/motivus-home/SiteBucket",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "motivus-home/motivus-home/SiteBucket/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                      "aws:cdk:cloudformation:props": {
+                        "bucketName": "motivus.cl",
+                        "websiteConfiguration": {
+                          "indexDocument": "index.html",
+                          "errorDocument": "error.html"
+                        }
+                      }
+                    }
+                  },
+                  "Notifications": {
+                    "id": "Notifications",
+                    "path": "motivus-home/motivus-home/SiteBucket/Notifications"
+                  },
+                  "Policy": {
+                    "id": "Policy",
+                    "path": "motivus-home/motivus-home/SiteBucket/Policy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "motivus-home/motivus-home/SiteBucket/Policy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
+                          "aws:cdk:cloudformation:props": {
+                            "bucket": {
+                              "Ref": "motivushomeSiteBucket733E407B"
+                            },
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "s3:GetObject",
+                                  "Effect": "Allow",
+                                  "Principal": "*",
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Fn::GetAtt": [
+                                            "motivushomeSiteBucket733E407B",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/*"
+                                      ]
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Bucket": {
+                "id": "Bucket",
+                "path": "motivus-home/motivus-home/Bucket"
+              },
+              "SiteCertificate": {
+                "id": "SiteCertificate",
+                "path": "motivus-home/motivus-home/SiteCertificate",
+                "children": {
+                  "CertificateRequestorFunction": {
+                    "id": "CertificateRequestorFunction",
+                    "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorFunction",
+                    "children": {
+                      "ServiceRole": {
+                        "id": "ServiceRole",
+                        "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorFunction/ServiceRole",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorFunction/ServiceRole/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "Service": "lambda.amazonaws.com"
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "managedPolicyArns": [
+                                  {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                      ]
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "DefaultPolicy": {
+                            "id": "DefaultPolicy",
+                            "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorFunction/ServiceRole/DefaultPolicy",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorFunction/ServiceRole/DefaultPolicy/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                  "aws:cdk:cloudformation:props": {
+                                    "policyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": [
+                                            "acm:RequestCertificate",
+                                            "acm:DescribeCertificate",
+                                            "acm:DeleteCertificate"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": "*"
+                                        },
+                                        {
+                                          "Action": "route53:GetChange",
+                                          "Effect": "Allow",
+                                          "Resource": "*"
+                                        },
+                                        {
+                                          "Action": "route53:changeResourceRecordSets",
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::Join": [
+                                              "",
+                                              [
+                                                "arn:",
+                                                {
+                                                  "Ref": "AWS::Partition"
+                                                },
+                                                ":route53:::hostedzone/Z1ZCWA0FF51E6H"
+                                              ]
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "policyName": "motivushomeSiteCertificateCertificateRequestorFunctionServiceRoleDefaultPolicyE0898F09",
+                                    "roles": [
+                                      {
+                                        "Ref": "motivushomeSiteCertificateCertificateRequestorFunctionServiceRole4D73878B"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Code": {
+                        "id": "Code",
+                        "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorFunction/Code",
+                        "children": {
+                          "Stage": {
+                            "id": "Stage",
+                            "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorFunction/Code/Stage"
+                          },
+                          "AssetBucket": {
+                            "id": "AssetBucket",
+                            "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorFunction/Code/AssetBucket"
+                          }
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorFunction/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                          "aws:cdk:cloudformation:props": {
+                            "code": {
+                              "s3Bucket": {
+                                "Ref": "AssetParameters19e461d2ff1a5b90438fed6ceee4c197d7efee8712a6f76d85b501ab20bfb1a2S3BucketFCCD3A76"
+                              },
+                              "s3Key": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Fn::Select": [
+                                        0,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParameters19e461d2ff1a5b90438fed6ceee4c197d7efee8712a6f76d85b501ab20bfb1a2S3VersionKey07AF06B6"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Select": [
+                                        1,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParameters19e461d2ff1a5b90438fed6ceee4c197d7efee8712a6f76d85b501ab20bfb1a2S3VersionKey07AF06B6"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                ]
+                              }
+                            },
+                            "role": {
+                              "Fn::GetAtt": [
+                                "motivushomeSiteCertificateCertificateRequestorFunctionServiceRole4D73878B",
+                                "Arn"
+                              ]
+                            },
+                            "handler": "index.certificateRequestHandler",
+                            "runtime": "nodejs10.x",
+                            "timeout": 900
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "CertificateRequestorResource": {
+                    "id": "CertificateRequestorResource",
+                    "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorResource",
+                    "children": {
+                      "Default": {
+                        "id": "Default",
+                        "path": "motivus-home/motivus-home/SiteCertificate/CertificateRequestorResource/Default"
+                      }
+                    }
+                  }
+                }
+              },
+              "Certificate": {
+                "id": "Certificate",
+                "path": "motivus-home/motivus-home/Certificate"
+              },
+              "SiteDistribution": {
+                "id": "SiteDistribution",
+                "path": "motivus-home/motivus-home/SiteDistribution",
+                "children": {
+                  "AliasConfigurationCert": {
+                    "id": "AliasConfigurationCert",
+                    "path": "motivus-home/motivus-home/SiteDistribution/AliasConfigurationCert"
+                  },
+                  "CFDistribution": {
+                    "id": "CFDistribution",
+                    "path": "motivus-home/motivus-home/SiteDistribution/CFDistribution",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::CloudFront::Distribution",
+                      "aws:cdk:cloudformation:props": {
+                        "distributionConfig": {
+                          "enabled": true,
+                          "defaultRootObject": "index.html",
+                          "httpVersion": "http2",
+                          "priceClass": "PriceClass_100",
+                          "ipv6Enabled": true,
+                          "origins": [
+                            {
+                              "id": "origin1",
+                              "domainName": {
+                                "Fn::Select": [
+                                  2,
+                                  {
+                                    "Fn::Split": [
+                                      "/",
+                                      {
+                                        "Fn::GetAtt": [
+                                          "motivushomeSiteBucket733E407B",
+                                          "WebsiteURL"
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "customOriginConfig": {
+                                "httpPort": 80,
+                                "httpsPort": 443,
+                                "originKeepaliveTimeout": 5,
+                                "originReadTimeout": 30,
+                                "originProtocolPolicy": "http-only",
+                                "originSslProtocols": [
+                                  "TLSv1.2"
+                                ]
+                              },
+                              "connectionAttempts": 3,
+                              "connectionTimeout": 10
+                            }
+                          ],
+                          "defaultCacheBehavior": {
+                            "allowedMethods": [
+                              "GET",
+                              "HEAD"
+                            ],
+                            "cachedMethods": [
+                              "GET",
+                              "HEAD"
+                            ],
+                            "compress": true,
+                            "forwardedValues": {
+                              "queryString": false,
+                              "cookies": {
+                                "forward": "none"
+                              }
+                            },
+                            "targetOriginId": "origin1",
+                            "viewerProtocolPolicy": "redirect-to-https"
+                          },
+                          "aliases": [
+                            "motivus.cl"
+                          ],
+                          "viewerCertificate": {
+                            "acmCertificateArn": {
+                              "Fn::GetAtt": [
+                                "motivushomeSiteCertificateCertificateRequestorResourceA2241F8F",
+                                "Arn"
+                              ]
+                            },
+                            "sslSupportMethod": "sni-only",
+                            "minimumProtocolVersion": "TLSv1.1_2016"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "DistributionId": {
+                "id": "DistributionId",
+                "path": "motivus-home/motivus-home/DistributionId"
+              },
+              "SiteAliasRecord": {
+                "id": "SiteAliasRecord",
+                "path": "motivus-home/motivus-home/SiteAliasRecord",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "motivus-home/motivus-home/SiteAliasRecord/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Route53::RecordSet",
+                      "aws:cdk:cloudformation:props": {
+                        "name": "motivus.cl.",
+                        "type": "A",
+                        "aliasTarget": {
+                          "hostedZoneId": {
+                            "Fn::FindInMap": [
+                              "AWSCloudFrontPartitionHostedZoneIdMap",
+                              {
+                                "Ref": "AWS::Partition"
+                              },
+                              "zoneId"
+                            ]
+                          },
+                          "dnsName": {
+                            "Fn::GetAtt": [
+                              "motivushomeSiteDistributionCFDistribution55489C2A",
+                              "DomainName"
+                            ]
+                          }
+                        },
+                        "hostedZoneId": "Z1ZCWA0FF51E6H"
+                      }
+                    }
+                  }
+                }
+              },
+              "DeployWithInvalidation": {
+                "id": "DeployWithInvalidation",
+                "path": "motivus-home/motivus-home/DeployWithInvalidation",
+                "children": {
+                  "AwsCliLayer": {
+                    "id": "AwsCliLayer",
+                    "path": "motivus-home/motivus-home/DeployWithInvalidation/AwsCliLayer",
+                    "children": {
+                      "Code": {
+                        "id": "Code",
+                        "path": "motivus-home/motivus-home/DeployWithInvalidation/AwsCliLayer/Code",
+                        "children": {
+                          "Stage": {
+                            "id": "Stage",
+                            "path": "motivus-home/motivus-home/DeployWithInvalidation/AwsCliLayer/Code/Stage"
+                          },
+                          "AssetBucket": {
+                            "id": "AssetBucket",
+                            "path": "motivus-home/motivus-home/DeployWithInvalidation/AwsCliLayer/Code/AssetBucket"
+                          }
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "motivus-home/motivus-home/DeployWithInvalidation/AwsCliLayer/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::Lambda::LayerVersion",
+                          "aws:cdk:cloudformation:props": {
+                            "content": {
+                              "s3Bucket": {
+                                "Ref": "AssetParameterse9882ab123687399f934da0d45effe675ecc8ce13b40cb946f3e1d6141fe8d68S3BucketAEADE8C7"
+                              },
+                              "s3Key": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Fn::Select": [
+                                        0,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParameterse9882ab123687399f934da0d45effe675ecc8ce13b40cb946f3e1d6141fe8d68S3VersionKeyE415415F"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Select": [
+                                        1,
+                                        {
+                                          "Fn::Split": [
+                                            "||",
+                                            {
+                                              "Ref": "AssetParameterse9882ab123687399f934da0d45effe675ecc8ce13b40cb946f3e1d6141fe8d68S3VersionKeyE415415F"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                ]
+                              }
+                            },
+                            "description": "/opt/awscli/aws"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "CustomResourceHandler": {
+                    "id": "CustomResourceHandler",
+                    "path": "motivus-home/motivus-home/DeployWithInvalidation/CustomResourceHandler"
+                  },
+                  "Asset1": {
+                    "id": "Asset1",
+                    "path": "motivus-home/motivus-home/DeployWithInvalidation/Asset1",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "motivus-home/motivus-home/DeployWithInvalidation/Asset1/Stage"
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "motivus-home/motivus-home/DeployWithInvalidation/Asset1/AssetBucket"
+                      }
+                    }
+                  },
+                  "CustomResource": {
+                    "id": "CustomResource",
+                    "path": "motivus-home/motivus-home/DeployWithInvalidation/CustomResource",
+                    "children": {
+                      "Default": {
+                        "id": "Default",
+                        "path": "motivus-home/motivus-home/DeployWithInvalidation/CustomResource/Default"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "AssetParameters": {
+            "id": "AssetParameters",
+            "path": "motivus-home/AssetParameters",
+            "children": {
+              "19e461d2ff1a5b90438fed6ceee4c197d7efee8712a6f76d85b501ab20bfb1a2": {
+                "id": "19e461d2ff1a5b90438fed6ceee4c197d7efee8712a6f76d85b501ab20bfb1a2",
+                "path": "motivus-home/AssetParameters/19e461d2ff1a5b90438fed6ceee4c197d7efee8712a6f76d85b501ab20bfb1a2",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "motivus-home/AssetParameters/19e461d2ff1a5b90438fed6ceee4c197d7efee8712a6f76d85b501ab20bfb1a2/S3Bucket"
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "motivus-home/AssetParameters/19e461d2ff1a5b90438fed6ceee4c197d7efee8712a6f76d85b501ab20bfb1a2/S3VersionKey"
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "motivus-home/AssetParameters/19e461d2ff1a5b90438fed6ceee4c197d7efee8712a6f76d85b501ab20bfb1a2/ArtifactHash"
+                  }
+                }
+              },
+              "e9882ab123687399f934da0d45effe675ecc8ce13b40cb946f3e1d6141fe8d68": {
+                "id": "e9882ab123687399f934da0d45effe675ecc8ce13b40cb946f3e1d6141fe8d68",
+                "path": "motivus-home/AssetParameters/e9882ab123687399f934da0d45effe675ecc8ce13b40cb946f3e1d6141fe8d68",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "motivus-home/AssetParameters/e9882ab123687399f934da0d45effe675ecc8ce13b40cb946f3e1d6141fe8d68/S3Bucket"
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "motivus-home/AssetParameters/e9882ab123687399f934da0d45effe675ecc8ce13b40cb946f3e1d6141fe8d68/S3VersionKey"
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "motivus-home/AssetParameters/e9882ab123687399f934da0d45effe675ecc8ce13b40cb946f3e1d6141fe8d68/ArtifactHash"
+                  }
+                }
+              },
+              "3c3ed777478fe845fb5950df5e26461242b39cf220f00e0683aab244d9d7c0f7": {
+                "id": "3c3ed777478fe845fb5950df5e26461242b39cf220f00e0683aab244d9d7c0f7",
+                "path": "motivus-home/AssetParameters/3c3ed777478fe845fb5950df5e26461242b39cf220f00e0683aab244d9d7c0f7",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "motivus-home/AssetParameters/3c3ed777478fe845fb5950df5e26461242b39cf220f00e0683aab244d9d7c0f7/S3Bucket"
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "motivus-home/AssetParameters/3c3ed777478fe845fb5950df5e26461242b39cf220f00e0683aab244d9d7c0f7/S3VersionKey"
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "motivus-home/AssetParameters/3c3ed777478fe845fb5950df5e26461242b39cf220f00e0683aab244d9d7c0f7/ArtifactHash"
+                  }
+                }
+              },
+              "28ef6433cc0d24c4a7b634b29b6a133da7c774c2d29c014ef2c155851a18ffa0": {
+                "id": "28ef6433cc0d24c4a7b634b29b6a133da7c774c2d29c014ef2c155851a18ffa0",
+                "path": "motivus-home/AssetParameters/28ef6433cc0d24c4a7b634b29b6a133da7c774c2d29c014ef2c155851a18ffa0",
+                "children": {
+                  "S3Bucket": {
+                    "id": "S3Bucket",
+                    "path": "motivus-home/AssetParameters/28ef6433cc0d24c4a7b634b29b6a133da7c774c2d29c014ef2c155851a18ffa0/S3Bucket"
+                  },
+                  "S3VersionKey": {
+                    "id": "S3VersionKey",
+                    "path": "motivus-home/AssetParameters/28ef6433cc0d24c4a7b634b29b6a133da7c774c2d29c014ef2c155851a18ffa0/S3VersionKey"
+                  },
+                  "ArtifactHash": {
+                    "id": "ArtifactHash",
+                    "path": "motivus-home/AssetParameters/28ef6433cc0d24c4a7b634b29b6a133da7c774c2d29c014ef2c155851a18ffa0/ArtifactHash"
+                  }
+                }
+              }
+            }
+          },
+          "AWSCloudFrontPartitionHostedZoneIdMap": {
+            "id": "AWSCloudFrontPartitionHostedZoneIdMap",
+            "path": "motivus-home/AWSCloudFrontPartitionHostedZoneIdMap"
+          },
+          "Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C": {
+            "id": "Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C",
+            "path": "motivus-home/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "motivus-home/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "motivus-home/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "motivus-home/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "motivus-home/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "s3:GetObject*",
+                                    "s3:GetBucket*",
+                                    "s3:List*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::",
+                                          {
+                                            "Ref": "AssetParameters28ef6433cc0d24c4a7b634b29b6a133da7c774c2d29c014ef2c155851a18ffa0S3BucketFBD1A2F5"
+                                          }
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::",
+                                          {
+                                            "Ref": "AssetParameters28ef6433cc0d24c4a7b634b29b6a133da7c774c2d29c014ef2c155851a18ffa0S3BucketFBD1A2F5"
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "s3:GetObject*",
+                                    "s3:GetBucket*",
+                                    "s3:List*",
+                                    "s3:DeleteObject*",
+                                    "s3:PutObject*",
+                                    "s3:Abort*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "motivushomeSiteBucket733E407B",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "motivushomeSiteBucket733E407B",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "cloudfront:GetInvalidation",
+                                    "cloudfront:CreateInvalidation"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+                            "roles": [
+                              {
+                                "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "motivus-home/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "motivus-home/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code/Stage"
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "motivus-home/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code/AssetBucket"
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "motivus-home/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Ref": "AssetParameters3c3ed777478fe845fb5950df5e26461242b39cf220f00e0683aab244d9d7c0f7S3Bucket28CE5152"
+                      },
+                      "s3Key": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters3c3ed777478fe845fb5950df5e26461242b39cf220f00e0683aab244d9d7c0f7S3VersionKeyAF6E05ED"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::Split": [
+                                    "||",
+                                    {
+                                      "Ref": "AssetParameters3c3ed777478fe845fb5950df5e26461242b39cf220f00e0683aab244d9d7c0f7S3VersionKeyAF6E05ED"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+                        "Arn"
+                      ]
+                    },
+                    "handler": "index.handler",
+                    "layers": [
+                      {
+                        "Ref": "motivushomeDeployWithInvalidationAwsCliLayer77FB9532"
+                      }
+                    ],
+                    "runtime": "python3.6",
+                    "timeout": 900
+                  }
+                }
+              }
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "motivus-home/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "motivus-home/CDKMetadata/Default"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
