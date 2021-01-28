@@ -91,6 +91,12 @@ export class StaticSite extends Construct {
       zone,
     })
 
+    new route53.CName(this, 'SiteCNameRecord', {
+      domainName: props.domainName,
+      recordName: siteDomain,
+      zone,
+    })
+
     // new HttpsRedirect(this, 'Redirect', {
     //   zone,
     //   recordNames: [siteDomain],
