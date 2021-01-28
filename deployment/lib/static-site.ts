@@ -91,7 +91,7 @@ export class StaticSite extends Construct {
       zone,
     })
 
-    new route53.CName(this, 'SiteCNameRecord', {
+    new route53.CnameRecord(this, 'SiteCNameRecord', {
       domainName: props.domainName,
       recordName: siteDomain,
       zone,
