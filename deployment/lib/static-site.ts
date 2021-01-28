@@ -93,7 +93,7 @@ export class StaticSite extends Construct {
 
     new HttpsRedirect(this, 'Redirect', {
       zone,
-      recordNames: [siteDomain, props.domainName],
+      recordNames: [siteDomain],
       targetDomain: props.domainName,
     })
 
