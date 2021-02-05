@@ -16,7 +16,7 @@ import Theme2 from './StyleTheme'
 import { FormatItalic, PlayCircleFilledWhite } from '@material-ui/icons'
 import ContactToggle from '../contexts/ContactToggle'
 import { navigate } from 'gatsby'
-import ReactPlayer from 'react-player/youtube'
+//import ReactPlayer from 'react-player/youtube'
 
 import sharePower from '../../static/sharePower.svg'
 import scientist from '../../static/scientist.svg'
@@ -163,7 +163,7 @@ export default function Intro() {
           With our framework you can process big volumes of data, and also earn
           extra income by renting your computer power to process data.
         </Typography>
-        <Box justifyContent='center' display='flex'>
+        {/*<Box justifyContent='center' display='flex'>
           <ReactPlayer
             url='https://youtu.be/IKHK4zPUCd0'
             width='854px'
@@ -175,7 +175,7 @@ export default function Intro() {
               },
             }}
           />
-        </Box>
+          </Box>*/}
       </Container>
       {/* End hero unit */}
       <Container maxWidth='lg' component='main'>
