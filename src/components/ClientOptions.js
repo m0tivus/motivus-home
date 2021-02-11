@@ -163,21 +163,19 @@ export default function Intro() {
           With our framework you can process big volumes of data, and also earn
           extra income by renting your computer power to process data.
         </Typography>
-        {
-          <Box justifyContent='center' display='flex'>
-            <ReactPlayer
-              url='https://youtu.be/ORtNQkNx6kQ'
-              width='854px'
-              height='480px'
-              controls
-              config={{
-                youtube: {
-                  embedOptions: { controls: 1 },
-                },
-              }}
-            />
-          </Box>
-        }
+        <Box justifyContent='center' display='flex'>
+          <ReactPlayer
+            url='https://youtu.be/ORtNQkNx6kQ'
+            width='854px'
+            height='480px'
+            controls
+            config={{
+              youtube: {
+                embedOptions: { controls: 1 },
+              },
+            }}
+          />
+        </Box>
       </Container>
       {/* End hero unit */}
       <Container maxWidth='lg' component='main'>
