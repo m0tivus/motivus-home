@@ -1,8 +1,4 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
-import { Router } from '@reach/router'
-
-import Aboutpage from './about'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -13,7 +9,7 @@ import HowItWorks from '../components/HowItWorksStep'
 const IndexPage = (props) => (
   <div>
     <Layout {...props}>
-      <SEO title='Home' />
+      <SEO title='Home' image='/icons/icon-512x512.png' />
       <Intro />
       <HowItWorks></HowItWorks>
       <Features></Features>
