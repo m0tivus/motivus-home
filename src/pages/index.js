@@ -9,7 +9,7 @@ import HowItWorks from '../components/HowItWorksStep'
 const IndexPage = (props) => (
   <div>
     <Layout {...props}>
-      <SEO title='Home' image='https://motivus.cl/icons/icon-192x192.png' />
+      <SEO title='Home' image='https://motivus.cl/icons/icon-256x256.png' />
       <Intro />
       <HowItWorks></HowItWorks>
       <Features></Features>
