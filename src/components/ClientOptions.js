@@ -165,7 +165,7 @@ export default function Intro() {
         </Typography>
         <Box justifyContent='center' display='flex'>
           <ReactPlayer
-            url='https://youtu.be/ORtNQkNx6kQ'
+            url='https://youtu.be/-AtRjZfEQ94'
             width='854px'
             height='480px'
             controls
