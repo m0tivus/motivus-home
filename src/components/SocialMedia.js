@@ -3,7 +3,7 @@ import { Facebook, GitHub, LinkedIn, Twitter } from '@material-ui/icons'
 import { navigate } from 'gatsby'
 
 import React from 'react'
-import logo from '../../static/logoVertical.svg'
+import logo from '../../static/logoVerticalBeta.svg'
 import benchmark from '../../static/benchmarkResult.svg'
 import style from '../styles/benchmarkAnimation.module.css'
 
