@@ -220,11 +220,12 @@ export default function Aboutpage({ data, ...props }) {
 
 export const humanQuery = graphql`
   query AboutQuery {
-    allSanityHuman {
+    allSanityHuman(filter: { released: { eq: true } }) {
       edges {
         node {
           id
           role
+          released
           photography {
             asset {
               fixed(width: 400, height: 400) {
