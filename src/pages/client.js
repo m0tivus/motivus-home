@@ -3,7 +3,6 @@ import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../layouts/ClientLayout'
 import SEO from '../components/seo'
-import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -19,6 +18,7 @@ import Styles from '../styles/blog.module.css'
 import { Box, CssBaseline } from '@material-ui/core'
 import Nav from '../components/client/Nav'
 import Title from '../components/client/Title'
+import Card from '../components/client/Card'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -72,6 +72,7 @@ const ClientPage = ({ data, ...props }) => {
       <Typography variant='subtitle1'>
         Don't miss out on the latest Motivus news
       </Typography>
+      <Card />
     </Layout>
   )
 }

@@ -6,9 +6,8 @@ import { typography } from './BaseTheme'
 
 const theme2 = createMuiTheme({
   typography,
-
   palette: {
-    type: 'dark',
+    type: 'light',
 
     primary: {
       light: '#9455fe',
@@ -26,11 +25,11 @@ const theme2 = createMuiTheme({
 
     background: {
       paper: '#2C2771',
-      default: '#FFFFFF',
+      default: '#131144',
     },
 
     text: {
-      primary: '#000000',
+      primary: '#ffffff',
       secondary: '#424242',
     },
   },

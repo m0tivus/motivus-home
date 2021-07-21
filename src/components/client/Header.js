@@ -24,16 +24,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Header() {
+export default function Header({ darkState, setDarkState }) {
   const classes = useStyles()
 
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  })
-
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked })
+    setDarkState(!event.target.checked)
   }
 
   return (
@@ -64,7 +59,7 @@ export default function Header() {
         <Box display='flex' alignItems='center' marginBottom='20px'>
           <Sun />
           <Switch
-            checked={state.checkedB}
+            checked={!darkState}
             onChange={handleChange}
             color='primary'
             name='checkedB'
