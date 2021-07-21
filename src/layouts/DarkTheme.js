@@ -25,7 +25,6 @@ const theme2 = createMuiTheme({
 
     h3: {
       fontWeight: '500',
-      fontStyle: 'italic',
       fontSize: '2.5rem',
       lineHeight: 1.167,
       letterSpacing: '0em',
@@ -33,8 +32,7 @@ const theme2 = createMuiTheme({
 
     h4: {
       fontWeight: '400',
-      fontStyle: 'italic',
-      fontSize: '1.85rem',
+      fontSize: '1.7rem',
       lineHeight: 1.235,
       letterSpacing: '0em',
     },
@@ -56,9 +54,9 @@ const theme2 = createMuiTheme({
     },
 
     subtitle1: {
-      fontWeight: '400',
+      fontWeight: '300',
       fontFamily: 'Roboto',
-      fontSize: '1rem',
+      fontSize: '1.5rem',
       lineHeight: 1.75,
       letterSpacing: '0em',
     },
@@ -97,7 +95,7 @@ const theme2 = createMuiTheme({
   palette: {
     primary: {
       light: '#9455fe',
-      main: '#131144',
+      main: '#8657E1',
       dark: '#1a0098',
       contrastText: '#fff',
     },
@@ -115,7 +113,7 @@ const theme2 = createMuiTheme({
     },
 
     text: {
-      primary: '#000000',
+      primary: '#ffffff',
       secondary: '#424242',
     },
   },

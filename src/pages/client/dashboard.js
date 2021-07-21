@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import Layout from '../layouts/ClientLayout'
-import SEO from '../components/seo'
+import Layout from '../../layouts/ClientLayout'
+import SEO from '../../components/seo'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -12,13 +12,13 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import Divider from '@material-ui/core/Divider'
-import styles from '../styles/blog.module.css'
+
 import parseJSON from 'date-fns/parseJSON'
 import formatISO from 'date-fns/formatISO'
-import Styles from '../styles/blog.module.css'
+
 import { Box, CssBaseline } from '@material-ui/core'
-import Nav from '../components/client/Nav'
-import Title from '../components/client/Title'
+import Nav from '../../components/client/Nav'
+import Title from '../../components/client/Title'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -68,9 +68,11 @@ const ClientPage = ({ data, ...props }) => {
 
   return (
     <Layout {...props}>
-      <Title text='News' />
+      <Box></Box>
+      <Title text='Dasboard' />
       <Typography variant='subtitle1'>
-        Don't miss out on the latest Motivus news
+        Welcome to your dashboard, here you can monitor the different processors
+        related to your algorithms
       </Typography>
     </Layout>
   )

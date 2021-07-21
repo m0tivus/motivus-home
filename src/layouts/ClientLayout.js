@@ -27,12 +27,14 @@ import DarkTheme from './DarkTheme'
 import { SnackbarProvider } from 'notistack'
 import { Box } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import Bar from '../components/client/Bar'
 
 const useStyles = makeStyles((theme) => ({
   content: {
-    [theme.breakpoints.down('md')]: {
-      padding: theme.spacing(8, 0, 6),
-    },
+    //border: '1px solid red',
+    marginLeft: 400,
+    paddingTop: 25,
+    marginRight: 50,
   },
 }))
 const Layout = ({ children, ...props }) => {
@@ -48,6 +50,7 @@ const Layout = ({ children, ...props }) => {
     >
       <DarkTheme>
         <CssBaseline></CssBaseline>
+        <Bar />
         <Box>
           <div
             style={{
