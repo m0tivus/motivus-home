@@ -22,6 +22,14 @@ const useStyles = makeStyles((theme) => ({
     width: '90%',
     height: 3,
   },
+
+  textColor: {
+    color: '#ffffff',
+  },
+
+  iconColor: {
+    fill: '#ffffff',
+  },
 }))
 
 export default function Header({ darkState, setDarkState }) {
@@ -46,7 +54,11 @@ export default function Header({ darkState, setDarkState }) {
         <Box>
           <img alt='logoMotivus' src={logo} width='300px'></img>
           <Box marginTop='-35px' marginBottom='25px'>
-            <Typography variant='h4' color='textPrimary'>
+            <Typography
+              variant='h4'
+              color='textPrimary'
+              className={classes.textColor}
+            >
               Cristian Huijse
             </Typography>
           </Box>
@@ -57,7 +69,7 @@ export default function Header({ darkState, setDarkState }) {
         </Box>
 
         <Box display='flex' alignItems='center' marginBottom='20px'>
-          <Sun />
+          <Sun className={classes.iconColor} />
           <Switch
             checked={!darkState}
             onChange={handleChange}

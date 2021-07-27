@@ -2,9 +2,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
 
-.background{
-  background: rgb(93,37,202);
-  background: radial-gradient(circle, rgba(93,37,202,1) 0%, rgba(48,20,102,1) 100%);
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+.background {
+  background: rgb(93, 37, 202);
+  background: radial-gradient(
+    circle,
+    rgba(93, 37, 202, 1) 0%,
+    rgba(48, 20, 102, 1) 100%
+  );
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -12,8 +18,7 @@
   min-height: -webkit-fill-available;
 }
 
-
-.nav{
+.nav {
   position: relative;
   display: flex;
   font-size: 1.6em;
@@ -25,16 +30,20 @@
   animation-name: drop;
   animation-duration: 0.8s;
   animation-timing-function: ease-out;
-  
 }
 
 @keyframes drop {
-  from {opacity: 0; left: -50px;}
-  to {opacity: 1; left: 0px;}
- }
+  from {
+    opacity: 0;
+    left: -50px;
+  }
+  to {
+    opacity: 1;
+    left: 0px;
+  }
+}
 
-
-.nav-list{
+.nav-list {
   display: flex;
   flex-direction: column;
   list-style-type: none;
@@ -42,10 +51,9 @@
   margin: auto;
   padding: 0px;
   align-items: flex-start;
-  
 }
 
-.nav-item{
+.nav-item {
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -56,23 +64,21 @@
   text-decoration: none;
   transition: color 0.5s ease-in-out;
   background-color: transparent;
-  
 }
 
-.active-nav-item{
+.active-nav-item {
   display: flex;
   color: #ff8fff;
   font-weight: 700;
   font-style: italic;
-  
 }
 
-.active-nav-item::before{
+.active-nav-item::before {
   content: '';
   display: flex;
   height: 3px;
   margin-right: 5px;
   width: 20px;
-  background:  #cc5de7;  
+  background: #cc5de7;
   transition: width 0s ease;
 }

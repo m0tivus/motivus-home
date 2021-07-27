@@ -29,13 +29,19 @@ import { SnackbarProvider } from 'notistack'
 import { Box } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Header from '../components/client/Header'
+import MobilNav from '../components/client/mobileNav'
 
 const useStyles = makeStyles((theme) => ({
-  content: {
+  webContent: {
     //border: '1px solid red',
     marginLeft: 400,
     paddingTop: 25,
     marginRight: 50,
+  },
+
+  mobileContent: {
+    //border: '1px solid red',
+    margin: 25,
   },
 }))
 const Layout = ({ children, ...props }) => {
@@ -54,14 +60,23 @@ const Layout = ({ children, ...props }) => {
     >
       <Theme>
         <CssBaseline></CssBaseline>
-        <Header setDarkState={setDarkState} darkState={darkState} />
+        {matches ? (
+          <MobilNav />
+        ) : (
+          <Header setDarkState={setDarkState} darkState={darkState} />
+        )}
+
         <Box>
           <div
             style={{
               margin: '0 auto',
             }}
           >
-            <main className={classes.content}>{children}</main>
+            {matches ? (
+              <main className={classes.mobileContent}>{children}</main>
+            ) : (
+              <main className={classes.webContent}>{children}</main>
+            )}
           </div>
         </Box>
       </Theme>
