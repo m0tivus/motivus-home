@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { Box, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BoxScore({ title, score }) {
   const classes = useStyles()
+  const theme = useTheme()
+  console.log(theme.palette.type)
   return (
     <React.Fragment>
       <Box
