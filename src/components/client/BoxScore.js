@@ -1,13 +1,11 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { Box, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   background: {
     background:
       'linear-gradient(90deg, rgba(38,93,237,1) 0%, rgba(245,78,221,1) 100%)',
-    marginBottom: 25,
-    marginTop: 25,
   },
   root: {
     backgroundColor: theme.palette.background.default,
@@ -30,18 +28,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BoxScore({ title, score }) {
   const classes = useStyles()
+  const theme = useTheme()
+  console.log(theme.palette.type)
   return (
     <React.Fragment>
       <Box
-        width='280px'
         height='90px'
         className={classes.background}
         display='flex'
         justifyContent='center'
         alignItems='center'
+        paddingLeft='4px'
+        paddingRight='4px'
       >
         <Box
-          width='272px'
+          width='100%'
           height='82px'
           display='flex'
           flexDirection='row'

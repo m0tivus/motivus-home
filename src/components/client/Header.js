@@ -36,7 +36,7 @@ export default function Header({ darkState, setDarkState }) {
   const classes = useStyles()
 
   const handleChange = (event) => {
-    setDarkState(!event.target.checked)
+    setDarkState(event.target.checked)
   }
 
   return (
@@ -71,10 +71,10 @@ export default function Header({ darkState, setDarkState }) {
         <Box display='flex' alignItems='center' marginBottom='20px'>
           <Sun className={classes.iconColor} />
           <Switch
-            checked={!darkState}
+            checked={darkState}
             onChange={handleChange}
             color='primary'
-            name='checkedB'
+            name='checkedA'
             inputProps={{ 'aria-label': 'primary checkbox' }}
           />
           <Moon color='primary' />

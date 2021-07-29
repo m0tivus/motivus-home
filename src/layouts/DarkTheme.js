@@ -4,7 +4,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { dark } from '@material-ui/core/styles/createPalette'
 import { typography } from './BaseTheme'
 
-const theme2 = createMuiTheme({
+const DarkTheme = createMuiTheme({
   typography,
 
   palette: {
@@ -20,17 +20,17 @@ const theme2 = createMuiTheme({
     secondary: {
       light: '#ff8fff',
       main: '#cc5de7',
-      dark: '#9828b4',
+      dark: '#98D8b4',
       contrastText: '#fff',
     },
 
     background: {
       paper: '#2C2771',
-      default: '#FFFFFF',
+      default: '#131144',
     },
 
     text: {
-      primary: '#000000',
+      primary: '#ffffff',
       secondary: '#424242',
     },
   },
@@ -51,12 +51,16 @@ const theme2 = createMuiTheme({
   },
 })
 
-const Theme2 = ({ children }) => {
-  return <ThemeProvider theme={theme2}>{children}</ThemeProvider>
+/*const nivoTheme = {
+  color: '#FFFFFF',
+}*/
+
+const ThemeD = ({ children }) => {
+  return <ThemeProvider theme={DarkTheme}>{children}</ThemeProvider>
 }
 
-Theme2.propTypes = {
+ThemeD.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Theme2
+export default ThemeD

@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
   mobileContent: {
     //border: '1px solid red',
-    margin: 25,
+    margin: 10,
   },
 }))
 const Layout = ({ children, ...props }) => {
