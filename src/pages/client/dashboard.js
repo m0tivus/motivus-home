@@ -5,7 +5,7 @@ import Layout from '../../layouts/ClientLayout'
 import SEO from '../../components/seo'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import parseJSON from 'date-fns/parseJSON'
 import formatISO from 'date-fns/formatISO'
@@ -21,12 +21,15 @@ import {
   TFLOPS,
   credits,
 } from '../../components/client/dashboard/data/data'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({}))
 
 const ClientPage = ({ data, ...props }) => {
+  const theme = useTheme()
   const classes = useStyles()
   console.log(duration, invocations)
+  const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <Layout {...props}>
@@ -42,7 +45,7 @@ const ClientPage = ({ data, ...props }) => {
           direction='row'
           justify='space-between'
           alignItems='center'
-          spacing={2}
+          spacing={matches ? 2 : 4}
         >
           <Grid item item xs={12} md={6} lg={3}>
             <BoxScore title='Total Task' score='2050' />
@@ -64,7 +67,7 @@ const ClientPage = ({ data, ...props }) => {
         direction='row'
         justify='space-between'
         alignItems='center'
-        spacing={2}
+        spacing={matches ? 2 : 4}
       >
         <Grid item xs={12} md={6}>
           <Graph

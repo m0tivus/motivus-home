@@ -1,29 +1,35 @@
 import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
 import { commonProperties as _commonProperties } from './LineChart'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, useTheme } from '@material-ui/core'
 import { createStringLiteral } from 'typescript'
+import { dark } from '@material-ui/core/styles/createPalette'
 
-const useStyle = makeStyles({
-  wrapper: {
-    height: _commonProperties.height,
-    position: 'relative',
-  },
-  graphContainer: {
-    height: _commonProperties.height,
-    position: 'absolute',
-    top: '0px',
-    width: '100%',
-    zIndex: '0',
-  },
+const useStyle = makeStyles((theme) => {
+  const dark = theme.palette.type === 'dark'
+  const commonProperties = _commonProperties(dark)
 
-  secondGraph: {
-    height: _commonProperties.height,
-    position: 'absolute',
-    top: '0px',
-    width: '100%',
-    zIndex: '4',
-  },
+  return {
+    wrapper: {
+      height: commonProperties.height,
+      position: 'relative',
+    },
+    graphContainer: {
+      height: commonProperties.height,
+      position: 'absolute',
+      top: '0px',
+      width: '100%',
+      zIndex: '0',
+    },
+
+    secondGraph: {
+      height: commonProperties.height,
+      position: 'absolute',
+      top: '0px',
+      width: '100%',
+      zIndex: '4',
+    },
+  }
 })
 
 const line1Color = '#FE47E4'
@@ -34,6 +40,14 @@ const commonProperties = {
 }
 
 export default function App({ data1, data2 }) {
+  const theme = useTheme()
+  const dark = theme.palette.type === 'dark'
+
+  const commonProperties = {
+    ..._commonProperties(dark),
+    margin: { ..._commonProperties(dark).margin, right: 50 },
+  }
+
   console.log('Graph1 Data: ', data1)
   const classes = useStyle()
   const data12 = data1.concat(data2)
@@ -69,14 +83,13 @@ export default function App({ data1, data2 }) {
             {
               anchor: 'bottom',
               direction: 'row',
-
               translateX: -90,
               translateY: 60,
               itemsSpacing: 0,
               itemDirection: 'left-to-right',
               itemWidth: 0,
               itemHeight: 20,
-              itemOpacity: 0.75,
+              itemOpacity: 1,
               symbolSize: 9,
               symbolShape: 'circle',
               symbolBorderColor: 'rgba(0, 0, 0, .5)',
@@ -103,6 +116,13 @@ export default function App({ data1, data2 }) {
 
 // I want this to be on top of the other graph
 const SecondGraph = ({ data2 }) => {
+  const theme = useTheme()
+  const dark = theme.palette.type === 'dark'
+  const commonProperties = {
+    ..._commonProperties(dark),
+    margin: { ..._commonProperties(dark).margin, right: 50 },
+  }
+
   return (
     <ResponsiveLine
       {...commonProperties}
@@ -141,7 +161,7 @@ const SecondGraph = ({ data2 }) => {
           itemDirection: 'left-to-right',
           itemWidth: 0,
           itemHeight: 20,
-          itemOpacity: 0.75,
+          itemOpacity: 1,
           symbolSize: 9,
           symbolShape: 'circle',
           symbolBorderColor: 'rgba(0, 0, 0, .5)',

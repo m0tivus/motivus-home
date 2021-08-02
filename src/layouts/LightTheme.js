@@ -24,7 +24,10 @@ const theme2 = createMuiTheme({
     },
 
     background: {
-      paper: '#2C2771',
+      paper: '#FFFFFF',
+      headerBackground: '#2C2771',
+      paperGradient: 'linear-gradient(180deg, #F0EEEE 0%, #FFFFFF 100%)',
+      borderGradient: 'linear-gradient(135deg, #ACACAC 0%, #FFFFFF 100%)',
       default: '#ffffff',
     },
 
@@ -33,6 +36,11 @@ const theme2 = createMuiTheme({
       secondary: '#424242',
     },
   },
+  shadows: [
+    'none',
+    '0px 4px 4px 0px rgb(0, 0, 0, 0.2)',
+    '0px 4px 4px 1px rgb(0, 0, 0, 0.3)',
+  ],
 
   overrides: {
     MuiTypography: {

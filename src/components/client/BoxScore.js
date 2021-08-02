@@ -3,10 +3,16 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { Box, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
-  background: {
+  backgroundDark: {
     background:
       'linear-gradient(90deg, rgba(38,93,237,1) 0%, rgba(245,78,221,1) 100%)',
   },
+
+  backgroundLight: {
+    background:
+      'linear-gradient(90deg, rgba(93,37,202,1) 0%, rgba(231,51,255,1) 100%)',
+  },
+
   root: {
     backgroundColor: theme.palette.background.default,
   },
@@ -29,12 +35,14 @@ const useStyles = makeStyles((theme) => ({
 export default function BoxScore({ title, score }) {
   const classes = useStyles()
   const theme = useTheme()
-  console.log(theme.palette.type)
+  const dark = theme.palette.type
   return (
     <React.Fragment>
       <Box
         height='90px'
-        className={classes.background}
+        className={
+          dark === 'dark' ? classes.backgroundDark : classes.backgroundLight
+        }
         display='flex'
         justifyContent='center'
         alignItems='center'

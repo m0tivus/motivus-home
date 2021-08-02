@@ -12,7 +12,7 @@ import Moon from '@material-ui/icons/Brightness2Outlined'
 const useStyles = makeStyles((theme) => ({
   nav: {
     position: 'fixed',
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.headerBackground,
     width: 350,
     height: '100%',
   },
