@@ -83,7 +83,7 @@ const BlogPage = ({ data, ...props }) => {
                     <CardMedia
                       component={() => (
                         <GatsbyImage
-                          image={document.node.image.gatsbyImageData}
+                          image={document.node.image.asset.gatsbyImageData}
                         ></GatsbyImage>
                       )}
                     />

@@ -24,7 +24,7 @@
     "gatsby-plugin-sass": "^2.7.0",
     "gatsby-plugin-sharp": "^2.2.14",
     "gatsby-source-filesystem": "^3.11.0",
-    "gatsby-source-sanity": "^6.0.4",
+    "gatsby-source-sanity": "^7.0.0",
     "gatsby-source-strapi": "^0.0.12",
     "gatsby-transformer-sharp": "^3.11.0",
     "lodash": "^4.17.20",

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from '../components/layout'
 import PortableText from '../components/PortableText'
 import SEO from '../components/seo'
@@ -10,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import parseJSON from 'date-fns/parseJSON'
 import formatISO from 'date-fns/formatISO'
 import Theme2 from '../components/StyleTheme'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -68,7 +68,7 @@ const Content = ({ data, ...props }) => {
         </Box>
       </Box>
       <Box display='flex' width='100%' justifyContent='center' boxShadow={6}>
-        <GatsbyImage image={data.sanityPost.image.childImageSharp.gatsbyImageData} />
+        <GatsbyImage image={data.sanityPost.image.asset.gatsbyImageData} />
       </Box>
       <Box display='flex' width='100%' justifyContent='center'>
         <Box
@@ -103,9 +103,7 @@ export const query = graphql`
       abstract
       image {
         asset {
-          fixed(width: 960) {
-            ...GatsbySanityImageFixed
-          }
+             gatsbyImageData(width: 960) 
         }
       }
       author {
