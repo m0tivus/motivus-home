@@ -26,8 +26,9 @@ const theme2 = createMuiTheme({
     background: {
       paper: '#FFFFFF',
       headerBackground: '#2C2771',
-      paperGradient: 'linear-gradient(180deg, #F0EEEE 0%, #FFFFFF 100%)',
+      paperGradient: 'linear-gradient(180deg, #F0EEEE 60%, #FFFFFF 100%)',
       borderGradient: 'linear-gradient(135deg, #ACACAC 0%, #FFFFFF 100%)',
+      filter: 'linear-gradient(180deg, #8657E1 0%, #FF72EB 100%)',
       default: '#ffffff',
     },
 
@@ -35,11 +36,15 @@ const theme2 = createMuiTheme({
       primary: '#000000',
       secondary: '#424242',
     },
+
+    button: {
+      text: '#2C2771',
+    },
   },
   shadows: [
     'none',
-    '0px 4px 4px 0px rgb(0, 0, 0, 0.2)',
-    '0px 4px 4px 1px rgb(0, 0, 0, 0.3)',
+    '1px 3px 2px 0px rgb(0, 0, 0, 0.2)',
+    '1px 3px 2px 1px rgb(0, 0, 0, 0.3)',
   ],
 
   overrides: {

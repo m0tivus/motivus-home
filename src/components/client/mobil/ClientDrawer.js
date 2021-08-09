@@ -1,7 +1,13 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Box, Dialog, Slide } from '@material-ui/core'
-import navStyles from '../../../styles/mobileNav.module.css'
+import {
+  background,
+  nav,
+  navList,
+  navItem,
+  activeNavItem,
+} from '../../../styles/mobileNav.module.css'
 
 const routes = [
   { name: 'News', route: '/client', partialy: false },
@@ -30,14 +36,14 @@ const DrawerComponent = (props) => {
         onClick={props.toggleDrawerHandler}
         onKeyDown={props.toggleDrawerHandler}
       >
-        <Box className={navStyles.background} />
-        <nav className={navStyles.nav}>
-          <ul className={navStyles.navList}>
+        <Box className={background} />
+        <nav className={nav}>
+          <ul className={navList}>
             {routes.map(({ name, route, partialy }) => (
               <li>
                 <Link
-                  className={navStyles.navItem}
-                  activeClassName={navStyles.activeNavItem}
+                  className={navItem}
+                  activeClassName={activeNavItem}
                   partiallyActive={partialy}
                   to={route}
                 >

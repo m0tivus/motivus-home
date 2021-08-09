@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from '../../layouts/ClientLayout'
 import SEO from '../../components/seo'
 import Grid from '@material-ui/core/Grid'

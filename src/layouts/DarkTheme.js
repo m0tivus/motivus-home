@@ -38,6 +38,10 @@ const DarkTheme = createMuiTheme({
       primary: '#ffffff',
       secondary: '#424242',
     },
+
+    button: {
+      text: '#ffffff',
+    },
   },
   shadows: [
     'none',

@@ -5,6 +5,10 @@ module.exports = {
     author: 'Motivus',
   },
   plugins: [
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`, // Needed for dynamic images
+
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
@@ -18,13 +22,7 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-material-ui',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: `${__dirname}/src/images`,
-      },
-    },
+
     {
       resolve: 'gatsby-source-sanity',
       options: {
@@ -44,8 +42,7 @@ module.exports = {
         queryLimit: 1000,
       },
     },*/
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
+
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

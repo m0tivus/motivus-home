@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from '../components/layout'
 import PortableText from '../components/PortableText'
 import SEO from '../components/seo'
@@ -68,7 +68,7 @@ const Content = ({ data, ...props }) => {
         </Box>
       </Box>
       <Box display='flex' width='100%' justifyContent='center' boxShadow={6}>
-        <Img fixed={data.sanityPost.image.asset.fixed} />
+        <GatsbyImage image={data.sanityPost.image.childImageSharp.gatsbyImageData} />
       </Box>
       <Box display='flex' width='100%' justifyContent='center'>
         <Box
@@ -84,7 +84,7 @@ const Content = ({ data, ...props }) => {
         </Box>
       </Box>
     </React.Fragment>
-  )
+  );
 }
 
 export default function AricleTemplate({ data, ...props }) {

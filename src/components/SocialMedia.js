@@ -5,7 +5,7 @@ import { navigate } from 'gatsby'
 import React from 'react'
 import logo from '../../static/logoVerticalBeta.svg'
 import benchmark from '../../static/benchmarkResult.svg'
-import style from '../styles/benchmarkAnimation.module.css'
+import { benchmarkAnimation } from '../styles/benchmarkAnimation.module.css'
 
 export default function SocialMedia() {
   return (
@@ -21,7 +21,7 @@ export default function SocialMedia() {
       flexDirection='column'
       alignItems='center'
     >
-      <Box className={style.benchmark} boxShadow={0}>
+      <Box className={benchmarkAnimation} boxShadow={0}>
         <img alt='benchmarkStatus' src={benchmark} width='100px'></img>
       </Box>
       <Box

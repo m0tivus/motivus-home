@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import Layout from '../layouts/ClientLayout'
 import SEO from '../components/seo'
 import CardActions from '@material-ui/core/CardActions'
@@ -19,49 +19,9 @@ import { Box, CssBaseline } from '@material-ui/core'
 import Nav from '../components/client/Nav'
 import Title from '../components/client/Title'
 import Card from '../components/client/Card'
+import { parse } from 'date-fns'
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-
-  root: {},
-
-  cardGrid: {
-    paddingTop: theme.spacing(5),
-    paddingBottom: theme.spacing(5),
-    margin: 'auto',
-    width: 'auto',
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '0%', // 16:9
-    height: '300px',
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-
-  author: {
-    fontWeight: 500,
-    fontFamily: 'Roboto',
-    fontSize: '0.9rem',
-    color: '#cc5de7',
-  },
-}))
+const useStyles = makeStyles((theme) => ({}))
 
 const ClientPage = ({ data, ...props }) => {
   const classes = useStyles()
@@ -72,9 +32,53 @@ const ClientPage = ({ data, ...props }) => {
       <Typography variant='subtitle1'>
         Don't miss out on the latest Motivus news
       </Typography>
-      <Card />
+      {data.allSanityPost.edges
+        .sort(function (x, y) {
+          return (
+            new Date(y.node.publishedAt).getTime() -
+            new Date(x.node.publishedAt).getTime()
+          )
+        })
+        .map((document) => (
+          <Card
+            title={document.node.title}
+            image={document.node.image.asset.gatsbyImageData}
+            abstract={document.node.abstract}
+            author={document.node.author.name}
+            date={formatISO(parseJSON(document.node.publishedAt), {
+              representation: 'date',
+            })}
+          />
+        ))}
     </Layout>
   )
 }
-
 export default ClientPage
+
+export const clientPageQuery = graphql`
+  query clientBlog {
+    allSanityPost {
+      edges {
+        node {
+          id
+          slug {
+            current
+          }
+          image {
+            asset {
+              path
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+            }
+          }
+          title
+          abstract
+          author {
+            id
+            name
+          }
+          publishedAt
+        }
+      }
+    }
+  }
+`

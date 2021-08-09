@@ -1,7 +1,16 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import { Box, Fade } from '@material-ui/core'
-import navStyles from '../styles/nav.module.css'
+import {
+  navItemver,
+  activeNavItemver,
+  navver,
+  navListver,
+  navhor,
+  navListhor,
+  navItemhor,
+  activeNavItemhor,
+} from '../styles/nav.module.css'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import ContactUsDrawer from './ContactUsDrawer'
 
@@ -40,13 +49,13 @@ const Nav = ({ openContact, setOpenContact, ...props }) => {
     <div>
       <Box width='100%' display='flex' height='150px' />
       <Fade in={!checkedHorizontal} timeout={500}>
-        <nav className={navStyles.navver}>
-          <ul className={navStyles.navListver}>
+        <nav className={navver}>
+          <ul className={navListver}>
             {routes.map(({ name, route, partialy }) => (
               <li>
                 <Link
-                  className={navStyles.navItemver}
-                  activeClassName={navStyles.activeNavItemver}
+                  className={navItemver}
+                  activeClassName={activeNavItemver}
                   partiallyActive={partialy}
                   to={route}
                 >
@@ -55,7 +64,7 @@ const Nav = ({ openContact, setOpenContact, ...props }) => {
               </li>
             ))}
             <li>
-              <div onClick={openDrawer} className={navStyles.navItemver}>
+              <div onClick={openDrawer} className={navItemver}>
                 CONTACT US
               </div>
             </li>
@@ -63,13 +72,13 @@ const Nav = ({ openContact, setOpenContact, ...props }) => {
         </nav>
       </Fade>
       <Fade in={checkedHorizontal} timeout={500}>
-        <nav className={navStyles.navhor}>
-          <ul className={navStyles.navListhor}>
+        <nav className={navhor}>
+          <ul className={navListhor}>
             {routes.map(({ name, route, partialy }) => (
               <li>
                 <Link
-                  className={navStyles.navItemhor}
-                  activeClassName={navStyles.activeNavItemhor}
+                  className={navItemhor}
+                  activeClassName={activeNavItemhor}
                   partiallyActive={partialy}
                   to={route}
                 >
@@ -78,7 +87,7 @@ const Nav = ({ openContact, setOpenContact, ...props }) => {
               </li>
             ))}
             <li>
-              <div onClick={openDrawer} className={navStyles.navItemhor}>
+              <div onClick={openDrawer} className={navItemhor}>
                 CONTACT US
               </div>
             </li>
