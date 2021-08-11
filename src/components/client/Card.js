@@ -9,6 +9,7 @@ import { Box } from '@material-ui/core'
 import CardButton from './CardButton'
 import { TimeToLeave } from '@material-ui/icons'
 import { GatsbyImage } from 'gatsby-plugin-image'
+import CardMedia from '@material-ui/core/CardMedia'
 
 const useStyles = makeStyles((theme) => ({
   border: {
@@ -27,16 +28,18 @@ const useStyles = makeStyles((theme) => ({
   filter: {
     background: theme.palette.background.filter,
     mixBlendMode: 'color',
+    zIndex: 1,
   },
   media: {
     height: 215,
+    zIndex: -1,
   },
   title: {
     position: 'absolute',
     background: '#000',
     width: '90%',
     bottom: -30,
-    zIndex: 1,
+    zIndex: 2,
     padding: '10px',
   },
   detail: {
@@ -73,8 +76,10 @@ export default function MediaCard({ title, abstract, author, date, image }) {
             width='100%'
             className={classes.filter}
           />
-
-          <GatsbyImage image={image} className={classes.media} />
+          <CardMedia
+            className={classes.media}
+            component={() => <GatsbyImage image={image}></GatsbyImage>}
+          />
         </CardActionArea>
         <Box marginLeft='10px' marginTop='40px' width='92.5%'>
           <Typography variant='body2' color='textPrimary' component='p'>

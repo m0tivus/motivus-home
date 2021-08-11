@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import parseJSON from 'date-fns/parseJSON'
 import formatISO from 'date-fns/formatISO'
 import Theme2 from '../components/StyleTheme'
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -22,10 +22,12 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
   },
 }))
-const Content = ({ data, ...props }) => {
+
+export default function AricleTemplate({ data, ...props }) {
   const classes = useStyles()
+  console.log(data, props)
   return (
-    <React.Fragment>
+    <Layout {...props}>
       <SEO
         title={data.sanityPost.title}
         description={data.sanityPost.abstract}
@@ -83,14 +85,6 @@ const Content = ({ data, ...props }) => {
           )}
         </Box>
       </Box>
-    </React.Fragment>
-  );
-}
-
-export default function AricleTemplate({ data, ...props }) {
-  return (
-    <Layout {...props}>
-      <Content data={data} />
     </Layout>
   )
 }
@@ -103,7 +97,7 @@ export const query = graphql`
       abstract
       image {
         asset {
-             gatsbyImageData(width: 960) 
+          gatsbyImageData(width: 960)
         }
       }
       author {
