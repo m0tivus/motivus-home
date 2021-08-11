@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AricleTemplate({ data, ...props }) {
   const classes = useStyles()
-  console.log(data, props)
+  const translations = props.pageContext.translations[props.pageContext._id]
+  console.log(translations);
   return (
     <Layout {...props}>
       <SEO

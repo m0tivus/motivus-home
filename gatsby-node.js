@@ -57,21 +57,21 @@ exports.createPages = ({ actions, graphql }) => {
     const getRefs = (refs, addNode = {}) =>
       _.map([...refs, { _key: addNode._id }], (n) => posts[n._key])
     const translations = _(result.data.allSanityPost.edges)
-      .map(({ node }) => ({
-        _id: node._id,
-        translations: _(
-          node.i18n_refs.length
-            ? getRefs(node.i18n_refs)
-            : getRefs(posts[_.split(node._id, '.')[1]].i18n_refs, node),
-        )
-          .map((x) => {
-            console.log(x)
-            return x
-          })
-          .filter()
-          .keyBy('i18n_lang')
-          .mapValues((p) => p.slug.current),
-      }))
+      .map(({ node }) => {
+        const parent = posts[_.split(node._id, '.')[1]]
+
+        return {
+          _id: node._id,
+            translations: _(
+              node.i18n_refs.length
+              ? getRefs(node.i18n_refs, node)
+              : getRefs(parent.i18n_refs, parent),
+            )
+            .filter()
+            .keyBy('i18n_lang')
+            .mapValues((p) =>  `blog/${p.slug.current}`),
+        }
+      })
       .keyBy('_id')
       .mapValues('translations')
 
@@ -82,8 +82,8 @@ exports.createPages = ({ actions, graphql }) => {
         component: path.resolve('src/templates/article.js'),
         context: {
           id: node.id,
-          translations,
-          posts,
+          _id: node._id,
+          translations
         },
       })
     })
