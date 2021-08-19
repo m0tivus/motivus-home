@@ -17,6 +17,8 @@ import parseJSON from 'date-fns/parseJSON'
 import formatISO from 'date-fns/formatISO'
 import { title } from '../styles/blog.module.css'
 import { Box } from '@material-ui/core'
+import _ from 'lodash'
+import LangSelectorBlog from '../components/LangSelectorBlog'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -63,10 +65,12 @@ const useStyles = makeStyles((theme) => ({
 
 const BlogPage = ({ data, ...props }) => {
   const classes = useStyles()
-
+  const languages = _.uniq(_.map(data.allSanityPost.edges, 'node.i18n_lang'))
+  const [lang, setLang] = React.useState('en_US')
   return (
     <Layout {...props}>
       <SEO title='Blog' description='Blog Data' />
+      <LangSelectorBlog languages={languages} lang={lang} setLang={setLang} />
       <Grid container spacing={2}>
         {data.allSanityPost.edges
           .sort(function (x, y) {
@@ -75,6 +79,7 @@ const BlogPage = ({ data, ...props }) => {
               new Date(x.node.publishedAt).getTime()
             )
           })
+          .filter((doc) => doc.node.i18n_lang === lang)
           .map((document) => (
             <Grid item key={document.node.id} xs={12} sm={6}>
               <Card className={classes.card}>
@@ -133,6 +138,7 @@ export const pageQuery = graphql`
     allSanityPost {
       edges {
         node {
+          i18n_lang
           id
           slug {
             current

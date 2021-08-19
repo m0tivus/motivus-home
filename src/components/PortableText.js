@@ -4,12 +4,53 @@ import BasePortableText from '@sanity/block-content-to-react'
 import BlockContent from '@sanity/block-content-to-react'
 import { Box, Divider, Typography } from '@material-ui/core'
 import urlBuilder from '@sanity/image-url'
+import { makeStyles } from '@material-ui/core/styles'
+import { BorderColor } from '@material-ui/icons'
+
+const useStyles = makeStyles((theme) => ({
+  quotes: {
+    ...theme.typography.body2,
+    textAlign: 'justify',
+    textJustify: 'inter-word',
+    borderLeft: '3px solid',
+    borderColor: theme.palette.secondary.main,
+  },
+  h3: {
+    ...theme.typography.h3,
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontSize: '2rem',
+    fontWeight: '700',
+  },
+  externalLink: {
+    background: '#000',
+    color: theme.palette.secondary.main,
+    padding: '2px',
+    textDecoration: 'none',
+    fontWeight: '500',
+  },
+}))
 
 const serializers = {
+  marks: {
+    link: ({ children, mark }) => {
+      const classes = useStyles()
+      return (
+        <a
+          className={classes.externalLink}
+          href={mark.href}
+          rel='noopener noreferrer'
+        >
+          {children}
+        </a>
+      )
+    },
+  },
+
   types: {
     codepen: (props) => <Divider></Divider>,
     image: (props) => (
-      <Box display='grid' width='100%' justifyContent='center'>
+      <Box width='100%'>
         <img
           src={props.node.asset.url}
           alt={props.node.asset.originalFilename}
@@ -17,6 +58,7 @@ const serializers = {
       </Box>
     ),
     block: (props) => {
+      const classes = useStyles()
       const { style = 'normal' } = props.node
       if (/^h\d/.test(style)) {
         const level = style
@@ -34,11 +76,7 @@ const serializers = {
               </Typography>
             )
           case 'h3':
-            return (
-              <Typography variant='h3' gutterBottom>
-                {props.children}
-              </Typography>
-            )
+            return <Box className={classes.h3}>{props.children}</Box>
           case 'h4':
             return (
               <Typography variant='h4' gutterBottom>
@@ -68,18 +106,17 @@ const serializers = {
         }
       }
       if (style === 'blockquote') {
-        return <blockquote>{props.children}</blockquote>
+        return (
+          <Box mx='20px' my='20px' pl='15px' className={classes.quotes}>
+            {props.children}
+          </Box>
+        )
       }
       if (style === 'normal') {
         return (
-          <Typography variant='body1' align='justify' gutterBottom>
+          <Typography variant='body2' align='justify' gutterBottom>
             {props.children}
           </Typography>
-        )
-      }
-      if (style === 'li') {
-        return (
-          <Typography variant='body1'>esto es li: {props.children}</Typography>
         )
       }
 

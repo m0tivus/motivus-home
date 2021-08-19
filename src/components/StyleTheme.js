@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 
-const theme2 = createMuiTheme({
+const theme2 = createTheme({
   typography: {
     fontFamily: 'Asap',
 
@@ -90,6 +90,32 @@ const theme2 = createMuiTheme({
       fontFamily: 'Roboto',
       fontWeight: 300,
       fontSize: '0.85rem',
+    },
+
+    /*----------------------artilce-----------------*/
+
+    articleTitle: {
+      fontFamily: 'Asap',
+      fontWeight: '800',
+      fontStyle: 'italic',
+      fontSize: '2.2rem',
+      lineHeight: 1.334,
+      letterSpacing: '0em',
+    },
+
+    lang: {
+      fontWeight: '500',
+      fontFamily: 'Roboto',
+      fontSize: '0.9rem',
+      lineHeight: 1.1,
+      letterSpacing: '0em',
+    },
+    introduction: {
+      fontWeight: '500',
+      fontFamily: 'Roboto',
+      fontSize: '0.95rem',
+      lineHeight: 1.2,
+      letterSpacing: '0em',
     },
   },
 
