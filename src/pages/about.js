@@ -26,6 +26,7 @@ import RedditIcon from '@material-ui/icons/Reddit'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import { CenterFocusStrong } from '@material-ui/icons'
 import Fade from '@material-ui/core/Fade'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 function Copyright() {
   return (
@@ -140,7 +141,10 @@ function HumanCard(props) {
         <CardMedia
           onClick={toggleChecked}
           className={classes.cardMedia}
-          image={data.node.photography.asset.fixed.src}
+          component={() => (
+                        <GatsbyImage
+                          image={data.node.photography.asset.gatsbyImageData}
+                        ></GatsbyImage>)}
           title={data.node.name}
         >
           <Fade in={checked}>
@@ -228,10 +232,9 @@ export const humanQuery = graphql`
           released
           photography {
             asset {
-              fixed(width: 400, height: 400) {
-                ...GatsbySanityImageFixed
+             gatsbyImageData(width: 400 height:400) 
+             path
               }
-            }
           }
           name
           description

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Card from '@material-ui/core/Card'
@@ -15,8 +15,10 @@ import Divider from '@material-ui/core/Divider'
 import styles from '../styles/blog.module.css'
 import parseJSON from 'date-fns/parseJSON'
 import formatISO from 'date-fns/formatISO'
-import Styles from '../styles/blog.module.css'
+import { title } from '../styles/blog.module.css'
 import { Box } from '@material-ui/core'
+import _ from 'lodash'
+import LangSelectorBlog from '../components/LangSelectorBlog'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -63,10 +65,14 @@ const useStyles = makeStyles((theme) => ({
 
 const BlogPage = ({ data, ...props }) => {
   const classes = useStyles()
-
+  const languages = _.uniq(_.map(data.allSanityPost.edges, 'node.i18n_lang'))
+  const [lang, setLang] = React.useState('en_US')
   return (
     <Layout {...props}>
       <SEO title='Blog' description='Blog Data' />
+      <Box pb='90px'>
+        <LangSelectorBlog languages={languages} lang={lang} setLang={setLang} />
+      </Box>
       <Grid container spacing={2}>
         {data.allSanityPost.edges
           .sort(function (x, y) {
@@ -75,6 +81,7 @@ const BlogPage = ({ data, ...props }) => {
               new Date(x.node.publishedAt).getTime()
             )
           })
+          .filter((doc) => doc.node.i18n_lang === lang)
           .map((document) => (
             <Grid item key={document.node.id} xs={12} sm={6}>
               <Card className={classes.card}>
@@ -82,7 +89,9 @@ const BlogPage = ({ data, ...props }) => {
                   <Link to={`/blog/${document.node.slug.current}`}>
                     <CardMedia
                       component={() => (
-                        <Img fluid={document.node.image.asset.fluid}></Img>
+                        <GatsbyImage
+                          image={document.node.image.asset.gatsbyImageData}
+                        ></GatsbyImage>
                       )}
                     />
                   </Link>
@@ -90,7 +99,7 @@ const BlogPage = ({ data, ...props }) => {
                 <CardContent className={classes.cardContent}>
                   <Box p={1}>
                     <Link
-                      className={Styles.title}
+                      className={title}
                       to={`/blog/${document.node.slug.current}`}
                     >
                       {document.node.title}
@@ -131,15 +140,14 @@ export const pageQuery = graphql`
     allSanityPost {
       edges {
         node {
+          i18n_lang
           id
           slug {
             current
           }
           image {
             asset {
-              fluid(maxWidth: 960) {
-                ...GatsbySanityImageFluid
-              }
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
             }
           }
           title

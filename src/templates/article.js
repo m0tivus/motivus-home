@@ -1,97 +1,220 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import PortableText from '../components/PortableText'
 import SEO from '../components/seo'
 import { Box, Divider, Grid, Typography } from '@material-ui/core'
 import '../components/layout.css'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import parseJSON from 'date-fns/parseJSON'
 import formatISO from 'date-fns/formatISO'
-import Theme2 from '../components/StyleTheme'
+import LanguageIcon from '@material-ui/icons/Language'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import LangSelector from '../components/LangSelector'
+import Share from '../components/Share'
+
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    background: 'white',
-    zIndex: -100,
+    background: theme.palette.background.blackBackground,
+    zIndex: 1,
   },
+  title: {
+    ...theme.typography.articleTitle,
+    color: '#fff',
+  },
+  langIco: {
+    fill: '#fff',
+  },
+  lang: {
+    ...theme.typography.lang,
+    color: '#fff',
+  },
+  introduction: {
+    ...theme.typography.introduction,
+    textAlign: 'justify',
+    textJustify: 'inter-word',
+    color: '#fff',
+  },
+  authorImage: {
+    border: '1px solid #fff',
+    borderRadius: 1000,
+    height: 45,
+    width: 45,
+  },
+  verticalDivider: {
+    background: '#fff',
+  },
+  authorName: {
+    ...theme.typography.introduction,
+    color: theme.palette.primary.light,
+    fontWeight: '800',
+  },
+  articleDate: {
+    ...theme.typography.introduction,
+    color: '#fff',
+    fontSize: '0.8rem',
+    fontWeight: '500',
+  },
+  divider: {
+    backgroundColor: '#fff',
+  },
+  lines: {
+    backgroundColor: '#ffffff',
+    opacity: 1,
+    backgroundImage: 'radial-gradient(#000 0.1px, #fff 1px)',
+    backgroundSize: '8px 8px',
+  },
+  fade: {
+    background:
+      'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 95%, rgba(255,255,255,1) 100%)',
+  },
+
   author: {
     fontWeight: 600,
     fontSize: '1.2rem',
     color: theme.palette.secondary.main,
   },
 }))
-const Content = ({ data, ...props }) => {
+
+export default function AricleTemplate({ data, ...props }) {
+  return (
+    <Layout {...props}>
+      <Article data={data} {...props} />
+    </Layout>
+  )
+}
+
+const Article = ({ data, ...props }) => {
+  const translations = props.pageContext.translations[props.pageContext._id]
   const classes = useStyles()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.down('xs'))
+
   return (
     <React.Fragment>
       <SEO
         title={data.sanityPost.title}
         description={data.sanityPost.abstract}
       />
-      <Box display='flex' width='100%' justifyContent='center'>
+      <Box
+        position='relative'
+        width='100%'
+        display='flex'
+        flexDirection='column'
+      >
+        <Box display='flex' width='85%' ml='10%' maxHeight='430px' zIndex={0}>
+          <GatsbyImage image={data.sanityPost.image.asset.gatsbyImageData} />
+        </Box>
         <Box
-          pl={5}
-          pb={2}
-          pt={2}
+          ml='5%'
+          width='85%'
+          mt='-50px'
           display='flex'
-          width='90%'
           className={classes.header}
-          boxShadow={2}
+          flexDirection='column'
+          justifyContent='space-between'
+          pb={matches ? '30px' : '75px'}
         >
-          <Grid container>
-            <Grid item xs={12}>
-              <Typography variant='h2' color='primary' bottomgutter>
-                {data.sanityPost.title}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Box
-                display='flex'
-                flexDirection='row'
-                justifyContent='flex-start'
-                alignItems='center'
-              >
-                <Typography variant='body2'>
-                  <span className={classes.author}>
-                    {data.sanityPost.author.name}
-                  </span>
-                  ,{' '}
-                  {formatISO(parseJSON(data.sanityPost.publishedAt), {
-                    representation: 'date',
-                  })}
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-      <Box display='flex' width='100%' justifyContent='center' boxShadow={6}>
-        <Img fixed={data.sanityPost.image.asset.fixed} />
-      </Box>
-      <Box display='flex' width='100%' justifyContent='center'>
-        <Box
-          p={5}
-          display='flex'
-          width='90%'
-          justifyContent='center'
-          boxShadow={2}
-        >
-          {data.sanityPost._rawContent && (
-            <PortableText blocks={data.sanityPost._rawContent} />
-          )}
-        </Box>
-      </Box>
-    </React.Fragment>
-  )
-}
+          <Box
+            ml='6%'
+            mt='35px'
+            width={matches ? '95%' : '65%'}
+            mb={matches ? '20px' : '80px'}
+            className={classes.title}
+          >
+            {data.sanityPost.title}
+          </Box>
 
-export default function AricleTemplate({ data, ...props }) {
-  return (
-    <Layout {...props}>
-      <Content data={data} />
-    </Layout>
+          <Box
+            ml='6%'
+            mr='6%'
+            display='flex'
+            flexDirection='column'
+            alignItems='flex-end'
+          >
+            <Box
+              display='flex'
+              justifyContent='space-between'
+              alignItems='center'
+              mb='5px'
+            >
+              <LangSelector translations={translations} />
+              <LanguageIcon className={classes.langIco} />
+            </Box>
+            <Box className={classes.divider} height='1px' width='100%' />
+            <Box
+              display='flex'
+              flexDirection={matches ? 'column' : 'row'}
+              justifyContent='space-between'
+              mt='15px'
+            >
+              <Box display='flex' flexDirection='row'>
+                <Box>
+                  <GatsbyImage
+                    className={classes.authorImage}
+                    image={data.sanityPost.author.image.asset.gatsbyImageData}
+                  />
+                </Box>
+                <Box
+                  width='1px'
+                  height='45px'
+                  ml='7.5px'
+                  mr='7.5px'
+                  className={classes.verticalDivider}
+                ></Box>
+                <Box>
+                  <Box className={classes.authorName} mb='5px'>
+                    {data.sanityPost.author.name}
+                  </Box>
+                  <Box className={classes.articleDate}>
+                    {formatISO(parseJSON(data.sanityPost.publishedAt), {
+                      representation: 'date',
+                    })}
+                  </Box>
+                </Box>
+              </Box>
+
+              <Box
+                width={matches ? '100%' : '50%'}
+                className={classes.introduction}
+                mt={matches ? '80px' : '0px'}
+              >
+                {data.sanityPost.abstract}
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          display='flex'
+          justifyContent='center'
+          alignItems='center'
+          width='100%'
+          top='25%'
+          position='absolute'
+          height='500px'
+          zIndex={-3}
+          className={classes.lines}
+        />
+        <Box
+          position='absolute'
+          display='flex'
+          top='25%'
+          height='500px'
+          width='100%'
+          zIndex={-1}
+          className={classes.fade}
+        />
+      </Box>
+
+      <Box display='flex' ml='10%' mr='15%' mt='20px' justifyContent='center'>
+        {data.sanityPost._rawContent && (
+          <PortableText blocks={data.sanityPost._rawContent} />
+        )}
+      </Box>
+      <Share />
+    </React.Fragment>
   )
 }
 
@@ -103,12 +226,15 @@ export const query = graphql`
       abstract
       image {
         asset {
-          fixed(width: 960) {
-            ...GatsbySanityImageFixed
-          }
+          gatsbyImageData(width: 960)
         }
       }
       author {
+        image {
+          asset {
+            gatsbyImageData
+          }
+        }
         id
         name
       }

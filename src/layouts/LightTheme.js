@@ -24,15 +24,33 @@ const theme2 = createMuiTheme({
     },
 
     background: {
-      paper: '#2C2771',
+      paper: '#FFFFFF',
+      headerBackground: '#2C2771',
+      paperGradient: 'linear-gradient(180deg, #F0EEEE 60%, #FFFFFF 100%)',
+      borderGradient: 'linear-gradient(135deg, #ACACAC 0%, #FFFFFF 100%)',
+      filter: 'linear-gradient(180deg, #8657E1 0%, #FF72EB 100%)',
       default: '#ffffff',
+      langSelector: '#1E1E1E',
+      langSelectorTexture: 'radial-gradient(#000 0.1px, #fff 1px)',
+      langSelectorFade:
+        'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 95%, rgba(255,255,255,1) 100%)',
     },
 
     text: {
       primary: '#000000',
       secondary: '#424242',
+      white: '#ffffff',
+    },
+
+    button: {
+      text: '#2C2771',
     },
   },
+  shadows: [
+    'none',
+    '1px 3px 2px 0px rgb(0, 0, 0, 0.2)',
+    '1px 3px 2px 1px rgb(0, 0, 0, 0.3)',
+  ],
 
   overrides: {
     MuiTypography: {

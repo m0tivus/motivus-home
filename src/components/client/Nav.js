@@ -1,7 +1,12 @@
 import React from 'react'
 
 import { Link } from 'gatsby'
-import navStyles from '../../styles/clientNav.module.css'
+import {
+  nav,
+  navList,
+  navItemver,
+  activeNavItemver,
+} from '../../styles/clientNav.module.css'
 
 const routes = [
   { name: 'News', route: '/client', partialy: false },
@@ -15,13 +20,13 @@ const routes = [
 
 export default function Nav() {
   return (
-    <nav className={navStyles.nav}>
-      <ul className={navStyles.navList}>
+    <nav className={nav}>
+      <ul className={navList}>
         {routes.map(({ name, route, partialy }) => (
           <li>
             <Link
-              className={navStyles.navItemver}
-              activeClassName={navStyles.activeNavItemver}
+              className={navItemver}
+              activeClassName={activeNavItemver}
               partiallyActive={partialy}
               to={route}
             >
