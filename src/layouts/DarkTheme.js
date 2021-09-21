@@ -32,11 +32,16 @@ const DarkTheme = createMuiTheme({
       borderGradient: 'linear-gradient(135deg, #265DED 50%, #F54EDD 100%)',
       filter: 'linear-gradient(180deg, #8657E1 0%, #6AB8B8 100%)',
       default: '#131144',
+      langSelector: '#000000',
+      langSelectorTexture: 'radial-gradient(#fff 0.1px, #131144 1px)',
+      langSelectorFade:
+        'linear-gradient(90deg, rgba(19, 17, 68,1) 0%, rgba(19, 17, 68,0) 5%, rgba(19, 17, 68,0) 95%, rgba(19, 17, 68,1) 100%)',
     },
 
     text: {
       primary: '#ffffff',
       secondary: '#424242',
+      white: '#ffffff',
     },
 
     button: {

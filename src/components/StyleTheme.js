@@ -137,11 +137,16 @@ const theme2 = createTheme({
     background: {
       paper: '#fff',
       default: '#fff',
+      langSelector: '#1E1E1E',
+      langSelectorTexture: 'radial-gradient(#000 0.1px, #fff 1px)',
+      langSelectorFade:
+        'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 95%, rgba(255,255,255,1) 100%)',
     },
 
     text: {
       primary: '#000000',
       secondary: '#424242',
+      white: '#fff',
     },
   },
 

@@ -70,7 +70,9 @@ const BlogPage = ({ data, ...props }) => {
   return (
     <Layout {...props}>
       <SEO title='Blog' description='Blog Data' />
-      <LangSelectorBlog languages={languages} lang={lang} setLang={setLang} />
+      <Box pb='90px'>
+        <LangSelectorBlog languages={languages} lang={lang} setLang={setLang} />
+      </Box>
       <Grid container spacing={2}>
         {data.allSanityPost.edges
           .sort(function (x, y) {

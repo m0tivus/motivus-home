@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-import image from '../../../static/imageTest.png'
 import { Box } from '@material-ui/core'
 import CardButton from './CardButton'
 import { TimeToLeave } from '@material-ui/icons'
@@ -13,15 +12,16 @@ import CardMedia from '@material-ui/core/CardMedia'
 
 const useStyles = makeStyles((theme) => ({
   border: {
-    width: '380px',
-    height: '500px',
+    maxWidth: '380px',
+    height: '550px',
     borderRadius: '0px 50px',
     background: theme.palette.background.borderGradient,
+    marginBottom: '50px',
   },
   root: {
     position: 'relative',
-    width: '378px',
-    height: '498px',
+    maxWidth: '378px',
+    height: '548px',
     borderRadius: '0px 50px',
     background: theme.palette.background.paperGradient,
   },
@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1,
   },
   media: {
-    height: 215,
     zIndex: -1,
   },
   title: {
@@ -72,7 +71,7 @@ export default function MediaCard({ title, abstract, author, date, image }) {
           </CardContent>
           <Box
             position='absolute'
-            height='215px'
+            height='100%'
             width='100%'
             className={classes.filter}
           />

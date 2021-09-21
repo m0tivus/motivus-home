@@ -11,12 +11,13 @@ import formatISO from 'date-fns/formatISO'
 import LanguageIcon from '@material-ui/icons/Language'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import LangSelector from '../components/LangSelector'
+import Share from '../components/Share'
 
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    background: '#1E1E1E',
+    background: theme.palette.background.blackBackground,
     zIndex: 1,
   },
   title: {
@@ -212,6 +213,7 @@ const Article = ({ data, ...props }) => {
           <PortableText blocks={data.sanityPost._rawContent} />
         )}
       </Box>
+      <Share />
     </React.Fragment>
   )
 }
