@@ -2,19 +2,21 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { Box, Dialog, Slide } from '@material-ui/core'
 import {
-  nav,
   background,
+  nav,
   navList,
   navItem,
   activeNavItem,
-} from '../../styles/mobileNav.module.css'
+} from '../../../styles/mobileNav.module.css'
 
 const routes = [
-  { name: 'HOME', route: '/', partialy: false },
-  { name: 'SOFTWARE FACTORY', route: '/softwarefactory', partialy: false },
-  { name: 'ABOUT', route: '/about', partialy: false },
-  { name: 'BLOG', route: '/blog', partialy: true },
-  { name: 'CONTACT US', route: '/contact', partialy: false },
+  { name: 'News', route: '/client', partialy: false },
+  { name: 'Dashboard', route: '/client/dashboard', partialy: false },
+  { name: 'Marketplace', route: '/client/marketplace', partialy: false },
+  { name: 'Virtual Wallet', route: '/client/wallet', partialy: false },
+  { name: 'Documentation', route: '/client/documentation', partialy: false },
+  { name: 'Settings', route: '/client/settings', partialy: false },
+  /*{ name: 'CONTACT US', route: '/contact', partialy: false },*/
 ]
 
 const Transition = React.forwardRef(function Transition(props, ref) {
