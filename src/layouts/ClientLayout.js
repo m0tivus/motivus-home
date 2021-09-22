@@ -31,6 +31,8 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Header from '../components/client/Header'
 import MobilNav from '../components/client/mobileNav'
 
+const windowGlobal = typeof window !== 'undefined' && window
+
 const useStyles = makeStyles((theme) => ({
   webContent: {
     //border: '1px solid red',
@@ -51,11 +53,14 @@ const Layout = ({ children, ...props }) => {
   const classes = useStyles()
   const matches = useMediaQuery(theme.breakpoints.down('md'))
   const [darkState, setDarkState] = React.useState(
-    localStorage.getItem('themeColor') === 'dark',
+    windowGlobal?.localStorage?.getItem('themeColor') === 'dark',
   )
 
   useEffect(() => {
-    localStorage.setItem('themeColor', darkState ? 'dark' : 'light')
+    windowGlobal?.localStorage?.setItem(
+      'themeColor',
+      darkState ? 'dark' : 'light',
+    )
   }, [darkState])
 
   const Theme = darkState ? DarkTheme : LightTheme
