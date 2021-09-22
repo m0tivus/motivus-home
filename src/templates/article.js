@@ -17,7 +17,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    background: theme.palette.background.blackBackground,
+    background: theme.palette.background.langSelector,
     zIndex: 1,
   },
   title: {

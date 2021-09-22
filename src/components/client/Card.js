@@ -71,7 +71,7 @@ export default function MediaCard({ title, abstract, author, date, image }) {
           </CardContent>
           <Box
             position='absolute'
-            height='100%'
+            height='250px'
             width='100%'
             className={classes.filter}
           />

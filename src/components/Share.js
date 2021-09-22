@@ -11,7 +11,7 @@ import TwitterIcon from '@material-ui/icons/Twitter'
 
 const useStyles = makeStyles((theme) => ({
   body: {
-    backgroundColor: theme.palette.background.blackBackground,
+    backgroundColor: theme.palette.background.langSelector,
   },
   backgroundTexture: {
     backgroundColor: '#ffffff',
