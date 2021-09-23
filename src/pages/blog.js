@@ -87,13 +87,10 @@ const BlogPage = ({ data, ...props }) => {
               <Card className={classes.card}>
                 <CardActionArea>
                   <Link to={`/blog/${document.node.slug.current}`}>
-                    <CardMedia
-                      component={() => (
-                        <GatsbyImage
-                          image={document.node.image.asset.gatsbyImageData}
-                        ></GatsbyImage>
-                      )}
-                    />
+                    <GatsbyImage
+                      className={classes.cardMedia}
+                      image={document.node.image.asset.gatsbyImageData}
+                    ></GatsbyImage>
                   </Link>
                 </CardActionArea>
                 <CardContent className={classes.cardContent}>

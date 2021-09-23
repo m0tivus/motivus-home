@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1,
   },
   media: {
-    zIndex: -1,
+    height: '250px',
   },
   title: {
     position: 'absolute',
@@ -75,10 +75,7 @@ export default function MediaCard({ title, abstract, author, date, image }) {
             width='100%'
             className={classes.filter}
           />
-          <CardMedia
-            className={classes.media}
-            component={() => <GatsbyImage image={image}></GatsbyImage>}
-          />
+          <GatsbyImage className={classes.media} image={image}></GatsbyImage>
         </CardActionArea>
         <Box marginLeft='10px' marginTop='40px' width='92.5%'>
           <Typography variant='body2' color='textPrimary' component='p'>
