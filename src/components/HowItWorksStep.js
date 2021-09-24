@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Steps() {
   const classes = useStyles()
-  console.log(step1)
+  //console.log(step1)
 
   return (
     <div className={classes.root}>

@@ -32,8 +32,7 @@ const steps = [
     title: 'Validation',
     content:
       'In the last stage we’ll validate that your process achieves the objectives we set out to meet. Validation will also tell us about the long term impact of your software solution, and how it can be upgraded as time goes by.',
-    image:
-      step4,
+    image: step4,
   },
 ]
 
@@ -53,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Steps() {
   const classes = useStyles()
-  console.log(step1)
+  //console.log(step1)
 
   return (
     <div className={classes.root}>

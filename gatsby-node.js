@@ -62,14 +62,14 @@ exports.createPages = ({ actions, graphql }) => {
 
         return {
           _id: node._id,
-            translations: _(
-              node.i18n_refs.length
+          translations: _(
+            node.i18n_refs.length
               ? getRefs(node.i18n_refs, node)
               : getRefs(parent.i18n_refs, parent),
-            )
+          )
             .filter()
             .keyBy('i18n_lang')
-            .mapValues((p) =>  `blog/${p.slug.current}`),
+            .mapValues((p) => `blog/${p.slug.current}`),
         }
       })
       .keyBy('_id')
@@ -83,7 +83,7 @@ exports.createPages = ({ actions, graphql }) => {
         context: {
           id: node.id,
           _id: node._id,
-          translations
+          translations,
         },
       })
     })

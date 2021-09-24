@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image'
 import Layout from '../../layouts/ClientLayout'
 import SEO from '../../components/seo'
 import Grid from '@material-ui/core/Grid'
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({}))
 const ClientPage = ({ data, ...props }) => {
   const theme = useTheme()
   const classes = useStyles()
-  console.log(duration, invocations)
+  //console.log(duration, invocations)
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   return (

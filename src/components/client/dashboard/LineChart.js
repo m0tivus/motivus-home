@@ -75,7 +75,7 @@ const MyResponsiveLine = ({ data }) => {
       data={data}
       enableSlices='x'
       sliceTooltip={({ slice, ...other }) => {
-        console.log(slice.points[0].data.xFormatted)
+        //console.log(slice.points[0].data.xFormatted)
         return (
           <div
             style={{

@@ -17,7 +17,7 @@ const MobileNav = ({ openContact, setOpenContact, ...props }) => {
     setOpenContact(false)
   }
 
-  console.log(openNavigator)
+  //console.log(openNavigator)
 
   return (
     <div className='App'>

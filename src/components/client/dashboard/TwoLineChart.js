@@ -48,10 +48,10 @@ export default function App({ data1, data2 }) {
     margin: { ..._commonProperties(dark).margin, right: 50 },
   }
 
-  console.log('Graph1 Data: ', data1)
+  //console.log('Graph1 Data: ', data1)
   const classes = useStyle()
   const data12 = data1.concat(data2)
-  console.log(data12)
+  //console.log(data12)
   return (
     <div className={classes.wrapper}>
       <div className={classes.graphContainer}>
