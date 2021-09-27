@@ -1,12 +1,11 @@
 version: 2.1
 orbs:
-  node: circleci/node@4.1.0
+  node: circleci/node@4.7.0
 
 jobs:
   build:
     executor:
       name: node/default
-      tag: '15.14'
     steps:
       - checkout
       - run: yarn install
