@@ -213,7 +213,12 @@ const Article = ({ data, ...props }) => {
           <PortableText blocks={data.sanityPost._rawContent} />
         )}
       </Box>
-      <Share />
+      <Share
+        title={`Read ${data.sanityPost.title}`}
+        url={data.sanityPost.slug.current}
+        twitterHandle={'_MsLinda'}
+        tags={'test'}
+      />
     </React.Fragment>
   )
 }
@@ -222,6 +227,9 @@ export const query = graphql`
   query ArticleTemplate($id: String!) {
     sanityPost(id: { eq: $id }) {
       title
+      slug {
+        current
+      }
       _rawContent(resolveReferences: { maxDepth: 5 })
       abstract
       image {

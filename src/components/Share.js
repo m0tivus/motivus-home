@@ -9,6 +9,50 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import RedditIcon from '@material-ui/icons/Reddit'
 import TwitterIcon from '@material-ui/icons/Twitter'
 
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  RedditShareButton,
+  RedditIcon,
+} from 'react-share'
+
+const ShareButtons = ({ title, url, twitterHandle, tags }) => {
+  return (
+    <div>
+      <FacebookShareButton url={url}>
+        <FacebookIcon size={40} round={true} />
+      </FacebookShareButton>
+
+      <TwitterShareButton
+        url={url}
+        title={title}
+        via={twitterHandle}
+        hashtags={tags}
+      >
+        <TwitterIcon size={40} round={true} />
+      </TwitterShareButton>
+
+      <LinkedinShareButton url={url}>
+        <LinkedinIcon size={40} round={true} />
+      </LinkedinShareButton>
+
+      <RedditShareButton url={url} title={title}>
+        <RedditIcon size={40} round={true} />
+      </RedditShareButton>
+
+      <WhatsappShareButton url={url} title={title}>
+        <WhatsappIcon size={40} round={true} />
+      </WhatsappShareButton>
+    </div>
+  )
+}
+
 const useStyles = makeStyles((theme) => ({
   body: {
     backgroundColor: theme.palette.background.langSelector,
@@ -31,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Share() {
+export default function Share(title, url, twitterHandle, tags) {
   const classes = useStyles()
   return (
     <React.Fragment>
@@ -77,10 +121,12 @@ export default function Share() {
                   justifyContent='space-around'
                   width='210px'
                 >
-                  <FacebookIcon fontSize='large' className={classes.icons} />
-                  <TwitterIcon fontSize='large' className={classes.icons} />
-                  <LinkedInIcon fontSize='large' className={classes.icons} />
-                  <RedditIcon fontSize='large' className={classes.icons} />
+                  <ShareButtons
+                    title={title}
+                    url={url}
+                    twitterHandle={twitterHandle}
+                    tags={tags}
+                  />
                 </Box>
               </Box>
             </Box>
