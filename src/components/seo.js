@@ -26,12 +26,16 @@ function SEO({ description, lang, meta, title, image }) {
   )
   const _meta = image
     ? [
-      ...meta,
-      {
-        property: 'og:image',
-        content: image,
-      },
-    ]
+        ...meta,
+        {
+          property: 'og:image',
+          content: image,
+        },
+        {
+          property: 'twitter:image',
+          content: image,
+        },
+      ]
     : meta
 
   const metaDescription = description || site.siteMetadata.description

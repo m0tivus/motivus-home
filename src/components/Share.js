@@ -4,10 +4,6 @@ import { Box, Typography } from '@material-ui/core'
 import '../components/layout.css'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { classicNameResolver } from 'typescript'
-import FacebookIcon from '@material-ui/icons/Facebook'
-import LinkedInIcon from '@material-ui/icons/LinkedIn'
-import RedditIcon from '@material-ui/icons/Reddit'
-import TwitterIcon from '@material-ui/icons/Twitter'
 
 import {
   FacebookShareButton,
@@ -24,7 +20,7 @@ import {
 
 const ShareButtons = ({ title, url, twitterHandle, tags }) => {
   return (
-    <div>
+    <Box display='flex' justifyContent='space-around' width='300px' ml='20px'>
       <FacebookShareButton url={url}>
         <FacebookIcon size={40} round={true} />
       </FacebookShareButton>
@@ -45,11 +41,7 @@ const ShareButtons = ({ title, url, twitterHandle, tags }) => {
       <RedditShareButton url={url} title={title}>
         <RedditIcon size={40} round={true} />
       </RedditShareButton>
-
-      <WhatsappShareButton url={url} title={title}>
-        <WhatsappIcon size={40} round={true} />
-      </WhatsappShareButton>
-    </div>
+    </Box>
   )
 }
 
@@ -75,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Share(title, url, twitterHandle, tags) {
+export default function Share({ title, url, twitterHandle, tags }) {
   const classes = useStyles()
   return (
     <React.Fragment>

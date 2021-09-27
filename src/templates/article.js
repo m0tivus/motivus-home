@@ -97,6 +97,7 @@ const Article = ({ data, ...props }) => {
       <SEO
         title={data.sanityPost.title}
         description={data.sanityPost.abstract}
+        image={data.sanityPost.image.asset.url}
       />
       <Box
         position='relative'
@@ -213,11 +214,12 @@ const Article = ({ data, ...props }) => {
           <PortableText blocks={data.sanityPost._rawContent} />
         )}
       </Box>
+
       <Share
         title={`Read ${data.sanityPost.title}`}
-        url={data.sanityPost.slug.current}
-        twitterHandle={'_MsLinda'}
-        tags={'test'}
+        url={props.location.href}
+        twitterHandle={'MotivusHPCN'}
+        tags={'Motivus'}
       />
     </React.Fragment>
   )
@@ -234,6 +236,7 @@ export const query = graphql`
       abstract
       image {
         asset {
+          url
           gatsbyImageData(width: 960)
         }
       }
