@@ -4,10 +4,46 @@ import { Box, Typography } from '@material-ui/core'
 import '../components/layout.css'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { classicNameResolver } from 'typescript'
-import FacebookIcon from '@material-ui/icons/Facebook'
-import LinkedInIcon from '@material-ui/icons/LinkedIn'
-import RedditIcon from '@material-ui/icons/Reddit'
-import TwitterIcon from '@material-ui/icons/Twitter'
+
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  RedditShareButton,
+  RedditIcon,
+} from 'react-share'
+
+const ShareButtons = ({ title, url, twitterHandle, tags }) => {
+  return (
+    <Box display='flex' justifyContent='space-around' width='300px' ml='20px'>
+      <FacebookShareButton url={url}>
+        <FacebookIcon size={40} round={true} />
+      </FacebookShareButton>
+
+      <TwitterShareButton
+        url={url}
+        title={title}
+        via={twitterHandle}
+        hashtags={tags}
+      >
+        <TwitterIcon size={40} round={true} />
+      </TwitterShareButton>
+
+      <LinkedinShareButton url={url}>
+        <LinkedinIcon size={40} round={true} />
+      </LinkedinShareButton>
+
+      <RedditShareButton url={url} title={title}>
+        <RedditIcon size={40} round={true} />
+      </RedditShareButton>
+    </Box>
+  )
+}
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -31,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Share() {
+export default function Share({ title, url, twitterHandle, tags }) {
   const classes = useStyles()
   return (
     <React.Fragment>
@@ -77,10 +113,12 @@ export default function Share() {
                   justifyContent='space-around'
                   width='210px'
                 >
-                  <FacebookIcon fontSize='large' className={classes.icons} />
-                  <TwitterIcon fontSize='large' className={classes.icons} />
-                  <LinkedInIcon fontSize='large' className={classes.icons} />
-                  <RedditIcon fontSize='large' className={classes.icons} />
+                  <ShareButtons
+                    title={title}
+                    url={url}
+                    twitterHandle={twitterHandle}
+                    tags={tags}
+                  />
                 </Box>
               </Box>
             </Box>
