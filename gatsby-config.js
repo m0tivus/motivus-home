@@ -21,7 +21,12 @@ module.exports = {
       },
     },
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-material-ui',
+    {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        disableAutoprefixing: true,
+      },
+    },
 
     {
       resolve: 'gatsby-source-sanity',
@@ -29,7 +34,7 @@ module.exports = {
         projectId: '2g00hyzc',
         dataset: 'production',
         token:
-          'skx93MUXy48sfHbTaOiWStQdR0iPjpjjmyDcGY73LMcdx2BrO001HimUleAC9oPvBUZbOmxbdslrBkWef4MEKyRp5N5ySywYX3FbGtNXXxY22tSTFtWb9ySwdlI4qBsOqRrA5fANaekcTzHwsCu8Fvv0JMqBd1IvaNNxD0bAoQqfnL0EenbP',
+        'skx93MUXy48sfHbTaOiWStQdR0iPjpjjmyDcGY73LMcdx2BrO001HimUleAC9oPvBUZbOmxbdslrBkWef4MEKyRp5N5ySywYX3FbGtNXXxY22tSTFtWb9ySwdlI4qBsOqRrA5fANaekcTzHwsCu8Fvv0JMqBd1IvaNNxD0bAoQqfnL0EenbP',
       },
     },
     /*{
