@@ -35,7 +35,7 @@ const ClientPage = ({ data, ...props }) => {
     <Layout {...props}>
       <Box></Box>
       <Title text='Dasboard' />
-      <Typography variant='subtitle1'>
+      <Typography color='textPrimary' variant='subtitle1'>
         Welcome to your dashboard, here you can monitor the different processors
         related to your algorithms
       </Typography>

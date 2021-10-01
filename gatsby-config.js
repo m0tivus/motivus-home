@@ -3,6 +3,7 @@ module.exports = {
     title: 'Motivus',
     description: 'High performance computing network',
     author: 'Motivus',
+    url: 'motivus.cl',
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -34,7 +35,7 @@ module.exports = {
         projectId: '2g00hyzc',
         dataset: 'production',
         token:
-        'skx93MUXy48sfHbTaOiWStQdR0iPjpjjmyDcGY73LMcdx2BrO001HimUleAC9oPvBUZbOmxbdslrBkWef4MEKyRp5N5ySywYX3FbGtNXXxY22tSTFtWb9ySwdlI4qBsOqRrA5fANaekcTzHwsCu8Fvv0JMqBd1IvaNNxD0bAoQqfnL0EenbP',
+          'skx93MUXy48sfHbTaOiWStQdR0iPjpjjmyDcGY73LMcdx2BrO001HimUleAC9oPvBUZbOmxbdslrBkWef4MEKyRp5N5ySywYX3FbGtNXXxY22tSTFtWb9ySwdlI4qBsOqRrA5fANaekcTzHwsCu8Fvv0JMqBd1IvaNNxD0bAoQqfnL0EenbP',
       },
     },
     /*{

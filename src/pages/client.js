@@ -25,7 +25,7 @@ const ClientPage = ({ data, ...props }) => {
     <Layout {...props}>
       <Title text='News' />
       <Box pb='80px'>
-        <Typography variant='subtitle1'>
+        <Typography color='textPrimary' variant='subtitle1'>
           Don't miss out on the latest Motivus news
         </Typography>
         <LangSelectorBlog languages={languages} lang={lang} setLang={setLang} />

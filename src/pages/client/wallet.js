@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image'
 import Layout from '../../layouts/ClientLayout'
 import SEO from '../../components/seo'
 import Card from '@material-ui/core/Card'
@@ -69,7 +69,7 @@ const ClientPage = ({ data, ...props }) => {
   return (
     <Layout {...props}>
       <Title text='Virtual Wallet' />
-      <Typography variant='subtitle1'>
+      <Typography color='textPrimary' variant='subtitle1'>
         You Motivus virtual wallet! send, recive and buy Motivus
       </Typography>
     </Layout>

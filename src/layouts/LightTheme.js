@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { dark } from '@material-ui/core/styles/createPalette'
 import { typography } from './BaseTheme'
 
-const theme2 = createMuiTheme({
+const theme2 = createTheme({
   typography,
   palette: {
     type: 'light',
@@ -21,6 +21,10 @@ const theme2 = createMuiTheme({
       main: '#cc5de7',
       dark: '#9828b4',
       contrastText: '#fff',
+    },
+
+    calypso: {
+      main: '#6AB8B8',
     },
 
     background: {

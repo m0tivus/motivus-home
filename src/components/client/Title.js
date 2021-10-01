@@ -19,7 +19,7 @@ const Title = ({ text }) => {
       <Box>
         <Box display='flex' alignItems='center'>
           <Box paddingRight={2}>
-            <Typography noWrap variant='h2'>
+            <Typography color='textPrimary' noWrap variant='h2'>
               {text}
             </Typography>
           </Box>
