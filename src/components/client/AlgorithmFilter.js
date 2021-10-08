@@ -124,7 +124,7 @@ function ComboBox({ data }) {
         <TextField
           className={classes.autocompleteTextfield}
           {...params}
-          label='Algorithm serach'
+          label='Algorithm search'
           variant='filled'
         />
       )}

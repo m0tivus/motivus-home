@@ -2,6 +2,9 @@ import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { Box, Typography } from '@material-ui/core'
 import StarIcon from '@material-ui/icons/Star'
+import simonImg from '../../images/Simon-Poblete.jpg'
+import motivusImg from '../../images/gatsby-icon.png'
+import { navigate } from 'gatsby'
 
 const useStyles = makeStyles((theme) => ({
   backgroundDark: {
@@ -16,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
   root: {
     backgroundColor: theme.palette.background.default,
+    cursor: 'pointer',
   },
 
   info: {
@@ -55,7 +59,7 @@ export default function AlgorithmCards({
   name,
   author,
   publishDate,
-  description,
+  abstract,
   image,
   cost,
   stars,
@@ -85,6 +89,7 @@ export default function AlgorithmCards({
           padding='10px'
           justifyContent='space-between'
           className={classes.root}
+          onClick={() => navigate(`/client/marketplace/${name}`)}
         >
           <Box>
             <Box
@@ -102,14 +107,20 @@ export default function AlgorithmCards({
                 ml='4px'
               >
                 <Box display='flex' flexDirection='column'>
-                  <Typography variant='body'>{description}</Typography>
+                  <Typography variant='body'>{abstract}</Typography>
                   <Box
                     display='flex'
                     flexDirection='row'
                     alignItems='center'
                     mt='5px'
                   >
-                    <img src={image} alt={name} className={classes.img}></img>
+                    {
+                      <img
+                        src={author === 'motivus' ? motivusImg : simonImg}
+                        alt={name}
+                        className={classes.img}
+                      ></img>
+                    }
                     <Typography variant='body1' className={classes.info}>
                       <span className={classes.author}>{author}</span> published{' '}
                       <span className={classes.publishDate}>{publishDate}</span>

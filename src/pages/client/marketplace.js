@@ -9,6 +9,7 @@ import AlgorithmFilter from '../../components/client/AlgorithmFilter'
 import { Box, Grid } from '@material-ui/core'
 import simonImg from '../../images/Simon-Poblete.jpg'
 import motivusImg from '../../images/gatsby-icon.png'
+import { graphql, navigate } from 'gatsby'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const ClientPage = ({ data, ...props }) => {
   const classes = useStyles()
 
+  const algorithmsData = data.allAlgorithm?.nodes
   return (
     <Layout {...props}>
       <Title text='Algorithm Marketplace' />
@@ -38,8 +40,7 @@ const ClientPage = ({ data, ...props }) => {
               name={a.name}
               author={a.author}
               publishDate={a.publishDate}
-              description={a.description}
-              image={a.image}
+              abstract={a.abstract}
               cost={a.cost}
               stars={a.stars}
             />
@@ -52,7 +53,25 @@ const ClientPage = ({ data, ...props }) => {
 
 export default ClientPage
 
-const algorithmsData = [
+export const pageQuery = graphql`
+  query Algorithms {
+    allAlgorithm {
+      nodes {
+        author
+        github
+        abstract
+        description
+        name
+        publishDate
+        stars
+        version
+        web
+      }
+    }
+  }
+`
+
+/*const algorithmsData = [
   {
     name: 'rna-folding',
     author: 'simon-poblete',
@@ -89,4 +108,4 @@ const algorithmsData = [
     github: 'github.com',
     stars: '1.9k',
   },
-]
+]*/
