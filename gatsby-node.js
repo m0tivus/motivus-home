@@ -25,38 +25,79 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       abstract: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sollicitudin pharetra maximus. Aenean non sodales nulla, id ultricies massa. Ut a porta velit. Integer congue justo in ante eleifend luctus. Vestibulum quis lorem sed felis rhoncus condimentum sed porttitor turpis. Duis varius sit amet ipsum quis semper. Pellentesque mattis convallis ipsum vitae malesuada. Sed a aliquam lectus. Maecenas sit amet diam fermentum, interdum lectus ut, sodales diam. Aenean in semper magna, sed porttitor justo. Fusce magna odio, lacinia in viverra sit amet, iaculis at urna. Aenean gravida ultricies pellentesque. ',
+      longDescription: `A paragraph with *emphasis* and **strong importance**.
+> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
+      
+* Lists
+* [ ] todo
+* [x] done
+      
+A table:
+      
+| a | b |
+| - | - |
+`,
       publishDate: '01/10/2021',
       version: '0.0.1',
       cost: '0.12',
       web: 'www.example.com',
       github: 'github.com',
       stars: '1.9k',
+      license: 'OpenSource',
     },
     {
       name: 'traveling-salesman',
-      author: 'motivus',
+      author: 'cecs',
       abstract: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sollicitudin pharetra maximus. Aenean non sodales nulla, id ultricies massa. Ut a porta velit. Integer congue justo in ante eleifend luctus. Vestibulum quis lorem sed felis rhoncus condimentum sed porttitor turpis. Duis varius sit amet ipsum quis semper. Pellentesque mattis convallis ipsum vitae malesuada. Sed a aliquam lectus. Maecenas sit amet diam fermentum, interdum lectus ut, sodales diam. Aenean in semper magna, sed porttitor justo. Fusce magna odio, lacinia in viverra sit amet, iaculis at urna. Aenean gravida ultricies pellentesque. ',
+      longDescription: `A paragraph with *emphasis* and **strong importance**.
+
+> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
+        
+* Lists
+* [ ] todo
+* [x] done
+        
+A table:
+        
+| a | b |
+| - | - |
+`,
       publishDate: '01/10/2021',
       version: '0.0.1',
       cost: '0.12',
       web: 'www.example.com',
       github: 'github.com',
       stars: '1.9k',
+      license: 'OpenSource',
     },
     {
       name: 'sii-scrapers',
-      author: 'motivus',
+      author: 'alba',
       abstract: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sollicitudin pharetra maximus. Aenean non sodales nulla, id ultricies massa. Ut a porta velit. Integer congue justo in ante eleifend luctus. Vestibulum quis lorem sed felis rhoncus condimentum sed porttitor turpis. Duis varius sit amet ipsum quis semper. Pellentesque mattis convallis ipsum vitae malesuada. Sed a aliquam lectus. Maecenas sit amet diam fermentum, interdum lectus ut, sodales diam. Aenean in semper magna, sed porttitor justo. Fusce magna odio, lacinia in viverra sit amet, iaculis at urna. Aenean gravida ultricies pellentesque. ',
+      longDescription: `A paragraph with *emphasis* and **strong importance**.
+
+> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
+        
+* Lists
+* [ ] todo
+* [x] done
+        
+A table:
+        
+| a | b |
+| - | - |
+`,
       publishDate: '01/10/2021',
       version: '0.0.1',
       cost: '0.12',
       web: 'www.example.com',
       github: 'github.com',
       stars: '1.9k',
+      license: 'OpenSource',
     },
   ]
 
@@ -66,6 +107,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       author: algorithm.author,
       abstract: algorithm.abstract,
       description: algorithm.description,
+      longDescription: algorithm.longDescription,
       publishDate: algorithm.publishDate,
       image: algorithm.image,
       version: algorithm.version,
@@ -73,6 +115,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       web: algorithm.web,
       github: algorithm.github,
       stars: algorithm.stars,
+      license: algorithm.license,
 
       id: createNodeId(`Algorithm-${algorithm.name}`),
       internal: {
@@ -108,6 +151,13 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allAlgorithm.edges.forEach(({ node }) => {
       createPage({
         path: `client/marketplace/${node.name}`,
+        component: path.resolve('src/templates/algorithm.js'),
+        context: {
+          id: node.id,
+        },
+      })
+      createPage({
+        path: `marketplace/${node.name}`,
         component: path.resolve('src/templates/algorithm.js'),
         context: {
           id: node.id,

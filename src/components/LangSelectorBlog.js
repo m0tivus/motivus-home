@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
@@ -7,6 +7,7 @@ import Select from '@material-ui/core/Select'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import InputBase from '@material-ui/core/InputBase'
 import { Box, Typography } from '@material-ui/core'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -60,6 +61,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ControlledOpenSelect({ languages, lang, setLang }) {
   const classes = useStyles()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
   const [open, setOpen] = React.useState(false)
 
   const handleChange = (event) => {
@@ -79,21 +82,21 @@ export default function ControlledOpenSelect({ languages, lang, setLang }) {
       <Box
         display='flex'
         width='100%'
-        height='100px'
+        height={matches ? '100px' : '150px'}
         mt='30px'
         className={classes.backgroundTexture}
       >
         <Box
           width='100%'
-          height='100px'
+          height={matches ? '100px' : '150px'}
           display='flex'
           justifyContent='center'
           className={classes.fade}
         >
           <Box
             mt='30px'
-            width='85%'
-            height='100px'
+            width={matches ? '85%' : '90%'}
+            height={matches ? '100px' : '150px'}
             className={classes.body}
             display='flex'
             justifyContent='center'
@@ -104,12 +107,12 @@ export default function ControlledOpenSelect({ languages, lang, setLang }) {
               flexDirection='column'
               justifyContent='center'
               alignItems='flex-end'
-              pr='30px'
+              pr={matches ? '30px' : '15px'}
             >
-              <Typography className={classes.title} variant='h4'>
+              <Typography className={classes.title} variant='h4' align='right'>
                 Motivus Blog
               </Typography>
-              <Typography variant='h5' color='secondary'>
+              <Typography variant='h5' color='secondary' align='right'>
                 Select your language
               </Typography>
             </Box>

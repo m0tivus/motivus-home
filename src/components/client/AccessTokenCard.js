@@ -1,13 +1,9 @@
 import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { Box, Typography } from '@material-ui/core'
-import StarIcon from '@material-ui/icons/Star'
-import simonImg from '../../images/Simon-Poblete.jpg'
-import cecsImg from '../../images/cecs.png'
-import albaImg from '../../images/alba.png'
-import motivusImg from '../../images/gatsby-icon.png'
 import { navigate } from 'gatsby'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
   backgroundDark: {
@@ -25,47 +21,29 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
   },
 
-  info: {
+  createDate: {
     fontFamily: 'Roboto Mono',
+    fontWeight: '300',
   },
-  author: {
-    fontWeight: 'bold',
-  },
-  publishDate: {
-    fontWeight: '400',
+
+  lastused: {
+    marginTop: '5px',
+    fontWeight: '300',
   },
   separate: {
     borderColor: theme.palette.secondary.main,
     borderLeft: '4px solid',
   },
-  img: {
-    width: '25px',
-    borderRadius: '100px',
-    marginRight: '5px',
-  },
-  cost: {
-    fontFamily: 'Roboto Mono',
-    fontWeight: 'bold',
-    color: theme.palette.secondary.main,
-  },
-  stars: {
-    fontFamily: 'Roboto Mono',
-    fontWeight: 'bold',
-  },
-  starIcon: {
-    fill: theme.palette.calypso.main,
-    marginRight: '15px',
+  white: {
+    color: theme.palette.text.primary,
   },
 }))
 
-export default function AlgorithmCards({
+export default function AccesTokenCard({
   name,
-  author,
   publishDate,
-  abstract,
-  image,
-  cost,
-  stars,
+  tokenId,
+  lastused,
 }) {
   const classes = useStyles()
   const theme = useTheme()
@@ -93,7 +71,6 @@ export default function AlgorithmCards({
           padding='10px'
           justifyContent='space-between'
           className={classes.root}
-          onClick={() => navigate(`/client/marketplace/${name}`)}
         >
           <Box>
             <Box
@@ -109,32 +86,18 @@ export default function AlgorithmCards({
                 pl='6px'
                 ml='4px'
               >
-                <Box display='flex' flexDirection='column'>
-                  <Typography variant='body'>{abstract}</Typography>
+                <Box display='flex' flexDirection='column' mt='5px'>
+                  <Typography variant='h6' color='secondary'>
+                    {tokenId} <span className={classes.white}>- Token Id</span>
+                  </Typography>
                   <Box
                     display='flex'
                     flexDirection='row'
                     alignItems='center'
                     mt='5px'
                   >
-                    {
-                      <img
-                        src={
-                          author === 'alba'
-                            ? albaImg
-                            : author === 'simon-poblete'
-                            ? simonImg
-                            : author === 'cecs'
-                            ? cecsImg
-                            : null
-                        }
-                        alt={name}
-                        className={classes.img}
-                      ></img>
-                    }
-                    <Typography variant='body1' className={classes.info}>
-                      <span className={classes.author}>{author}</span> published{' '}
-                      <span className={classes.publishDate}>{publishDate}</span>
+                    <Typography variant='body1' className={classes.createDate}>
+                      Create on {publishDate}
                     </Typography>
                   </Box>
                 </Box>
@@ -153,18 +116,13 @@ export default function AlgorithmCards({
               flexDirection='row'
               justifyContent='center'
               mb='5px'
-            >
-              <StarIcon className={classes.starIcon} fontSize='small' />
-              <Typography variant='body1' className={classes.stars}>
-                {stars}
-              </Typography>
-            </Box>
+            ></Box>
             <Box display='flex' flexDirection='column' alignItems='flex-end'>
-              <Typography variant='body1' className={classes.info}>
-                Motivus Coin / mins
-              </Typography>
-              <Typography variant='h5' className={classes.cost}>
-                {cost}
+              <Button variant='outlined' color='secondary'>
+                Delete
+              </Button>
+              <Typography variant='body1' className={classes.lastused}>
+                Last used {lastused}
               </Typography>
             </Box>
           </Box>

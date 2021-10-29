@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image'
 import Layout from '../../layouts/ClientLayout'
 import SEO from '../../components/seo'
 import Card from '@material-ui/core/Card'
@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import Divider from '@material-ui/core/Divider'
+import SettingTitle from '../../components/client/SettingsTitle'
 
 import parseJSON from 'date-fns/parseJSON'
 import formatISO from 'date-fns/formatISO'
@@ -19,6 +20,7 @@ import formatISO from 'date-fns/formatISO'
 import { Box, CssBaseline } from '@material-ui/core'
 import Nav from '../../components/client/Nav'
 import Title from '../../components/client/Title'
+import ApplicationTokens from '../../components/client/ApplicationTokens'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -69,6 +71,7 @@ const ClientPage = ({ data, ...props }) => {
   return (
     <Layout {...props}>
       <Title text='Settings' />
+      <ApplicationTokens />
     </Layout>
   )
 }

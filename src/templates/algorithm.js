@@ -9,6 +9,9 @@ import AlgorithmLinks from '../components/client/AlgorithmLinks'
 import AlgorithmCallToAction from '../components/client/AlgorithmCallToAction'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const AntTabs = withStyles((theme) => ({
   root: {
@@ -72,11 +75,29 @@ export default function AlgorithmTemplate({ data, ...props }) {
   )
 }
 
+const markdown = `A paragraph with *emphasis* and **strong importance**.
+
+> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
+
+* Lists
+* [ ] todo
+* [x] done
+
+A table:
+
+| a | b |
+| - | - |
+`
+
 function Algorithm({ data }) {
   const algorithmData = data?.algorithm
   const classes = useStyles()
   const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
   const dark = theme.palette.type
+
+  console.log(algorithmData.longDescription)
+  console.log(markdown)
 
   const [value, setValue] = React.useState(0)
 
@@ -89,18 +110,27 @@ function Algorithm({ data }) {
       <Title text={algorithmData.name} />
       <Box
         display='flex'
-        flexDirection='row'
-        justifyContent='flex-start'
+        flexDirection={matches ? 'row' : 'column'}
+        height={matches ? 'auto' : '110px'}
+        justifyContent={matches ? 'flex-start' : 'space-between'}
         mt='10px'
-        alignItems='center'
       >
         <Typography variant='h3' color='primary' className={classes.subtitle}>
           {algorithmData.author} | {algorithmData.publishDate}
         </Typography>
         <StarBadge stars={algorithmData.stars} />
       </Box>
-      <Box display='flex' justifyContent='space-between' mt='20px' mb='20px'>
-        <Typography variant='body1' className={classes.description}>
+      <Box
+        display='flex'
+        flexDirection={matches ? 'row' : 'column'}
+        mt='20px'
+        mb='20px'
+      >
+        <Typography
+          variant='body1'
+          className={classes.description}
+          gutterBottom
+        >
           {algorithmData.description}
         </Typography>
         <AlgorithmLinks web={algorithmData.web} github={algorithmData.github} />
@@ -108,25 +138,40 @@ function Algorithm({ data }) {
       <AlgorithmCallToAction
         console={`motivus install ${algorithmData.name} template`}
       />
-      <AntTabs value={value} onChange={handleChange} aria-label='ant example'>
+      <AntTabs
+        value={value}
+        onChange={handleChange}
+        aria-label='ant example'
+        variant='scrollable'
+      >
         <AntTab label='Readme' {...a11yProps(0)} />
         <AntTab label='Versions' {...a11yProps(1)} />
         <AntTab label='Cost' {...a11yProps(2)} />
         <AntTab label='License' {...a11yProps(3)} />
       </AntTabs>
       <TabPanel value={value} index={0}>
-        Item One
+        <ReactMarkdown
+          children={algorithmData.longDescription}
+          remarkPlugins={[remarkGfm]}
+        />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Typography variant='h5'>Current</Typography>
         <Typography variant='body1' gutterBottom>
-          version: {algorithmData.version}____________
+          version: c{algorithmData.version}____________
           {algorithmData.publishDate}
         </Typography>
         <Typography variant='h5'>History</Typography>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <Typography variant='h5' gutterBottom>
+          {algorithmData.cost} Dolars/min
+        </Typography>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Typography variant='subtitle1' gutterBottom>
+          {algorithmData.license}
+        </Typography>
       </TabPanel>
     </React.Fragment>
   )
@@ -135,6 +180,8 @@ function Algorithm({ data }) {
 function TabPanel(props) {
   const { children, value, index, ...other } = props
 
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <div
       role='tabpanel'
@@ -143,7 +190,11 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && (
+        <Box p={3} mb={matches ? '0px' : '100px'}>
+          {children}
+        </Box>
+      )}
     </div>
   )
 }
@@ -154,11 +205,14 @@ export const pageQuery = graphql`
       author
       github
       description
+      longDescription
       name
       publishDate
       stars
+      cost
       version
       web
+      license
     }
   }
 `

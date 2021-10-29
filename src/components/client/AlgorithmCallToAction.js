@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Typography } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({
   backgroundDark: {
@@ -35,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AlgorithmCallToAction({ console }) {
   const classes = useStyles()
   const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
   const dark = theme.palette.type
   return (
     <React.Fragment>
@@ -42,19 +44,21 @@ export default function AlgorithmCallToAction({ console }) {
         Get started!
       </Typography>
       <Box
-        height='80px'
         className={
           dark === 'dark' ? classes.backgroundDark : classes.backgroundLight
         }
         display='flex'
         justifyContent='center'
         alignItems='center'
+        paddingTop='4px'
+        paddingBottom='4px'
         paddingLeft='4px'
         paddingRight='4px'
       >
         <Box
           width='100%'
-          height='72px'
+          paddingTop='10px'
+          paddingBottom='10px'
           display='flex'
           flexDirection='row'
           padding='5px'

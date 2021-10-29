@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../layouts/ClientLayout'
 import Typography from '@material-ui/core/Typography'
@@ -11,6 +11,8 @@ import Title from '../components/client/Title'
 import Card from '../components/client/Card'
 import LangSelectorBlog from '../components/LangSelectorBlog'
 import _ from 'lodash'
+import Grow from '@material-ui/core/Grow'
+import Fade from '@material-ui/core/Fade'
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {},
@@ -20,33 +22,56 @@ const ClientPage = ({ data, ...props }) => {
   const classes = useStyles()
   const languages = _.uniq(_.map(data.allSanityPost.edges, 'node.i18n_lang'))
   const [lang, setLang] = React.useState('en_US')
+  const [appear, setAppear] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setAppear(true)
+    }, 1000)
+  }, [])
 
   return (
     <Layout {...props}>
-      <Title text='News' />
-      <Box pb='80px'>
-        <Typography color='textPrimary' variant='subtitle1'>
-          Don't miss out on the latest Motivus news
-        </Typography>
-        <LangSelectorBlog languages={languages} lang={lang} setLang={setLang} />
-      </Box>
-      <Grid container spacing={2} className={classes.gridContainer}>
-        {data.allSanityPost.edges
-          .filter((doc) => doc.node.i18n_lang === lang)
-          .map((document) => (
-            <Grid item key={document.node.id} xs={12} sm={4}>
-              <Card
-                title={document.node.title}
-                image={document.node.image.asset.gatsbyImageData}
-                abstract={document.node.abstract}
-                author={document.node.author.name}
-                date={formatISO(parseJSON(document.node.publishedAt), {
-                  representation: 'date',
-                })}
+      <Box display='flex' flexDirection='column'>
+        <Fade in timeout={{ enter: 3000 }}>
+          <Box>
+            <Title text='News' />
+            <Box pb='80px'>
+              <Typography color='textPrimary' variant='subtitle1'>
+                Don't miss out on the latest Motivus news
+              </Typography>
+              <LangSelectorBlog
+                languages={languages}
+                lang={lang}
+                setLang={setLang}
               />
+            </Box>
+            <Grid container spacing={2} className={classes.gridContainer}>
+              {data.allSanityPost.edges
+                .filter((doc) => doc.node.i18n_lang === lang)
+                .map((document, i) => (
+                  <Grow
+                    in
+                    style={{ transformOrigin: '0 0 0' }}
+                    timeout={{ enter: 3000 + i * 1000 }}
+                  >
+                    <Grid item key={document.node.id} xs={12} sm={4}>
+                      <Card
+                        title={document.node.title}
+                        image={document.node.image.asset.gatsbyImageData}
+                        abstract={document.node.abstract}
+                        author={document.node.author.name}
+                        date={formatISO(parseJSON(document.node.publishedAt), {
+                          representation: 'date',
+                        })}
+                      />
+                    </Grid>
+                  </Grow>
+                ))}
             </Grid>
-          ))}
-      </Grid>
+          </Box>
+        </Fade>
+      </Box>
     </Layout>
   )
 }

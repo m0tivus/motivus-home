@@ -66,6 +66,7 @@ export const pageQuery = graphql`
         stars
         version
         web
+        cost
       }
     }
   }

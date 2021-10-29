@@ -49,7 +49,7 @@ export const typography = {
   h6: {
     fontWeight: '500',
     fontFamily: 'Roboto',
-    fontSize: '1rem',
+    fontSize: '1.15rem',
     lineHeight: 1.25,
     letterSpacing: '0em',
   },

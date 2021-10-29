@@ -4,6 +4,7 @@ import '../../components/layout.css'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -55,6 +56,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AlgorithmFilter({ data }) {
   const classes = useStyles()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <Box
       id='root'
@@ -62,6 +65,7 @@ export default function AlgorithmFilter({ data }) {
       ml='-2%'
       alignItems='center'
       flexDirection='column'
+      mb={matches ? '0px' : '60px'}
     >
       <Box
         display='flex'
@@ -80,19 +84,22 @@ export default function AlgorithmFilter({ data }) {
           <Box
             mt='25px'
             width='90%'
-            height='100px'
+            height={matches ? '100px' : '120px'}
             className={classes.body}
             display='flex'
-            justifyContent='flex-start'
-            alignItems='center'
+            flexDirection={matches ? 'row' : 'column'}
+            justifyContent={matches ? 'flex-start' : 'space-evenly'}
+            alignItems={matches ? 'center' : 'flex-start'}
+            pl={matches ? '0px' : '15px'}
           >
             <Box
               display='flex'
-              flexDirection='column'
-              justifyContent='center'
-              alignItems='flex-start'
-              ml='2%'
-              pr='30px'
+              width={matches ? 'auto' : '230px'}
+              flexDirection={matches ? 'column' : 'row'}
+              justifyContent={matches ? 'center' : 'space-between'}
+              alignItems={matches ? 'flex-start' : 'flex-end'}
+              ml={matches ? '2%' : '0%'}
+              pr={matches ? '30px' : '0px'}
             >
               <Typography className={classes.title} variant='h4'>
                 Motivus
@@ -113,12 +120,14 @@ export default function AlgorithmFilter({ data }) {
 
 function ComboBox({ data }) {
   const classes = useStyles()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <Autocomplete
       id='combo-box-demo'
       options={data}
       getOptionLabel={(option) => option.name}
-      style={{ width: 400 }}
+      style={{ width: matches ? 400 : 300 }}
       classes={{ paper: classes.popper, option: classes.popperList }}
       renderInput={(params) => (
         <TextField

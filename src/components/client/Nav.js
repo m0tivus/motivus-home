@@ -9,12 +9,12 @@ import {
 } from '../../styles/clientNav.module.css'
 
 const routes = [
-  { name: 'News', route: '/client', partialy: false },
-  { name: 'Dashboard', route: '/client/dashboard', partialy: false },
-  { name: 'Marketplace', route: '/client/marketplace', partialy: false },
-  { name: 'Virtual Wallet', route: '/client/wallet', partialy: false },
-  { name: 'Documentation', route: '/client/documentation', partialy: false },
-  { name: 'Settings', route: '/client/settings', partialy: false },
+  { name: 'News', route: '/client/', partialy: false },
+  { name: 'Dashboard', route: '/client/dashboard/', partialy: false },
+  { name: 'Marketplace', route: '/client/marketplace/', partialy: true },
+  { name: 'Virtual Wallet', route: '/client/wallet/', partialy: false },
+  { name: 'Documentation', route: '/client/documentation/', partialy: false },
+  { name: 'Settings', route: '/client/settings/', partialy: false },
   /*{ name: 'CONTACT US', route: '/contact', partialy: false },*/
 ]
 

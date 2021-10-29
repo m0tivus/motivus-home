@@ -24,12 +24,7 @@ export default function AlgorithmLinks({ web, github }) {
   const theme = useTheme()
   const dark = theme.palette.type
   return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      alignItems='flex-end'
-      width='725px'
-    >
+    <Box display='flex' flexDirection='column' alignItems='flex-end' pr='30px'>
       <a href={web} className={classes.a} target='_blank'>
         <Box display='flex' flexDirection='row' alignItems='center'>
           <HomeIcon color='secondary' />
