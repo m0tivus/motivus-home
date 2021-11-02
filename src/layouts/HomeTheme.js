@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+import { dark } from '@material-ui/core/styles/createPalette'
 import { typography } from './BaseTheme'
 
-const themeLight = createTheme({
+const themeHome = createTheme({
   typography,
   palette: {
     type: 'light',
@@ -71,12 +72,12 @@ const themeLight = createTheme({
   },
 })
 
-const ThemeL = ({ children }) => {
-  return <ThemeProvider theme={themeLight}>{children}</ThemeProvider>
+const ThemeH = ({ children }) => {
+  return <ThemeProvider theme={themeHome}>{children}</ThemeProvider>
 }
 
-ThemeL.propTypes = {
+ThemeH.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default ThemeL
+export default ThemeH

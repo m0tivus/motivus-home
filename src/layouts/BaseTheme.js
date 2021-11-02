@@ -1,8 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import { dark } from '@material-ui/core/styles/createPalette'
-
 export const typography = {
   fontFamily: 'Asap',
 

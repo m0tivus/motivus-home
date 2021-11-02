@@ -16,7 +16,7 @@ import ContactUsDrawer from './ContactUsDrawer'
 
 const routes = [
   { name: 'HOME', route: '/', partialy: false },
-  { name: 'SOFTWARE FACTORY', route: '/softwarefactory', partialy: false },
+  { name: 'MARKETPLACE', route: '/marketplace', partialy: false },
   { name: 'ABOUT', route: '/about', partialy: false },
   { name: 'BLOG', route: '/blog', partialy: true },
   /*{ name: 'CONTACT US', route: '/contact', partialy: false },*/

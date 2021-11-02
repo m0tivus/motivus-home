@@ -54,15 +54,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function AlgorithmFilter({ data }) {
+export default function AlgorithmFilter({ data, variant }) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <Box
       id='root'
+      width='100%'
       display='flex'
-      ml='-2%'
+      ml={variant === 'home' ? '0%' : '-2%'}
       alignItems='center'
       flexDirection='column'
       mb={matches ? '0px' : '60px'}
@@ -78,7 +79,7 @@ export default function AlgorithmFilter({ data }) {
           width='100%'
           height='100px'
           display='flex'
-          justifyContent='flex-start'
+          justifyContent={variant === 'home' ? 'center' : 'flex-start'}
           className={classes.fade}
         >
           <Box
@@ -88,8 +89,18 @@ export default function AlgorithmFilter({ data }) {
             className={classes.body}
             display='flex'
             flexDirection={matches ? 'row' : 'column'}
-            justifyContent={matches ? 'flex-start' : 'space-evenly'}
-            alignItems={matches ? 'center' : 'flex-start'}
+            justifyContent={
+              variant === 'home'
+                ? matches
+                  ? 'center'
+                  : 'space-evenly'
+                : matches
+                ? 'flex-start'
+                : 'space-evenly'
+            }
+            alignItems={
+              variant === 'home' ? 'center' : matches ? 'center' : 'flex-start'
+            }
             pl={matches ? '0px' : '15px'}
           >
             <Box

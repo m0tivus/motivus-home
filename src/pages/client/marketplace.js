@@ -2,75 +2,22 @@ import React from 'react'
 import Layout from '../../layouts/ClientLayout'
 import SEO from '../../components/seo'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+import MarketplaceData from '../../components/MarketpalceData'
 import Title from '../../components/client/Title'
-import AlgorithmCards from '../../components/client/AlgorithmCards'
-import AlgorithmFilter from '../../components/client/AlgorithmFilter'
-import { Box, Grid } from '@material-ui/core'
-import simonImg from '../../images/Simon-Poblete.jpg'
-import motivusImg from '../../images/gatsby-icon.png'
-import { graphql, navigate } from 'gatsby'
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  gridContainer: {
-    marginTop: '50px',
-    width: '89.75%',
-  },
-}))
-
-const ClientPage = ({ data, ...props }) => {
-  const classes = useStyles()
-
-  const algorithmsData = data.allAlgorithm?.nodes
+const ClientMarketplace = ({ ...props }) => {
   return (
     <Layout {...props}>
       <Title text='Algorithm Marketplace' />
       <Typography color='textPrimary' variant='subtitle1'>
         Look for the algorithm that best fit to carry out your project
       </Typography>
-      <AlgorithmFilter data={algorithmsData} />
-
-      <Grid container className={classes.gridContainer}>
-        {algorithmsData.map((a, k) => (
-          <Grid item key={k} xs={12}>
-            <AlgorithmCards
-              name={a.name}
-              author={a.author}
-              publishDate={a.publishDate}
-              abstract={a.abstract}
-              cost={a.cost}
-              stars={a.stars}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      <MarketplaceData />
     </Layout>
   )
 }
 
-export default ClientPage
-
-export const pageQuery = graphql`
-  query Algorithms {
-    allAlgorithm {
-      nodes {
-        author
-        github
-        abstract
-        description
-        name
-        publishDate
-        stars
-        version
-        web
-        cost
-      }
-    }
-  }
-`
+export default ClientMarketplace
 
 /*const algorithmsData = [
   {

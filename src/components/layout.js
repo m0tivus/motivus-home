@@ -20,7 +20,7 @@ import Header from './header'
 import Nav from './nav'
 import MobileNav from './mobileNav'
 import Footer from './Footer'
-import Theme2 from './StyleTheme'
+import ThemeHome from '../layouts/HomeTheme'
 import SocialMedia from './SocialMedia'
 import { set } from 'lodash'
 import ContactToggle from '../contexts/ContactToggle'
@@ -47,7 +47,7 @@ const Layout = ({ children, ...props }) => {
   const [openContact, setOpenContact] = React.useState(false)
 
   const theme = useTheme()
-  const  classes  = useStyles()
+  const classes = useStyles()
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
@@ -55,7 +55,7 @@ const Layout = ({ children, ...props }) => {
       classes={{ variantInfo: { backgroundColor: theme.palette.primary.main } }}
     >
       <ContactToggle.Provider value={[openContact, setOpenContact]}>
-        <Theme2>
+        <ThemeHome>
           {matches ? (
             <MobileNav
               {...props}
@@ -80,7 +80,7 @@ const Layout = ({ children, ...props }) => {
             <main className={classes.content}>{children}</main>
             <Footer></Footer>
           </div>
-        </Theme2>
+        </ThemeHome>
       </ContactToggle.Provider>
     </SnackbarProvider>
   )
