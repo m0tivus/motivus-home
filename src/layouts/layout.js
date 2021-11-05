@@ -16,12 +16,12 @@ import {
 } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-import Header from './header'
-import Nav from './nav'
-import MobileNav from './mobileNav'
-import Footer from './Footer'
-import ThemeHome from '../layouts/HomeTheme'
-import SocialMedia from './SocialMedia'
+import Header from '../components/header'
+import Nav from '../components/nav'
+import MobileNav from '../components/mobileNav'
+import Footer from '../components/Footer'
+import Theme from './LightTheme'
+import SocialMedia from '../components/SocialMedia'
 import { set } from 'lodash'
 import ContactToggle from '../contexts/ContactToggle'
 import { SnackbarProvider } from 'notistack'
@@ -55,7 +55,7 @@ const Layout = ({ children, ...props }) => {
       classes={{ variantInfo: { backgroundColor: theme.palette.primary.main } }}
     >
       <ContactToggle.Provider value={[openContact, setOpenContact]}>
-        <ThemeHome>
+        <Theme>
           {matches ? (
             <MobileNav
               {...props}
@@ -80,7 +80,7 @@ const Layout = ({ children, ...props }) => {
             <main className={classes.content}>{children}</main>
             <Footer></Footer>
           </div>
-        </ThemeHome>
+        </Theme>
       </ContactToggle.Provider>
     </SnackbarProvider>
   )

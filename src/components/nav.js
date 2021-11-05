@@ -19,6 +19,7 @@ const routes = [
   { name: 'MARKETPLACE', route: '/marketplace', partialy: false },
   { name: 'ABOUT', route: '/about', partialy: false },
   { name: 'BLOG', route: '/blog', partialy: true },
+  { name: 'DOCUMENTATION', route: '/documentation/', partialy: false },
   /*{ name: 'CONTACT US', route: '/contact', partialy: false },*/
 ]
 

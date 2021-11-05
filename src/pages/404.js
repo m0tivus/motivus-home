@@ -1,6 +1,6 @@
 import { Box, Typography } from '@material-ui/core'
 import React from 'react'
-import Layout from '../components/layout'
+import Layout from '../layouts/layout'
 import SEO from '../components/seo'
 import { glitch } from '../styles/404v2.module.css'
 

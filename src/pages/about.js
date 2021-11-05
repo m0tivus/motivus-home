@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
+import Layout from '../layouts/layout'
 
 import SEO from '../components/seo'
 
@@ -26,7 +26,7 @@ import RedditIcon from '@material-ui/icons/Reddit'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import { CenterFocusStrong } from '@material-ui/icons'
 import Fade from '@material-ui/core/Fade'
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 function Copyright() {
   return (
@@ -142,9 +142,10 @@ function HumanCard(props) {
           onClick={toggleChecked}
           className={classes.cardMedia}
           component={() => (
-                        <GatsbyImage
-                          image={data.node.photography.asset.gatsbyImageData}
-                        ></GatsbyImage>)}
+            <GatsbyImage
+              image={data.node.photography.asset.gatsbyImageData}
+            ></GatsbyImage>
+          )}
           title={data.node.name}
         >
           <Fade in={checked}>
@@ -232,9 +233,9 @@ export const humanQuery = graphql`
           released
           photography {
             asset {
-             gatsbyImageData(width: 400 height:400) 
-             path
-              }
+              gatsbyImageData(width: 400, height: 400)
+              path
+            }
           }
           name
           description

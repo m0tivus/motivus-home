@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import Layout from '../components/layout'
+import Layout from '../layouts/layout'
 import SEO from '../components/seo'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'

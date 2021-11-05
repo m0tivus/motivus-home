@@ -53,6 +53,7 @@ export default function MarketplaceData({ variant }) {
                 {allAlgorithm.map((a, k) => (
                   <Grid item key={k} xs={12}>
                     <AlgorithmCards
+                      variant={variant}
                       name={a.name}
                       author={a.author}
                       publishDate={a.publishDate}

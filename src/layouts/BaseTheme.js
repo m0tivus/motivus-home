@@ -32,13 +32,11 @@ export const typography = {
   },
 
   h5: {
-    fontWeight: '700',
-    fontFamily: 'Roboto',
+    fontWeight: '600',
     fontStyle: 'italic',
     fontSize: '1.4rem',
     lineHeight: 1.334,
     letterSpacing: '0em',
-    fontFamily: 'Asap',
   },
 
   h6: {

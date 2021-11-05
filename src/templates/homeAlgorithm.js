@@ -1,20 +1,22 @@
 import React from 'react'
-import Layout from '../layouts/ClientLayout'
-import Title from '../components/client/Title'
+import Layout from '../layouts/layout'
 import { graphql } from 'gatsby'
+import { Typography } from '@material-ui/core'
 import Algorithm from '../components/Algorithm'
 
 export default function AlgorithmTemplate({ data, ...props }) {
   return (
     <Layout {...props}>
-      <Title text={data.algorithm.name} />
+      <Typography variant='h2' color='secondary'>
+        {data.algorithm.name}
+      </Typography>{' '}
       <Algorithm data={data} {...props} />
     </Layout>
   )
 }
 
 export const pageQuery = graphql`
-  query AlgorithmTemplate($id: String!) {
+  query AlgorithmTemplateHome($id: String!) {
     algorithm(id: { eq: $id }) {
       author
       github

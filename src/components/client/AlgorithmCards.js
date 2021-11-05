@@ -66,11 +66,13 @@ export default function AlgorithmCards({
   image,
   cost,
   stars,
+  variant,
 }) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
   const dark = theme.palette.type
+
   return (
     <React.Fragment>
       <Box
@@ -93,7 +95,11 @@ export default function AlgorithmCards({
           padding='10px'
           justifyContent='space-between'
           className={classes.root}
-          onClick={() => navigate(`/client/marketplace/${name}`)}
+          onClick={() =>
+            variant === 'home'
+              ? navigate(`/marketplace/${name}`)
+              : navigate(`/client/marketplace/${name}`)
+          }
         >
           <Box>
             <Box

@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../../layouts/ClientLayout'
 import SEO from '../../components/seo'
 import Typography from '@material-ui/core/Typography'
-import MarketplaceData from '../../components/MarketpalceData'
+import MarketplaceData from '../../components/MarketplaceData'
 import Title from '../../components/client/Title'
 
 const ClientMarketplace = ({ ...props }) => {

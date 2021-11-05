@@ -15,6 +15,7 @@ const routes = [
   { name: 'Virtual Wallet', route: '/client/wallet/', partialy: false },
   { name: 'Documentation', route: '/client/documentation/', partialy: false },
   { name: 'Settings', route: '/client/settings/', partialy: false },
+
   /*{ name: 'CONTACT US', route: '/contact', partialy: false },*/
 ]
 

@@ -158,7 +158,7 @@ exports.createPages = ({ actions, graphql }) => {
       })
       createPage({
         path: `marketplace/${node.name}`,
-        component: path.resolve('src/templates/algorithm.js'),
+        component: path.resolve('src/templates/homeAlgorithm.js'),
         context: {
           id: node.id,
         },

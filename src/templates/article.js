@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Layout from '../components/layout'
+import Layout from '../layouts/layout'
 import PortableText from '../components/PortableText'
 import SEO from '../components/seo'
 import { Box, Divider, Grid, Typography } from '@material-ui/core'
