@@ -12,6 +12,7 @@ import LanguageIcon from '@material-ui/icons/Language'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import LangSelector from '../components/LangSelector'
 import Share from '../components/Share'
+import SmoothScroll from '../components/SmoothScroll'
 
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 

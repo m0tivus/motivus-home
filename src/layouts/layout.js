@@ -25,6 +25,7 @@ import SocialMedia from '../components/SocialMedia'
 import { set } from 'lodash'
 import ContactToggle from '../contexts/ContactToggle'
 import { SnackbarProvider } from 'notistack'
+import SmoothScroll from '../components/SmoothScroll'
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -55,32 +56,34 @@ const Layout = ({ children, ...props }) => {
       classes={{ variantInfo: { backgroundColor: theme.palette.primary.main } }}
     >
       <ContactToggle.Provider value={[openContact, setOpenContact]}>
-        <Theme>
-          {matches ? (
-            <MobileNav
-              {...props}
-              openContact={openContact}
-              setOpenContact={setOpenContact}
-            />
-          ) : (
-            <Nav
-              {...props}
-              openContact={openContact}
-              setOpenContact={setOpenContact}
-            />
-          )}
-          <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
-          <SocialMedia />
-          <div
-            style={{
-              margin: '0 auto',
-              maxWidth: 960,
-            }}
-          >
-            <main className={classes.content}>{children}</main>
-            <Footer></Footer>
-          </div>
-        </Theme>
+        <SmoothScroll>
+          <Theme>
+            {matches ? (
+              <MobileNav
+                {...props}
+                openContact={openContact}
+                setOpenContact={setOpenContact}
+              />
+            ) : (
+              <Nav
+                {...props}
+                openContact={openContact}
+                setOpenContact={setOpenContact}
+              />
+            )}
+            <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
+            <SocialMedia />
+            <div
+              style={{
+                margin: '0 auto',
+                maxWidth: 960,
+              }}
+            >
+              <main className={classes.content}>{children}</main>
+              <Footer></Footer>
+            </div>
+          </Theme>
+        </SmoothScroll>
       </ContactToggle.Provider>
     </SnackbarProvider>
   )
