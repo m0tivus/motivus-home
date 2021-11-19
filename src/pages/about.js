@@ -1,10 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-
 import Layout from '../layouts/layout'
-
 import SEO from '../components/seo'
-
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -12,11 +9,11 @@ import CardMedia from '@material-ui/core/CardMedia'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
-
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Link from '@material-ui/core/Link'
+import SmoothScroll from '../components/SmoothScroll'
 import _ from 'lodash'
 
 /*---icons---*/

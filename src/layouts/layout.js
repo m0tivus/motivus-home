@@ -56,23 +56,23 @@ const Layout = ({ children, ...props }) => {
       classes={{ variantInfo: { backgroundColor: theme.palette.primary.main } }}
     >
       <ContactToggle.Provider value={[openContact, setOpenContact]}>
-        <SmoothScroll>
-          <Theme>
-            {matches ? (
-              <MobileNav
-                {...props}
-                openContact={openContact}
-                setOpenContact={setOpenContact}
-              />
-            ) : (
-              <Nav
-                {...props}
-                openContact={openContact}
-                setOpenContact={setOpenContact}
-              />
-            )}
-            <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
-            <SocialMedia />
+        <Theme>
+          {matches ? (
+            <MobileNav
+              {...props}
+              openContact={openContact}
+              setOpenContact={setOpenContact}
+            />
+          ) : (
+            <Nav
+              {...props}
+              openContact={openContact}
+              setOpenContact={setOpenContact}
+            />
+          )}
+          <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
+          <SocialMedia />
+          <SmoothScroll>
             <div
               style={{
                 margin: '0 auto',
@@ -82,8 +82,8 @@ const Layout = ({ children, ...props }) => {
               <main className={classes.content}>{children}</main>
               <Footer></Footer>
             </div>
-          </Theme>
-        </SmoothScroll>
+          </SmoothScroll>
+        </Theme>
       </ContactToggle.Provider>
     </SnackbarProvider>
   )

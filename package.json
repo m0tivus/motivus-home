@@ -13,6 +13,7 @@
     "@nivo/core": "^0.73.0",
     "@nivo/line": "^0.73.0",
     "@sanity/block-content-to-react": "^2.0.7",
+    "browser-monads": "^1.0.0",
     "date-fns": "^2.16.1",
     "gatsby": "^3.11.1",
     "gatsby-image": "^2.5.0",

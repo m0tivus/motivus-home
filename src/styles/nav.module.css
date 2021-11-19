@@ -9,6 +9,7 @@
   /*border: 1px solid blue;*/
   right: 5%;
   top: 7.5%;
+  z-index: 1;
 }
 
 .nav-listver {
@@ -92,6 +93,7 @@
   align-items: center;
   height: 150px;
   top: 0px;
+  z-index: 1;
 }
 
 .nav-listhor {
