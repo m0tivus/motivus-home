@@ -2,7 +2,7 @@ import React from 'react'
 
 import Layout from '../layouts/layout'
 import SEO from '../components/seo'
-import Intro from '../components/ClientOptions'
+import Intro from '../components/ClientOPtionsV2'
 import Features from '../components/Features'
 import HowItWorks from '../components/HowItWorksStep'
 
