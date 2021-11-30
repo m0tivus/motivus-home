@@ -8,28 +8,28 @@ import ReactPlayer from 'react-player/youtube'
 
 const CardsContent = [
   {
-    title: 'I want to distribute my algoritm',
+    title: ' distribute my algoritm',
     description:
       'Distribute your algorthims in the motivus marketplace, and obten all the benefits: distribution, selling and hosting.',
     textButton: 'marketplace',
   },
   {
-    title: 'I want to process data!',
+    title: ' process data!',
     description:
       'Program your own drivers to work with the Motivus cluster and start processing.',
     textButton: 'learn how',
   },
   {
-    title: 'I want to monetize my website',
+    title: ' monetize my website',
     description:
       'Host the Motivus FloatingTool on your website and get paid whenever users process through it.',
-    textButton: 'Coming soon',
+    textButton: 'soon',
   },
   {
-    title: 'I want share my computer power',
+    title: ' share my computer power',
     description:
       'Share your computer power with researchers all around the world and get paid.',
-    textButton: 'start Sharing',
+    textButton: 'Share',
   },
 ]
 
