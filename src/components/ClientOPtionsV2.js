@@ -10,13 +10,13 @@ const CardsContent = [
   {
     title: ' distribute my algoritm',
     description:
-      'Distribute your algorthims in the motivus marketplace, and obten all the benefits: distribution, selling and hosting.',
+      'Distribute your algorithms in the motivus marketplace, and obtain all these benefits: distribution, selling and hosting.',
     textButton: 'marketplace',
   },
   {
     title: ' process data!',
     description:
-      'Program your own drivers to work with the Motivus cluster and start processing.',
+      'Program your own drivers to work with the Motivus cluster and start processing your data now.',
     textButton: 'learn how',
   },
   {
