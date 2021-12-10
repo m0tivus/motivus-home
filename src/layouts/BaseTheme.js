@@ -2,9 +2,9 @@ export const typography = {
   fontFamily: 'Asap',
 
   h1: {
-    fontWeight: '700',
+    fontWeight: '600',
     fontStyle: 'italic',
-    fontSize: '5rem',
+    fontSize: '3.4rem',
     lineHeight: 1.334,
     letterSpacing: '0em',
   },

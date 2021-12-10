@@ -38,7 +38,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function CardButton({ children, arrow, themeDark, size }) {
+export default function CardButton({
+  children,
+  arrow,
+  themeDark,
+  size,
+  actionButton,
+}) {
   const theme = useTheme()
   const classes = useStyles()
   const dark = themeDark === 'dark' ? 'dark' : theme.palette.type
@@ -48,6 +54,7 @@ export default function CardButton({ children, arrow, themeDark, size }) {
       <StyledButton
         size={size === 'large' ? 'large' : 'medium'}
         className={themeDark === 'dark' ? classes.white : null}
+        onClick={actionButton}
       >
         {children}
         <Box ml='8px' height='100%' display='flex ' alignItems='center'>

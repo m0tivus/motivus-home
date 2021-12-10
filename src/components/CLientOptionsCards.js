@@ -4,14 +4,6 @@ import Typography from '@material-ui/core/Typography'
 import { Box } from '@material-ui/core'
 import { motion } from 'framer-motion'
 import CardButton from './client/CardButton'
-import Scientist from '../images/scientist.png'
-import ScientistLamp from '../images/scientist-lamp.png'
-import algoritmChar from '../images/algorithmDeveloper.png'
-import algoritm from '../images/algorithmDeveloper-net.png'
-import WebDeveloperChar from '../images/webDevloper.png'
-import WebDeveloperGraph from '../images/webDevloper-grpah.png'
-import punk from '../images/punk.png'
-import punkDolar from '../images/punk-dolar.png'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({
@@ -71,9 +63,11 @@ const border = 4
 
 export default function ClienOptionsCards({
   title,
-  description,
+  Description,
   textButton,
-  index,
+  character,
+  item,
+  actionButton,
 }) {
   const ref = useRef(null)
   const classes = useStyles()
@@ -128,9 +122,7 @@ export default function ClienOptionsCards({
               mt='5px'
               display='flex' /*border='1px solid green'*/
             >
-              <Typography variant='body2' className={classes.description}>
-                {description}
-              </Typography>
+              {Description && <Description />}
             </Box>
             <Box display='flex' /*border='2px solid pink'*/ flexGrow='2'>
               <Box
@@ -143,6 +135,7 @@ export default function ClienOptionsCards({
                   arrow={true}
                   themeDark='dark'
                   size={matches ? 'large' : null}
+                  actionButton={actionButton}
                 >
                   {textButton}
                 </CardButton>
@@ -154,18 +147,12 @@ export default function ClienOptionsCards({
                 alignItems='flex-end'
                 objectFit='cover'
               >
-                {index === 0 ? (
-                  <CharacterAlgorithm matches={matches} active={active} />
-                ) : null}
-                {index === 1 ? (
-                  <CharacterScientist matches={matches} active={active} />
-                ) : null}
-                {index === 2 ? (
-                  <CharacterWebDev matches={matches} active={active} />
-                ) : null}
-                {index === 3 ? (
-                  <CharacterPunk matches={matches} active={active} />
-                ) : null}
+                <Character
+                  active={active}
+                  matches={matches}
+                  character={character}
+                  item={item}
+                />
               </Box>
             </Box>
           </Box>
@@ -175,14 +162,14 @@ export default function ClienOptionsCards({
   )
 }
 
-function CharacterAlgorithm({ active, matches }) {
+function Character({ active, matches, character, item }) {
   return (
     <React.Fragment>
       <Box
-        height={matches ? '130px' : '100px'}
+        height={matches ? item.h : item.hM}
         flexShrink='0'
-        marginBottom={matches ? '45px' : '60px'}
-        marginRight='10px'
+        marginBottom={matches ? item.mb : item.mbM}
+        marginRight={item.mr}
         component={motion.div}
         initial={{ opacity: 0 }}
         animate={{
@@ -191,114 +178,33 @@ function CharacterAlgorithm({ active, matches }) {
           scale: active ? 1.1 : 1,
         }}
       >
-        <img src={algoritm} height='100%' alt='motivus charater idea' />
+        <img src={item.image} height='100%' alt='motivus charater idea' />
       </Box>
       <Box
         position='absolute'
-        height={matches ? '171.4px' : '142.8px'}
-        width={matches ? '240px' : '200px'}
-        marginRight='-20px'
+        height={
+          character.h
+            ? matches
+              ? character.h
+              : character.hM
+            : matches
+            ? '171.4px'
+            : '142.8px'
+        }
+        width={
+          character.w
+            ? matches
+              ? character.w
+              : character.wM
+            : matches
+            ? '240px'
+            : '200px'
+        }
+        marginRight={matches ? character.mr : character.mrM}
+        marginBottom={character.mb && character.mb}
         flexShrink='0'
       >
-        <img src={algoritmChar} height='100%' alt='motivus charater' />
-      </Box>
-    </React.Fragment>
-  )
-}
-
-function CharacterScientist({ active, matches }) {
-  return (
-    <React.Fragment>
-      <Box
-        height={matches ? '110px' : '100px'}
-        flexShrink='0'
-        marginRight='15px'
-        marginBottom='115px'
-        component={motion.div}
-        initial={{ opacity: 0 }}
-        animate={{
-          y: active ? -20 : 0,
-          opacity: active ? 1 : 0.6,
-          scale: active ? 1.1 : 1,
-        }}
-      >
-        <img src={ScientistLamp} height='100%' alt='motivus charater idea' />
-      </Box>
-      <Box
-        position='absolute'
-        height={matches ? '171.4px' : '142.8px'}
-        width={matches ? '240px' : '200px'}
-        marginLeft='-40px'
-        flexShrink='0'
-      >
-        <img src={Scientist} height='100%' alt='motivus charater' />
-      </Box>
-    </React.Fragment>
-  )
-}
-
-function CharacterWebDev({ active, matches }) {
-  return (
-    <React.Fragment>
-      <Box
-        height='100px'
-        flexShrink='0'
-        marginBottom={matches ? '90px' : '75px'}
-        marginRight='80px'
-        component={motion.div}
-        initial={{ opacity: 0 }}
-        animate={{
-          y: active ? -20 : 0,
-          opacity: active ? 1 : 0.6,
-          scale: active ? 1.1 : 1,
-        }}
-      >
-        <img
-          src={WebDeveloperGraph}
-          height='100%'
-          alt='motivus charater idea'
-        />
-      </Box>
-      <Box
-        position='absolute'
-        height={matches ? '171.4px' : '142.8px'}
-        width={matches ? '240px' : '200px'}
-        marginLeft={matches ? '-45px' : '-55'}
-        flexShrink='0'
-      >
-        <img src={WebDeveloperChar} height='100%' alt='motivus charater' />
-      </Box>
-    </React.Fragment>
-  )
-}
-
-function CharacterPunk({ active, matches }) {
-  return (
-    <React.Fragment>
-      <Box
-        height='110px'
-        flexShrink='0'
-        marginRight={matches ? '50px' : '30px'}
-        marginBottom={matches ? '110px' : '60px'}
-        component={motion.div}
-        initial={{ opacity: 0 }}
-        animate={{
-          y: active ? -20 : 0,
-          opacity: active ? 1 : 0.6,
-          scale: active ? 1.1 : 1,
-        }}
-      >
-        <img src={punkDolar} height='100%' alt='motivus charater idea' />
-      </Box>
-      <Box
-        position='absolute'
-        height={matches ? '220px' : '172.8px'}
-        width={matches ? '300px' : '230px'}
-        marginRight={matches ? '-80px' : '-45px'}
-        marginBottom='-20px'
-        flexShrink='0'
-      >
-        <img src={punk} height='100%' alt='motivus charater' />
+        <img src={character.image} height='100%' alt='motivus charater' />
       </Box>
     </React.Fragment>
   )
