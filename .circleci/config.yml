@@ -61,25 +61,15 @@ workflows:
     when:
       equal: [api, << pipeline.trigger_source >>]
     jobs:
-      - build:
+      - deploy-approval:
+          type: approval
           filters:
             branches:
               only:
                 - main
-                - develop
-      - publish-approval:
-          type: approval
+      - build:
+          requires:
+            - deploy-approval
+      - publish:
           requires:
             - build
-          filters:
-            branches:
-              only:
-                - main
-      - publish:
-          type: approval
-          requires:
-            - publish-approval
-          filters:
-            branches:
-              only:
-                - main
