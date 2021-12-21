@@ -67,10 +67,18 @@ workflows:
               only:
                 - main
                 - develop
-      - publish:
+      - publish-approval:
           type: approval
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - main
+      - publish:
+          type: approval
+          requires:
+            - publish-approval
           filters:
             branches:
               only:
