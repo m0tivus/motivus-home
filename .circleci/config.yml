@@ -2,24 +2,75 @@ version: 2.1
 orbs:
   node: circleci/node@4.1.0
 
+defaults: &defaults
+  working_directory: ~/repo
+  executor: 
+    name: node/default
+    tag: '16.0'
+  resource_class: large
+
 jobs:
   build:
-    executor:
-      name: node/default
-      tag: '16.0'
-    resource_class: large
+    <<: *defaults
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
       - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run: CI=false yarn run build
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - public
+            - deployment
+  publish:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
       - run: sudo yarn global add aws-cdk@1.84.0
       - run: CI="" cd deployment && yarn install && yarn build
       - run: cd deployment && cdk deploy --progress events --ci --require-approval never
 
 workflows:
   main:
+    when:
+      not:
+        equal: [api, << pipeline.trigger_source >>]
     jobs:
       - build:
+          filters:
+            branches:
+              only:
+                - main
+                - develop
+      - publish:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
+  cms:
+    when:
+      equal: [api, << pipeline.trigger_source >>]
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - main
+                - develop
+      - publish:
+          type: approval
+          requires:
+            - build
           filters:
             branches:
               only:
