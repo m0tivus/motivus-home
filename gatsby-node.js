@@ -1,7 +1,7 @@
-const { result } = require('lodash')
+const {result} = require('lodash')
 const _ = require('lodash')
 const path = require('path')
-const { string } = require('prop-types')
+const {string} = require('prop-types')
 const axios = require('axios')
 
 const makeRequest = (graphql, request) =>
@@ -24,7 +24,7 @@ exports.sourceNodes = async ({
   createContentDigest,
 }) => {
   const _algorithms = await axios.get(
-    'http://localhost:4000/api/package_registry/algorithms',
+    'http://127.0.0.1:4000/api/package_registry/algorithms/',
   )
   console.log(_algorithms.data.data)
 
@@ -32,8 +32,8 @@ exports.sourceNodes = async ({
     .map((a) => ({
       ...a,
       publishDate: a.inserted_at,
-      cost: a.default_cost,
-      chargeSchema: a.default_charge_schema,
+      cost: a.cost,
+      chargeSchema: a.charge_schema,
       stars: 0,
       image:
         'https://motivus.cl/favicon-32x32.png?v=e8b9681aacb5205f5c0c047f77d351df',
@@ -42,7 +42,7 @@ exports.sourceNodes = async ({
       ...a,
       lastVersion: a.versions[0],
     }))
-    .map(({ lastVersion: { metadata, name }, ...a }) => ({
+    .map(({lastVersion: {metadata, name}, ...a}) => ({
       ...a,
       author: metadata.author,
       abstract: metadata.short_description,
@@ -98,8 +98,8 @@ exports.sourceNodes = async ({
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
-exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
+exports.createPages = ({actions, graphql}) => {
+  const {createPage} = actions
 
   const getAlgorithms = makeRequest(
     graphql,
@@ -117,7 +117,7 @@ exports.createPages = ({ actions, graphql }) => {
     `,
   ).then((result) => {
     // Create pages for each article.
-    result.data.allAlgorithm.edges.forEach(({ node }) => {
+    result.data.allAlgorithm.edges.forEach(({node}) => {
       createPage({
         path: `client/marketplace/${node.name}`,
         component: path.resolve('src/templates/algorithm.js'),
@@ -169,9 +169,9 @@ exports.createPages = ({ actions, graphql }) => {
       .value()
 
     const getRefs = (refs, addNode = {}) =>
-      _.map([...refs, { _key: addNode._id }], (n) => posts[n._key])
+      _.map([...refs, {_key: addNode._id}], (n) => posts[n._key])
     const translations = _(result.data.allSanityPost.edges)
-      .map(({ node }) => {
+      .map(({node}) => {
         const parent = posts[_.split(node._id, '.')[1]]
 
         return {
@@ -190,7 +190,7 @@ exports.createPages = ({ actions, graphql }) => {
       .mapValues('translations')
 
     // Create pages for each article.
-    result.data.allSanityPost.edges.forEach(({ node }) => {
+    result.data.allSanityPost.edges.forEach(({node}) => {
       createPage({
         path: `blog/${node.slug.current}`,
         component: path.resolve('src/templates/article.js'),

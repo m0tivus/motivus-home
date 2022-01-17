@@ -27,7 +27,7 @@ import ContactToggle from '../contexts/ContactToggle'
 import { SnackbarProvider } from 'notistack'
 import Button from '@material-ui/core/Button'
 import { Box } from '@material-ui/core'
-import { navigate } from '@reach/router'
+import { navigate } from 'gatsby'
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -94,7 +94,7 @@ const Layout = ({ children, ...props }) => {
               color='secondary'
               size='large'
               className={classes.loginButton}
-              onClick={() => navigate('/client/')}
+              onClick={() => navigate('/client')}
             >
               login
             </Button>
