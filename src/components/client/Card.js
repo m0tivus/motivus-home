@@ -12,16 +12,16 @@ import CardMedia from '@material-ui/core/CardMedia'
 
 const useStyles = makeStyles((theme) => ({
   border: {
-    maxWidth: '380px',
-    height: '550px',
+    maxWidth: '420px',
+    height: '580px',
     borderRadius: '0px 50px',
     background: theme.palette.background.borderGradient,
     marginBottom: '50px',
   },
   root: {
     position: 'relative',
-    maxWidth: '378px',
-    height: '548px',
+    maxWidth: '418px',
+    height: '578px',
     borderRadius: '0px 50px',
     background: theme.palette.background.paperGradient,
   },

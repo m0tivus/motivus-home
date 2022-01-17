@@ -19,6 +19,8 @@ import { title } from '../styles/blog.module.css'
 import { Box } from '@material-ui/core'
 import _ from 'lodash'
 import LangSelectorBlog from '../components/LangSelectorBlog'
+import { container, listItem } from '../components/DropDownAnimation'
+import { motion } from 'framer-motion'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -78,7 +80,14 @@ const BlogPage = ({ data, ...props }) => {
           variant='home'
         />
       </Box>
-      <Grid container spacing={2}>
+      <Grid
+        container
+        spacing={2}
+        component={motion.div}
+        variants={container}
+        initial='hidden'
+        animate='show'
+      >
         {data.allSanityPost.edges
           .sort(function (x, y) {
             return (
@@ -88,7 +97,14 @@ const BlogPage = ({ data, ...props }) => {
           })
           .filter((doc) => doc.node.i18n_lang === lang)
           .map((document) => (
-            <Grid item key={document.node.id} xs={12} sm={6}>
+            <Grid
+              item
+              key={document.node.id}
+              xs={12}
+              sm={6}
+              component={motion.div}
+              variants={listItem}
+            >
               <Card className={classes.card}>
                 <CardActionArea>
                   <Link to={`/blog/${document.node.slug.current}`}>

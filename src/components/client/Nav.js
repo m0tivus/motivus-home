@@ -10,6 +10,7 @@ import {
 
 const routes = [
   { name: 'News', route: '/client/', partialy: false },
+  { name: 'My Algorithms', route: '/client/my-algorithms/', partialy: true },
   { name: 'Dashboard', route: '/client/dashboard/', partialy: false },
   { name: 'Marketplace', route: '/client/marketplace/', partialy: true },
   { name: 'Virtual Wallet', route: '/client/wallet/', partialy: false },

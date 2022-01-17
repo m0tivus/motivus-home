@@ -2,6 +2,7 @@ const { result } = require('lodash')
 const _ = require('lodash')
 const path = require('path')
 const { string } = require('prop-types')
+const axios = require('axios')
 
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
@@ -17,80 +18,60 @@ const makeRequest = (graphql, request) =>
     )
   })
 
-exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
-  const algorithms = [
-    {
-      name: 'rna-folding',
-      author: 'simon-poblete',
-      abstract: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sollicitudin pharetra maximus. Aenean non sodales nulla, id ultricies massa. Ut a porta velit. Integer congue justo in ante eleifend luctus. Vestibulum quis lorem sed felis rhoncus condimentum sed porttitor turpis. Duis varius sit amet ipsum quis semper. Pellentesque mattis convallis ipsum vitae malesuada. Sed a aliquam lectus. Maecenas sit amet diam fermentum, interdum lectus ut, sodales diam. Aenean in semper magna, sed porttitor justo. Fusce magna odio, lacinia in viverra sit amet, iaculis at urna. Aenean gravida ultricies pellentesque. ',
-      longDescription: `A paragraph with *emphasis* and **strong importance**.
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-      
-* Lists
-* [ ] todo
-* [x] done
-      
-A table:
-      
-| a | b |
-| - | - |
-`,
-      publishDate: '01/10/2021',
-      version: '0.0.1',
-      cost: '0.12',
-      web: 'www.example.com',
-      github: 'github.com',
-      stars: '1.9k',
-      license: 'OpenSource',
-    },
-    {
-      name: 'traveling-salesman',
-      author: 'cecs',
-      abstract: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sollicitudin pharetra maximus. Aenean non sodales nulla, id ultricies massa. Ut a porta velit. Integer congue justo in ante eleifend luctus. Vestibulum quis lorem sed felis rhoncus condimentum sed porttitor turpis. Duis varius sit amet ipsum quis semper. Pellentesque mattis convallis ipsum vitae malesuada. Sed a aliquam lectus. Maecenas sit amet diam fermentum, interdum lectus ut, sodales diam. Aenean in semper magna, sed porttitor justo. Fusce magna odio, lacinia in viverra sit amet, iaculis at urna. Aenean gravida ultricies pellentesque. ',
-      longDescription: `A paragraph with *emphasis* and **strong importance**.
+exports.sourceNodes = async ({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) => {
+  const _algorithms = await axios.get(
+    'http://localhost:4000/api/package_registry/algorithms',
+  )
+  console.log(_algorithms.data.data)
 
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-        
-* Lists
-* [ ] todo
-* [x] done
-        
-A table:
-        
-| a | b |
-| - | - |
-`,
-      publishDate: '01/10/2021',
-      version: '0.0.1',
-      cost: '0.12',
-      web: 'www.example.com',
-      github: 'github.com',
-      stars: '1.9k',
-      license: 'OpenSource',
-    },
+  const algorithms = _(_algorithms.data.data)
+    .map((a) => ({
+      ...a,
+      publishDate: a.inserted_at,
+      cost: a.default_cost,
+      chargeSchema: a.default_charge_schema,
+      stars: 0,
+      image:
+        'https://motivus.cl/favicon-32x32.png?v=e8b9681aacb5205f5c0c047f77d351df',
+    }))
+    .map((a) => ({
+      ...a,
+      lastVersion: a.versions[0],
+    }))
+    .map(({ lastVersion: { metadata, name }, ...a }) => ({
+      ...a,
+      author: metadata.author,
+      abstract: metadata.short_description,
+      description: metadata.short_description,
+      longDescription: metadata.long_description,
+      web: metadata.url,
+      github: metadata.upstream_url,
+      license: metadata.license,
+      version: name,
+    }))
+
+  /*author: a.metadata.author,
+    abstract: metadata.short_description,
+    description: metadata.short_description,
+    longDescription: metadata.long_description,
+    web: metadata.url,
+    github: metadata.upstream.url,
+    license: metadata.license,
+*/
+  /*
+  const algorithms = [
+    
     {
       name: 'sii-scrapers',
       author: 'alba',
       abstract: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sollicitudin pharetra maximus. Aenean non sodales nulla, id ultricies massa. Ut a porta velit. Integer congue justo in ante eleifend luctus. Vestibulum quis lorem sed felis rhoncus condimentum sed porttitor turpis. Duis varius sit amet ipsum quis semper. Pellentesque mattis convallis ipsum vitae malesuada. Sed a aliquam lectus. Maecenas sit amet diam fermentum, interdum lectus ut, sodales diam. Aenean in semper magna, sed porttitor justo. Fusce magna odio, lacinia in viverra sit amet, iaculis at urna. Aenean gravida ultricies pellentesque. ',
-      longDescription: `A paragraph with *emphasis* and **strong importance**.
-
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-        
-* Lists
-* [ ] todo
-* [x] done
-        
-A table:
-        
-| a | b |
-| - | - |
-`,
+      longDescription: ``,
       publishDate: '01/10/2021',
       version: '0.0.1',
       cost: '0.12',
@@ -99,23 +80,11 @@ A table:
       stars: '1.9k',
       license: 'OpenSource',
     },
-  ]
+  ]*/
 
   algorithms.forEach((algorithm) => {
     const node = {
-      name: algorithm.name,
-      author: algorithm.author,
-      abstract: algorithm.abstract,
-      description: algorithm.description,
-      longDescription: algorithm.longDescription,
-      publishDate: algorithm.publishDate,
-      image: algorithm.image,
-      version: algorithm.version,
-      cost: algorithm.cost,
-      web: algorithm.web,
-      github: algorithm.github,
-      stars: algorithm.stars,
-      license: algorithm.license,
+      ...algorithm,
 
       id: createNodeId(`Algorithm-${algorithm.name}`),
       internal: {

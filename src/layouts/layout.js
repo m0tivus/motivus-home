@@ -25,6 +25,9 @@ import SocialMedia from '../components/SocialMedia'
 import { set } from 'lodash'
 import ContactToggle from '../contexts/ContactToggle'
 import { SnackbarProvider } from 'notistack'
+import Button from '@material-ui/core/Button'
+import { Box } from '@material-ui/core'
+import { navigate } from '@reach/router'
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -32,7 +35,12 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(8, 0, 6),
     },
   },
+  loginButton: {
+    borderRadius: '0px',
+    height: '40px',
+  },
 }))
+
 const Layout = ({ children, ...props }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -70,6 +78,27 @@ const Layout = ({ children, ...props }) => {
             />
           )}
           <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
+          <Box
+            position='fixed'
+            right='5%'
+            top={matches ? '21px' : '55px'}
+            //height={matches ? '75px' : '150px'}
+            //border='1px solid green'
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            zIndex='20'
+          >
+            <Button
+              variant='outlined'
+              color='secondary'
+              size='large'
+              className={classes.loginButton}
+              onClick={() => navigate('/client/')}
+            >
+              login
+            </Button>
+          </Box>
           <SocialMedia />
           <div
             style={{

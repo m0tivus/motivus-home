@@ -37,6 +37,7 @@ const themeLight = createTheme({
       langSelectorTexture: 'radial-gradient(#000 0.1px, #fff 1px)',
       langSelectorFade:
         'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 95%, rgba(255,255,255,1) 100%)',
+      inputBackground: '#E4E4E4',
     },
 
     text: {

@@ -40,6 +40,7 @@ const DarkTheme = createTheme({
       langSelectorTexture: 'radial-gradient(#fff 0.1px, #131144 1px)',
       langSelectorFade:
         'linear-gradient(90deg, rgba(19, 17, 68,1) 0%, rgba(19, 17, 68,0) 5%, rgba(19, 17, 68,0) 95%, rgba(19, 17, 68,1) 100%)',
+      inputBackground: '#000',
     },
 
     text: {

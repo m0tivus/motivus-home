@@ -2,17 +2,16 @@ import React from 'react'
 import SEO from './seo'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-import AlgorithmCards from './client/AlgorithmCards'
-import AlgorithmFilter from './client/AlgorithmFilter'
+import MyAlgorithmCards from './MyAlgorithmCards'
+//import AlgorithmFilter from './client/AlgorithmFilter'
 import { Box, Grid } from '@material-ui/core'
 import { graphql, StaticQuery } from 'gatsby'
-import { container, listItem } from './DropDownAnimation'
 import { motion } from 'framer-motion'
+import { container, listItem } from './DropDownAnimation'
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
-    marginTop: '50px',
-    width: '89.75%',
+    width: '100%',
   },
 }))
 
@@ -22,7 +21,7 @@ export default function MarketplaceData({ variant }) {
   return (
     <StaticQuery
       query={graphql`
-        query MyAlgorithms {
+        query Algorithms {
           allAlgorithm {
             nodes {
               author
@@ -49,7 +48,7 @@ export default function MarketplaceData({ variant }) {
               flexDirection='column'
               alignItems={variant === 'home' ? 'center' : 'flex-start'}
             >
-              <AlgorithmFilter variant={variant} data={allAlgorithm} />
+              {/*<AlgorithmFilter variant={variant} data={allAlgorithm} /> */}
 
               <Grid
                 container
@@ -67,7 +66,7 @@ export default function MarketplaceData({ variant }) {
                     component={motion.div}
                     variants={listItem}
                   >
-                    <AlgorithmCards variant={variant} {...a} />
+                    <MyAlgorithmCards variant={variant} {...a} />
                   </Grid>
                 ))}
               </Grid>

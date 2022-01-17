@@ -70,6 +70,7 @@ const ClientPage = ({ data, ...props }) => {
 
   return (
     <Layout {...props}>
+      <SEO title='Settings' />
       <Title text='Settings' />
       <ApplicationTokens />
     </Layout>

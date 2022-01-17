@@ -123,21 +123,7 @@ export default function AlgorithmCards({
                     alignItems='center'
                     mt='5px'
                   >
-                    {
-                      <img
-                        src={
-                          author === 'alba'
-                            ? albaImg
-                            : author === 'simon-poblete'
-                            ? simonImg
-                            : author === 'cecs'
-                            ? cecsImg
-                            : null
-                        }
-                        alt={name}
-                        className={classes.img}
-                      ></img>
-                    }
+                    {<img src={image}></img>}
                     <Typography variant='body1' className={classes.info}>
                       <span className={classes.author}>{author}</span> published{' '}
                       <span className={classes.publishDate}>{publishDate}</span>
