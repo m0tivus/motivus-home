@@ -8,6 +8,7 @@ import Nav from './Nav'
 import Switch from '@material-ui/core/Switch'
 import Sun from '@material-ui/icons/Brightness5'
 import Moon from '@material-ui/icons/Brightness2Outlined'
+import User from '../../contexts/User'
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -39,6 +40,8 @@ export default function Header({ darkState, setDarkState }) {
     setDarkState(event.target.checked)
   }
 
+  const { user } = React.useContext(User)
+
   return (
     <div className={classes.nav}>
       <Box
@@ -59,7 +62,7 @@ export default function Header({ darkState, setDarkState }) {
               color='textPrimary'
               className={classes.textColor}
             >
-              Cristian Huijse
+              {user.name}
             </Typography>
           </Box>
           <Divider className={classes.divider} />

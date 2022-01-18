@@ -1,9 +1,6 @@
 import React from 'react'
-import SEO from './seo'
-import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import MyAlgorithmCards from './MyAlgorithmCards'
-//import AlgorithmFilter from './client/AlgorithmFilter'
 import { Box, Grid } from '@material-ui/core'
 import { graphql, StaticQuery } from 'gatsby'
 import { motion } from 'framer-motion'
@@ -15,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function MarketplaceData({ variant }) {
+export default function MyAlgorithms({ variant }) {
   const classes = useStyles()
 
   return (

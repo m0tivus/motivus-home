@@ -94,7 +94,7 @@ const Layout = ({ children, ...props }) => {
               color='secondary'
               size='large'
               className={classes.loginButton}
-              onClick={() => navigate('/client')}
+              onClick={() => navigate('/account/login')}
             >
               login
             </Button>

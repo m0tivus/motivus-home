@@ -1,20 +1,17 @@
-import React, { useEffect, useReducer, useState } from 'react'
-import Layout from '../../../layouts/ClientLayout'
-import SEO from '../../../components/seo'
+import React, { useEffect, useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
-import Title from '../../../components/client/Title'
+import Title from '../client/Title'
 import { Box } from '@material-ui/core'
-import { AnimatePresence, motion } from 'framer-motion'
-import PublicOrPrivate from '../../../components/PublicOrPrivate'
-import AlgorithmInput from '../../../components/AlgorithmInput'
-import PricingSchema from '../../../components/PricingSchema'
-import Permissions from '../../../components/Permissions'
-import UsersList from '../../../components/usersList'
+import PublicOrPrivate from '../PublicOrPrivate'
+import PricingSchema from '../PricingSchema'
+import Permissions from '../Permissions'
+import UsersList from '../usersList'
 import Button from '@material-ui/core/Button'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import AlgorithmName from '../../../components/AlgorithmName'
+import AlgorithmName from '../AlgorithmName'
+import withClientLayout from '../../hoc/withClientLayout'
 
 const useStyles = makeStyles((theme) => ({
   divider: {
@@ -31,32 +28,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function NewAlgorithm({ ...props }) {
-  const classes = useStyles()
-  const theme = useTheme()
-  return (
-    <Layout {...props}>
-      <SEO title='New Algorithm' />
-      <NewAlgorithmForms />
-    </Layout>
-  )
-}
-
 function NewAlgorithmForms() {
   const classes = useStyles()
   const theme = useTheme()
   const dark = theme.palette.type
   const matches = useMediaQuery(theme.breakpoints.up('lg'))
 
-  const [algorithmName, setAlgorithmName] = useState('')
   const [isPublic, setIsPublic] = useState(false)
-  const [schema, setSchema] = useState('per-execution')
-  const [credits, setCredits] = useState('')
   const [usersAndRole, setUsersAndRole] = useState([
     { user: 'chuijse', role: 'owner' },
-  ])
-  const [usersList, setUsersList] = useState([
-    { user: '', priceShema: '', credits: '' },
   ])
 
   useEffect(() => {
@@ -110,3 +90,5 @@ function DividerNew() {
   const classes = useStyles()
   return <Box my='30px' height='1px' width='100%' className={classes.divider} />
 }
+
+export default withClientLayout(NewAlgorithmForms)

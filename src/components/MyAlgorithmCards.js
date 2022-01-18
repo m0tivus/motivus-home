@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { Box, Typography } from '@material-ui/core'
-import StarIcon from '@material-ui/icons/Star'
 import ShowChartIcon from '@material-ui/icons/ShowChart'
 import EditIcon from '@material-ui/icons/Edit'
 import LinkIcon from '@material-ui/icons/Link'
-import { navigate } from 'gatsby'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import IconButton from '@material-ui/core/IconButton'
 import { motion } from 'framer-motion'
-import { Opacity } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
   backgroundDark: {

@@ -1,38 +1,29 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
-import Layout from '../../layouts/ClientLayout'
-import SEO from '../../components/seo'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import {useTheme} from '@material-ui/core/styles'
 
-import parseJSON from 'date-fns/parseJSON'
-import formatISO from 'date-fns/formatISO'
-
-import { Box, CssBaseline } from '@material-ui/core'
-import Title from '../../components/client/Title'
-import BoxScore from '../../components/client/BoxScore'
-import Graph from '../../components/client/dashboard/DashBoardCard'
+import {Box} from '@material-ui/core'
+import Title from '../client/Title'
+import BoxScore from '../client/BoxScore'
+import Graph from '../client/dashboard/DashBoardCard'
 import {
   duration,
   invocations,
   excutions,
   TFLOPS,
   credits,
-} from '../../components/client/dashboard/data/data'
+} from '../client/dashboard/data/data'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import withClientLayout from '../../hoc/withClientLayout'
 
-const useStyles = makeStyles((theme) => ({}))
-
-const ClientPage = ({ data, ...props }) => {
+const ClientPage = ({data, ...props}) => {
   const theme = useTheme()
-  const classes = useStyles()
   //console.log(duration, invocations)
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
-    <Layout {...props}>
+    <React.Fragment {...props}>
       <Box></Box>
       <Title text='Dasboard' />
       <Typography color='textPrimary' variant='subtitle1'>
@@ -87,8 +78,9 @@ const ClientPage = ({ data, ...props }) => {
           <Graph title='Invocations' axis={1} data={invocations} />
         </Grid>
       </Grid>
-    </Layout>
+    </React.Fragment>
   )
 }
 
-export default ClientPage
+export default withClientLayout(ClientPage)
+

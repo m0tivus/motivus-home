@@ -1,15 +1,11 @@
 import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import Modal from '@material-ui/core/Modal'
-import Backdrop from '@material-ui/core/Backdrop'
-import Fade from '@material-ui/core/Fade'
 import { Box, Typography } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
 import { mdiGithub } from '@mdi/js'
 import Icon from '@mdi/react'
 import { mdiGoogle } from '@mdi/js'
 import { navigate } from 'gatsby-link'
-import LightTheme from '../layouts/DarkTheme'
 import Div100vh from 'react-div-100vh'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
@@ -40,17 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Client() {
-  return (
-    <>
-      <LightTheme>
-        <LoginAccess />
-      </LightTheme>
-    </>
-  )
-}
-
-function LoginAccess({ open, setOpen }) {
+export default function Login({ open, setOpen }) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('lg'))
