@@ -41,7 +41,7 @@ export default function ApplicationTokens({}) {
 
         <Button
           variant='outlined'
-          onClick={() => navigate('/client/my-algorithms/new')}
+          onClick={() => navigate('/account/my-algorithms/new')}
           className={
             dark === 'dark' ? classes.createTokenDark : classes.createTokenLight
           }
