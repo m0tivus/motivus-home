@@ -14,6 +14,7 @@ import {
   ThemeProvider,
   useTheme,
 } from '@material-ui/core/styles'
+import { Box } from '@material-ui/core'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import Header from './header'
@@ -78,7 +79,9 @@ const Layout = ({ children, ...props }) => {
             }}
           >
             <main className={classes.content}>{children}</main>
-            <Footer></Footer>
+            <Box mb={ matches ? "30px : "0px" }>
+              <Footer />
+            </Box>
           </div>
         </Theme2>
       </ContactToggle.Provider>
