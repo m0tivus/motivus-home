@@ -79,7 +79,7 @@ const Layout = ({ children, ...props }) => {
             }}
           >
             <main className={classes.content}>{children}</main>
-            <Box mb={ matches ? "30px" : "0px" }>
+            <Box mb={ matches ? "60px" : "0px" }>
               <Footer />
             </Box> 
           </div>
