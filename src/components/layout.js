@@ -79,9 +79,9 @@ const Layout = ({ children, ...props }) => {
             }}
           >
             <main className={classes.content}>{children}</main>
-            <Box mb={ matches ? "30px : "0px" }>
+            <Box mb={ matches ? "30px" : "0px" }>
               <Footer />
-            </Box>
+            </Box> 
           </div>
         </Theme2>
       </ContactToggle.Provider>
