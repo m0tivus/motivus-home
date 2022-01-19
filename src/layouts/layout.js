@@ -89,15 +89,17 @@ const Layout = ({ children, ...props }) => {
             alignItems='center'
             zIndex='20'
           >
-            <Button
-              variant='outlined'
-              color='secondary'
-              size='large'
-              className={classes.loginButton}
-              onClick={() => navigate('/account/login')}
-            >
-              login
-            </Button>
+            {!matches && (
+              <Button
+                variant='outlined'
+                color='secondary'
+                size='large'
+                className={classes.loginButton}
+                onClick={() => navigate('/account/login')}
+              >
+                login
+              </Button>
+            )}
           </Box>
           <SocialMedia />
           <div
@@ -107,7 +109,9 @@ const Layout = ({ children, ...props }) => {
             }}
           >
             <main className={classes.content}>{children}</main>
-            <Footer></Footer>
+            <Box mb={matches ? '55px' : '0px'}>
+              <Footer />
+            </Box>
           </div>
         </Theme>
       </ContactToggle.Provider>

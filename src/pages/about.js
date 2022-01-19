@@ -26,6 +26,7 @@ import Fade from '@material-ui/core/Fade'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { container, listItem } from '../components/DropDownAnimation'
 import { motion } from 'framer-motion'
+import { check } from 'prettier'
 
 function Copyright() {
   return (
@@ -87,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 2,
   },
   name: {
-    color: '#fff',
+    color: theme.palette.secondary.main,
     fontSize: '1.15rem',
   },
   position: {
@@ -99,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
   },
   info: {
     backgroundColor: '#242424',
+    //backgroundColor: '#2C2771',
   },
   white: {
     color: '#fff',
@@ -115,25 +117,25 @@ const SocialNetworks = ({ networks }) => (
           case 'github':
             return (
               <Link target='_blank' rel='noopener' href={url} key={url}>
-                <GitHubIcon fontSize='large' />
+                <GitHubIcon fontSize='large' color='secondary' />
               </Link>
             )
           case 'linkedin':
             return (
               <Link target='_blank' rel='noopener' href={url} key={url}>
-                <LinkedInIcon fontSize='large' />
+                <LinkedInIcon fontSize='large' color='secondary' />
               </Link>
             )
           case 'web':
             return (
               <Link target='_blank' rel='noopener' href={url} key={url}>
-                <HttpIcon fontSize='large' />
+                <HttpIcon fontSize='large' color='secondary' />
               </Link>
             )
           case 'reddit':
             return (
               <Link target='_blank' rel='noopener' href={url} key={url}>
-                <RedditIcon fontSize='large' />
+                <RedditIcon fontSize='large' color='secondary' />
               </Link>
             )
         }
@@ -186,7 +188,7 @@ function HumanCard(props) {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
-          backgroundColor: `${theme.palette.secondary.light}`,
+          //backgroundColor: `${theme.palette.secondary.light}`,
           backgroundBlendMode: 'multiply',
         }}
       >
@@ -206,7 +208,9 @@ function HumanCard(props) {
             className={classes.info}
             p='12.5px'
             component={motion.div}
-            animate={{ height: checked ? 450 : 70 }}
+            animate={{
+              height: checked ? 450 : 70,
+            }}
             transition={{ duration: 0.5 }}
             display='flex'
             flexDirection='column'
