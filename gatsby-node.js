@@ -3,6 +3,7 @@ const _ = require('lodash')
 const path = require('path')
 const { string } = require('prop-types')
 const axios = require('axios')
+const { transformAlgorithm } = require('./src/utils')
 
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
@@ -28,32 +29,7 @@ exports.sourceNodes = async ({
       'http://127.0.0.1:4000/api/package_registry/algorithms/',
     )
     console.log(_algorithms.data.data)
-
-    const algorithms = _(_algorithms.data.data)
-      .map((a) => ({
-        ...a,
-        publishDate: a.inserted_at,
-        cost: a.cost,
-        chargeSchema: a.charge_schema,
-        stars: 0,
-        image:
-          'https://motivus.cl/favicon-32x32.png?v=e8b9681aacb5205f5c0c047f77d351df',
-      }))
-      .map((a) => ({
-        ...a,
-        lastVersion: a.versions[0],
-      }))
-      .map(({ lastVersion: { metadata, name }, ...a }) => ({
-        ...a,
-        author: metadata.author,
-        abstract: metadata.short_description,
-        description: metadata.short_description,
-        longDescription: metadata.long_description,
-        web: metadata.url,
-        github: metadata.upstream_url,
-        license: metadata.license,
-        version: name,
-      }))
+    const algorithms = _algorithms.data.data.map(transformAlgorithm)
 
     algorithms.forEach((algorithm) => {
       const node = {
@@ -132,7 +108,7 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
     .catch((e) => {
-      console.log(`could not get algorithms`, e)
+      console.log('could not get algorithms', e)
     })
 
   const getArticles = makeRequest(

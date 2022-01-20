@@ -1,13 +1,13 @@
-import React from 'react'
-import SEO from './seo'
-import Typography from '@material-ui/core/Typography'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AlgorithmCards from './client/AlgorithmCards'
 import AlgorithmFilter from './client/AlgorithmFilter'
 import { Box, Grid } from '@material-ui/core'
-import { graphql, StaticQuery } from 'gatsby'
 import { container, listItem } from './DropDownAnimation'
 import { motion } from 'framer-motion'
+import { Algorithm } from '../models'
+import { transformAlgorithm } from '../utils'
+import useUser from '../hooks/useUser'
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
@@ -18,63 +18,61 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MarketplaceData({ variant }) {
   const classes = useStyles()
+  const { isLoading } = useUser()
 
-  return (
-    <StaticQuery
-      query={graphql`
-        query MyAlgorithms {
-          allAlgorithm {
-            nodes {
-              author
-              github
-              abstract
-              description
-              name
-              publishDate
-              stars
-              version
-              web
-              cost
-              image
-            }
-          }
-        }
-      `}
-      render={(data) => {
-        const allAlgorithm = data.allAlgorithm?.nodes
-        return (
-          <React.Fragment>
-            <Box
-              display='flex'
-              flexDirection='column'
-              alignItems={variant === 'home' ? 'center' : 'flex-start'}
+  const [isLoadingAlgorithms, setIsLoadingAlgorithms] = useState(true)
+  const [algorithms, setAlgorithms] = React.useState([])
+
+  const getAlgorithmData = async () => {
+    try {
+      const algoritms_ = await Algorithm.all()
+      setAlgorithms(algoritms_.map(transformAlgorithm))
+    } catch (e) {
+      //
+    } finally {
+      setIsLoadingAlgorithms(false)
+    }
+  }
+  React.useEffect(() => {
+    getAlgorithmData()
+  }, [])
+
+  return isLoading || isLoadingAlgorithms ? (
+    <LoadingComponent />
+  ) : (
+    <React.Fragment>
+      <Box
+        display='flex'
+        flexDirection='column'
+        alignItems={variant === 'home' ? 'center' : 'flex-start'}
+      >
+        <AlgorithmFilter variant={variant} data={algorithms} />
+
+        <Grid
+          container
+          className={classes.gridContainer}
+          component={motion.div}
+          variants={container}
+          initial='hidden'
+          animate='show'
+        >
+          {algorithms.map((a, k) => (
+            <Grid
+              item
+              key={k}
+              xs={12}
+              component={motion.div}
+              variants={listItem}
             >
-              <AlgorithmFilter variant={variant} data={allAlgorithm} />
-
-              <Grid
-                container
-                className={classes.gridContainer}
-                component={motion.div}
-                variants={container}
-                initial='hidden'
-                animate='show'
-              >
-                {allAlgorithm.map((a, k) => (
-                  <Grid
-                    item
-                    key={k}
-                    xs={12}
-                    component={motion.div}
-                    variants={listItem}
-                  >
-                    <AlgorithmCards variant={variant} {...a} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-          </React.Fragment>
-        )
-      }}
-    />
+              <AlgorithmCards variant={variant} {...a} />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </React.Fragment>
   )
+}
+
+function LoadingComponent() {
+  return <div>Loading...</div>
 }

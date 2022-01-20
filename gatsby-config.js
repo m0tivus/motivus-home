@@ -7,11 +7,11 @@ module.exports = {
     siteUrl: 'https://www.motivus.cl',
   },
   plugins: [
-    `gatsby-plugin-image`,
-    `gatsby-plugin-sharp`,
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
     'gatsby-plugin-robots-txt',
-    `gatsby-plugin-sitemap`,
-    `gatsby-transformer-sharp`, // Needed for dynamic images
+    'gatsby-plugin-sitemap',
+    'gatsby-transformer-sharp', // Needed for dynamic images
 
     {
       resolve: 'gatsby-plugin-google-analytics',
@@ -26,7 +26,7 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-plugin-material-ui`,
+      resolve: 'gatsby-plugin-material-ui',
       options: {
         disableAutoprefixing: true,
       },

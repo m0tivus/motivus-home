@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router } from '@reach/router'
+import { Redirect, Router } from '@reach/router'
 import DarkTheme from '../layouts/DarkTheme'
 
 import Login from '../components/account/login'
@@ -13,6 +13,7 @@ import Settings from '../components/account/settings'
 import Wallet from '../components/account/wallet'
 import User from '../contexts/User'
 import PrivateRoute from '../components/account/PrivateRoute'
+import { navigate } from 'gatsby'
 
 function App() {
   const [user, setUser] = React.useState({})
@@ -39,6 +40,14 @@ function App() {
           <PrivateRoute component={News} path='/account/news' />
           <PrivateRoute component={Settings} path='/account/settings' />
           <PrivateRoute component={Wallet} path='/account/wallet' />
+          <PrivateRoute
+            component={() => {
+              navigate('/account/login')
+              return null
+            }}
+            path='/account'
+            exact
+          />
         </Router>
       </User.Provider>
     </DarkTheme>
