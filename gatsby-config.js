@@ -4,10 +4,13 @@ module.exports = {
     description: 'High performance computing network',
     author: 'Motivus',
     url: 'motivus.cl',
+    siteUrl: 'https://www.motivus.cl',
   },
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    'gatsby-plugin-robots-txt',
+    `gatsby-plugin-sitemap`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
 
     {

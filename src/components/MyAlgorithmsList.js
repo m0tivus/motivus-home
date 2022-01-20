@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import MyAlgorithmCards from './MyAlgorithmCards'
 import { Box, Grid } from '@material-ui/core'
-import { graphql, StaticQuery } from 'gatsby'
+import { graphql, StaticQuery, useStaticQuery } from 'gatsby'
 import { motion } from 'framer-motion'
 import { container, listItem } from './DropDownAnimation'
 
