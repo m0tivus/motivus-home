@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MarketplaceData({ variant }) {
   const classes = useStyles()
-  const { isLoading } = useUser()
+  const { isLoading, isGuest } = useUser()
 
   const [isLoadingAlgorithms, setIsLoadingAlgorithms] = useState(true)
   const [algorithms, setAlgorithms] = React.useState([])
@@ -35,7 +35,7 @@ export default function MarketplaceData({ variant }) {
   }
   React.useEffect(() => {
     getAlgorithmData()
-  }, [])
+  }, [isGuest])
 
   return isLoading || isLoadingAlgorithms ? (
     <LoadingComponent />

@@ -17,4 +17,8 @@ export const Algorithm = {
       .then(dataGetter)
       .then(first)
       .then((a) => a || {}),
+  get: (id) =>
+    axios
+      .get(`${BASE_URL}/api/package_registry/algorithms/${id}`)
+      .then(dataGetter),
 }

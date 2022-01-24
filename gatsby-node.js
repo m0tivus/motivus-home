@@ -28,14 +28,15 @@ exports.sourceNodes = async ({
     const _algorithms = await axios.get(
       'http://127.0.0.1:4000/api/package_registry/algorithms/',
     )
-    console.log(_algorithms.data.data)
     const algorithms = _algorithms.data.data.map(transformAlgorithm)
+    console.log(algorithms)
 
     algorithms.forEach((algorithm) => {
       const node = {
         ...algorithm,
+        id: String(algorithm.id),
 
-        id: createNodeId(`Algorithm-${algorithm.name}`),
+        _id: createNodeId(`Algorithm-${algorithm.name}`),
         internal: {
           type: 'Algorithm',
           contentDigest: createContentDigest(algorithm),
@@ -46,6 +47,7 @@ exports.sourceNodes = async ({
   } catch (e) {
     console.log('could not get algorithms', e)
     const algorithm = {
+      id: '1',
       publishDate: '2022-01-19T17:12:05',
       cost: '1',
       chargeSchema: 'a.charge_schema',
@@ -61,6 +63,7 @@ exports.sourceNodes = async ({
       license: 'metadata.license',
       version: 'name',
       name: 'name',
+      _id: 'dummy',
     }
     const node = {
       ...algorithm,
@@ -87,7 +90,7 @@ exports.createPages = ({ actions, graphql }) => {
       allAlgorithm {
         edges {
           node {
-            id
+            _id
             name
           }
         }
@@ -102,7 +105,7 @@ exports.createPages = ({ actions, graphql }) => {
           path: `marketplace/${node.name}`,
           component: path.resolve('src/templates/homeAlgorithm.js'),
           context: {
-            id: node.id,
+            id: node._id,
           },
         })
       })

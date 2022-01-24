@@ -15,7 +15,7 @@ export default function AlgorithmTemplate({ data, ...props }) {
 
 export const pageQuery = graphql`
   query AlgorithmTemplate($id: String!) {
-    algorithm(id: { eq: $id }) {
+    algorithm(_id: { eq: $id }) {
       author
       github
       description
@@ -27,6 +27,7 @@ export const pageQuery = graphql`
       version
       web
       license
+      id
     }
   }
 `

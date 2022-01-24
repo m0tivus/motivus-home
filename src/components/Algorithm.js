@@ -9,6 +9,9 @@ import Tab from '@material-ui/core/Tab'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { transformAlgorithm } from '../utils'
+import { Algorithm as AlgorithmModel } from '../models'
+import useUser from '../hooks/useUser'
 
 const AntTabs = withStyles((theme) => ({
   root: {
@@ -65,19 +68,40 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function Algorithm({ data }) {
-  const algorithmData = data?.algorithm
+  const isBrowser = typeof window !== 'undefined'
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
-  const dark = theme.palette.type
-
   const [value, setValue] = React.useState(0)
+
+  const [isLoadingAlgorithm, setIsLoadingAlgorithm] = React.useState(isBrowser)
+
+  const [algorithm, setAlgorithm] = React.useState(data?.algorithm)
+  const { isLoading, isGuest } = useUser()
+
+  const getAlgorithmData = async () => {
+    try {
+      const algoritm_ = await AlgorithmModel.get(algorithm.id)
+      setAlgorithm(transformAlgorithm(algoritm_))
+    } catch (e) {
+      //
+    } finally {
+      setIsLoadingAlgorithm(false)
+    }
+  }
+  React.useEffect(() => {
+    if (isBrowser) {
+      getAlgorithmData()
+    }
+  }, [isGuest])
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
 
-  return (
+  return isLoading || isLoadingAlgorithm ? (
+    <LoadingComponent />
+  ) : (
     <React.Fragment>
       <Box
         display='flex'
@@ -87,9 +111,9 @@ export default function Algorithm({ data }) {
         mt='10px'
       >
         <Typography variant='h3' color='primary' className={classes.subtitle}>
-          {algorithmData.author} | {algorithmData.publishDate}
+          {algorithm.author} | {algorithm.publishDate}
         </Typography>
-        <StarBadge stars={algorithmData.stars} />
+        <StarBadge stars={algorithm.stars} />
       </Box>
       <Box
         display='flex'
@@ -102,12 +126,12 @@ export default function Algorithm({ data }) {
           className={classes.description}
           gutterBottom
         >
-          {algorithmData.description}
+          {algorithm.description}
         </Typography>
-        <AlgorithmLinks web={algorithmData.web} github={algorithmData.github} />
+        <AlgorithmLinks web={algorithm.web} github={algorithm.github} />
       </Box>
       <AlgorithmCallToAction
-        console={`motivus install ${algorithmData.name} template`}
+        console={`motivus install ${algorithm.name} template`}
       />
       <AntTabs
         value={value}
@@ -122,26 +146,26 @@ export default function Algorithm({ data }) {
       </AntTabs>
       <TabPanel value={value} index={0}>
         <ReactMarkdown
-          children={algorithmData.longDescription}
+          children={algorithm.longDescription}
           remarkPlugins={[remarkGfm]}
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Typography variant='h5'>Current</Typography>
         <Typography variant='body1' gutterBottom>
-          version: c{algorithmData.version}____________
-          {algorithmData.publishDate}
+          version: c{algorithm.version}____________
+          {algorithm.publishDate}
         </Typography>
         <Typography variant='h5'>History</Typography>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Typography variant='h5' gutterBottom>
-          {algorithmData.cost} Dolars/min
+          {algorithm.cost} Dolars/min
         </Typography>
       </TabPanel>
       <TabPanel value={value} index={3}>
         <Typography variant='subtitle1' gutterBottom>
-          {algorithmData.license}
+          {algorithm.license}
         </Typography>
       </TabPanel>
     </React.Fragment>
@@ -168,4 +192,8 @@ function TabPanel(props) {
       )}
     </div>
   )
+}
+
+function LoadingComponent() {
+  return <div>Loading...</div>
 }

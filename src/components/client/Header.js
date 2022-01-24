@@ -2,7 +2,6 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
-import logo from '../../../public/logoBeta.svg'
 import Divider from '@material-ui/core/Divider'
 import Nav from './Nav'
 import Switch from '@material-ui/core/Switch'
@@ -55,7 +54,7 @@ export default function Header({ darkState, setDarkState }) {
         justifyContent='space-between'
       >
         <Box>
-          <img alt='logoMotivus' src={logo} width='300px'></img>
+          <img alt='logoMotivus' src='/logoBeta.svg' width='300px'></img>
           <Box marginTop='-35px' marginBottom='25px'>
             <Typography
               variant='h4'
