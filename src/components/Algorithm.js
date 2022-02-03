@@ -12,6 +12,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { transformAlgorithm } from '../utils'
 import { Algorithm as AlgorithmModel } from '../models'
 import useUser from '../hooks/useUser'
+import LoadingComponent from '../components/Loading'
 
 const AntTabs = withStyles((theme) => ({
   root: {
@@ -192,8 +193,4 @@ function TabPanel(props) {
       )}
     </div>
   )
-}
-
-function LoadingComponent() {
-  return <div>Loading...</div>
 }

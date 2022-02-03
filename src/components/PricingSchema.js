@@ -7,11 +7,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { MenuItem, Box } from '@material-ui/core'
 import * as yup from 'yup'
 
-const default_charge_schema = [
-  { name: 'Per execution', value: 'per-execution' },
-  { name: 'Per Time', value: 'per-time' },
-]
-
 const debug = false
 
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   algorithm_users: Yup.array().of(
     Yup.object().shape({
       name: Yup.string().required('User name is required'),
-      default_charge_schema: Yup.mixed()
+      charge_schema: Yup.mixed()
         .oneOf(['per_execution', 'per_minute'])
         .required('you must choose an option'),
       credits: Yup.number().positive('Credits must be positive'),
@@ -54,34 +49,10 @@ const useStyles = makeStyles((theme) => ({
   ),
 })*/
 
-const validationSchema = yup.object({
-  userName: yup.string('Enter your name').required('Enter your name'),
-  default_charge_schema: yup
-    .mixed()
-    .oneOf(['per_execution', 'per_minute'])
-    .required('you must choose an option'),
-})
-
-export default function PricingSchema({
-  schema,
-  setSchema,
-  credits,
-  setCredits,
-}) {
+export default function PricingSchema({ formik }) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
-
-  const formik = useFormik({
-    initialValues: {
-      userName: '',
-      default_charge_schema: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2))
-    },
-  })
 
   return (
     <React.Fragment>
@@ -93,39 +64,41 @@ export default function PricingSchema({
       >
         Pricing schema
       </Typography>
-      <form onSubmit={formik.handleSubmit}>
-        <Box
-          className={classes.container}
-          flexDirection={matches ? 'row' : 'column'}
-        >
-          <TextField
-            color='secondary'
-            className={classes.field}
-            margin='normal'
-            label='User Name'
-            name='userName'
-            InputLabelProps={{ classes: { root: classes.label } }}
-            value={formik.values.userName}
-            onChange={formik.handleChange}
-            required
-            helperText={formik.touched.userName && formik.errors.userName}
-            error={formik.touched.userName && Boolean(formik.errors.userName)}
-          />
-          <TextField
-            color='secondary'
-            className={classes.field}
-            margin='normal'
-            label='Charge schema'
-            name='default_charge_schema'
-            onChange={formik.handleChange}
-            InputLabelProps={{ classes: { root: classes.label } }}
-            value={formik.values.default_charge_schema}
-            required
-            select
-            SelectProps={{
-              MenuProps: { classes: { paper: classes.poper } },
-            }}
-            /*helperText={
+
+      <Box
+        className={classes.container}
+        flexDirection={matches ? 'row' : 'column'}
+      >
+        <TextField
+          color='secondary'
+          className={classes.field}
+          margin='normal'
+          label='Cost'
+          name='cost'
+          id='cost'
+          type='number'
+          InputLabelProps={{ classes: { root: classes.label } }}
+          value={formik.values.cost}
+          onChange={formik.handleChange}
+          required
+          helperText={formik.touched.cost && formik.errors.cost}
+          error={formik.touched.cost && Boolean(formik.errors.cost)}
+        />
+        <TextField
+          color='secondary'
+          className={classes.field}
+          margin='normal'
+          label='Charge schema'
+          id='charge_schema'
+          onChange={formik.handleChange('charge_schema')}
+          InputLabelProps={{ classes: { root: classes.label } }}
+          value={formik.values.charge_schema}
+          required
+          select
+          SelectProps={{
+            MenuProps: { classes: { paper: classes.poper } },
+          }}
+          /*helperText={
             touchedDefault_charge_schema && errorDefault_charge_schema
               ? errorDefault_charge_schema
               : ''
@@ -133,12 +106,12 @@ export default function PricingSchema({
           error={Boolean(
             touchedDefault_charge_schema && errorDefault_charge_schema,
           )}*/
-          >
-            <MenuItem value={'per_execution'}>Per execution</MenuItem>
-            <MenuItem value={'per_minute'}>Per Time</MenuItem>
-          </TextField>
-        </Box>
-      </form>
+        >
+          <MenuItem value={'PER_EXECUTION'}>Per execution</MenuItem>
+          <MenuItem value={'PER_MINUTE'}>Per Minute</MenuItem>
+        </TextField>
+      </Box>
+
       {debug && (
         <>
           <pre style={{ textAlign: 'left' }}>
@@ -181,10 +154,10 @@ export default function PricingSchema({
       className={classes.field}
       margin='normal'
       label='Charge schema'
-      name={default_charge_schema}
+      name={charge_schema}
       onChange={handleChange}
       InputLabelProps={{ classes: { root: classes.label } }}
-      value={user.default_charge_schema}
+      value={user.charge_schema}
       onBlur={handleBlur}
       required
       select

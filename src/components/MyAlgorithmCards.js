@@ -7,6 +7,8 @@ import LinkIcon from '@material-ui/icons/Link'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import IconButton from '@material-ui/core/IconButton'
 import { motion } from 'framer-motion'
+import { navigate } from 'gatsby-link'
+import { id } from 'date-fns/locale'
 
 const useStyles = makeStyles((theme) => ({
   backgroundDark: {
@@ -50,7 +52,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function AlgorithmCards({ name, abstract, variant }) {
+export default function AlgorithmCards({
+  name,
+  abstract,
+  variant,
+  id,
+  is_public,
+}) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
@@ -118,7 +126,7 @@ export default function AlgorithmCards({ name, abstract, variant }) {
               //border='1px solid green'
             >
               <Typography variant='h5' className={classes.publicOrPrivate}>
-                Public
+                {is_public ? 'Public' : 'Private'}
               </Typography>
               <Box
                 display='flex'
@@ -135,16 +143,13 @@ export default function AlgorithmCards({ name, abstract, variant }) {
                   <ShowChartIcon className={classes.icon} />
                 </IconButton>
                 <IconButton
-                  disabled
                   size='small'
-                  aria-label='view stats'
-                  onClick={() => setViewStats(!viewStats)}
+                  aria-label='edit algorithm'
+                  onClick={() => navigate(`/account/my-algorithms/edit/${id}`)}
                 >
-                  <EditIcon
-                  /*className={classes.icon}*/
-                  />
+                  <EditIcon className={classes.icon} />
                 </IconButton>
-                <IconButton disabled size='small' aria-label='view stats'>
+                <IconButton disabled size='small' aria-label='algorithm link'>
                   <LinkIcon /*className={classes.icon}*/ />
                 </IconButton>
               </Box>

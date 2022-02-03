@@ -8,6 +8,7 @@ import { motion } from 'framer-motion'
 import { Algorithm } from '../models'
 import { transformAlgorithm } from '../utils'
 import useUser from '../hooks/useUser'
+import Loading from './Loading'
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
@@ -38,7 +39,7 @@ export default function MarketplaceData({ variant }) {
   }, [isGuest])
 
   return isLoading || isLoadingAlgorithms ? (
-    <LoadingComponent />
+    <Loading component />
   ) : (
     <React.Fragment>
       <Box
@@ -59,7 +60,7 @@ export default function MarketplaceData({ variant }) {
           {algorithms.map((a, k) => (
             <Grid
               item
-              key={k}
+              key={`marketplace-algorithm-card-${k}`}
               xs={12}
               component={motion.div}
               variants={listItem}
@@ -71,8 +72,4 @@ export default function MarketplaceData({ variant }) {
       </Box>
     </React.Fragment>
   )
-}
-
-function LoadingComponent() {
-  return <div>Loading...</div>
 }

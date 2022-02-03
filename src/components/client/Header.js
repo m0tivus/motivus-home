@@ -8,6 +8,7 @@ import Switch from '@material-ui/core/Switch'
 import Sun from '@material-ui/icons/Brightness5'
 import Moon from '@material-ui/icons/Brightness2Outlined'
 import User from '../../contexts/User'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -31,6 +32,13 @@ const useStyles = makeStyles((theme) => ({
     fill: '#ffffff',
   },
 }))
+
+function logout() {
+  if (window.localStorage) {
+    window.localStorage.deleteItem('token')
+  }
+  navigate('/')
+}
 
 export default function Header({ darkState, setDarkState }) {
   const classes = useStyles()
@@ -70,16 +78,33 @@ export default function Header({ darkState, setDarkState }) {
           </Box>
         </Box>
 
-        <Box display='flex' alignItems='center' marginBottom='20px'>
-          <Sun className={classes.iconColor} />
-          <Switch
-            checked={darkState}
-            onChange={handleChange}
-            color='primary'
-            name='checkedA'
-            inputProps={{ 'aria-label': 'primary checkbox' }}
-          />
-          <Moon color='primary' />
+        <Box
+          display='flex'
+          flexDirection='row'
+          //border='1px solid red'
+          justifyContent='space-between'
+          mr='25px'
+        >
+          <Box display='flex' alignItems='center'>
+            <Sun className={classes.iconColor} />
+            <Switch
+              checked={darkState}
+              onChange={handleChange}
+              color='primary'
+              name='checkedA'
+              inputProps={{ 'aria-label': 'primary checkbox' }}
+            />
+            <Moon color='primary' />
+          </Box>
+          <Button
+            variant='outlined'
+            color='secondary'
+            size='large'
+            className={classes.loginButton}
+            onClick={logout}
+          >
+            logout
+          </Button>
         </Box>
       </Box>
     </div>

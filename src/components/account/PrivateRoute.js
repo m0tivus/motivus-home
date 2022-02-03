@@ -1,6 +1,7 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 import useUser from '../../hooks/useUser'
+import LoadingComponent from '../Loading'
 
 const loginPath = '/account/login'
 const homePath = '/account/my-algorithms'
@@ -17,11 +18,7 @@ const PrivateRoute = ({ component: Component, location, ...rest }) => {
     }
   }, [user.id, location.pathname, isGuest])
 
-  return isLoading ? <LoadingComponent /> : <Component {...rest} />
-}
-
-function LoadingComponent() {
-  return <div>Loading...</div>
+  return isLoading ? <LoadingComponent fullscreen /> : <Component {...rest} />
 }
 
 export default PrivateRoute

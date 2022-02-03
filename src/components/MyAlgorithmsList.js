@@ -25,12 +25,15 @@ export default function MyAlgorithms({ variant }) {
     getAlgorithmData()
   }, [])
 
+  console.log(algorithms)
+
   return (
     <React.Fragment>
       <Box
         display='flex'
         flexDirection='column'
         alignItems={variant === 'home' ? 'center' : 'flex-start'}
+        mb='70px'
       >
         {/*<AlgorithmFilter variant={variant} data={allAlgorithm} /> */}
 
@@ -45,7 +48,7 @@ export default function MyAlgorithms({ variant }) {
           {algorithms.map((a, k) => (
             <Grid
               item
-              key={k}
+              key={`my-algorithm-cards-${k}`}
               xs={12}
               component={motion.div}
               variants={listItem}

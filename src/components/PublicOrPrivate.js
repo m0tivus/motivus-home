@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import { Box } from '@material-ui/core'
-import Checkbox from '@material-ui/core/Checkbox'
+import Radio from '@material-ui/core/Radio'
+import RadioGroup from '@material-ui/core/RadioGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormControl from '@material-ui/core/FormControl'
+import FormLabel from '@material-ui/core/FormLabel'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
@@ -15,69 +19,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function PublicOrPrivate({ setIsPublic }) {
+export default function PublicOrPrivate({ formik }) {
   const classes = useStyles()
-  const [publicCheckbox, setPublicCheckbox] = useState(false)
-  const [privateCheckbox, setPrivateCheckbox] = useState(true)
-
-  const handleChangePublicCheckbox = () => {
-    setPublicCheckbox(true)
-    setPrivateCheckbox(false)
-    setIsPublic(true)
-  }
-
-  const handleChangePrivateCheckbox = () => {
-    setPrivateCheckbox(true)
-    setPublicCheckbox(false)
-    setIsPublic(false)
-  }
+  const [value, setValue] = React.useState('public')
 
   return (
-    <React.Fragment>
-      <Box display='flex' flexDirection='row' alignItems='center'>
-        <Box>
-          <Checkbox
-            checked={publicCheckbox}
-            onClick={handleChangePublicCheckbox}
-            inputProps={{ 'aria-label': 'primary checkbox' }}
-          />
-        </Box>
-        <Box marginLeft='5px'>
-          <Typography
-            variant='h6'
-            color='textPrimary'
-            className={classes.inputStatement}
-          >
-            PUBLIC
-          </Typography>
-          <Typography variant='body1' color='textPrimary'>
-            <span className={classes.secondary}>Anyone</span> can use this
-            algorithm
-          </Typography>
-        </Box>
-      </Box>
-      <Box display='flex' flexDirection='row' alignItems='center' mt='30px'>
-        <Box>
-          <Checkbox
-            checked={privateCheckbox}
-            onClick={handleChangePrivateCheckbox}
-            inputProps={{ 'aria-label': 'primary checkbox' }}
-          />
-        </Box>
-        <Box marginLeft='5px'>
-          <Typography
-            variant='h6'
-            color='textPrimary'
-            className={classes.inputStatement}
-          >
-            PRIVATE
-          </Typography>
-          <Typography variant='body1' color='textPrimary'>
-            <span className={classes.secondary}>You choose who</span> can use
-            this algorithm
-          </Typography>
-        </Box>
-      </Box>
-    </React.Fragment>
+    <RadioGroup
+      aria-label='public'
+      id='is_public'
+      name='is_public'
+      value={formik.values.is_public}
+      onChange={(e) =>
+        formik.setFieldValue('is_public', e.target.value === 'true')
+      }
+    >
+      <FormControlLabel value={true} control={<Radio />} label='public' />
+      <FormControlLabel value={false} control={<Radio />} label='private' />
+    </RadioGroup>
   )
 }

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 
-import { useFormik } from 'formik'
 import TextField from '@material-ui/core/TextField'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { MenuItem, Box } from '@material-ui/core'
-import * as yup from 'yup'
 
 const debug = false
 
@@ -50,54 +48,30 @@ const useStyles = makeStyles((theme) => ({
   ),
 })*/
 
-const validationSchema = yup.object({
-  algorithm_name: yup.string('Enter your name').required('Enter your name'),
-})
-
-export default function PricingSchema({
-  schema,
-  setSchema,
-  credits,
-  setCredits,
-}) {
+export default function AlgorithmName({ formik, disabled }) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
 
-  const formik = useFormik({
-    initialValues: {
-      algorithm_name: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2))
-    },
-  })
-
   return (
     <React.Fragment>
-      <form onSubmit={formik.handleSubmit}>
-        <Box className={classes.container} flexDirection='row'>
-          <TextField
-            color='secondary'
-            className={classes.field}
-            margin='normal'
-            label='Algorithm Name'
-            name='algorithm_name'
-            InputLabelProps={{ classes: { root: classes.label } }}
-            value={formik.values.algorithm_name}
-            onChange={formik.handleChange}
-            required
-            helperText={
-              formik.touched.algorithm_name && formik.errors.algorithm_name
-            }
-            error={
-              formik.touched.algorithm_name &&
-              Boolean(formik.errors.algorithm_name)
-            }
-          />
-        </Box>
-      </form>
+      <Box className={classes.container} flexDirection='row'>
+        <TextField
+          disabled={disabled}
+          color='secondary'
+          className={classes.field}
+          margin='normal'
+          label='Algorithm Name'
+          id='name'
+          InputLabelProps={{ classes: { root: classes.label } }}
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          required
+          helperText={formik.touched.name && formik.errors.name}
+          error={formik.touched.name && Boolean(formik.errors.name)}
+        />
+      </Box>
+
       {debug && (
         <>
           <pre style={{ textAlign: 'left' }}>

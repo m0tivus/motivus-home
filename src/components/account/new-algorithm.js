@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-
 import Title from '../client/Title'
 import { Box } from '@material-ui/core'
 import PublicOrPrivate from '../PublicOrPrivate'
@@ -12,6 +11,12 @@ import Button from '@material-ui/core/Button'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import AlgorithmName from '../AlgorithmName'
 import withClientLayout from '../../hoc/withClientLayout'
+import { Algorithm } from '../../models'
+import * as yup from 'yup'
+import { useFormik } from 'formik'
+import { useSnackbar } from 'notistack'
+import { pick } from 'lodash'
+import { navigate } from 'gatsby-link'
 
 const useStyles = makeStyles((theme) => ({
   divider: {
@@ -28,61 +33,115 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function NewAlgorithmForms() {
+const validationSchema = yup.object({
+  name: yup.string('Enter your name').required('Enter your name'),
+  cost: yup.string('Enter your name').required('Enter your name'),
+  charge_schema: yup
+    .mixed()
+    .oneOf(['PER_EXECUTION', 'PER_MINUTE'])
+    .required('you must choose an option'),
+})
+
+function NewAlgorithmForms({ update, algorithm, refreshData }) {
   const classes = useStyles()
   const theme = useTheme()
   const dark = theme.palette.type
   const matches = useMediaQuery(theme.breakpoints.up('lg'))
 
-  const [isPublic, setIsPublic] = useState(false)
-  const [usersAndRole, setUsersAndRole] = useState([
-    { user: 'chuijse', role: 'owner' },
-  ])
+  const formik = useFormik({
+    initialValues: update
+      ? pick(algorithm, ['name', 'is_public', 'cost', 'charge_schema'])
+      : {
+          name: '',
+          is_public: false,
+          cost: 0,
+          charge_schema: 'PER_EXECUTION',
+        },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      if (update) {
+        Algorithm.update(algorithm.id, values)
+        enqueueSnackbar('updating algorithm', {
+          variant: 'info',
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'center',
+          },
+          preventDuplicate: true,
+        })
+      } else {
+        const algorithm = await Algorithm.create(values)
+        enqueueSnackbar('creating algorithm', {
+          variant: 'info',
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'center',
+          },
+          preventDuplicate: true,
+        })
+        navigate(`/account/my-algorithms/edit/${algorithm.id}`)
+      }
+    },
+  })
 
-  useEffect(() => {
-    console.log(isPublic)
-  }, [isPublic])
+  const { enqueueSnackbar } = useSnackbar()
 
   return (
-    <React.Fragment>
-      <Title text='Create a New Algorithm' />
+    <form onSubmit={formik.handleSubmit}>
+      <Title
+        text={update ? `Edit ${algorithm.name}` : 'Create a New Algorithm'}
+      />
       <Box mt='50px' width={matches ? '70%' : '90%'}>
-        <AlgorithmName />
+        <AlgorithmName formik={formik} disabled={update} />
       </Box>
       <DividerNew />
-      <PublicOrPrivate setIsPublic={setIsPublic} />
+      <PublicOrPrivate formik={formik} />
       <DividerNew />
       <Box width={matches ? '70%' : '90%'}>
-        <PricingSchema />
+        <PricingSchema formik={formik} />
       </Box>
       <DividerNew />
-      <Box width={matches ? '70%' : '90%'}>
-        <Typography variant='h5' color='textPrimary' gutterBottom>
-          Permissions
-        </Typography>
-        <Permissions
-          usersAndRole={usersAndRole}
-          setUsersAndRole={setUsersAndRole}
-        />
-      </Box>
-      <DividerNew />
-      <Box width={matches ? '70%' : '90%'}>
-        <Typography variant='h5' color='textPrimary' gutterBottom>
-          User List
-        </Typography>
-        <UsersList />
-      </Box>
-      <DividerNew />
+      {update && (
+        <React.Fragment>
+          <Box width={matches ? '70%' : '90%'}>
+            <section aria-label='permissions'>
+              <Typography variant='h5' color='textPrimary' gutterBottom>
+                Permissions
+              </Typography>
+              <Permissions
+                users={algorithm.users}
+                algorithmId={algorithm.id}
+                refreshData={refreshData}
+              />
+            </section>
+          </Box>
+          <DividerNew />
+          <Box width={matches ? '70%' : '90%'}>
+            <section aria-label='user list'>
+              <Typography variant='h5' color='textPrimary' gutterBottom>
+                User List
+              </Typography>
+              <Permissions
+                users={algorithm.users}
+                algorithmId={algorithm.id}
+                refreshData={refreshData}
+                userList
+              />
+            </section>
+          </Box>
+          <DividerNew />
+        </React.Fragment>
+      )}
       <Button
         size='large'
         variant='outlined'
-        onClick={() => navigate('/client/my-algorithms/new')}
+        type='submit'
         className={dark === 'dark' ? classes.darkButton : classes.lightButton}
       >
-        Submit algorithm
+        {update ? 'Update algorithm' : 'Submit algorithm'}
       </Button>
-      <Box mb='20px' />
-    </React.Fragment>
+      <Box mb={matches ? '20px' : '70px'} />
+    </form>
   )
 }
 

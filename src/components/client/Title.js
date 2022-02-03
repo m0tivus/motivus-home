@@ -23,8 +23,11 @@ const Title = ({ text }) => {
           <Box paddingRight={2}>
             <Typography
               color='textPrimary'
-              variant='h2'
-              style={{ whiteSpace: matches ? 'nowrap' : 'normal' }}
+              variant='h1'
+              style={{
+                whiteSpace: 'nowrap',
+                fontSize: matches ? '3.1rem' : '2.1rem',
+              }}
             >
               {text}
             </Typography>

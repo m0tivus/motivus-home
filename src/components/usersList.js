@@ -103,8 +103,8 @@ export default function userList({ usersList, setUsersList }) {
                     const touchedCredits = getIn(touched, credits)
                     const errorCredits = getIn(errors, credits)
 
-                    console.log(errorDefault_charge_schema)
-                    console.log(touchedDefault_charge_schema)
+                    //console.log(errorDefault_charge_schema)
+                    //console.log(touchedDefault_charge_schema)
                     return (
                       <Box
                         className={classes.container}

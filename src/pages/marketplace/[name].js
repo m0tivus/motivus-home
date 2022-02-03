@@ -3,6 +3,7 @@ import useUser from '../../hooks/useUser'
 import { Algorithm } from '../../models'
 import AlgorithmTemplate from '../../templates/homeAlgorithm'
 import { transformAlgorithm } from '../../utils'
+import LoadingComponent from '../../components/Loading'
 
 function ClientSideAlgorithm({ params: { name }, ...props }) {
   const { isLoading } = useUser()
@@ -25,16 +26,12 @@ function ClientSideAlgorithm({ params: { name }, ...props }) {
   }, [])
 
   return isLoading || isLoadingAlgorithm ? (
-    <LoadingComponent />
+    <LoadingComponent fullscreen />
   ) : algorithm.id ? (
     <AlgorithmTemplate data={{ algorithm }} {...props} />
   ) : (
     <div>Not found nor authorized</div>
   )
-}
-
-function LoadingComponent() {
-  return <div>Loading...</div>
 }
 
 export default ClientSideAlgorithm

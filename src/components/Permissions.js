@@ -5,6 +5,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { Select, MenuItem, Button, Box } from '@material-ui/core'
 import * as Yup from 'yup'
+import { useSnackbar } from 'notistack'
+import { AlgorithmUser } from '../models'
+import _ from 'lodash'
 
 const debug = false
 
@@ -37,156 +40,182 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const initialValues = {
-  algorithm_users: [
-    {
-      id: Math.random(),
-      name: '',
-      role: '',
-    },
-  ],
-}
-
 const validationSchema = Yup.object().shape({
-  algorithm_users: Yup.array().of(
-    Yup.object().shape({
-      name: Yup.string().required('User name is required'),
-      role: Yup.mixed()
-        .oneOf(['owner', 'manteiner', 'user'])
-        .required('you must choose an option'),
-    }),
-  ),
+  name: Yup.string().required('User name is required'),
+  role: Yup.mixed()
+    .oneOf(['OWNER', 'MAINTAINER', 'user'])
+    .required('you must choose an option'),
 })
 
-export default function Permissions({ usersAndRole, setUsersAndRole }) {
+function Permission({
+  data,
+  algorithmId,
+  creating = false,
+  setShowNew = () => null,
+  refreshData = () => null,
+}) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
 
+  const { enqueueSnackbar } = useSnackbar()
+  const create = async (values) => {
+    enqueueSnackbar('creating permission')
+    try {
+      await AlgorithmUser.create(algorithmId, values)
+      refreshData()
+      setShowNew(false)
+    } catch (e) {
+      enqueueSnackbar('Permission could not be created', { type: 'error' })
+    }
+  }
+  const remove = async () => {
+    enqueueSnackbar('deleting permission')
+    await AlgorithmUser.remove(algorithmId, data.id)
+    refreshData()
+  }
+
+  return (
+    <Formik
+      initialValues={{ ...data, username_or_email: data.user?.email }}
+      validationSchema={validationSchema}
+      onSubmit={() => null}
+      render={({ values, errors, touched, handleChange, handleBlur }) => {
+        return (
+          <Form>
+            <Box
+              className={classes.container}
+              key={values.id}
+              flexDirection={matches ? 'row' : 'column'}
+            >
+              <TextField
+                color='secondary'
+                className={classes.field}
+                margin='normal'
+                label={creating ? 'Username or email' : 'User email'}
+                id='username_or_email'
+                InputProps={{
+                  classes: { root: classes.label },
+                  'aria-label': creating ? 'Username or email' : 'User email',
+                }}
+                inputProps={{
+                  'aria-label': creating ? 'Username or email' : 'User email',
+                }}
+                value={values.username_or_email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+                helperText={touched.name && errors.name ? errors.name : ''}
+                error={Boolean(touched.name && errors.name)}
+              />
+              <TextField
+                color='secondary'
+                className={classes.field}
+                margin='normal'
+                label='Role'
+                name='role'
+                onChange={handleChange}
+                InputLabelProps={{
+                  classes: { root: classes.label },
+                }}
+                value={values.role}
+                onBlur={handleBlur}
+                required
+                select
+                SelectProps={{
+                  MenuProps: { classes: { paper: classes.poper } },
+                  SelectDisplayProps: {
+                    'aria-label': 'role',
+                  },
+                }}
+                helperText={touched.role && errors.role ? errors.role : ''}
+                error={Boolean(touched.role && errors.role)}
+              >
+                <MenuItem value='OWNER'>Owner</MenuItem>
+                <MenuItem value='MAINTAINER'>Maintainer</MenuItem>
+              </TextField>
+              {creating ? (
+                <Button
+                  className={classes.button}
+                  margin='normal'
+                  type='button'
+                  color='secondary'
+                  variant='outlined'
+                  aria-label='submit'
+                  onClick={() => create(values)}
+                >
+                  Submit
+                </Button>
+              ) : (
+                <Button
+                  aria-label='delete'
+                  className={classes.button}
+                  margin='normal'
+                  type='button'
+                  color='secondary'
+                  variant='outlined'
+                  onClick={remove}
+                >
+                  Delete
+                </Button>
+              )}
+            </Box>
+          </Form>
+        )
+      }}
+    />
+  )
+}
+
+export default function Permissions({
+  users,
+  algorithmId,
+  refreshData,
+  userList = false,
+}) {
+  const classes = useStyles()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
+  const [showNew, setShowNew] = useState(false)
+  //console.log(users)
+
+  const _users = userList
+    ? _(users).filter({ role: 'USER' }).value()
+    : _(users)
+        .filter(({ role }) => role === 'OWNER' || role === 'MAINTAINER')
+        .value()
+
   return (
     <React.Fragment>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log('onSubmit', JSON.stringify(values, null, 2))
-        }}
-        render={({ values, errors, touched, handleChange, handleBlur }) => {
-          return (
-            <Form>
-              <FieldArray
-                name='algorithm_users'
-                render={({ remove, push }) => (
-                  <div>
-                    {values.algorithm_users.map((user, index) => {
-                      const name = `algorithm_users.${index}.name`
-                      const touchedName = getIn(touched, name)
-                      const errorName = getIn(errors, name)
-
-                      const role = `algorithm_users.${index}.role`
-                      const touchedRole = getIn(touched, role)
-                      const errorRole = getIn(errors, role)
-
-                      return (
-                        <Box
-                          className={classes.container}
-                          key={user.id}
-                          flexDirection={matches ? 'row' : 'column'}
-                        >
-                          <TextField
-                            color='secondary'
-                            className={classes.field}
-                            margin='normal'
-                            label='User Name'
-                            name={name}
-                            InputLabelProps={{
-                              classes: { root: classes.label },
-                            }}
-                            value={user.name}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            required
-                            helperText={
-                              touchedName && errorName ? errorName : ''
-                            }
-                            error={Boolean(touchedName && errorName)}
-                          />
-                          <TextField
-                            color='secondary'
-                            className={classes.field}
-                            margin='normal'
-                            label='Role'
-                            name={role}
-                            onChange={handleChange}
-                            InputLabelProps={{
-                              classes: { root: classes.label },
-                            }}
-                            value={user.role}
-                            onBlur={handleBlur}
-                            required
-                            select
-                            SelectProps={{
-                              MenuProps: { classes: { paper: classes.poper } },
-                            }}
-                            helperText={
-                              touchedRole && errorRole ? errorRole : ''
-                            }
-                            error={Boolean(touchedRole && errorRole)}
-                          >
-                            <MenuItem value={'owner'}>Owner</MenuItem>
-                            <MenuItem value={'manteiner'}>Manteiner</MenuItem>
-                            <MenuItem value={'user'}>User</MenuItem>
-                          </TextField>
-                          <Button
-                            className={classes.button}
-                            margin='normal'
-                            type='button'
-                            color='secondary'
-                            variant='outlined'
-                            onClick={() => remove(index)}
-                          >
-                            x
-                          </Button>
-                        </Box>
-                      )
-                    })}
-
-                    {debug && (
-                      <>
-                        <pre style={{ textAlign: 'left' }}>
-                          <strong>Values</strong>
-                          <br />
-                          {JSON.stringify(values, null, 2)}
-                        </pre>
-                        <pre style={{ textAlign: 'left' }}>
-                          <strong>Errors</strong>
-                          <br />
-                          {JSON.stringify(errors, null, 2)}
-                        </pre>
-                      </>
-                    )}
-                    <Button
-                      type='button'
-                      variant='outlined'
-                      color='secondary'
-                      size='large'
-                      onClick={() =>
-                        push({
-                          id: Math.random(),
-                          name: '',
-                          role: '',
-                        })
-                      }
-                    >
-                      add User
-                    </Button>
-                  </div>
-                )}
-              />
-            </Form>
-          )
-        }}
-      />
+      {_users.map((u) => (
+        <Permission
+          userList
+          data={u}
+          key={`permission-${u.id}`}
+          algorithmId={algorithmId}
+          refreshData={refreshData}
+        />
+      ))}
+      {showNew ? (
+        <section aria-label='new-permission'>
+          <Permission
+            userList
+            data={{}}
+            algorithmId={algorithmId}
+            creating
+            refreshData={refreshData}
+            setShowNew={setShowNew}
+          />
+        </section>
+      ) : (
+        <Button
+          variant='outlined'
+          color='secondary'
+          onClick={() => setShowNew(true)}
+        >
+          +
+        </Button>
+      )}
     </React.Fragment>
   )
 }
