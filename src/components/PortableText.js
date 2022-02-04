@@ -50,7 +50,7 @@ const serializers = {
   types: {
     codepen: (props) => <Divider></Divider>,
     image: (props) => (
-      <Box width='100%'>
+      <Box width='100%' display='flex' justifyContent='center'>
         <img
           src={props.node.asset.url}
           alt={props.node.asset.originalFilename}
