@@ -7,7 +7,7 @@ import { Select, MenuItem, Button, Box } from '@material-ui/core'
 import * as Yup from 'yup'
 import { useSnackbar } from 'notistack'
 import { AlgorithmUser } from '../models'
-import _ from 'lodash'
+import { filter } from 'lodash'
 
 const debug = false
 
@@ -180,10 +180,10 @@ export default function Permissions({
   //console.log(users)
 
   const _users = userList
-    ? _(users).filter({ role: 'USER' }).value()
-    : _(users)
-        .filter(({ role }) => role === 'OWNER' || role === 'MAINTAINER')
-        .value()
+    ? filter(users, { role: 'USER' })
+    : filter(users, ({ role }) => role === 'OWNER' || role === 'MAINTAINER')
+
+  console.log(_users, userList && 'users')
 
   return (
     <React.Fragment>

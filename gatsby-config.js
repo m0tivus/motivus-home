@@ -11,6 +11,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-sitemap',
+    `gatsby-plugin-lodash`,
     'gatsby-transformer-sharp', // Needed for dynamic images
 
     {
