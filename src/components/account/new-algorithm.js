@@ -97,9 +97,11 @@ function NewAlgorithmForms({ update, algorithm, refreshData }) {
       <DividerNew />
       <PublicOrPrivate formik={formik} />
       <DividerNew />
-      <Box width={matches ? '70%' : '90%'}>
-        <PricingSchema formik={formik} />
-      </Box>
+      <section aria-label='pricing-schema'>
+        <Box width={matches ? '70%' : '90%'}>
+          <PricingSchema formik={formik} />
+        </Box>
+      </section>
       <DividerNew />
       {update && (
         <React.Fragment>

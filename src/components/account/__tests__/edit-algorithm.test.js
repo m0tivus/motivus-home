@@ -102,7 +102,12 @@ describe(`EditAlgorthm`, () => {
     const name = screen.getByRole('textbox', { name: /algorithm name/i })
     const cost = screen.getByRole('spinbutton', { name: /cost/i })
     const permissions = screen.getByRole('region', { name: /permissions/i })
-
+    const pricingSchema = screen.getByRole('region', {
+      name: /pricing\-schema/i,
+    })
+    const chargeSchema = within(pricingSchema).getByRole('button', {
+      name: /charge schema/i,
+    })
     const userList = screen.getByRole('region', { name: /user list/i })
 
     expect(name.value).toBe('new-test')
@@ -111,7 +116,7 @@ describe(`EditAlgorthm`, () => {
     userEvent.type(name, 'new-testa')
     userEvent.type(cost, '180')
     userEvent.click(screen.getByRole('radio', { name: /private/i }))
-    userEvent.click(screen.getByRole('button', { name: /charge schema/i }))
+    userEvent.click(chargeSchema)
     userEvent.click(screen.getByRole('option', { name: /PER EXECUTION/i }))
     userEvent.click(screen.getByRole('button', { name: /update algorithm/i }))
     const permissionUserName = within(permissions).getByRole('textbox', {
@@ -165,6 +170,25 @@ describe(`EditAlgorthm`, () => {
 
     await screen.findByText(/deleting Permission/i)
     expect(remove).toHaveBeenCalledWith(algorithm.id, algorithmUsers[0].id)
+
+    //--------------User list--------------
+
+    const addPermissionUserButton = within(userList).getByRole('button', {
+      name: '+',
+    })
+    userEvent.click(addPermissionUserButton)
+
+    const newUser = screen.getByRole('region', {
+      name: /new\-user/i,
+    })
+    const userListNewUser = within(newUser).getByRole('textbox', {
+      name: /username or email/i,
+    })
+    const newUserChargeSchema = within(newUser).getByRole('button', {
+      name: /charge schema/i,
+    })
+
+    //--------------update button--------------
 
     const updateAlgorithmButton = screen.getByRole('button', {
       name: /update algorithm/i,

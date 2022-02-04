@@ -43,7 +43,10 @@ const useStyles = makeStyles((theme) => ({
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('User name is required'),
   role: Yup.mixed()
-    .oneOf(['OWNER', 'MAINTAINER', 'user'])
+    .oneOf(['OWNER', 'MAINTAINER'])
+    .required('you must choose an option'),
+  charge_schema: Yup.mixed()
+    .oneOf(['PER_EXECUTION', 'PER_TIME'])
     .required('you must choose an option'),
 })
 
@@ -53,6 +56,7 @@ function Permission({
   creating = false,
   setShowNew = () => null,
   refreshData = () => null,
+  userList = false,
 }) {
   const classes = useStyles()
   const theme = useTheme()
@@ -74,7 +78,7 @@ function Permission({
     await AlgorithmUser.remove(algorithmId, data.id)
     refreshData()
   }
-
+  console.log(userList)
   return (
     <Formik
       initialValues={{ ...data, username_or_email: data.user?.email }}
@@ -108,32 +112,65 @@ function Permission({
                 helperText={touched.name && errors.name ? errors.name : ''}
                 error={Boolean(touched.name && errors.name)}
               />
-              <TextField
-                color='secondary'
-                className={classes.field}
-                margin='normal'
-                label='Role'
-                name='role'
-                onChange={handleChange}
-                InputLabelProps={{
-                  classes: { root: classes.label },
-                }}
-                value={values.role}
-                onBlur={handleBlur}
-                required
-                select
-                SelectProps={{
-                  MenuProps: { classes: { paper: classes.poper } },
-                  SelectDisplayProps: {
-                    'aria-label': 'role',
-                  },
-                }}
-                helperText={touched.role && errors.role ? errors.role : ''}
-                error={Boolean(touched.role && errors.role)}
-              >
-                <MenuItem value='OWNER'>Owner</MenuItem>
-                <MenuItem value='MAINTAINER'>Maintainer</MenuItem>
-              </TextField>
+              {userList ? (
+                <TextField
+                  color='secondary'
+                  className={classes.field}
+                  margin='normal'
+                  label='Charge schema'
+                  name='Charge schema'
+                  onChange={handleChange}
+                  InputLabelProps={{
+                    classes: { root: classes.label },
+                  }}
+                  value={values.charge_schema}
+                  onBlur={handleBlur}
+                  required
+                  select
+                  SelectProps={{
+                    MenuProps: { classes: { paper: classes.poper } },
+                    SelectDisplayProps: {
+                      'aria-label': 'charge schema',
+                    },
+                  }}
+                  helperText={
+                    touched.charge_schema && errors.charge_schema
+                      ? errors.charge_schema
+                      : ''
+                  }
+                  error={Boolean(touched.charge_schema && errors.charge_schema)}
+                >
+                  <MenuItem value='PER_EXECUTION'>Per excution</MenuItem>
+                  <MenuItem value='PER_TIME'>per time</MenuItem>
+                </TextField>
+              ) : (
+                <TextField
+                  color='secondary'
+                  className={classes.field}
+                  margin='normal'
+                  label='Role'
+                  name='role'
+                  onChange={handleChange}
+                  InputLabelProps={{
+                    classes: { root: classes.label },
+                  }}
+                  value={values.role}
+                  onBlur={handleBlur}
+                  required
+                  select
+                  SelectProps={{
+                    MenuProps: { classes: { paper: classes.poper } },
+                    SelectDisplayProps: {
+                      'aria-label': 'role',
+                    },
+                  }}
+                  helperText={touched.role && errors.role ? errors.role : ''}
+                  error={Boolean(touched.role && errors.role)}
+                >
+                  <MenuItem value='OWNER'>Owner</MenuItem>
+                  <MenuItem value='MAINTAINER'>Maintainer</MenuItem>
+                </TextField>
+              )}
               {creating ? (
                 <Button
                   className={classes.button}
@@ -189,7 +226,7 @@ export default function Permissions({
     <React.Fragment>
       {_users.map((u) => (
         <Permission
-          userList
+          userList={userList}
           data={u}
           key={`permission-${u.id}`}
           algorithmId={algorithmId}
@@ -197,9 +234,9 @@ export default function Permissions({
         />
       ))}
       {showNew ? (
-        <section aria-label='new-permission'>
+        <section aria-label={userList ? 'new-user' : 'new-permission'}>
           <Permission
-            userList
+            userList={userList}
             data={{}}
             algorithmId={algorithmId}
             creating
