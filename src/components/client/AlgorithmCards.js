@@ -98,7 +98,7 @@ export default function AlgorithmCards({
           onClick={() =>
             variant === 'home'
               ? navigate(`/marketplace/${name}`)
-              : navigate(`/client/marketplace/${name}`)
+              : navigate(`/account/marketplace/${name}`)
           }
         >
           <Box>

@@ -16,6 +16,7 @@ import User from '../contexts/User'
 import PrivateRoute from '../components/account/PrivateRoute'
 import { navigate } from 'gatsby'
 import { SnackbarProvider } from 'notistack'
+import Algorithm from '../templates/algorithm'
 
 function App() {
   const [user, setUser] = React.useState({})
@@ -34,6 +35,10 @@ function App() {
               path='/account/documentation'
             />
             <PrivateRoute component={Marketplace} path='/account/marketplace' />
+            <PrivateRoute
+              component={Algorithm}
+              path='/account/marketplace/:name'
+            />
             <PrivateRoute
               component={MyAlgorithms}
               path='/account/my-algorithms'
