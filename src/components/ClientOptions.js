@@ -15,9 +15,9 @@ import Container from '@material-ui/core/Container'
 import Theme2 from './StyleTheme'
 import { FormatItalic, PlayCircleFilledWhite } from '@material-ui/icons'
 import ContactToggle from '../contexts/ContactToggle'
-import { navigate } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import ReactPlayer from 'react-player/youtube'
-
+import epicRNA from '../../static/rnaEpic.jpg'
 import sharePower from '../../static/sharePower.svg'
 import scientist from '../../static/scientist.svg'
 import script from '../../static/script.svg'
@@ -136,6 +136,34 @@ export default function Intro() {
     <Theme2>
       {/* Hero unit */}
       <Container component='main' className={classes.heroContent}>
+        <Box justifyContent='center' flexDirection='column' display='flex'>
+          {/*<ReactPlayer
+            url='https://youtu.be/-AtRjZfEQ94'
+            width='854px'
+            height='480px'
+            controls
+            config={{
+              youtube: {
+                embedOptions: { controls: 1 },
+              },
+            }}
+          />*/}
+          <Typography variant='h3' color='primary' align='center' gutterBottom>
+            Welcome to the <b>Motivus RNA Epic</b>!
+          </Typography>
+          <Typography variant='body2' align='center' gutterBottom>
+            Hey there! The Motivus RNA Epic is finally underway, people. This is
+            HUGE news! As of January 2022, we are modeling an RNA virus using
+            the Motivus distributed computing infrastructure. Read more about it{' '}
+            <b>
+              <Link to='/blog/welcome-rna-epic'>here</Link>
+            </b>{' '}
+            and become part of this exhilarating venture.
+          </Typography>
+          <img src={epicRNA}></img>
+        </Box>
+        <br />
+        <br />
         <Typography
           variant='h3'
           align='center'
@@ -163,19 +191,6 @@ export default function Intro() {
           With our framework you can process big volumes of data, and also earn
           extra income by renting your computer power to process data.
         </Typography>
-        <Box justifyContent='center' display='flex'>
-          <ReactPlayer
-            url='https://youtu.be/-AtRjZfEQ94'
-            width='854px'
-            height='480px'
-            controls
-            config={{
-              youtube: {
-                embedOptions: { controls: 1 },
-              },
-            }}
-          />
-        </Box>
       </Container>
       {/* End hero unit */}
       <Container maxWidth='lg' component='main'>
