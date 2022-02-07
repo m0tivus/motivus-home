@@ -171,6 +171,28 @@ function Permission({
                   <MenuItem value='MAINTAINER'>Maintainer</MenuItem>
                 </TextField>
               )}
+              {userList && (
+                <TextField
+                  color='secondary'
+                  className={classes.field}
+                  margin='normal'
+                  label={creating ? 'Cost' : 'Cost'}
+                  id='cost'
+                  InputProps={{
+                    classes: { root: classes.label },
+                    'aria-label': creating ? 'Cost' : 'Cost',
+                  }}
+                  inputProps={{
+                    'aria-label': creating ? 'Cost' : 'Cost',
+                  }}
+                  value={values.cost}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
+                  helperText={touched.cost && errors.cost ? errors.cost : ''}
+                  error={Boolean(touched.cost && errors.cost)}
+                />
+              )}
               {creating ? (
                 <Button
                   className={classes.button}

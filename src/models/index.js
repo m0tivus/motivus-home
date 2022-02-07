@@ -31,8 +31,11 @@ export const AlgorithmUser = {
 }
 
 export const Algorithm = {
-  all: () =>
-    axios.get(`${BASE_URL}/api/package_registry/algorithms`).then(dataGetter),
+  myAlgorithms: () => Algorithm.all({ role: 'OWNER' }),
+  all: (params) =>
+    axios
+      .get(`${BASE_URL}/api/package_registry/algorithms`, { params })
+      .then(dataGetter),
   find: (name) =>
     axios
       .get(`${BASE_URL}/api/package_registry/algorithms`, { params: { name } })

@@ -69,7 +69,7 @@ const newAlgorithmUser = {
 }
 
 describe(`EditAlgorthm`, () => {
-  jest.setTimeout(10000)
+  jest.setTimeout(20000)
   it(`renders edit-algorithm`, async () => {
     const get = jest.fn(() => algorithm)
     Algorithm.get.mockImplementation(get)
@@ -186,6 +186,22 @@ describe(`EditAlgorthm`, () => {
     })
     const newUserChargeSchema = within(newUser).getByRole('button', {
       name: /charge schema/i,
+    })
+    const userListNewCost = within(newUser).getByRole('textbox', {
+      name: /cost/i,
+    })
+
+    userEvent.click(userListNewUser)
+    userEvent.type(userListNewUser, 'Fmora')
+
+    userEvent.click(newUserChargeSchema)
+    userEvent.click(screen.getByRole('option', { name: /PER TIME/i }))
+
+    userEvent.click(userListNewCost)
+    userEvent.type(userListNewCost, 20)
+
+    const userListButtonSubmit = within(userList).getByRole('button', {
+      name: /submit/i,
     })
 
     //--------------update button--------------

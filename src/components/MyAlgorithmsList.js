@@ -18,7 +18,7 @@ export default function MyAlgorithms({ variant }) {
   const [algorithms, setAlgorithms] = React.useState([])
 
   const getAlgorithmData = async () => {
-    const algoritms_ = await Algorithm.all()
+    const algoritms_ = await Algorithm.myAlgorithms()
     setAlgorithms(algoritms_.map(transformAlgorithm))
   }
   React.useEffect(() => {
