@@ -69,7 +69,7 @@ const newAlgorithmUser = {
 }
 
 describe(`EditAlgorthm`, () => {
-  jest.setTimeout(20000)
+  jest.setTimeout(25000)
   it(`renders edit-algorithm`, async () => {
     const get = jest.fn(() => algorithm)
     Algorithm.get.mockImplementation(get)

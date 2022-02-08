@@ -9,6 +9,7 @@ import CardButton from './CardButton'
 import { TimeToLeave } from '@material-ui/icons'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import CardMedia from '@material-ui/core/CardMedia'
+import { navigate } from 'gatsby-link'
 
 const useStyles = makeStyles((theme) => ({
   border: {
@@ -50,7 +51,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function MediaCard({ title, abstract, author, date, image }) {
+export default function MediaCard({
+  title,
+  abstract,
+  author,
+  date,
+  image,
+  slug,
+}) {
   const classes = useStyles()
   const theme = useTheme()
   const dark = theme.palette.type
@@ -64,7 +72,10 @@ export default function MediaCard({ title, abstract, author, date, image }) {
     >
       <Card className={classes.root}>
         <CardActionArea>
-          <CardContent className={classes.title}>
+          <CardContent
+            className={classes.title}
+            onClick={() => navigate(`/blog/${slug}`)}
+          >
             <Typography variant='h5' component='h2' color='secondary'>
               {title}
             </Typography>
@@ -98,7 +109,12 @@ export default function MediaCard({ title, abstract, author, date, image }) {
           justifyContent='flex-end'
           width='92.5%'
         >
-          <CardButton arrow={true}>Read Blog</CardButton>
+          <CardButton
+            arrow={true}
+            actionButton={() => navigate(`/blog/${slug}`)}
+          >
+            Read Blog
+          </CardButton>
         </Box>
       </Card>
     </Box>
