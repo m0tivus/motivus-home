@@ -5,7 +5,7 @@ const transformAlgorithm = (a) => {
   const metadata = lastVersion.metadata
   return {
     ...a,
-    publishDate: a.inserted_at,
+    publishDate: lastVersion.inserted_at || a.inserted_at,
     cost: a.cost,
     chargeSchema: a.charge_schema,
     stars: 0,

@@ -13,6 +13,7 @@ import { transformAlgorithm } from '../utils'
 import { Algorithm as AlgorithmModel } from '../models'
 import useUser from '../hooks/useUser'
 import LoadingComponent from '../components/Loading'
+import { formatISO, parseJSON } from 'date-fns'
 
 const AntTabs = withStyles((theme) => ({
   root: {
@@ -132,7 +133,7 @@ export default function Algorithm({ data }) {
         <AlgorithmLinks web={algorithm.web} github={algorithm.github} />
       </Box>
       <AlgorithmCallToAction
-        console={`motivus install ${algorithm.name} template`}
+        console={`algorithm = {"algorithm": "${algorithm.name}", "algorithm_version": "${algorithm.lastVersion?.name}"}`}
       />
       <AntTabs
         value={value}
@@ -153,11 +154,11 @@ export default function Algorithm({ data }) {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Typography variant='h5'>Current</Typography>
-        <Typography variant='body1' gutterBottom>
-          version: c{algorithm.version}____________
-          {algorithm.publishDate}
-        </Typography>
+        <VersionInfo {...algorithm.lastVersion} />
         <Typography variant='h5'>History</Typography>
+        {algorithm.versions.map((v) => (
+          <VersionInfo {...v} key={`vinfo-${v.id}`} />
+        ))}
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Typography variant='h5' gutterBottom>
@@ -194,3 +195,10 @@ function TabPanel(props) {
     </div>
   )
 }
+
+const VersionInfo = ({ name, inserted_at }) => (
+  <Typography variant='body1' gutterBottom>
+    version: v{name}____________
+    {formatISO(parseJSON(inserted_at), { representation: 'date' })}
+  </Typography>
+)

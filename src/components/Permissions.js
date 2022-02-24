@@ -43,10 +43,10 @@ const useStyles = makeStyles((theme) => ({
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('User name is required'),
   role: Yup.mixed()
-    .oneOf(['OWNER', 'MAINTAINER'])
+    .oneOf(['OWNER', 'MAINTAINER', 'USER'])
     .required('you must choose an option'),
   charge_schema: Yup.mixed()
-    .oneOf(['PER_EXECUTION', 'PER_TIME'])
+    .oneOf(['PER_EXECUTION', 'PER_MINUTE'])
     .required('you must choose an option'),
 })
 
@@ -68,6 +68,7 @@ function Permission({
     enqueueSnackbar('creating permission')
     try {
       await AlgorithmUser.create(algorithmId, values)
+      enqueueSnackbar('New user added successfully', { type: 'success' })
       refreshData()
       setShowNew(false)
     } catch (e) {
@@ -75,19 +76,28 @@ function Permission({
     }
   }
   const remove = async () => {
-    enqueueSnackbar('deleting permission')
-    await AlgorithmUser.remove(algorithmId, data.id)
-    refreshData()
+    try {
+      enqueueSnackbar('Deleting Permission')
+      await AlgorithmUser.remove(algorithmId, data.id)
+      refreshData()
+    } catch (e) {
+      enqueueSnackbar('Could not delete permission', { type: 'error' })
+    }
   }
-  console.log(userList)
   return (
     <Formik
-      initialValues={{ ...data, username_or_email: data.user?.email }}
+      initialValues={{
+        ...data,
+        username_or_email: data.user?.email || '',
+        charge_schema: userList ? data.charge_schema || '' : undefined,
+        role: userList ? 'USER' : data.role,
+      }}
       validationSchema={validationSchema}
       onSubmit={() => null}
-      render={({ values, errors, touched, handleChange, handleBlur }) => {
+    >
+      {({ values, errors, touched, handleChange, handleBlur }) => {
         return (
-          <Form>
+          <React.Fragment>
             <Box
               className={classes.container}
               key={values.id}
@@ -119,7 +129,7 @@ function Permission({
                   className={classes.field}
                   margin='normal'
                   label='Charge schema'
-                  name='Charge schema'
+                  name='charge_schema'
                   onChange={handleChange}
                   InputLabelProps={{
                     classes: { root: classes.label },
@@ -141,8 +151,8 @@ function Permission({
                   }
                   error={Boolean(touched.charge_schema && errors.charge_schema)}
                 >
-                  <MenuItem value='PER_EXECUTION'>Per excution</MenuItem>
-                  <MenuItem value='PER_TIME'>per time</MenuItem>
+                  <MenuItem value='PER_EXECUTION'>Per execution</MenuItem>
+                  <MenuItem value='PER_MINUTE'>Per minute</MenuItem>
                 </TextField>
               ) : (
                 <TextField
@@ -177,14 +187,14 @@ function Permission({
                   color='secondary'
                   className={classes.field}
                   margin='normal'
-                  label={creating ? 'Cost' : 'Cost'}
-                  id='cost'
+                  label='Cost'
+                  name='cost'
                   InputProps={{
                     classes: { root: classes.label },
-                    'aria-label': creating ? 'Cost' : 'Cost',
+                    'aria-label': 'Cost',
                   }}
                   inputProps={{
-                    'aria-label': creating ? 'Cost' : 'Cost',
+                    'aria-label': 'Cost',
                   }}
                   value={values.cost}
                   onChange={handleChange}
@@ -220,10 +230,10 @@ function Permission({
                 </Button>
               )}
             </Box>
-          </Form>
+          </React.Fragment>
         )
       }}
-    />
+    </Formik>
   )
 }
 
@@ -237,13 +247,10 @@ export default function Permissions({
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
   const [showNew, setShowNew] = useState(false)
-  //console.log(users)
 
   const _users = userList
     ? filter(users, { role: 'USER' })
     : filter(users, ({ role }) => role === 'OWNER' || role === 'MAINTAINER')
-
-  console.log(_users, userList && 'users')
 
   return (
     <React.Fragment>

@@ -68,9 +68,27 @@ const newAlgorithmUser = {
   user_id: 3,
 }
 
-describe(`EditAlgorthm`, () => {
-  jest.setTimeout(25000)
-  it(`renders edit-algorithm`, async () => {
+const newUserListUser = {
+  algorithm_id: 1,
+  charge_schema: 'PER_MINUTE',
+  cost: 20,
+  id: 8,
+  role: 'USER',
+  user: {
+    avatar_url: 'https://avatars.githubusercontent.com/u/1316798?v=4',
+    email: 'sebastian@motivus.cl',
+    id: 4,
+    name: 'Sebastián Etchegaray',
+    provider: 'github',
+    username: 'setchegaray',
+    uuid: 'bed6-ff61-48d1-11b9751b-46aea6f99c2a',
+  },
+  user_id: 4,
+}
+
+jest.setTimeout(25000)
+describe('EditAlgorthm', () => {
+  it('renders edit-algorithm', async () => {
     const get = jest.fn(() => algorithm)
     Algorithm.get.mockImplementation(get)
     const update = jest.fn()
@@ -79,7 +97,8 @@ describe(`EditAlgorthm`, () => {
       .fn()
       .mockImplementationOnce(() => algorithmUsers)
       .mockImplementationOnce(() => [...algorithmUsers, newAlgorithmUser])
-      .mockImplementation(() => algorithmUsers)
+      .mockImplementationOnce(() => [newAlgorithmUser])
+      .mockImplementationOnce(() => [newAlgorithmUser, newUserListUser])
     AlgorithmUser.all.mockImplementation(all)
     const create = jest
       .fn()
@@ -87,6 +106,7 @@ describe(`EditAlgorthm`, () => {
         throw '404'
       })
       .mockImplementationOnce(() => newAlgorithmUser)
+      .mockImplementationOnce(() => newUserListUser)
     AlgorithmUser.create.mockImplementation(create)
     const remove = jest.fn()
     AlgorithmUser.remove.mockImplementation(remove)
@@ -168,7 +188,7 @@ describe(`EditAlgorthm`, () => {
     ).getAllByRole('button', { name: /delete/i })
     userEvent.click(removeCristianButton)
 
-    await screen.findByText(/deleting Permission/i)
+    // await screen.findByText(/deleting permission/i)
     expect(remove).toHaveBeenCalledWith(algorithm.id, algorithmUsers[0].id)
 
     //--------------User list--------------
@@ -192,17 +212,29 @@ describe(`EditAlgorthm`, () => {
     })
 
     userEvent.click(userListNewUser)
-    userEvent.type(userListNewUser, 'Fmora')
+    userEvent.type(userListNewUser, 'setchegaray')
 
     userEvent.click(newUserChargeSchema)
-    userEvent.click(screen.getByRole('option', { name: /PER TIME/i }))
+    userEvent.click(screen.getByRole('option', { name: /PER MINUTE/i }))
 
     userEvent.click(userListNewCost)
-    userEvent.type(userListNewCost, 20)
+    userEvent.type(userListNewCost, '20')
 
     const userListButtonSubmit = within(userList).getByRole('button', {
       name: /submit/i,
     })
+
+    userEvent.click(userListButtonSubmit)
+    // await screen.findByText(/new user added/)
+
+    expect(create).toHaveBeenCalledWith(algorithm.id, {
+      username_or_email: 'setchegaray',
+      role: 'USER',
+      charge_schema: 'PER_MINUTE',
+      cost: '20',
+    })
+
+    await screen.findByDisplayValue('sebastian@motivus.cl')
 
     //--------------update button--------------
 

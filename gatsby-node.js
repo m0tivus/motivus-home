@@ -26,7 +26,9 @@ exports.sourceNodes = async ({
 }) => {
   try {
     const _algorithms = await axios.get(
-      'http://127.0.0.1:4000/api/package_registry/algorithms/',
+      `${
+        process.env.GATSBY_MARKETPLACE_API_URL || 'http://127.0.0.1:4000'
+      }/api/package_registry/algorithms/`,
     )
     const algorithms = _algorithms.data.data.map(transformAlgorithm)
     console.log(algorithms)

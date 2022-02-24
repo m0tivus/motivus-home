@@ -8,6 +8,7 @@ import { mdiGoogle } from '@mdi/js'
 import { navigate } from 'gatsby-link'
 import Div100vh from 'react-div-100vh'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { API_BASE_URL } from '../../models'
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -77,7 +78,7 @@ export default function Login({ open, setOpen }) {
             </Box>
             <Box display='flex' width='100%' justifyContent='flex-end'>
               <IconButton
-                onClick={() => navigate('http://localhost:4000/auth/github')}
+                onClick={() => navigate(`${API_BASE_URL}/auth/github`)}
                 color='secondary'
                 aria-label='github logIn'
                 size='large'
@@ -85,7 +86,7 @@ export default function Login({ open, setOpen }) {
                 <Icon path={mdiGithub} size={matches ? 4 : 3} />
               </IconButton>
               <IconButton
-                onClick={() => navigate('http://localhost:4000/auth/google')}
+                onClick={() => navigate(`${API_BASE_URL}/auth/google`)}
                 color='secondary'
                 aria-label='google logIn'
                 size='large'

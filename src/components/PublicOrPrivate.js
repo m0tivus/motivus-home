@@ -33,8 +33,8 @@ export default function PublicOrPrivate({ formik }) {
         formik.setFieldValue('is_public', e.target.value === 'true')
       }
     >
-      <FormControlLabel value={true} control={<Radio />} label='public' />
-      <FormControlLabel value={false} control={<Radio />} label='private' />
+      <FormControlLabel value={true} control={<Radio />} label='Public' />
+      <FormControlLabel value={false} control={<Radio />} label='Private' />
     </RadioGroup>
   )
 }

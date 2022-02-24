@@ -95,8 +95,8 @@ export default function AlgorithmFilter({ data, variant }) {
                   ? 'center'
                   : 'space-evenly'
                 : matches
-                ? 'flex-start'
-                : 'space-evenly'
+                  ? 'flex-start'
+                  : 'space-evenly'
             }
             alignItems={
               variant === 'home' ? 'center' : matches ? 'center' : 'flex-start'
@@ -120,7 +120,7 @@ export default function AlgorithmFilter({ data, variant }) {
               </Typography>
             </Box>
             <Box display='flex' alignContent='flex-end'>
-              <ComboBox data={data} />
+              {/* <ComboBox data={data} /> */}
             </Box>
           </Box>
         </Box>

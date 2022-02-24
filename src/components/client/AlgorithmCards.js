@@ -8,6 +8,7 @@ import albaImg from '../../images/alba.png'
 import motivusImg from '../../images/gatsby-icon.png'
 import { navigate } from 'gatsby'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { formatDistance, formatISO, parseJSON } from 'date-fns'
 
 const useStyles = makeStyles((theme) => ({
   backgroundDark: {
@@ -123,10 +124,15 @@ export default function AlgorithmCards({
                     alignItems='center'
                     mt='5px'
                   >
-                    {<img src={image}></img>}
+                    {<img src={image}></img>}&nbsp;
                     <Typography variant='body1' className={classes.info}>
-                      <span className={classes.author}>{author}</span> published{' '}
-                      <span className={classes.publishDate}>{publishDate}</span>
+                      <span className={classes.author}>{author}&nbsp;</span>
+                      published{' '}
+                      <span className={classes.publishDate}>
+                        {formatDistance(parseJSON(publishDate), new Date(), {
+                          addSuffix: true,
+                        })}
+                      </span>
                     </Typography>
                   </Box>
                 </Box>
