@@ -33,7 +33,7 @@ export default function AlgorithmTemplate({ name, ...props }) {
   ) : (
     <Layout {...props}>
       <Title text={algorithm.name} />
-      <AlgorithmRender data={{ algorithm }} {...props} />
+      <AlgorithmRender data={{ algorithm }} {...props} isClientView={true} />
     </Layout>
   )
 }

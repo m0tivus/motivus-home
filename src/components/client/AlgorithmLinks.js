@@ -24,9 +24,9 @@ export default function AlgorithmLinks({ web, github }) {
   const theme = useTheme()
   const dark = theme.palette.type
   return (
-    <Box display='flex' flexDirection='column' alignItems='flex-end' pr='30px'>
+    <Box display='flex' flexDirection='column' alignItems='flex-end'  >
       <a href={web} className={classes.a} target='_blank'>
-        <Box display='flex' flexDirection='row' alignItems='center'>
+        <Box display='flex' flexDirection='row'  alignItems='center' >
           <HomeIcon color='secondary' />
           <Typography variant='h5' className={classes.linkStyle}>
             Homepage
@@ -39,7 +39,7 @@ export default function AlgorithmLinks({ web, github }) {
         </Box>
       </a>
       <a href={github} className={classes.a} target='_blank'>
-        <Box display='flex' flexDirection='row' alignItems='center' mt='10px'>
+        <Box display='flex' flexDirection='row'  alignItems='center' mt='10px' >
           <GitHubIcon color='secondary' />
           <Typography variant='h5' className={classes.linkStyle}>
             Github

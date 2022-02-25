@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   code: {
     fontFamily: 'Roboto Mono',
-    fontSize: '1.7rem',
+    fontSize: '1.25rem',
   },
   icon: {
     fill: theme.palette.secondary.main,
@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontSize: '1.7rem',
-    marginBottom: '5px',
     color: theme.palette.calypso.main,
   },
 }))
@@ -40,9 +39,10 @@ export default function AlgorithmCallToAction({ console }) {
   const dark = theme.palette.type
   return (
     <React.Fragment>
-      <Typography variant='h2' className={classes.title}>
-        Get started!
+      <Typography variant='h3' className={classes.title} gutterBottom>
+      Add this line in your driver and <b><i>Get started!</i></b>
       </Typography>
+      
       <Box
         className={
           dark === 'dark' ? classes.backgroundDark : classes.backgroundLight

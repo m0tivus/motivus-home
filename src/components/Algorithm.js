@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Button, Typography } from '@material-ui/core'
 import StarBadge from '../components/client/StarBadge'
 import AlgorithmLinks from '../components/client/AlgorithmLinks'
 import AlgorithmCallToAction from '../components/client/AlgorithmCallToAction'
@@ -14,6 +14,7 @@ import { Algorithm as AlgorithmModel } from '../models'
 import useUser from '../hooks/useUser'
 import LoadingComponent from '../components/Loading'
 import { formatISO, parseJSON } from 'date-fns'
+import { navigate } from 'gatsby-link'
 
 const AntTabs = withStyles((theme) => ({
   root: {
@@ -69,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Algorithm({ data }) {
+export default function Algorithm({ data, isClientView=false }) {
   const isBrowser = typeof window !== 'undefined'
   const classes = useStyles()
   const theme = useTheme()
@@ -109,17 +110,19 @@ export default function Algorithm({ data }) {
         display='flex'
         flexDirection={matches ? 'row' : 'column'}
         height={matches ? 'auto' : '110px'}
-        justifyContent={matches ? 'flex-start' : 'space-between'}
+        justifyContent='space-between'
         mt='10px'
+        
       >
         <Typography variant='h3' color='primary' className={classes.subtitle}>
-          {algorithm.author} | {algorithm.publishDate}
+          {algorithm.author} |  {formatISO(parseJSON(algorithm.publishDate), { representation: 'date' })}
         </Typography>
         <StarBadge stars={algorithm.stars} />
       </Box>
       <Box
         display='flex'
         flexDirection={matches ? 'row' : 'column'}
+        justifyContent='space-between'
         mt='20px'
         mb='20px'
       >
@@ -135,6 +138,11 @@ export default function Algorithm({ data }) {
       <AlgorithmCallToAction
         console={`algorithm = {"algorithm": "${algorithm.name}", "algorithm_version": "${algorithm.lastVersion?.name}"}`}
       />
+      <Box display="flex" alignItems="center" mt="10px">
+        <Typography variant="body2">For more information</Typography>
+        <Button color="secondary" onClick={ isClientView ? ()=> navigate("/account/documentation") : ()=> navigate("/documentation")}>Read here</Button>
+       
+      </Box>
       <AntTabs
         value={value}
         onChange={handleChange}
