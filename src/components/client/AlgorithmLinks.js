@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function AlgorithmLinks({ web, github }) {
+export default function AlgorithmLinks({ web, github, matches=false }) {
   const classes = useStyles()
   const theme = useTheme()
   const dark = theme.palette.type
   return (
-    <Box display='flex' flexDirection='column' alignItems='flex-end'  >
+    <Box display='flex' flexDirection='column' alignItems={matches ? 'flex-end' : 'flex-start'}  >
       <a href={web} className={classes.a} target='_blank'>
         <Box display='flex' flexDirection='row'  alignItems='center' >
           <HomeIcon color='secondary' />

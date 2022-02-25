@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function AlgorithmCallToAction({ console }) {
+export default function AlgorithmCallToAction({ console}) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
@@ -70,10 +70,10 @@ export default function AlgorithmCallToAction({ console }) {
           <Typography variant='h3' className={classes.code}>
             {console}
           </Typography>
-          <FileCopyOutlinedIcon
+          {matches && <FileCopyOutlinedIcon
             className={classes.icon}
             onClick={() => navigator.clipboard.writeText(console)}
-          />
+          />}
         </Box>
       </Box>
     </React.Fragment>

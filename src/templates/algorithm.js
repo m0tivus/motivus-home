@@ -7,8 +7,14 @@ import { transformAlgorithm } from '../utils'
 import LoadingComponent from '../components/Loading'
 import useUser from '../hooks/useUser'
 import { Algorithm } from '../models'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { useTheme } from '@material-ui/core/styles'
+import { Box } from '@material-ui/core'
 
 export default function AlgorithmTemplate({ name, ...props }) {
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
+
   const { isLoading } = useUser()
   const [isLoadingAlgorithm, setIsLoadingAlgorithm] = useState(true)
 
@@ -32,8 +38,10 @@ export default function AlgorithmTemplate({ name, ...props }) {
     <LoadingComponent fullscreen />
   ) : (
     <Layout {...props}>
+      <Box px={matches ? "0px" : "15px"} >
       <Title text={algorithm.name} />
       <AlgorithmRender data={{ algorithm }} {...props} isClientView={true} />
+      </Box> 
     </Layout>
   )
 }

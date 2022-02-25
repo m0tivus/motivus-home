@@ -8,6 +8,7 @@ import Theme2 from '../StyleTheme'
 import AppBar from '@material-ui/core/AppBar'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import Button from '@material-ui/core/Button'
+import { navigate } from 'gatsby-link'
 
 const styles = (Theme) => ({
   grow: {

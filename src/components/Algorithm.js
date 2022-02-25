@@ -108,16 +108,18 @@ export default function Algorithm({ data, isClientView=false }) {
     <React.Fragment>
       <Box
         display='flex'
-        flexDirection={matches ? 'row' : 'column'}
-        height={matches ? 'auto' : '110px'}
-        justifyContent='space-between'
+        flexDirection={matches ? 'row' : 'column-reverse'}
+        //height={matches ? 'auto' : '80px'}
+        justifyContent= 'space-between' 
         mt='10px'
+        //border="1px solid red"
+        
         
       >
         <Typography variant='h3' color='primary' className={classes.subtitle}>
           {algorithm.author} |  {formatISO(parseJSON(algorithm.publishDate), { representation: 'date' })}
         </Typography>
-        <StarBadge stars={algorithm.stars} />
+        {matches && <StarBadge stars={algorithm.stars} />}
       </Box>
       <Box
         display='flex'
@@ -133,9 +135,10 @@ export default function Algorithm({ data, isClientView=false }) {
         >
           {algorithm.description}
         </Typography>
-        <AlgorithmLinks web={algorithm.web} github={algorithm.github} />
+        <AlgorithmLinks web={algorithm.web} github={algorithm.github} matches={matches} />
       </Box>
       <AlgorithmCallToAction
+        matches={matches}
         console={`algorithm = {"algorithm": "${algorithm.name}", "algorithm_version": "${algorithm.lastVersion?.name}"}`}
       />
       <Box display="flex" alignItems="center" mt="10px">
