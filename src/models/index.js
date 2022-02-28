@@ -59,3 +59,16 @@ export const Algorithm = {
       .then(dataGetter),
   update: () => null,
 }
+
+export const ApplicationToken = {
+  all: (params) =>
+    axios
+      .get(`${API_BASE_URL}/api/account/application_tokens`, { params })
+      .then(dataGetter),
+  create: (application_token) =>
+    axios
+      .post(`${API_BASE_URL}/api/account/application_tokens`, {
+        application_token,
+      })
+      .then(dataGetter),
+}
