@@ -1,4 +1,3 @@
-export const Documentation = `
 # Try Motivus
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 Pellentesque eu ultrices nisi. Phasellus sed tristique est, 
@@ -67,4 +66,3 @@ convallis lorem ut, faucibus leo. Donec quis molestie ante.
 | a | b | c | d | f | g |
 | - | - | - | - | - | - |
 | asda | asdasd | asdas | asdasd | aasdasd | adasd |
-`

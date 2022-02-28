@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { Documentation } from '../components/DocumentationMarkdown'
+import Documentation from '../components/DocumentationMarkdown.md'
 import { Box, Divider, Typography } from '@material-ui/core'
 import { classicNameResolver } from 'typescript'
 
