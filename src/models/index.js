@@ -72,3 +72,15 @@ export const ApplicationToken = {
       })
       .then(dataGetter),
 }
+export const PersonalAccessToken = {
+  all: (params) =>
+    axios
+      .get(`${API_BASE_URL}/api/account/personal_access_tokens`, { params })
+      .then(dataGetter),
+  create: (personal_access_token) =>
+    axios
+      .post(`${API_BASE_URL}/api/account/personal_access_tokens`, {
+        personal_access_token,
+      })
+      .then(dataGetter),
+}

@@ -27,7 +27,7 @@ const benefits = [
   {
     title: 'Modular Development',
     description:
-      "Create complex solutions using sets of different algorithms, whether yours or someone else's.",
+      'Create complex solutions using sets of different algorithms, whether you or someone else\'s.',
   },
 ]
 

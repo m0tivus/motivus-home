@@ -36,7 +36,7 @@ export default function ApplicationTokens({}) {
         justifyContent='space-between'
       >
         <Typography variant='body1' gutterBottom>
-          create, edit, and check the status of yours algoritms
+          create, edit, and check the status of your algoritms
         </Typography>
 
         <Button

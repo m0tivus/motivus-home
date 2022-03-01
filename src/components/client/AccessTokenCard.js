@@ -97,7 +97,7 @@ export default function AccesTokenCard({
                     mt='5px'
                   >
                     <Typography variant='body1' className={classes.createDate}>
-                      Create on {publishDate}
+                      Created {publishDate}
                     </Typography>
                   </Box>
                 </Box>
@@ -117,13 +117,10 @@ export default function AccesTokenCard({
               justifyContent='center'
               mb='5px'
             ></Box>
-            <Box display='flex' flexDirection='column' alignItems='flex-end'>
+            <Box display='flex' flexDirection='column' alignItems='center'>
               <Button variant='outlined' color='secondary'>
                 Delete
               </Button>
-              <Typography variant='body1' className={classes.lastused}>
-                Last used {lastused}
-              </Typography>
             </Box>
           </Box>
         </Box>
