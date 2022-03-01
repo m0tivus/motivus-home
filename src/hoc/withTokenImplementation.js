@@ -13,6 +13,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useSnackbar } from 'notistack'
+import { values } from 'lodash-es'
 
 const useStyles = makeStyles((theme) => ({
   createTokenDark: {
@@ -109,10 +110,13 @@ const withTokenImplementation = ({
       </Box>
       {tokens.map((t) => (
         <AccesTokenCard
+          model={model}
           key={`${sectionName}-${t.id}`}
           name={t.description}
           tokenId={t.value}
+          id={t.id}
           publishDate={t.inserted_at}
+          refreshData={getTokens}
         />
       ))}
       <Dialog

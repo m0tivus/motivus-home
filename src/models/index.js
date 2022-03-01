@@ -71,6 +71,12 @@ export const ApplicationToken = {
         application_token,
       })
       .then(dataGetter),
+  remove: (application_tokens_id) =>
+    axios
+      .delete(
+        `${API_BASE_URL}/api/account/application_tokens/${application_tokens_id}`,
+      )
+      .then(dataGetter),
 }
 export const PersonalAccessToken = {
   all: (params) =>
@@ -82,5 +88,11 @@ export const PersonalAccessToken = {
       .post(`${API_BASE_URL}/api/account/personal_access_tokens`, {
         personal_access_token,
       })
+      .then(dataGetter),
+  remove: (personal_access_token_id) =>
+    axios
+      .delete(
+        `${API_BASE_URL}/api/account/personal_access_tokens/${personal_access_token_id}`,
+      )
       .then(dataGetter),
 }
