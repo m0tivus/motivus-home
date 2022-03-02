@@ -9,7 +9,7 @@ The task definition references an *algorithm*; the code that each worker execute
 
 *Algorithms* can be obtained directly from the *Motivus Marketplace* or compiled from source. We currently support algorithm compilation for programs written in C, C++ and Rust programming languages.
 
-You can also upload your own algorithm to *Motivus Marketplace* for other people to use it on their drivers.
+> You can also upload your own algorithm to *Motivus Marketplace* for other people to use it on their drivers.
 
 # Writing a Driver program
 To write and run your driver program, you'll need to provide the following environment:
@@ -70,6 +70,7 @@ $ python driver.py
 ```
 
 ## Task definition
+To define your task use a dict, this dict can declare several keys:
 |key|value type|description|required|
 |---|----------|-----------|--------|
 |`algorithm`|string|The algorithm name as published on *Motivus Marketplace*|yes|
@@ -82,7 +83,39 @@ $ python driver.py
 |`loader_path`|string|Where should the client look for the algorithm `.js` generated file.|required when no `algorithm` and `algorithm_version` are used.|
 |`data_link`|string|A URL with the algorithm default starting filesystem. When using a filesystem during algorithm compilation this file is generated as a `.data.zip` file.|required only for C\C++ algorithms.|
 
+# Writing Your Own Algorithm
+To write, test and distribute your algorithm using the *Motivus Marketplace*, you'll need to provide the following environment:
+* Docker
+    * Your user must belong to the `docker` group.
+* Python = 3.7 | 3.8 | 3.9
+    * We recommend using a `conda` environment.
+* [*Motivus CLI tool* and *Motivus Client library*](https://pypi.org/project/motivus/): `$ pip install motivus`
+* A *Motivus Personal Access Token*
 
+
+## Steps
+
+1. Create a `motivus.yml` file, declaring some metadata of your algorithm for the framework to use.
+```yaml
+---
+version: 1.0
+
+build:
+  compiler: mvrc
+  source: ./
+  filesystem: ./
+
+package:
+  name: kmeans
+  version: 0.0.1
+  metadata:
+      short_description: "K-means clustering"
+      license: "MIT"
+      author: "Motivus"
+      url: "https://motivus.cl/"
+      upstream_url: "https://github.com/m0tivus/kmeans-rust"
+      long_description: "k-means clustering is a method of vector quantization, originally from signal ..."
+```
 # Compiling
 
 ## C/C++ Compilation
