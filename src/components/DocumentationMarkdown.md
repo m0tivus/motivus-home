@@ -102,8 +102,8 @@ version: 1.0
 
 build:
   compiler: mvrc
-  source: ./
-  filesystem: ./
+  source: .
+  filesystem: .
 
 package:
   name: kmeans
