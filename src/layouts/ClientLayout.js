@@ -25,11 +25,13 @@ import LightTheme from './LightTheme'
 //import SocialMedia from './SocialMedia'
 //import { set } from 'lodash'
 //import ContactToggle from '../contexts/ContactToggle'
-import { SnackbarProvider } from 'notistack'
+
 import { Box } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Header from '../components/client/Header'
 import MobilNav from '../components/client/mobileNav'
+
+const windowGlobal = typeof window !== 'undefined' && window
 
 const useStyles = makeStyles((theme) => ({
   webContent: {
@@ -51,42 +53,41 @@ const Layout = ({ children, ...props }) => {
   const classes = useStyles()
   const matches = useMediaQuery(theme.breakpoints.down('md'))
   const [darkState, setDarkState] = React.useState(
-    localStorage.getItem('themeColor') === 'dark',
+    windowGlobal?.localStorage?.getItem('themeColor') === 'dark',
   )
 
   useEffect(() => {
-    localStorage.setItem('themeColor', darkState ? 'dark' : 'light')
+    windowGlobal?.localStorage?.setItem(
+      'themeColor',
+      darkState ? 'dark' : 'light',
+    )
   }, [darkState])
 
   const Theme = darkState ? DarkTheme : LightTheme
 
   return (
-    <SnackbarProvider
-      classes={{ variantInfo: { backgroundColor: theme.palette.primary.main } }}
-    >
-      <Theme>
-        <CssBaseline></CssBaseline>
-        {matches ? (
-          <MobilNav />
-        ) : (
-          <Header setDarkState={setDarkState} darkState={darkState} />
-        )}
+    <Theme>
+      <CssBaseline></CssBaseline>
+      {matches ? (
+        <MobilNav />
+      ) : (
+        <Header setDarkState={setDarkState} darkState={darkState} />
+      )}
 
-        <Box>
-          <div
-            style={{
-              margin: '0 auto',
-            }}
-          >
-            {matches ? (
-              <main className={classes.mobileContent}>{children}</main>
-            ) : (
-              <main className={classes.webContent}>{children}</main>
-            )}
-          </div>
-        </Box>
-      </Theme>
-    </SnackbarProvider>
+      <Box>
+        <div
+          style={{
+            margin: '0 auto',
+          }}
+        >
+          {matches ? (
+            <main className={classes.mobileContent}>{children}</main>
+          ) : (
+            <main className={classes.webContent}>{children}</main>
+          )}
+        </div>
+      </Box>
+    </Theme>
   )
 }
 

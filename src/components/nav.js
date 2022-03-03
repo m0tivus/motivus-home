@@ -1,6 +1,7 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import { Box, Fade } from '@material-ui/core'
+
 import {
   navItemver,
   activeNavItemver,
@@ -8,6 +9,7 @@ import {
   navListver,
   navhor,
   navListhor,
+  navLihor,
   navItemhor,
   activeNavItemhor,
 } from '../styles/nav.module.css'
@@ -16,9 +18,10 @@ import ContactUsDrawer from './ContactUsDrawer'
 
 const routes = [
   { name: 'HOME', route: '/', partialy: false },
-  { name: 'SOFTWARE FACTORY', route: '/softwarefactory', partialy: false },
+  { name: 'MARKETPLACE', route: '/marketplace', partialy: true },
   { name: 'ABOUT', route: '/about', partialy: false },
   { name: 'BLOG', route: '/blog', partialy: true },
+  { name: 'DOCUMENTATION', route: '/documentation/', partialy: false },
   /*{ name: 'CONTACT US', route: '/contact', partialy: false },*/
 ]
 
@@ -75,7 +78,7 @@ const Nav = ({ openContact, setOpenContact, ...props }) => {
         <nav className={navhor}>
           <ul className={navListhor}>
             {routes.map(({ name, route, partialy }) => (
-              <li>
+              <li className={navLihor}>
                 <Link
                   className={navItemhor}
                   activeClassName={activeNavItemhor}
@@ -86,7 +89,7 @@ const Nav = ({ openContact, setOpenContact, ...props }) => {
                 </Link>
               </li>
             ))}
-            <li>
+            <li className={navLihor}>
               <div onClick={openDrawer} className={navItemhor}>
                 CONTACT US
               </div>

@@ -20,6 +20,7 @@ export default function SocialMedia() {
       justifyContent='flex-end'
       flexDirection='column'
       alignItems='center'
+      zIndex='1'
     >
       <Box className={benchmarkAnimation} boxShadow={0}>
         <img alt='benchmarkStatus' src={benchmark} width='100px'></img>

@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import { dark } from '@material-ui/core/styles/createPalette'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { typography } from './BaseTheme'
 
-const theme2 = createMuiTheme({
+const themeLight = createTheme({
   typography,
   palette: {
     type: 'light',
@@ -23,6 +22,10 @@ const theme2 = createMuiTheme({
       contrastText: '#fff',
     },
 
+    calypso: {
+      main: '#6AB8B8',
+    },
+
     background: {
       paper: '#FFFFFF',
       headerBackground: '#2C2771',
@@ -34,6 +37,7 @@ const theme2 = createMuiTheme({
       langSelectorTexture: 'radial-gradient(#000 0.1px, #fff 1px)',
       langSelectorFade:
         'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 95%, rgba(255,255,255,1) 100%)',
+      inputBackground: '#E4E4E4',
     },
 
     text: {
@@ -68,12 +72,12 @@ const theme2 = createMuiTheme({
   },
 })
 
-const Theme2 = ({ children }) => {
-  return <ThemeProvider theme={theme2}>{children}</ThemeProvider>
+const ThemeL = ({ children }) => {
+  return <ThemeProvider theme={themeLight}>{children}</ThemeProvider>
 }
 
-Theme2.propTypes = {
+ThemeL.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Theme2
+export default ThemeL

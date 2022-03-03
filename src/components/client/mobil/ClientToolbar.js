@@ -5,7 +5,8 @@ import MenuIcon from '@material-ui/icons/Menu'
 import Toolbar from '@material-ui/core/Toolbar'
 import { Box, Typography } from '@material-ui/core'
 import AppBar from '@material-ui/core/AppBar'
-import BottomNavigation from '@material-ui/core/BottomNavigation'
+import Button from '@material-ui/core/Button'
+import { navigate } from 'gatsby-link'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -18,12 +19,18 @@ const useStyles = makeStyles((theme) => ({
   },
 
   appBar: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.primary.dark,
     position: 'static',
   },
 
   menuButton: {
     left: '0px',
+  },
+
+  loginButton: {
+    borderRadius: '0px',
+    height: '30px',
+    marginLeft: '20px',
   },
 }))
 
@@ -44,7 +51,16 @@ export default function ButtonAppBar({ openDrawerHandler }) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography>Motivus | chuijse</Typography>
+            <Typography>Motivus </Typography>
+            <Button
+              variant='outlined'
+              color='secondary'
+              className={classes.loginButton}
+              onClick={() => navigate('/')}
+              
+            >
+              logout
+            </Button>
           </Toolbar>
         </AppBar>
       </Box>

@@ -2,12 +2,13 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
-import logo from '../../../public/logoBeta.svg'
 import Divider from '@material-ui/core/Divider'
 import Nav from './Nav'
 import Switch from '@material-ui/core/Switch'
 import Sun from '@material-ui/icons/Brightness5'
 import Moon from '@material-ui/icons/Brightness2Outlined'
+import User from '../../contexts/User'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -32,12 +33,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+function logout() {
+  if (window.localStorage) {
+    window.localStorage.deleteItem('token')
+  }
+  navigate('/')
+}
+
 export default function Header({ darkState, setDarkState }) {
   const classes = useStyles()
 
   const handleChange = (event) => {
     setDarkState(event.target.checked)
   }
+
+  const { user } = React.useContext(User)
 
   return (
     <div className={classes.nav}>
@@ -52,14 +62,14 @@ export default function Header({ darkState, setDarkState }) {
         justifyContent='space-between'
       >
         <Box>
-          <img alt='logoMotivus' src={logo} width='300px'></img>
+          <img alt='logoMotivus' src='/logoBeta.svg' width='300px'></img>
           <Box marginTop='-35px' marginBottom='25px'>
             <Typography
               variant='h4'
               color='textPrimary'
               className={classes.textColor}
             >
-              Cristian Huijse
+              {user.name}
             </Typography>
           </Box>
           <Divider className={classes.divider} />
@@ -68,16 +78,33 @@ export default function Header({ darkState, setDarkState }) {
           </Box>
         </Box>
 
-        <Box display='flex' alignItems='center' marginBottom='20px'>
-          <Sun className={classes.iconColor} />
-          <Switch
-            checked={darkState}
-            onChange={handleChange}
-            color='primary'
-            name='checkedA'
-            inputProps={{ 'aria-label': 'primary checkbox' }}
-          />
-          <Moon color='primary' />
+        <Box
+          display='flex'
+          flexDirection='row'
+          //border='1px solid red'
+          justifyContent='space-between'
+          mr='25px'
+        >
+          <Box display='flex' alignItems='center'>
+            <Sun className={classes.iconColor} />
+            <Switch
+              checked={darkState}
+              onChange={handleChange}
+              color='primary'
+              name='checkedA'
+              inputProps={{ 'aria-label': 'primary checkbox' }}
+            />
+            <Moon color='primary' />
+          </Box>
+          <Button
+            variant='outlined'
+            color='secondary'
+            size='large'
+            className={classes.loginButton}
+            onClick={logout}
+          >
+            logout
+          </Button>
         </Box>
       </Box>
     </div>

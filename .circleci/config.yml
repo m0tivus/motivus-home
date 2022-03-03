@@ -4,7 +4,9 @@ orbs:
 
 jobs:
   build:
-    executor: node/default
+    executor:
+      name: node/default
+      tag: '16.0'
     steps:
       - checkout
       - run: yarn install

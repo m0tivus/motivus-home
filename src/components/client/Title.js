@@ -1,8 +1,8 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import { Box } from '@material-ui/core'
-import { classicNameResolver } from 'typescript'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles({
   divider: {
@@ -14,12 +14,21 @@ const useStyles = makeStyles({
 
 const Title = ({ text }) => {
   const classes = useStyles()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <React.Fragment>
       <Box>
         <Box display='flex' alignItems='center'>
           <Box paddingRight={2}>
-            <Typography noWrap variant='h2'>
+            <Typography
+              color='textPrimary'
+              variant='h1'
+              style={{
+                whiteSpace: 'nowrap',
+                fontSize: matches ? '3.1rem' : '2.1rem',
+              }}
+            >
               {text}
             </Typography>
           </Box>
