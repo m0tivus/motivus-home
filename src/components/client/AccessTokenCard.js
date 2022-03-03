@@ -4,6 +4,15 @@ import { Box, Typography } from '@material-ui/core'
 import { navigate } from 'gatsby'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Button from '@material-ui/core/Button'
+import Switch from '@material-ui/core/Switch'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
+import { useSnackbar } from 'notistack'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
 
 const useStyles = makeStyles((theme) => ({
   backgroundDark: {
@@ -18,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 
   root: {
     backgroundColor: theme.palette.background.default,
-    cursor: 'pointer',
   },
 
   createDate: {
@@ -37,18 +45,59 @@ const useStyles = makeStyles((theme) => ({
   white: {
     color: theme.palette.text.primary,
   },
+  icon: {
+    fill: theme.palette.primary.main,
+    fontSize: '1.5rem',
+    marginLeft: '5px',
+    cursor: 'pointer',
+  },
+  dilogText: {
+    color: theme.palette.text.primary,
+  },
 }))
 
 export default function AccesTokenCard({
   name,
   publishDate,
   tokenId,
-  lastused,
+  model,
+  id,
+  valid,
+  refreshData = () => null,
 }) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
   const dark = theme.palette.type
+
+  const [open, setOpen] = React.useState(false)
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const { enqueueSnackbar } = useSnackbar()
+
+  const updateActive = async () => {
+    await model.update(id, { valid: !valid })
+    refreshData()
+  }
+
+  const remove = async () => {
+    try {
+      await model.remove(id)
+      enqueueSnackbar('Deleted successfully', { type: 'success' })
+      refreshData()
+      handleClose()
+    } catch (e) {
+      enqueueSnackbar('Could not delete', { type: 'error' })
+    }
+  }
+
   return (
     <React.Fragment>
       <Box
@@ -86,20 +135,45 @@ export default function AccesTokenCard({
                 pl='6px'
                 ml='4px'
               >
-                <Box display='flex' flexDirection='column' mt='5px'>
-                  <Typography variant='h6' color='secondary'>
-                    {tokenId} <span className={classes.white}>- Token Id</span>
-                  </Typography>
+                <Box
+                  display='flex'
+                  flexDirection='column'
+                  mt='5px'
+                  width='100%'
+                  //border='1px solid red'
+                >
+                  <Box display='flex' alignItems='center'>
+                    <Typography variant='h6' color='secondary'>
+                      <span className={classes.white}>Token Id: </span>
+                      {tokenId}
+                    </Typography>
+
+                    <FileCopyOutlinedIcon
+                      className={classes.icon}
+                      onClick={() => navigator.clipboard.writeText(tokenId)}
+                    />
+                  </Box>
                   <Box
                     display='flex'
                     flexDirection='row'
                     alignItems='center'
                     mt='5px'
                   >
-                    <Typography variant='body1' className={classes.createDate}>
-                      Create on {publishDate}
-                    </Typography>
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          checked={valid}
+                          onChange={updateActive}
+                          name='valid'
+                          color='primary'
+                        />
+                      }
+                      label={valid ? 'Active' : 'Inactive'}
+                    />
                   </Box>
+                  <Typography variant='body1' className={classes.createDate}>
+                    Created {publishDate}
+                  </Typography>
                 </Box>
               </Box>
             </Box>
@@ -110,24 +184,55 @@ export default function AccesTokenCard({
             alignItems={matches ? 'flex-end' : 'flex-start'}
             justifyContent={matches ? 'flex-end' : 'space-between'}
             mt={matches ? '0px' : '15px'}
+            //border='2px solid green'
           >
             <Box
+              height='100%'
               display='flex'
-              flexDirection='row'
+              flexDirection='column'
               justifyContent='center'
-              mb='5px'
-            ></Box>
-            <Box display='flex' flexDirection='column' alignItems='flex-end'>
-              <Button variant='outlined' color='secondary'>
+              alignItems='flex-end'
+              //border='1px solid red'
+            >
+              <Button
+                variant='outlined'
+                color='secondary'
+                onClick={handleClickOpen}
+              >
                 Delete
               </Button>
-              <Typography variant='body1' className={classes.lastused}>
-                Last used {lastused}
-              </Typography>
             </Box>
           </Box>
         </Box>
       </Box>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-label='delete-confirmation'
+      >
+        <DialogTitle id='alert-dialog-title'>{'Are you sure?'}</DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id='alert-dialog-description'
+            className={classes.dilogText}
+          >
+            This action will permanently delete token: {tokenId}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color='primary'>
+            Cancel
+          </Button>
+          <Button
+            onClick={remove}
+            color='secondary'
+            autoFocus
+            variant='outlined'
+          >
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
     </React.Fragment>
   )
 }

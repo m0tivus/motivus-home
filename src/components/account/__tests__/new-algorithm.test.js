@@ -12,6 +12,7 @@ describe(`NewAlgorthm`, () => {
   it(`renders new-algorithm`, async () => {
     const create = jest.fn()
     Algorithm.create.mockImplementation(create)
+
     const algorithm = {
       charge_schema: 'PER_MINUTE',
       cost: 80,
