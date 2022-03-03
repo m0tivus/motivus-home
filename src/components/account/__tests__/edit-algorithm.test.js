@@ -10,7 +10,6 @@ import userEvent from '@testing-library/user-event'
 
 import EditAlgorthm from '../edit-algorithm'
 import { Algorithm, AlgorithmUser } from '../../../models'
-import { ScriptElementKind } from 'typescript'
 import { SnackbarProvider } from 'notistack'
 
 jest.mock('../../../models')

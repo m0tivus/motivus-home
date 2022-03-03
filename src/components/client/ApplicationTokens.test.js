@@ -26,10 +26,15 @@ describe('ApplicationTokens', () => {
 
     const create = jest.fn()
     ApplicationToken.create.mockImplementation(create)
+
+    const remove = jest.fn()
+    ApplicationToken.remove.mockImplementation(remove)
+
     const all = jest
       .fn()
       .mockImplementationOnce(() => [])
-      .mockImplementation(() => applicationTokens)
+      .mockImplementationOnce(() => applicationTokens)
+      .mockImplementation(() => [])
     ApplicationToken.all.mockImplementation(all)
 
     render(
@@ -55,9 +60,24 @@ describe('ApplicationTokens', () => {
     await screen.findByText(/application token created successfully/i)
     await waitFor(() => expect(form).not.toBeInTheDocument())
 
-    expect(create).toHaveBeenCalledWith(formApplicationToken)
+    expect(create).toHaveBeenCalledWith(formApplicationToken) //verifica
 
     expect(all).toHaveBeenCalled()
     await screen.findByText(/example token/i)
+
+    userEvent.click(screen.getByRole('button', { name: /delete/i }))
+
+    const deleteform = screen.getByRole('presentation', {
+      name: /delete-confirmation/i,
+    })
+
+    userEvent.click(
+      within(deleteform).getByRole('button', { name: /confirm/i }),
+    )
+
+    await screen.findByText(/deleted successfully/i)
+    await waitFor(() => expect(deleteform).not.toBeInTheDocument())
+
+    expect(remove).toHaveBeenCalledWith(applicationTokens[0].id) //verifica
   })
 })

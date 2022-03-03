@@ -13,7 +13,6 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useSnackbar } from 'notistack'
-import { values } from 'lodash-es'
 
 const useStyles = makeStyles((theme) => ({
   createTokenDark: {
@@ -91,7 +90,7 @@ const withTokenImplementation = ({
         flexDirection={matches ? 'row' : 'column'}
         justifyContent='space-between'
       >
-        <Typography variant='body1' gutterBottom>
+        <Typography variant='body1' color='textPrimary' gutterBottom>
           Create, delete and manage your tokens
         </Typography>
         <Box display='flex' justifyContent='flex-end'>
@@ -117,6 +116,7 @@ const withTokenImplementation = ({
           id={t.id}
           publishDate={t.inserted_at}
           refreshData={getTokens}
+          valid={t.valid}
         />
       ))}
       <Dialog

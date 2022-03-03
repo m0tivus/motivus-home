@@ -7,6 +7,12 @@ export const dataGetter = ({ data: { data } }) => data
 
 export const User = {
   current: () => axios.get(`${API_BASE_URL}/api/account/user`).then(dataGetter),
+  update: (user) =>
+    axios
+      .put(`${API_BASE_URL}/api/account/user/`, {
+        user,
+      })
+      .then(dataGetter),
 }
 
 export const AlgorithmUser = {
@@ -68,14 +74,18 @@ export const ApplicationToken = {
   create: (application_token) =>
     axios
       .post(`${API_BASE_URL}/api/account/application_tokens`, {
-        application_token,
+        application_token: { ...application_token, valid: true },
       })
       .then(dataGetter),
-  remove: (application_tokens_id) =>
+  remove: (id) =>
     axios
-      .delete(
-        `${API_BASE_URL}/api/account/application_tokens/${application_tokens_id}`,
-      )
+      .delete(`${API_BASE_URL}/api/account/application_tokens/${id}`)
+      .then(dataGetter),
+  update: (id, application_token) =>
+    axios
+      .put(`${API_BASE_URL}/api/account/application_tokens/${id}`, {
+        application_token,
+      })
       .then(dataGetter),
 }
 export const PersonalAccessToken = {
@@ -86,13 +96,17 @@ export const PersonalAccessToken = {
   create: (personal_access_token) =>
     axios
       .post(`${API_BASE_URL}/api/account/personal_access_tokens`, {
-        personal_access_token,
+        personal_access_token: { ...personal_access_token, valid: true },
       })
       .then(dataGetter),
-  remove: (personal_access_token_id) =>
+  remove: (id) =>
     axios
-      .delete(
-        `${API_BASE_URL}/api/account/personal_access_tokens/${personal_access_token_id}`,
-      )
+      .delete(`${API_BASE_URL}/api/account/personal_access_tokens/${id}`)
+      .then(dataGetter),
+  update: (id, personal_access_token) =>
+    axios
+      .put(`${API_BASE_URL}/api/account/personal_access_tokens/${id}`, {
+        personal_access_token,
+      })
       .then(dataGetter),
 }

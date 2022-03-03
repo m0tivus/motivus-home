@@ -62,21 +62,13 @@ export default function AccesTokenCard({
   tokenId,
   model,
   id,
+  valid,
   refreshData = () => null,
 }) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
   const dark = theme.palette.type
-
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  })
-
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked })
-  }
 
   const [open, setOpen] = React.useState(false)
 
@@ -90,14 +82,19 @@ export default function AccesTokenCard({
 
   const { enqueueSnackbar } = useSnackbar()
 
+  const updateActive = async () => {
+    await model.update(id, { valid: !valid })
+    refreshData()
+  }
+
   const remove = async () => {
     try {
-      enqueueSnackbar('Deleting token', { type: 'success' })
       await model.remove(id)
+      enqueueSnackbar('Deleted successfully', { type: 'success' })
       refreshData()
       handleClose()
     } catch (e) {
-      enqueueSnackbar('Could not delete token', { type: 'error' })
+      enqueueSnackbar('Could not delete', { type: 'error' })
     }
   }
 
@@ -165,13 +162,13 @@ export default function AccesTokenCard({
                     <FormControlLabel
                       control={
                         <Switch
-                          checked={state.checkedB}
-                          onChange={handleChange}
-                          name='checkedB'
+                          checked={valid}
+                          onChange={updateActive}
+                          name='valid'
                           color='primary'
                         />
                       }
-                      label={state.checkedB ? 'Active' : 'Inactive'}
+                      label={valid ? 'Active' : 'Inactive'}
                     />
                   </Box>
                   <Typography variant='body1' className={classes.createDate}>
@@ -211,10 +208,9 @@ export default function AccesTokenCard({
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
+        aria-label='delete-confirmation'
       >
-        <DialogTitle id='alert-dialog-title'>{'Are you shure?'}</DialogTitle>
+        <DialogTitle id='alert-dialog-title'>{'Are you sure?'}</DialogTitle>
         <DialogContent>
           <DialogContentText
             id='alert-dialog-description'
@@ -233,7 +229,7 @@ export default function AccesTokenCard({
             autoFocus
             variant='outlined'
           >
-            Delete
+            Confirm
           </Button>
         </DialogActions>
       </Dialog>

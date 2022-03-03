@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Algorithm({ data, isClientView=false }) {
+export default function Algorithm({ data, isClientView = false }) {
   const isBrowser = typeof window !== 'undefined'
   const classes = useStyles()
   const theme = useTheme()
@@ -110,14 +110,15 @@ export default function Algorithm({ data, isClientView=false }) {
         display='flex'
         flexDirection={matches ? 'row' : 'column-reverse'}
         //height={matches ? 'auto' : '80px'}
-        justifyContent= 'space-between' 
+        justifyContent='space-between'
         mt='10px'
         //border="1px solid red"
-        
-        
       >
         <Typography variant='h3' color='primary' className={classes.subtitle}>
-          {algorithm.author} |  {formatISO(parseJSON(algorithm.publishDate), { representation: 'date' })}
+          {algorithm.author} |{' '}
+          {formatISO(parseJSON(algorithm.publishDate), {
+            representation: 'date',
+          })}
         </Typography>
         {matches && <StarBadge stars={algorithm.stars} />}
       </Box>
@@ -135,16 +136,28 @@ export default function Algorithm({ data, isClientView=false }) {
         >
           {algorithm.description}
         </Typography>
-        <AlgorithmLinks web={algorithm.web} github={algorithm.github} matches={matches} />
+        <AlgorithmLinks
+          web={algorithm.web}
+          github={algorithm.github}
+          matches={matches}
+        />
       </Box>
       <AlgorithmCallToAction
         matches={matches}
         console={`algorithm = {"algorithm": "${algorithm.name}", "algorithm_version": "${algorithm.lastVersion?.name}"}`}
       />
-      <Box display="flex" alignItems="center" mt="10px">
-        <Typography variant="body2">For more information</Typography>
-        <Button color="secondary" onClick={ isClientView ? ()=> navigate("/account/documentation") : ()=> navigate("/documentation")}>Read here</Button>
-       
+      <Box display='flex' alignItems='center' mt='10px'>
+        <Typography variant='body2'>For more information</Typography>
+        <Button
+          color='secondary'
+          onClick={
+            isClientView
+              ? () => navigate('/account/documentation')
+              : () => navigate('/documentation')
+          }
+        >
+          Read here
+        </Button>
       </Box>
       <AntTabs
         value={value}
@@ -165,11 +178,19 @@ export default function Algorithm({ data, isClientView=false }) {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Typography variant='h5'>Current</Typography>
-        <VersionInfo {...algorithm.lastVersion} />
+        {algorithm.lastVersion.name && (
+          <VersionInfo {...algorithm.lastVersion} />
+        )}
         <Typography variant='h5'>History</Typography>
-        {algorithm.versions.map((v) => (
-          <VersionInfo {...v} key={`vinfo-${v.id}`} />
-        ))}
+        {algorithm.versions?.length ? (
+          algorithm.versions.map((v) => (
+            <VersionInfo {...v} key={`vinfo-${v.id}`} />
+          ))
+        ) : (
+          <Typography variant='body2' color='textPrimary'>
+            There are no versions
+          </Typography>
+        )}
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Typography variant='h5' gutterBottom>
