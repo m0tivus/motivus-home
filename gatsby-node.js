@@ -19,6 +19,26 @@ const makeRequest = (graphql, request) =>
     )
   })
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+      type Algorithm implements Node {
+        name: String!,
+        author: String,
+        abstract: String,
+        short_description: String,
+        long_description: String,
+        longDescription: String,
+        description: String,
+        web: String,
+        github: String,
+        license: String,
+        version: String
+      }
+    `
+  createTypes(typeDefs)
+}
+
 exports.sourceNodes = async ({
   actions,
   createNodeId,
