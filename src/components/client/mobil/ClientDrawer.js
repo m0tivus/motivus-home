@@ -9,15 +9,7 @@ import {
   activeNavItem,
 } from '../../../styles/mobileNav.module.css'
 
-const routes = [
-  { name: 'News', route: '/client', partialy: false },
-  { name: 'Dashboard', route: '/client/dashboard', partialy: false },
-  { name: 'Marketplace', route: '/client/marketplace', partialy: false },
-  { name: 'Virtual Wallet', route: '/client/wallet', partialy: false },
-  { name: 'Documentation', route: '/client/documentation', partialy: false },
-  { name: 'Settings', route: '/client/settings', partialy: false },
-  /*{ name: 'CONTACT US', route: '/contact', partialy: false },*/
-]
+import { routes } from '../AccountRoutes'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='right' ref={ref} {...props} />

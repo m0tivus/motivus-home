@@ -21,6 +21,7 @@ import epicRNA from '../../static/rnaEpic.jpg'
 import sharePower from '../../static/sharePower.svg'
 import scientist from '../../static/scientist.svg'
 import script from '../../static/script.svg'
+import ClienOptionsCards from './CLientOptionsCards'
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {

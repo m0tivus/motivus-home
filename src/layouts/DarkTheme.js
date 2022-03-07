@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { dark } from '@material-ui/core/styles/createPalette'
 import { typography } from './BaseTheme'
 
-const DarkTheme = createMuiTheme({
+const DarkTheme = createTheme({
   typography,
 
   palette: {
@@ -24,6 +24,10 @@ const DarkTheme = createMuiTheme({
       contrastText: '#fff',
     },
 
+    calypso: {
+      main: '#60EFD1',
+    },
+
     background: {
       paper: '#2C2771',
       headerBackground: '#2C2771',
@@ -36,6 +40,7 @@ const DarkTheme = createMuiTheme({
       langSelectorTexture: 'radial-gradient(#fff 0.1px, #131144 1px)',
       langSelectorFade:
         'linear-gradient(90deg, rgba(19, 17, 68,1) 0%, rgba(19, 17, 68,0) 5%, rgba(19, 17, 68,0) 95%, rgba(19, 17, 68,1) 100%)',
+      inputBackground: '#000',
     },
 
     text: {

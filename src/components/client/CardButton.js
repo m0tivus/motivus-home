@@ -33,16 +33,29 @@ const useStyles = makeStyles((theme) => ({
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
   },
+  white: {
+    color: 'white',
+  },
 }))
 
-export default function CardButton({ children, arrow }) {
+export default function CardButton({
+  children,
+  arrow,
+  themeDark,
+  size,
+  actionButton,
+}) {
   const theme = useTheme()
   const classes = useStyles()
-  const dark = theme.palette.type
+  const dark = themeDark === 'dark' ? 'dark' : theme.palette.type
 
   return (
     <React.Fragment>
-      <StyledButton size='medium'>
+      <StyledButton
+        size={size === 'large' ? 'large' : 'medium'}
+        className={themeDark === 'dark' ? classes.white : null}
+        onClick={actionButton}
+      >
         {children}
         <Box ml='8px' height='100%' display='flex ' alignItems='center'>
           {dark === 'dark' ? (

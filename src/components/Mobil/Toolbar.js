@@ -7,6 +7,8 @@ import { Box, Typography } from '@material-ui/core'
 import Theme2 from '../StyleTheme'
 import AppBar from '@material-ui/core/AppBar'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
+import Button from '@material-ui/core/Button'
+import { navigate } from 'gatsby-link'
 
 const styles = (Theme) => ({
   grow: {
@@ -19,6 +21,11 @@ const styles = (Theme) => ({
   },
   menuButton: {
     left: '0px',
+  },
+  loginButton: {
+    borderRadius: '0px',
+    height: '30px',
+    marginLeft: '20px',
   },
 })
 
@@ -46,7 +53,15 @@ class ToolbarComponent extends React.Component {
                 >
                   <MenuIcon />
                 </IconButton>
-                <Typography>Motivus | Get Started!</Typography>
+                <Typography>Motivus | Get In! </Typography>
+                <Button
+                  variant='outlined'
+                  color='secondary'
+                  className={classes.loginButton}
+                  onClick={() => navigate('/account/login')}
+                >
+                  login
+                </Button>
               </Toolbar>
             </AppBar>
           </Box>

@@ -1,12 +1,12 @@
 import React from 'react'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import NativeSelect from '@material-ui/core/NativeSelect'
 import InputBase from '@material-ui/core/InputBase'
 import { Box, Typography } from '@material-ui/core'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -58,8 +58,15 @@ const useStyles = makeStyles((theme) => ({
   underLine: { borderColor: 'red' },
 }))
 
-export default function ControlledOpenSelect({ languages, lang, setLang }) {
+export default function ControlledOpenSelect({
+  languages,
+  lang,
+  setLang,
+  variant,
+}) {
   const classes = useStyles()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
   const [open, setOpen] = React.useState(false)
 
   const handleChange = (event) => {
@@ -75,41 +82,59 @@ export default function ControlledOpenSelect({ languages, lang, setLang }) {
   }
 
   return (
-    <Box id='root' display='flex' alignItems='center' flexDirection='column'>
+    <Box
+      id='root'
+      width='100%'
+      display='flex'
+      ml={variant === 'home' ? '0%' : '-2%'}
+      alignItems='center'
+      flexDirection='column'
+      mb={matches ? '0px' : '60px'}
+    >
       <Box
         display='flex'
         width='100%'
-        height='100px'
+        height={matches ? '100px' : '150px'}
         mt='30px'
         className={classes.backgroundTexture}
       >
         <Box
           width='100%'
-          height='100px'
+          height={matches ? '100px' : '150px'}
           display='flex'
-          justifyContent='center'
+          justifyContent={variant === 'home' ? 'center' : 'flex-start'}
           className={classes.fade}
         >
           <Box
             mt='30px'
-            width='85%'
-            height='100px'
+            width={matches ? '85%' : '90%'}
+            height={matches ? '100px' : '150px'}
             className={classes.body}
             display='flex'
-            justifyContent='center'
-            alignItems='center'
+            justifyContent={
+              variant === 'home'
+                ? matches
+                  ? 'center'
+                  : 'space-evenly'
+                : matches
+                ? 'flex-start'
+                : 'space-evenly'
+            }
+            alignItems={matches ? 'center' : 'flex-start'}
+            flexDirection={matches ? 'row' : 'column'}
+            pl='15px'
           >
             <Box
               display='flex'
               flexDirection='column'
               justifyContent='center'
-              alignItems='flex-end'
-              pr='30px'
+              alignItems={matches ? 'flex-end' : 'flex-start'}
+              pr={matches ? '30px' : '15px'}
             >
-              <Typography className={classes.title} variant='h4'>
+              <Typography className={classes.title} variant='h4' align='right'>
                 Motivus Blog
               </Typography>
-              <Typography variant='h5' color='secondary'>
+              <Typography variant='h5' color='secondary' align='right'>
                 Select your language
               </Typography>
             </Box>

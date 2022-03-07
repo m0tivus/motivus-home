@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import Layout from '../components/layout'
+import Layout from '../layouts/layout'
 import SEO from '../components/seo'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -19,6 +19,8 @@ import { title } from '../styles/blog.module.css'
 import { Box } from '@material-ui/core'
 import _ from 'lodash'
 import LangSelectorBlog from '../components/LangSelectorBlog'
+import { container, listItem } from '../components/DropDownAnimation'
+import { motion } from 'framer-motion'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -71,9 +73,21 @@ const BlogPage = ({ data, ...props }) => {
     <Layout {...props}>
       <SEO title='Blog' description='Blog Data' />
       <Box pb='90px'>
-        <LangSelectorBlog languages={languages} lang={lang} setLang={setLang} />
+        <LangSelectorBlog
+          languages={languages}
+          lang={lang}
+          setLang={setLang}
+          variant='home'
+        />
       </Box>
-      <Grid container spacing={2}>
+      <Grid
+        container
+        spacing={2}
+        component={motion.div}
+        variants={container}
+        initial='hidden'
+        animate='show'
+      >
         {data.allSanityPost.edges
           .sort(function (x, y) {
             return (
@@ -83,7 +97,14 @@ const BlogPage = ({ data, ...props }) => {
           })
           .filter((doc) => doc.node.i18n_lang === lang)
           .map((document) => (
-            <Grid item key={document.node.id} xs={12} sm={6}>
+            <Grid
+              item
+              key={document.node.id}
+              xs={12}
+              sm={6}
+              component={motion.div}
+              variants={listItem}
+            >
               <Card className={classes.card}>
                 <CardActionArea>
                   <Link to={`/blog/${document.node.slug.current}`}>

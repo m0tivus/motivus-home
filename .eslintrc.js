@@ -9,12 +9,17 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
+  parser: '@babel/eslint-parser',
   parserOptions: {
+    requireConfigFile: false,
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 2018,
     sourceType: 'module',
+    babelOptions: {
+      presets: ['@babel/preset-react'],
+    },
   },
   plugins: ['prettier', 'react'],
   rules: {
@@ -34,6 +39,6 @@ module.exports = {
     'react/jsx-uses-vars': 'error',
     'no-multi-spaces': 'error',
     'comma-dangle': ['error', 'always-multiline'],
-    'no-console': 'warn'
+    'no-console': 'warn',
   },
 }

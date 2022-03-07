@@ -8,24 +8,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
-import {
-  createMuiTheme,
-  makeStyles,
-  ThemeProvider,
-  useTheme,
-} from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { Box } from '@material-ui/core'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-import Header from './header'
-import Nav from './nav'
-import MobileNav from './mobileNav'
-import Footer from './Footer'
-import Theme2 from './StyleTheme'
-import SocialMedia from './SocialMedia'
-import { set } from 'lodash'
+import Header from '../components/header'
+import Nav from '../components/nav'
+import MobileNav from '../components/mobileNav'
+import Footer from '../components/Footer'
+import Theme from './LightTheme'
+import SocialMedia from '../components/SocialMedia'
 import ContactToggle from '../contexts/ContactToggle'
 import { SnackbarProvider } from 'notistack'
+import Button from '@material-ui/core/Button'
+import { navigate } from 'gatsby'
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -33,7 +29,12 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(8, 0, 6),
     },
   },
+  loginButton: {
+    borderRadius: '0px',
+    height: '40px',
+  },
 }))
+
 const Layout = ({ children, ...props }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -48,7 +49,7 @@ const Layout = ({ children, ...props }) => {
   const [openContact, setOpenContact] = React.useState(false)
 
   const theme = useTheme()
-  const  classes  = useStyles()
+  const classes = useStyles()
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
@@ -56,7 +57,7 @@ const Layout = ({ children, ...props }) => {
       classes={{ variantInfo: { backgroundColor: theme.palette.primary.main } }}
     >
       <ContactToggle.Provider value={[openContact, setOpenContact]}>
-        <Theme2>
+        <Theme>
           {matches ? (
             <MobileNav
               {...props}
@@ -71,6 +72,29 @@ const Layout = ({ children, ...props }) => {
             />
           )}
           <Header siteTitle={data.site.siteMetadata?.title || 'Title'} />
+          <Box
+            position='fixed'
+            right='5%'
+            top={matches ? '21px' : '55px'}
+            //height={matches ? '75px' : '150px'}
+            //border='1px solid green'
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            zIndex='20'
+          >
+            {!matches && (
+              <Button
+                variant='outlined'
+                color='secondary'
+                size='large'
+                className={classes.loginButton}
+                onClick={() => navigate('/account/login')}
+              >
+                login
+              </Button>
+            )}
+          </Box>
           <SocialMedia />
           <div
             style={{
@@ -79,11 +103,11 @@ const Layout = ({ children, ...props }) => {
             }}
           >
             <main className={classes.content}>{children}</main>
-            <Box mb={ matches ? "60px" : "0px" }>
+            <Box mb={matches ? '60px' : '0px'}>
               <Footer />
-            </Box> 
+            </Box>
           </div>
-        </Theme2>
+        </Theme>
       </ContactToggle.Provider>
     </SnackbarProvider>
   )

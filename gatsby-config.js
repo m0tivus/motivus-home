@@ -3,11 +3,16 @@ module.exports = {
     title: 'Motivus',
     description: 'High performance computing network',
     author: 'Motivus',
+    url: 'motivus.cl',
+    siteUrl: 'https://www.motivus.cl',
   },
   plugins: [
-    `gatsby-plugin-image`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`, // Needed for dynamic images
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-robots-txt',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-lodash',
+    'gatsby-transformer-sharp', // Needed for dynamic images
 
     {
       resolve: 'gatsby-plugin-google-analytics',
@@ -22,7 +27,7 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-plugin-material-ui`,
+      resolve: 'gatsby-plugin-material-ui',
       options: {
         disableAutoprefixing: true,
       },
@@ -34,7 +39,7 @@ module.exports = {
         projectId: '2g00hyzc',
         dataset: 'production',
         token:
-        'skx93MUXy48sfHbTaOiWStQdR0iPjpjjmyDcGY73LMcdx2BrO001HimUleAC9oPvBUZbOmxbdslrBkWef4MEKyRp5N5ySywYX3FbGtNXXxY22tSTFtWb9ySwdlI4qBsOqRrA5fANaekcTzHwsCu8Fvv0JMqBd1IvaNNxD0bAoQqfnL0EenbP',
+          'skx93MUXy48sfHbTaOiWStQdR0iPjpjjmyDcGY73LMcdx2BrO001HimUleAC9oPvBUZbOmxbdslrBkWef4MEKyRp5N5ySywYX3FbGtNXXxY22tSTFtWb9ySwdlI4qBsOqRrA5fANaekcTzHwsCu8Fvv0JMqBd1IvaNNxD0bAoQqfnL0EenbP',
       },
     },
     /*{

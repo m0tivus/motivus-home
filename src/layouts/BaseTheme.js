@@ -1,15 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import { dark } from '@material-ui/core/styles/createPalette'
-
 export const typography = {
   fontFamily: 'Asap',
 
   h1: {
-    fontWeight: '700',
+    fontWeight: '600',
     fontStyle: 'italic',
-    fontSize: '5rem',
+    fontSize: '3.4rem',
     lineHeight: 1.334,
     letterSpacing: '0em',
   },
@@ -37,19 +32,17 @@ export const typography = {
   },
 
   h5: {
-    fontWeight: '700',
-    fontFamily: 'Roboto',
+    fontWeight: '600',
     fontStyle: 'italic',
     fontSize: '1.4rem',
     lineHeight: 1.334,
     letterSpacing: '0em',
-    fontFamily: 'Asap',
   },
 
   h6: {
     fontWeight: '500',
     fontFamily: 'Roboto',
-    fontSize: '1rem',
+    fontSize: '1.15rem',
     lineHeight: 1.25,
     letterSpacing: '0em',
   },
