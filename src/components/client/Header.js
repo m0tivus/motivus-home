@@ -9,6 +9,7 @@ import Sun from '@material-ui/icons/Brightness5'
 import Moon from '@material-ui/icons/Brightness2Outlined'
 import User from '../../contexts/User'
 import Button from '@material-ui/core/Button'
+import { navigate } from 'gatsby'
 
 const useStyles = makeStyles((theme) => ({
   nav: {
