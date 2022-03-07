@@ -10,7 +10,7 @@ defaults: &defaults
   resource_class: large
 
 jobs:
-  test:
+  test-build:
     <<: *defaults
     steps:
       - checkout
@@ -23,8 +23,8 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: CI=false yarn run build
       - run: CI=false yarn test
+      - run: CI=false yarn run build
       - persist_to_workspace:
           root: ~/repo
           paths:
@@ -45,7 +45,7 @@ workflows:
       not:
         equal: [api, << pipeline.trigger_source >>]
     jobs:
-      - test:
+      - test-build:
           filters:
             branches:
               only:
@@ -53,7 +53,7 @@ workflows:
                 - develop
       - publish:
           requires:
-            - test
+            - test-build
           filters:
             branches:
               only:
@@ -68,9 +68,9 @@ workflows:
             branches:
               only:
                 - main
-      - test:
+      - test-build:
           requires:
             - deploy-approval
       - publish:
           requires:
-            - test
+            - test-build
