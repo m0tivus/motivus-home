@@ -1,7 +1,7 @@
 # What is Motivus?
 Motivus is an ecosystem for distributed computing that enables people and companies from all around the world to combine their computing power to solve real world problems.
 
-You can execute tasks on *Motivus Waterbear Cluster* using a driver program, that describes the task to be distributed to the workers and handles the results.
+You can execute tasks on *Motivus Waterbear Cluster* using a driver program, that describes the task to be distributed to the workers and result handling.
 
 ![components-diagram](https://motivus.cl/components-diagram.png "Components diagram")
 

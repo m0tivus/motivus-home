@@ -1,6 +1,6 @@
 import React from 'react'
-import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles'
-import { Box, Button, Typography } from '@material-ui/core'
+import {makeStyles, useTheme, withStyles} from '@material-ui/core/styles'
+import {Box, Button, Typography} from '@material-ui/core'
 import StarBadge from '../components/client/StarBadge'
 import AlgorithmLinks from '../components/client/AlgorithmLinks'
 import AlgorithmCallToAction from '../components/client/AlgorithmCallToAction'
@@ -9,12 +9,12 @@ import Tab from '@material-ui/core/Tab'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { transformAlgorithm } from '../utils'
-import { Algorithm as AlgorithmModel } from '../models'
+import {transformAlgorithm} from '../utils'
+import {Algorithm as AlgorithmModel} from '../models'
 import useUser from '../hooks/useUser'
 import LoadingComponent from '../components/Loading'
-import { formatISO, parseJSON } from 'date-fns'
-import { navigate } from 'gatsby-link'
+import {formatISO, parseJSON} from 'date-fns'
+import {navigate} from 'gatsby-link'
 
 const AntTabs = withStyles((theme) => ({
   root: {
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Algorithm({ data, isClientView = false }) {
+export default function Algorithm({data, isClientView = false}) {
   const isBrowser = typeof window !== 'undefined'
   const classes = useStyles()
   const theme = useTheme()
@@ -80,7 +80,7 @@ export default function Algorithm({ data, isClientView = false }) {
   const [isLoadingAlgorithm, setIsLoadingAlgorithm] = React.useState(isBrowser)
 
   const [algorithm, setAlgorithm] = React.useState(data?.algorithm)
-  const { isLoading, isGuest } = useUser()
+  const {isLoading, isGuest} = useUser()
 
   const getAlgorithmData = async () => {
     try {
@@ -101,6 +101,7 @@ export default function Algorithm({ data, isClientView = false }) {
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+  console.log(algorithm);
 
   return isLoading || isLoadingAlgorithm ? (
     <LoadingComponent />
@@ -112,7 +113,7 @@ export default function Algorithm({ data, isClientView = false }) {
         //height={matches ? 'auto' : '80px'}
         justifyContent='space-between'
         mt='10px'
-        //border="1px solid red"
+      //border="1px solid red"
       >
         <Typography variant='h3' color='primary' className={classes.subtitle}>
           {algorithm.author} |{' '}
@@ -194,7 +195,10 @@ export default function Algorithm({ data, isClientView = false }) {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Typography variant='h5' gutterBottom>
-          {algorithm.cost} Dolars/min
+          {algorithm.cost} Motivus credits /{' '}
+          {algorithm.charge_schema === 'PER_EXECUTION'
+            ? 'execution'
+            : algorithm.charge_schema === 'PER_MINUTE' ? 'minute' : ''}
         </Typography>
       </TabPanel>
       <TabPanel value={value} index={3}>
@@ -207,7 +211,7 @@ export default function Algorithm({ data, isClientView = false }) {
 }
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props
+  const {children, value, index, ...other} = props
 
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
@@ -228,9 +232,9 @@ function TabPanel(props) {
   )
 }
 
-const VersionInfo = ({ name, inserted_at }) => (
+const VersionInfo = ({name, inserted_at}) => (
   <Typography variant='body1' gutterBottom>
     version: v{name}____________
-    {formatISO(parseJSON(inserted_at), { representation: 'date' })}
+    {formatISO(parseJSON(inserted_at), {representation: 'date'})}
   </Typography>
 )

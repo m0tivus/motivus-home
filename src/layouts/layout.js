@@ -8,12 +8,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
-import {
-  createMuiTheme,
-  makeStyles,
-  ThemeProvider,
-  useTheme,
-} from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { Box } from '@material-ui/core'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import Header from '../components/header'
@@ -22,11 +18,9 @@ import MobileNav from '../components/mobileNav'
 import Footer from '../components/Footer'
 import Theme from './LightTheme'
 import SocialMedia from '../components/SocialMedia'
-import { set } from 'lodash'
 import ContactToggle from '../contexts/ContactToggle'
 import { SnackbarProvider } from 'notistack'
 import Button from '@material-ui/core/Button'
-import { Box } from '@material-ui/core'
 import { navigate } from 'gatsby'
 
 const useStyles = makeStyles((theme) => ({
@@ -109,7 +103,7 @@ const Layout = ({ children, ...props }) => {
             }}
           >
             <main className={classes.content}>{children}</main>
-            <Box mb={matches ? '55px' : '0px'}>
+            <Box mb={matches ? '60px' : '0px'}>
               <Footer />
             </Box>
           </div>

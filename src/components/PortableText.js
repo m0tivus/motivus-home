@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     fontWeight: '500',
   },
+  width: {
+    width: '100%',
+  },
 }))
 
 const serializers = {
@@ -50,7 +53,7 @@ const serializers = {
   types: {
     codepen: (props) => <Divider></Divider>,
     image: (props) => (
-      <Box width='100%'>
+      <Box width='100%' display='flex' justifyContent='center'>
         <img
           src={props.node.asset.url}
           alt={props.node.asset.originalFilename}
@@ -114,9 +117,11 @@ const serializers = {
       }
       if (style === 'normal') {
         return (
-          <Typography variant='body2' align='justify' gutterBottom>
-            {props.children}
-          </Typography>
+          <Box width='100%'>
+            <Typography variant='body2' align='justify' gutterBottom>
+              {props.children}
+            </Typography>
+          </Box>
         )
       }
 
@@ -126,8 +131,15 @@ const serializers = {
   },
 }
 
-const PortableText = ({ blocks }) => (
-  <BasePortableText blocks={blocks} serializers={serializers} />
-)
+const PortableText = ({ blocks }) => {
+  const classes = useStyles()
+  return (
+    <BasePortableText
+      className={classes.width}
+      blocks={blocks}
+      serializers={serializers}
+    />
+  )
+}
 
 export default PortableText

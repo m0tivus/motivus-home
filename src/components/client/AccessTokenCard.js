@@ -144,7 +144,7 @@ export default function AccesTokenCard({
                 >
                   <Box display='flex' alignItems='center'>
                     <Typography variant='h6' color='secondary'>
-                      <span className={classes.white}>Token Id: </span>
+                      <span className={classes.white}>Token: </span>
                       {tokenId}
                     </Typography>
 

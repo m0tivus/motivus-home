@@ -159,7 +159,7 @@ export default function AlgorithmCards({
             </Box>
             <Box display='flex' flexDirection='column' alignItems='flex-end'>
               <Typography variant='body1' className={classes.info}>
-                Motivus Coin / mins
+                Motivus credits / mins
               </Typography>
               <Typography variant='h5' className={classes.cost}>
                 {cost}

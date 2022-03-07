@@ -11,11 +11,11 @@ export default function AlgorithmTemplate({ data, ...props }) {
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <Layout {...props}>
-      <Box px={matches ? "0px" : "15px"} >
-      <Typography variant='h2' color='secondary'>
-        {data.algorithm.name}
-      </Typography>{' '}
-      <Algorithm data={data} {...props} />
+      <Box px={matches ? '0px' : '15px'}>
+        <Typography variant='h2' color='secondary'>
+          {data.algorithm.name}
+        </Typography>{' '}
+        <Algorithm data={data} {...props} />
       </Box>
     </Layout>
   )

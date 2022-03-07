@@ -60,14 +60,7 @@ export default function MarkdownDocumentationReader({ data }) {
         className={classes.getStarted}
         gutterBottom
       >
-        Get Started
-      </Typography>
-      <Typography variant='body2' className={classes.descent} gutterBottom>
-        This page is a resume of the motivus documentation and related resource
-      </Typography>
-      <Typography variant='body1' gutterBottom>
-        Motivus is a multiplatform framework which enable to use distributed
-        comuting to proces data
+        Getting Started
       </Typography>
       <Divider />
       <ReactMarkdown

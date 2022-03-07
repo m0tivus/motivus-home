@@ -209,7 +209,15 @@ const Article = ({ data, ...props }) => {
         />
       </Box>
 
-      <Box display='flex' ml='10%' mr='15%' mt='20px' justifyContent='center'>
+      <Box
+        display='flex'
+        ml='10%'
+        mr='15%'
+        mt='20px'
+        justifyContent='center'
+        //border='1px solid red'
+        flexWrap='wrap'
+      >
         {data.sanityPost._rawContent && (
           <PortableText blocks={data.sanityPost._rawContent} />
         )}

@@ -4,6 +4,7 @@ import { Box, Typography } from '@material-ui/core'
 import '../components/layout.css'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { classicNameResolver } from 'typescript'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import {
   FacebookShareButton,
@@ -69,6 +70,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Share({ title, url, twitterHandle, tags }) {
   const classes = useStyles()
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.down('xs'))
   return (
     <React.Fragment>
       <Box id='root' display='flex' alignItems='center' flexDirection='column'>
@@ -97,13 +100,19 @@ export default function Share({ title, url, twitterHandle, tags }) {
                   display='flex'
                   flexDirection='column'
                   justifyContent='center'
-                  alignItems='flex-end'
+                  alignItems={matches ? 'center' : 'flex-end'}
                   pr='10px'
                 >
-                  <Typography className={classes.title} variant='h4'>
+                  <Typography
+                    className={classes.title}
+                    variant={matches ? 'h5' : 'h4'}
+                  >
                     Thanks for Reading!
                   </Typography>
-                  <Typography variant='h5' color='secondary'>
+                  <Typography
+                    variant={matches ? 'body1' : 'h5'}
+                    color='secondary'
+                  >
                     Share this on
                   </Typography>
                 </Box>
