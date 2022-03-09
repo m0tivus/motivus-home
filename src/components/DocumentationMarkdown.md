@@ -55,12 +55,14 @@ task_definition = {
     ]
 }
 
-motivus = await Client.connect()
+async def main():
+    motivus = await Client.connect()
 
-task_id = conn.call_async(task_definition)
-task = conn.select_task(task_id)
-result = await task
+    task_id = motivus.call_async(task_definition)
+    task = motivus.select_task(task_id)
+    return await task
 
+result = asyncio.run(main())
 print(result)
 ```
 
