@@ -26,11 +26,11 @@ export const onClientEntry = () => {
 
 export const onRouteUpdate = ({ location, prevLocation }) => {
   const newPathname = location.pathname
-  const oldPathname = prevLocation ? prevLocation.pathname : null
 
-  if (oldPathname === null && /^\/account\//.test(newPathname)) {
-    console.log('loading true')
-  } else {
-    console.log('loafing false')
+  if (!/^\/account\//.test(newPathname)) {
+    const element = document.getElementById('static-loading')
+    if (element) {
+      element.className = 'hidden-static-loading'
+    }
   }
 }
