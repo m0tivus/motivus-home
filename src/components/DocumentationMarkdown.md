@@ -64,6 +64,7 @@ async def main():
 
 result = asyncio.run(main())
 print(result)
+# [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
 ```
 
 3. Run your driver on *Motivus Waterbear*: 
