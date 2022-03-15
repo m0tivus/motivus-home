@@ -24,6 +24,9 @@ The easiest way to write a driver is by using a listed algorithm in the *Motivus
 1. Create an `.env` file containing your `APPLICATION_TOKEN` as follows:
 ```sh
 # .env
+# REQUIRED
+WEBSOCKET_URI=wss://waterbear.api.motivus.cl/client_socket/websocket
+
 APPLICATION_TOKEN=<your motivus application token>
 ```
 2. Create a python script and define your task, for example:
