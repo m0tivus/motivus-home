@@ -67,6 +67,24 @@ const newAlgorithmUser = {
   user_id: 3,
 }
 
+const newAlgorithmUserUpdating = {
+  algorithm_id: 1,
+  charge_schema: null,
+  cost: null,
+  id: 7,
+  role: 'MAINTAINER',
+  user: {
+    avatar_url: 'https://avatars.githubusercontent.com/u/1316798?v=4',
+    email: 'fernando@motivus.cl',
+    id: 3,
+    name: 'Fernando Mora',
+    provider: 'github',
+    username: 'Fmora',
+    uuid: 'ff60-49d0-bed5-11b9751b-46aea6f99c2a',
+  },
+  user_id: 3,
+}
+
 const newUserListUser = {
   algorithm_id: 1,
   charge_schema: 'PER_MINUTE',
@@ -97,7 +115,8 @@ describe('EditAlgorthm', () => {
       .mockImplementationOnce(() => algorithmUsers)
       .mockImplementationOnce(() => [...algorithmUsers, newAlgorithmUser])
       .mockImplementationOnce(() => [newAlgorithmUser])
-      .mockImplementationOnce(() => [newAlgorithmUser, newUserListUser])
+      .mockImplementationOnce(() => [newAlgorithmUserUpdating])
+      .mockImplementationOnce(() => [newAlgorithmUserUpdating, newUserListUser])
     AlgorithmUser.all.mockImplementation(all)
     const create = jest
       .fn()
@@ -109,6 +128,8 @@ describe('EditAlgorthm', () => {
     AlgorithmUser.create.mockImplementation(create)
     const remove = jest.fn()
     AlgorithmUser.remove.mockImplementation(remove)
+    const updateUser = jest.fn()
+    AlgorithmUser.update.mockImplementation(updateUser)
 
     render(
       <SnackbarProvider>
@@ -189,6 +210,50 @@ describe('EditAlgorthm', () => {
 
     // await screen.findByText(/deleting permission/i)
     expect(remove).toHaveBeenCalledWith(algorithm.id, algorithmUsers[0].id)
+    await waitFor(() =>
+      expect(
+        screen.queryByDisplayValue('cristian.huijse@gmail.com'),
+      ).toBeNull(),
+    )
+
+    //-------------update user------------
+
+    const PermissionsPostUpdating = screen.getByRole('region', {
+      name: /permissions/i,
+    })
+    const permissionUserNameUpdating = within(
+      PermissionsPostUpdating,
+    ).getByRole('textbox', {
+      name: /user email/i,
+    })
+    expect(permissionUserNameUpdating).toHaveValue('fernando@motivus.cl') //confirmar usuario
+
+    const permissionRoleUpdating = within(PermissionsPostUpdating).getByRole(
+      'button',
+      {
+        name: /role/i,
+      },
+    )
+    userEvent.click(permissionRoleUpdating)
+    userEvent.click(screen.getByRole('option', { name: /maintainer/i }))
+    const updatePermissionButton = within(PermissionsPostUpdating).getByRole(
+      'button',
+      {
+        name: /update/i,
+      },
+    )
+    userEvent.click(updatePermissionButton)
+
+    expect(updateUser).toHaveBeenCalledWith(
+      algorithm.id,
+      newAlgorithmUserUpdating.id,
+      {
+        role: 'MAINTAINER',
+        username_or_email: 'fernando@motivus.cl',
+        charge_schema: undefined,
+        cost: null,
+      },
+    )
 
     //--------------User list--------------
 

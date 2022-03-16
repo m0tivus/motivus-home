@@ -4,7 +4,7 @@ import Title from '../components/client/Title'
 import { graphql } from 'gatsby'
 import AlgorithmRender from '../components/Algorithm'
 import { transformAlgorithm } from '../utils'
-import LoadingComponent from '../components/Loading'
+import LoadingComponent from '../components/StaticLoading'
 import useUser from '../hooks/useUser'
 import { Algorithm } from '../models'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
@@ -38,10 +38,10 @@ export default function AlgorithmTemplate({ name, ...props }) {
     <LoadingComponent fullscreen />
   ) : (
     <Layout {...props}>
-      <Box px={matches ? "0px" : "15px"} >
-      <Title text={algorithm.name} />
-      <AlgorithmRender data={{ algorithm }} {...props} isClientView={true} />
-      </Box> 
+      <Box px={matches ? '0px' : '15px'}>
+        <Title text={algorithm.name} />
+        <AlgorithmRender data={{ algorithm }} {...props} isClientView={true} />
+      </Box>
     </Layout>
   )
 }

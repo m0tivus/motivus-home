@@ -14,7 +14,7 @@ const styles = (Theme) => ({
   grow: {
     position: 'fixed',
     flexGrow: 1,
-    zIndex: 2,
+    zIndex: 10,
 
     width: '100%',
     bottom: '0%',

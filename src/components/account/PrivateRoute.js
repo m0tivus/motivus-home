@@ -1,7 +1,7 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 import useUser from '../../hooks/useUser'
-import LoadingComponent from '../Loading'
+import LoadingComponent from '../StaticLoading'
 
 const loginPath = '/account/login'
 const homePath = '/account/my-algorithms'

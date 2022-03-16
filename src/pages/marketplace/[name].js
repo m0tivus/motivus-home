@@ -3,7 +3,7 @@ import useUser from '../../hooks/useUser'
 import { Algorithm } from '../../models'
 import AlgorithmTemplate from '../../templates/homeAlgorithm'
 import { transformAlgorithm } from '../../utils'
-import LoadingComponent from '../../components/Loading'
+import LoadingComponent from '../../components/StaticLoading'
 
 function ClientSideAlgorithm({ params: { name }, ...props }) {
   const { isLoading } = useUser()

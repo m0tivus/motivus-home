@@ -37,6 +37,15 @@ export const AlgorithmUser = {
         `${API_BASE_URL}/api/package_registry/algorithms/${algorithmId}/users/${algorithmUserId}`,
       )
       .then(dataGetter),
+  update: (algorithmId, id, algorithm_user) =>
+    axios
+      .put(
+        `${API_BASE_URL}/api/package_registry/algorithms/${algorithmId}/users/${id}`,
+        {
+          algorithm_user,
+        },
+      )
+      .then(dataGetter),
 }
 
 export const Algorithm = {
@@ -63,7 +72,12 @@ export const Algorithm = {
         algorithm,
       })
       .then(dataGetter),
-  update: () => null,
+  update: (id, algorithm) =>
+    axios
+      .put(`${API_BASE_URL}/api/package_registry/algorithms/${id}`, {
+        algorithm,
+      })
+      .then(dataGetter),
 }
 
 export const ApplicationToken = {
