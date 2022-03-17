@@ -12,8 +12,7 @@ const PrivateRoute = ({ component: Component, location, ...rest }) => {
   React.useEffect(() => {
     if (isGuest && location.pathname !== loginPath) {
       navigate(loginPath)
-    }
-    if (user.id && location.pathname === loginPath) {
+    } else if (user.id && location.pathname === loginPath) {
       navigate(homePath)
     }
   }, [user.id, location.pathname, isGuest])

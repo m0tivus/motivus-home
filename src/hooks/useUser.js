@@ -30,12 +30,14 @@ function useUser() {
   }
 
   React.useEffect(() => {
-    const token = window.localStorage.getItem('token')
-    if (token) {
-      getUserFromToken(token)
-    } else {
-      setIsLoading(false)
-      setIsGuest(true)
+    if (!user.id) {
+      const token = window.localStorage.getItem('token')
+      if (token) {
+        getUserFromToken(token)
+      } else {
+        setIsLoading(false)
+        setIsGuest(true)
+      }
     }
   }, [user.id])
 
