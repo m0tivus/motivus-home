@@ -24,7 +24,8 @@ function App() {
   return (
     <DarkTheme>
       <SnackbarProvider
-      //classes={{ variantInfo: { backgroundColor: theme.palette.primary.main } }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        //classes={{ variantInfo: { backgroundColor: theme.palette.primary.main } }}
       >
         <User.Provider value={{ user, setUser }}>
           <Router>

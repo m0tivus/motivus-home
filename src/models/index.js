@@ -49,7 +49,8 @@ export const AlgorithmUser = {
 }
 
 export const Algorithm = {
-  myAlgorithms: () => Algorithm.all({ role: 'OWNER' }),
+  owned: () => Algorithm.all({ role: 'OWNER' }),
+  maintained: () => Algorithm.all({ role: 'MAINTAINER' }),
   all: (params) =>
     axios
       .get(`${API_BASE_URL}/api/package_registry/algorithms`, { params })

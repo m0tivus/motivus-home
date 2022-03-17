@@ -41,7 +41,7 @@ function useUser() {
     }
   }, [user.id])
 
-  return { user, isLoading, isGuest }
+  return { user, isLoading, isGuest, setUser }
 }
 
 export default useUser

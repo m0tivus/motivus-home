@@ -63,14 +63,19 @@ export default function Header({ darkState, setDarkState }) {
         justifyContent='space-between'
       >
         <Box>
-          <img alt='logoMotivus' src='/logoBeta.svg' width='300px'></img>
+          <img
+            alt='logoMotivus'
+            src='/logoBeta.svg'
+            width='300px'
+            onClick={() => navigate('/')}
+          ></img>
           <Box marginTop='-35px' marginBottom='25px'>
             <Typography
               variant='h4'
               color='textPrimary'
               className={classes.textColor}
             >
-              {user.name}
+              {user.username || user.name}
             </Typography>
           </Box>
           <Divider className={classes.divider} />
