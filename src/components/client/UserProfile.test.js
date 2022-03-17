@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { User } from '../../models'
 import { SnackbarProvider } from 'notistack'
 import UserProfile from './UserProfile'
+import UserContext from '../../contexts/User'
 
 jest.mock('../../models')
 
@@ -31,19 +32,15 @@ describe('userName', () => {
       .mockImplementationOnce(() => ({ ...firstUser, ...user }))
     User.update.mockImplementation(update)
 
-    const currentUser = jest
-      .fn()
-      .mockImplementationOnce(() => firstUser)
-      .mockImplementationOnce(() => ({ ...firstUser, ...user }))
-
-    User.current.mockImplementation(currentUser)
+    const setUser = jest.fn().mockImplementationOnce(() => null)
 
     render(
       <SnackbarProvider>
-        <UserProfile />
+        <UserContext.Provider value={{ user: firstUser, setUser }}>
+          <UserProfile />
+        </UserContext.Provider>
       </SnackbarProvider>,
     )
-    expect(currentUser).toHaveBeenCalled()
 
     await screen.findByDisplayValue(/chris/i)
 
@@ -60,10 +57,9 @@ describe('userName', () => {
 
     userEvent.click(screen.getByRole('button', { name: /update profile/i }))
 
-    await screen.findByText(/Updating User Profile/i)
+    await screen.findByText(/user profile updated successfully/i)
 
     expect(update).toHaveBeenCalledWith(user)
-
-    expect(name).screen
+    expect(setUser).toHaveBeenCalledWith({ ...firstUser, ...user })
   })
 })

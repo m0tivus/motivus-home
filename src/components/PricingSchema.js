@@ -43,26 +43,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-/*const validationSchema = Yup.object().shape({
-  algorithm_users: Yup.array().of(
-    Yup.object().shape({
-      name: Yup.string().required('User name is required'),
-      charge_schema: Yup.mixed()
-        .oneOf(['per_execution', 'per_minute'])
-        .required('you must choose an option'),
-      credits: Yup.number().positive('Credits must be positive'),
-    }),
-  ),
-})*/
-
 export default function PricingSchema({ formik }) {
   const classes = useStyles()
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
 
-  console.log(formik.values.cost, formik.handleChange)
-
-  // /^[0-9\b]+$/
 
   const handleChange = (e) => {
     const value = e.target.value.replace(/\D/g, '')
@@ -72,7 +57,6 @@ export default function PricingSchema({ formik }) {
   return (
     <React.Fragment>
       <Typography
-        //className={classes.inputStatement}
         variant='h5'
         color='textPrimary'
         gutterBottom
@@ -84,7 +68,6 @@ export default function PricingSchema({ formik }) {
         className={classes.container}
         width='100%'
         flexDirection={matches ? 'row' : 'column'}
-        //border='1px solid red'
       >
         <Box display='flex' flexDirection='column' width='100%'>
           <TextField
@@ -127,14 +110,6 @@ export default function PricingSchema({ formik }) {
             SelectProps={{
               MenuProps: { classes: { paper: classes.poper } },
             }}
-            /*helperText={
-            touchedDefault_charge_schema && errorDefault_charge_schema
-              ? errorDefault_charge_schema
-              : ''
-          }
-          error={Boolean(
-            touchedDefault_charge_schema && errorDefault_charge_schema,
-          )}*/
           >
             <MenuItem value={'PER_EXECUTION'}>Per execution</MenuItem>
             <MenuItem value={'PER_MINUTE'}>Per Minute</MenuItem>
@@ -162,50 +137,3 @@ export default function PricingSchema({ formik }) {
     </React.Fragment>
   )
 }
-
-/*<Box>
-<Box display='flex' width='100%' justifyContent='space-betwenn'>
-          <AlgorithmsInputSelec
-            input={schema}
-            setInput={setSchema}
-            values={schemaType}
-            text='Schema options:'
-          />
-
-          <Box ml='40px' />
-          <AlgorithmInput
-            inputTitle='credits *'
-            input={credits}
-            setInput={setCredits}
-            numeric={true}
-          />
-        </Box>
-      </Box>*/
-
-/*<TextField
-      color='secondary'
-      className={classes.field}
-      margin='normal'
-      label='Charge schema'
-      name={charge_schema}
-      onChange={handleChange}
-      InputLabelProps={{ classes: { root: classes.label } }}
-      value={user.charge_schema}
-      onBlur={handleBlur}
-      required
-      select
-      SelectProps={{
-        MenuProps: { classes: { paper: classes.poper } },
-      }}
-      helperText={
-        touchedDefault_charge_schema && errorDefault_charge_schema
-          ? errorDefault_charge_schema
-          : ''
-      }
-      error={Boolean(
-        touchedDefault_charge_schema && errorDefault_charge_schema,
-      )}
-    >
-      <MenuItem value={'per_execution'}>Per execution</MenuItem>
-      <MenuItem value={'per_minute'}>Per Time</MenuItem>
-    </TextField>*/
