@@ -9,24 +9,23 @@ function useUser() {
   const [isGuest, setIsGuest] = useState(false)
 
   const getUserFromToken = async (token) => {
-    let user_ = null
     try {
       axios.defaults.headers.common = {
         Authorization: `Bearer ${token}`,
       }
-      user_ = await User.current(token)
+      const user_ = await User.current(token)
+      if (user_) {
+        setUser(user_)
+        setIsGuest(false)
+      } else {
+        setIsGuest(true)
+      }
     } catch (e) {
       delete axios.defaults.headers.common['Authorization']
       window.localStorage.removeItem('token')
+      setIsGuest(true)
     } finally {
       setIsLoading(false)
-    }
-
-    if (user_) {
-      setUser(user_)
-      setIsGuest(false)
-    } else {
-      setIsGuest(true)
     }
   }
 
