@@ -91,5 +91,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/m0tivus/motivus-homepage"
+  },
+  "standard-version": {
+    "message": "chore(release): Release v%s :tada: [ci skip]"
   }
 }
