@@ -29,20 +29,28 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
       - persist_to_workspace:
           root: ~/repo
-          paths: .
+          paths:
+            - .
   build:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/repo
       - run:
+          name: Git config
+          command: |
+            git config --global user.email "circleci@motivus.cl"
+            git config --global user.name "CircleCI"
+      - run:
+          name: Prepare release versioning
+          command: yarn run release
+      - run:
           name: Build site
           command: CI="" yarn build
       - persist_to_workspace:
           root: ~/repo
           paths:
-            - public
-            - deployment
+            - .
   publish:
     <<: *defaults
     steps:
@@ -53,6 +61,14 @@ jobs:
       - run:
           name: Publish site
           command: cd deployment && cdk bootstrap --force && cdk deploy --progress events --ci --require-approval never
+      - add_ssh_keys:
+          fingerprints:
+            - "55:bb:f4:1f:72:da:b6:c4:35:b9:10:3c:59:00:14:87"
+      - run:
+          name: Repo Versioning
+          command: |
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+            git push --follow-tags origin $CIRCLE_BRANCH
 
 workflows:
   main:
