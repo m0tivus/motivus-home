@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/m0tivus/motivus-homepage/compare/v1.1.0...v1.1.1) (2022-03-18)
+
+
+### CI
+
+* prevent trigger ci run upon new changelog ([8d62802](https://github.com/m0tivus/motivus-homepage/commit/8d628026f44840ac115707f52fb680a2f657b358))
+
 ## 1.1.0 (2022-03-18)
 
 
