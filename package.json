@@ -84,7 +84,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest"
+    "test": "jest",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
