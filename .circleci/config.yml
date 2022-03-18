@@ -6,7 +6,7 @@ defaults: &defaults
   working_directory: ~/repo
   executor: 
     name: node/default
-    tag: '16.0'
+    tag: 'lts'
   resource_class: large
 
 jobs:
