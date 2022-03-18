@@ -71,33 +71,33 @@ function Permission({
     enqueueSnackbar('creating permission')
     try {
       await AlgorithmUser.create(algorithmId, values)
-      enqueueSnackbar('New user added successfully', { type: 'success' })
+      enqueueSnackbar('New user added successfully', { variant: 'success' })
       refreshData()
       setShowNew(false)
     } catch (e) {
-      enqueueSnackbar('Permission could not be created', { type: 'error' })
+      enqueueSnackbar('Permission could not be created', { variant: 'error' })
     }
   }
   const remove = async () => {
     try {
       enqueueSnackbar('Removed successfully', {
-        type: 'success',
+        variant: 'success',
       })
       await AlgorithmUser.remove(algorithmId, data.id)
       refreshData()
     } catch (e) {
-      enqueueSnackbar('Could not delete permission', { type: 'error' })
+      enqueueSnackbar('Could not delete permission', { variant: 'error' })
     }
   }
 
   const update = async (values) => {
     try {
-      enqueueSnackbar('Updated successfully', { type: 'success' })
+      enqueueSnackbar('Updated successfully', { variant: 'success' })
       await AlgorithmUser.update(algorithmId, data.id, values)
       refreshData()
       setUpdating(false)
     } catch (e) {
-      enqueueSnackbar('Could not delete permission', { type: 'error' })
+      enqueueSnackbar('Could not delete permission', { variant: 'error' })
     }
   }
 

@@ -90,11 +90,11 @@ export default function AccesTokenCard({
   const remove = async () => {
     try {
       await model.remove(id)
-      enqueueSnackbar('Deleted successfully', { type: 'success' })
+      enqueueSnackbar('Deleted successfully', { variant: 'success' })
       refreshData()
       handleClose()
     } catch (e) {
-      enqueueSnackbar('Could not delete', { type: 'error' })
+      enqueueSnackbar('Could not delete', { variant: 'error' })
     }
   }
 
