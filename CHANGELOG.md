@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/m0tivus/motivus-homepage/compare/v1.1.1...v1.2.0) (2022-03-21)
+
+
+### Features
+
+* **documentation:** change ducomentation png schema ([57be037](https://github.com/m0tivus/motivus-homepage/commit/57be03782188bb2e769841897055651ce1d53671))
+
+
+### Bug Fixes
+
+* **algorithm:** add seo to algorithms ([4c7c89a](https://github.com/m0tivus/motivus-homepage/commit/4c7c89afa59b0cc6154fd755272486b6c4f28af5))
+* **logo build problem:** logo build problem change from public to static ([1cda4e5](https://github.com/m0tivus/motivus-homepage/commit/1cda4e5f51c473223143f0d6b7205964dd129015))
+
 ### [1.1.1](https://github.com/m0tivus/motivus-homepage/compare/v1.1.0...v1.1.1) (2022-03-18)
 
 
