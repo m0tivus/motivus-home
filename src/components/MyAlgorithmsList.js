@@ -18,8 +18,13 @@ export default function MyAlgorithms({ variant }) {
   const [algorithms, setAlgorithms] = React.useState([])
 
   const getAlgorithmData = async () => {
-    const algorithms_ = await Algorithm.myAlgorithms()
-    setAlgorithms(algorithms_.map(transformAlgorithm))
+    const [owned, maintained] = await Promise.all([
+      Algorithm.owned(),
+      Algorithm.maintained(),
+    ])
+    const owned_ = owned.map((a) => ({ ...a, role: 'OWNER' }))
+    const maintained_ = maintained.map((a) => ({ ...a, role: 'MAINTAINER' }))
+    setAlgorithms([...owned_, ...maintained_].map(transformAlgorithm))
   }
   React.useEffect(() => {
     getAlgorithmData()

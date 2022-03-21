@@ -8,7 +8,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import IconButton from '@material-ui/core/IconButton'
 import { motion } from 'framer-motion'
 import { navigate } from 'gatsby-link'
-import { id } from 'date-fns/locale'
+import PublicIcon from '@material-ui/icons/Public'
+import Tooltip from '@material-ui/core/Tooltip'
+import LockIcon from '@material-ui/icons/Lock'
 
 const useStyles = makeStyles((theme) => ({
   backgroundDark: {
@@ -58,6 +60,7 @@ export default function AlgorithmCards({
   variant,
   id,
   is_public,
+  role,
 }) {
   const classes = useStyles()
   const theme = useTheme()
@@ -102,7 +105,21 @@ export default function AlgorithmCards({
                 justifyContent='space-between'
                 //border='1px solid blue'
               >
-                <Typography variant='h5'>{name}</Typography>
+                <Box display='flex' flexDirection='row' alignItems='center'>
+                  <Typography variant='h5'>{name} </Typography>
+                  &nbsp;
+                  <Tooltip
+                    title={is_public ? 'Public' : 'Private'}
+                    aria-label={is_public ? 'Public' : 'Private'}
+                    placement='right'
+                  >
+                    {is_public ? (
+                      <PublicIcon color='primary' />
+                    ) : (
+                      <LockIcon color='primary' />
+                    )}
+                  </Tooltip>
+                </Box>
                 <Box
                   display='flex'
                   flexDirection='row'
@@ -126,12 +143,12 @@ export default function AlgorithmCards({
               //border='1px solid green'
             >
               <Typography variant='h5' className={classes.publicOrPrivate}>
-                {is_public ? 'Public' : 'Private'}
+                {role}
               </Typography>
               <Box
                 display='flex'
                 flexDirection='row'
-                justifyContent={matches ? 'space-between' : 'flex-end'}
+                justifyContent='flex-end'
                 //border='1px solid red'
                 width='100%'
               >
@@ -143,11 +160,12 @@ export default function AlgorithmCards({
                   <ShowChartIcon className={classes.icon} />
                 </IconButton>
                 <IconButton
+                  disabled={role === 'MAINTAINER'}
                   size='small'
                   aria-label='edit algorithm'
                   onClick={() => navigate(`/account/my-algorithms/edit/${id}`)}
                 >
-                  <EditIcon className={classes.icon} />
+                  <EditIcon className={role === 'OWNER' && classes.icon} />
                 </IconButton>
                 <IconButton disabled size='small' aria-label='algorithm link'>
                   <LinkIcon /*className={classes.icon}*/ />

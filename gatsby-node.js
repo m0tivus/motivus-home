@@ -51,7 +51,7 @@ exports.sourceNodes = async ({
       }/api/package_registry/algorithms/`,
     )
     const algorithms = _algorithms.data.data.map(transformAlgorithm)
-    console.log(algorithms)
+    console.log(`got ${algorithms.length} algorithms for static rendering`)
 
     algorithms.forEach((algorithm) => {
       const node = {

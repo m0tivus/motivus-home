@@ -24,6 +24,9 @@ The easiest way to write a driver is by using a listed algorithm in the *Motivus
 1. Create an `.env` file containing your `APPLICATION_TOKEN` as follows:
 ```sh
 # .env
+# REQUIRED
+WEBSOCKET_URI=wss://waterbear.api.motivus.cl/client_socket/websocket
+
 APPLICATION_TOKEN=<your motivus application token>
 ```
 2. Create a python script and define your task, for example:
@@ -55,13 +58,16 @@ task_definition = {
     ]
 }
 
-motivus = await Client.connect()
+async def main():
+    motivus = await Client.connect()
 
-task_id = conn.call_async(task_definition)
-task = conn.select_task(task_id)
-result = await task
+    task_id = motivus.call_async(task_definition)
+    task = motivus.select_task(task_id)
+    return await task
 
+result = asyncio.run(main())
 print(result)
+# [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
 ```
 
 3. Run your driver on *Motivus Waterbear*: 

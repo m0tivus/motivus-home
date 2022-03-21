@@ -1,7 +1,7 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 import useUser from '../../hooks/useUser'
-import LoadingComponent from '../Loading'
+import LoadingComponent from '../StaticLoading'
 
 const loginPath = '/account/login'
 const homePath = '/account/my-algorithms'
@@ -12,8 +12,7 @@ const PrivateRoute = ({ component: Component, location, ...rest }) => {
   React.useEffect(() => {
     if (isGuest && location.pathname !== loginPath) {
       navigate(loginPath)
-    }
-    if (user.id && location.pathname === loginPath) {
+    } else if (user.id && location.pathname === loginPath) {
       navigate(homePath)
     }
   }, [user.id, location.pathname, isGuest])

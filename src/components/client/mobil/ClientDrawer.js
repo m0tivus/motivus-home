@@ -9,7 +9,7 @@ import {
   activeNavItem,
 } from '../../../styles/mobileNav.module.css'
 
-import { routes } from '../AccountRoutes'
+import { accountRoutes } from '../../Routes'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='right' ref={ref} {...props} />
@@ -31,7 +31,7 @@ const DrawerComponent = (props) => {
         <Box className={background} />
         <nav className={nav}>
           <ul className={navList}>
-            {routes.map(({ name, route, partialy }) => (
+            {accountRoutes.map(({ name, route, partialy }) => (
               <li>
                 <Link
                   className={navItem}

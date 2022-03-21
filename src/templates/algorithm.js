@@ -4,12 +4,13 @@ import Title from '../components/client/Title'
 import { graphql } from 'gatsby'
 import AlgorithmRender from '../components/Algorithm'
 import { transformAlgorithm } from '../utils'
-import LoadingComponent from '../components/Loading'
+import LoadingComponent from '../components/StaticLoading'
 import useUser from '../hooks/useUser'
 import { Algorithm } from '../models'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
 import { Box } from '@material-ui/core'
+import Seo from '../components/seo'
 
 export default function AlgorithmTemplate({ name, ...props }) {
   const theme = useTheme()
@@ -38,10 +39,11 @@ export default function AlgorithmTemplate({ name, ...props }) {
     <LoadingComponent fullscreen />
   ) : (
     <Layout {...props}>
-      <Box px={matches ? "0px" : "15px"} >
-      <Title text={algorithm.name} />
-      <AlgorithmRender data={{ algorithm }} {...props} isClientView={true} />
-      </Box> 
+      <Seo title={algorithm.name} />
+      <Box px={matches ? '0px' : '15px'}>
+        <Title text={algorithm.name} />
+        <AlgorithmRender data={{ algorithm }} {...props} isClientView={true} />
+      </Box>
     </Layout>
   )
 }

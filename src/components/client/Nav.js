@@ -8,13 +8,13 @@ import {
   activeNavItemver,
 } from '../../styles/clientNav.module.css'
 
-import { routes } from './AccountRoutes'
+import { accountRoutes } from '../Routes'
 
 export default function Nav() {
   return (
     <nav className={nav}>
       <ul className={navList}>
-        {routes.map(({ name, route, partialy }) => (
+        {accountRoutes.map(({ name, route, partialy }) => (
           <li key={`mobile-route-${route}`}>
             <Link
               className={navItemver}

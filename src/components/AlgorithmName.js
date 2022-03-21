@@ -34,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
   poper: {
     background: theme.palette.background.inputBackground,
   },
+  input: {
+    '&:invalid': {
+      border: 'red solid 1px',
+    },
+  },
 }))
 
 /*const validationSchema = Yup.object().shape({
@@ -56,20 +61,29 @@ export default function AlgorithmName({ formik, disabled }) {
   return (
     <React.Fragment>
       <Box className={classes.container} flexDirection='row'>
-        <TextField
-          disabled={disabled}
-          color='secondary'
-          className={classes.field}
-          margin='normal'
-          label='Algorithm Name'
-          id='name'
-          InputLabelProps={{ classes: { root: classes.label } }}
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          required
-          helperText={formik.touched.name && formik.errors.name}
-          error={formik.touched.name && Boolean(formik.errors.name)}
-        />
+        <Box display='flex' width='100%' flexDirection='column'>
+          <TextField
+            disabled={disabled}
+            color='secondary'
+            className={classes.field}
+            margin='normal'
+            label='Algorithm Name'
+            id='name'
+            InputLabelProps={{ classes: { root: classes.label } }}
+            inputProps={{
+              className: classes.input,
+              pattern: '^[a-z0-9]+([-_s]{1}[a-z0-9]+)*$',
+            }}
+            required
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            helperText={formik.touched.name && formik.errors.name}
+            error={formik.touched.name && Boolean(formik.errors.name)}
+          />
+          <Typography variant='caption' color='inherit'>
+            Please only use: lowercase, hyphen and numbers{' '}
+          </Typography>
+        </Box>
       </Box>
 
       {debug && (

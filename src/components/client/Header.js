@@ -9,6 +9,7 @@ import Sun from '@material-ui/icons/Brightness5'
 import Moon from '@material-ui/icons/Brightness2Outlined'
 import User from '../../contexts/User'
 import Button from '@material-ui/core/Button'
+import { navigate } from 'gatsby'
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 function logout() {
   if (window.localStorage) {
-    window.localStorage.deleteItem('token')
+    window.localStorage.removeItem('token')
   }
   navigate('/')
 }
@@ -62,14 +63,19 @@ export default function Header({ darkState, setDarkState }) {
         justifyContent='space-between'
       >
         <Box>
-          <img alt='logoMotivus' src='/logoBeta.svg' width='300px'></img>
+          <img
+            alt='logoMotivus'
+            src='/logoBeta.svg'
+            width='300px'
+            onClick={() => navigate('/')}
+          ></img>
           <Box marginTop='-35px' marginBottom='25px'>
             <Typography
               variant='h4'
               color='textPrimary'
               className={classes.textColor}
             >
-              {user.name}
+              {user.username || user.name}
             </Typography>
           </Box>
           <Divider className={classes.divider} />

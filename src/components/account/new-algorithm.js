@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const validationSchema = yup.object({
   name: yup.string('Enter your name').required('Enter your name'),
-  cost: yup.string('Enter your name').required('Enter your name'),
+  cost: yup.number('Enter a Cost').required('Enter a Cost'),
   charge_schema: yup
     .mixed()
     .oneOf(['PER_EXECUTION', 'PER_MINUTE'])
@@ -69,6 +69,7 @@ function NewAlgorithmForms({ update, algorithm, refreshData }) {
           },
           preventDuplicate: true,
         })
+        navigate('/account/my-algorithms')
       } else {
         const algorithm = await Algorithm.create(values)
         enqueueSnackbar('creating algorithm', {

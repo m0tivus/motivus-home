@@ -14,3 +14,23 @@ export const wrapRootElement = ({ element }) => {
   }
   return element
 }
+
+export const onClientEntry = () => {
+  if (!/^\/account\//.test(window.location.pathname)) {
+    const element = document.getElementById('static-loading')
+    if (element) {
+      element.className = 'hidden-static-loading'
+    }
+  }
+}
+
+export const onRouteUpdate = ({ location, prevLocation }) => {
+  const newPathname = location.pathname
+
+  if (!/^\/account\//.test(newPathname)) {
+    const element = document.getElementById('static-loading')
+    if (element) {
+      element.className = 'hidden-static-loading'
+    }
+  }
+}

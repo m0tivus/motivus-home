@@ -9,38 +9,39 @@ function useUser() {
   const [isGuest, setIsGuest] = useState(false)
 
   const getUserFromToken = async (token) => {
-    let user_ = null
     try {
       axios.defaults.headers.common = {
         Authorization: `Bearer ${token}`,
       }
-      user_ = await User.current(token)
+      const user_ = await User.current(token)
+      if (user_) {
+        setUser(user_)
+        setIsGuest(false)
+      } else {
+        setIsGuest(true)
+      }
     } catch (e) {
       delete axios.defaults.headers.common['Authorization']
       window.localStorage.removeItem('token')
+      setIsGuest(true)
     } finally {
       setIsLoading(false)
-    }
-
-    if (user_) {
-      setUser(user_)
-      setIsGuest(false)
-    } else {
-      setIsGuest(true)
     }
   }
 
   React.useEffect(() => {
-    const token = window.localStorage.getItem('token')
-    if (token) {
-      getUserFromToken(token)
-    } else {
-      setIsLoading(false)
-      setIsGuest(true)
+    if (!user.id) {
+      const token = window.localStorage.getItem('token')
+      if (token) {
+        getUserFromToken(token)
+      } else {
+        setIsLoading(false)
+        setIsGuest(true)
+      }
     }
   }, [user.id])
 
-  return { user, isLoading, isGuest }
+  return { user, isLoading, isGuest, setUser }
 }
 
 export default useUser

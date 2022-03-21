@@ -1,6 +1,7 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import { Box, Fade } from '@material-ui/core'
+import { homeRoutes } from './Routes'
 
 import {
   navItemver,
@@ -15,15 +16,6 @@ import {
 } from '../styles/nav.module.css'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 import ContactUsDrawer from './ContactUsDrawer'
-
-const routes = [
-  { name: 'HOME', route: '/', partialy: false },
-  { name: 'MARKETPLACE', route: '/marketplace', partialy: true },
-  { name: 'ABOUT', route: '/about', partialy: false },
-  { name: 'BLOG', route: '/blog', partialy: true },
-  { name: 'DOCUMENTATION', route: '/documentation/', partialy: false },
-  /*{ name: 'CONTACT US', route: '/contact', partialy: false },*/
-]
 
 const Nav = ({ openContact, setOpenContact, ...props }) => {
   const [checkedHorizontal, setcheckedHorizontal] = React.useState(true)
@@ -54,7 +46,7 @@ const Nav = ({ openContact, setOpenContact, ...props }) => {
       <Fade in={!checkedHorizontal} timeout={500}>
         <nav className={navver}>
           <ul className={navListver}>
-            {routes.map(({ name, route, partialy }) => (
+            {homeRoutes.map(({ name, route, partialy }) => (
               <li>
                 <Link
                   className={navItemver}
@@ -77,7 +69,7 @@ const Nav = ({ openContact, setOpenContact, ...props }) => {
       <Fade in={checkedHorizontal} timeout={500}>
         <nav className={navhor}>
           <ul className={navListhor}>
-            {routes.map(({ name, route, partialy }) => (
+            {homeRoutes.map(({ name, route, partialy }) => (
               <li className={navLihor}>
                 <Link
                   className={navItemhor}

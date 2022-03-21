@@ -5,12 +5,14 @@ import { Box, Typography } from '@material-ui/core'
 import Algorithm from '../components/Algorithm'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
+import Seo from '../components/seo'
 
 export default function AlgorithmTemplate({ data, ...props }) {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <Layout {...props}>
+      <Seo title={data.algorithm.name} />
       <Box px={matches ? '0px' : '15px'}>
         <Typography variant='h2' color='secondary'>
           {data.algorithm.name}

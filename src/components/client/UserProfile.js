@@ -12,6 +12,7 @@ import { navigate } from 'gatsby-link'
 import TextField from '@material-ui/core/TextField'
 import SettingTitle from '../../components/client/SettingsTitle'
 import { User } from '../../models'
+import useUser from '../../hooks/useUser'
 
 const useStyles = makeStyles((theme) => ({
   divider: {
@@ -63,35 +64,28 @@ export default function UserProfile({ update, algorithm, refreshData }) {
   const dark = theme.palette.type
   const matches = useMediaQuery(theme.breakpoints.up('lg'))
 
-  const getUser = async () => {
-    const user_ = await User.current()
-    formik.setFieldValue('username', user_.username)
-  }
-
-  React.useEffect(() => {
-    getUser()
-  }, [])
+  const {
+    user: { username },
+    setUser,
+  } = useUser()
 
   const formik = useFormik({
-    //enableReinitialize: true,
+    enableReinitialize: true,
     initialValues: {
-      username: '',
+      username,
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        await User.update(values)
-        enqueueSnackbar('Updating User Profile', {
-          variant: 'info',
-          anchorOrigin: {
-            vertical: 'top',
-            horizontal: 'center',
-          },
+        const user = await User.update(values)
+        enqueueSnackbar('User Profile updated successfully', {
+          variant: 'success',
+
           preventDuplicate: true,
         })
-        getUser()
+        setUser(user)
       } catch (e) {
-        enqueueSnackbar('Could not update user profile', { type: 'error' })
+        enqueueSnackbar('Could not update user profile', { variant: 'error' })
       }
     },
   })

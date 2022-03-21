@@ -79,7 +79,6 @@ export default function ClienOptionsCards({
 
   useEffect(() => {
     setRootWidth(ref.current && ref.current.offsetWidth)
-    console.log(rootWidth)
   }, [ref.current])
 
   return (
