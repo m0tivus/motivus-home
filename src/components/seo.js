@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 import { useLocation } from '@reach/router'
-import defaultImage from '../../public/logo.png'
+import defaultImage from '../../static/logo.png'
 
 function SEO({ description, lang, meta, title, image = defaultImage }) {
   const { pathname } = useLocation()
