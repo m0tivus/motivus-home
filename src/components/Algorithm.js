@@ -93,6 +93,7 @@ export default function Algorithm({ data, isClientView = false }) {
       setIsLoadingAlgorithm(false)
     }
   }
+
   React.useEffect(() => {
     if (isBrowser) {
       getAlgorithmData()
@@ -107,7 +108,10 @@ export default function Algorithm({ data, isClientView = false }) {
     <LoadingComponent />
   ) : (
     <React.Fragment>
-      <Seo description={algorithm.description} />
+      <Seo
+        title={algorithm.name}
+        description={`${algorithm.description} by ${algorithm.author}`}
+      />
       <Box
         display='flex'
         flexDirection={matches ? 'row' : 'column-reverse'}
