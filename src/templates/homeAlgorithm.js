@@ -13,6 +13,10 @@ export default function AlgorithmTemplate({ data, ...props }) {
   return (
     <Layout {...props}>
       <Box px={matches ? '0px' : '15px'}>
+        <Seo
+          title={data.algorithm.name}
+          description={`${data.algorithm.description} by ${data.algorithm.author}`}
+        />
         <Typography variant='h2' color='secondary'>
           {data.algorithm.name}
         </Typography>{' '}

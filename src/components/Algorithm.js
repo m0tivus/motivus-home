@@ -108,10 +108,6 @@ export default function Algorithm({ data, isClientView = false }) {
     <LoadingComponent />
   ) : (
     <React.Fragment>
-      <Seo
-        title={algorithm.name}
-        description={`${algorithm.description} by ${algorithm.author}`}
-      />
       <Box
         display='flex'
         flexDirection={matches ? 'row' : 'column-reverse'}
