@@ -12,7 +12,6 @@ export default function AlgorithmTemplate({ data, ...props }) {
   const matches = useMediaQuery(theme.breakpoints.up('sm'))
   return (
     <Layout {...props}>
-      <Seo title={data.algorithm.name} />
       <Box px={matches ? '0px' : '15px'}>
         <Typography variant='h2' color='secondary'>
           {data.algorithm.name}

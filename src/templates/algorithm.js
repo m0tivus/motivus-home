@@ -33,13 +33,13 @@ export default function AlgorithmTemplate({ name, ...props }) {
   }
   React.useEffect(() => {
     getAlgorithmData()
+    console.log(algorithm)
   }, [])
 
   return isLoading || isLoadingAlgorithm ? (
     <LoadingComponent fullscreen />
   ) : (
     <Layout {...props}>
-      <Seo title={algorithm.name} />
       <Box px={matches ? '0px' : '15px'}>
         <Title text={algorithm.name} />
         <AlgorithmRender data={{ algorithm }} {...props} isClientView={true} />
