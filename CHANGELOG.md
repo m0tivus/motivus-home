@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/m0tivus/motivus-homepage/compare/v1.2.0...v1.2.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* **algorithms:** seo description vizualisation ([3d16fd7](https://github.com/m0tivus/motivus-homepage/commit/3d16fd7ac44b561dd0e3626b10215faf18cb4b74))
+
 ## [1.2.0](https://github.com/m0tivus/motivus-homepage/compare/v1.1.1...v1.2.0) (2022-03-21)
 
 
