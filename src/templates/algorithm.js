@@ -40,6 +40,10 @@ export default function AlgorithmTemplate({ name, ...props }) {
     <LoadingComponent fullscreen />
   ) : (
     <Layout {...props}>
+      <Seo
+        title={algorithm.name}
+        description={`${algorithm.description} by ${algorithm.author}`}
+      />
       <Box px={matches ? '0px' : '15px'}>
         <Title text={algorithm.name} />
         <AlgorithmRender data={{ algorithm }} {...props} isClientView={true} />
