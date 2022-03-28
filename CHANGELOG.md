@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.4](https://github.com/m0tivus/motivus-homepage/compare/v1.2.3...v1.2.4) (2022-03-28)
+
+
+### Docs
+
+* **algorithm:** update return type of exmaple implementation for rust ([a9d53e6](https://github.com/m0tivus/motivus-homepage/commit/a9d53e683284f6713f2845c323805fccaf648b5b))
+
 ### [1.2.3](https://github.com/m0tivus/motivus-homepage/compare/v1.2.2...v1.2.3) (2022-03-22)
 
 
