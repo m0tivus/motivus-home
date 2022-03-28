@@ -24,9 +24,6 @@ The easiest way to write a driver is by using a listed algorithm in the *Motivus
 1. Create an `.env` file containing your `APPLICATION_TOKEN` as follows:
 ```sh
 # .env
-# REQUIRED
-WEBSOCKET_URI=wss://waterbear.api.motivus.cl/client_socket/websocket
-
 APPLICATION_TOKEN=<your motivus application token>
 ```
 2. Create a python script and define your task, for example:
@@ -91,7 +88,7 @@ To define your task use a dict, this dict can declare several keys:
 |`algorithm`|string|The algorithm name as published on *Motivus Marketplace*|yes|
 |`algorithm_name`|string|The algorithm version|yes|
 |`params`|list|Parameters to be passed to the algorithm main function invocation: i.e. `fun(list[0], list[1] ...)`|no|
-|`arguments`|string \| list[string]|Arguments to be passed to the algorithm invocation, as if where executed using command line arguments: i.e. having `["--some-flag", "--another_flag=1"]` would be equivalent to call `$ kmeans --some-flag --another_flag=1` on the worker.|no|
+|`arguments`|string \| list[string]|Arguments to be passed to the algorithm invocation, as if where executed using command line arguments: i.e. having `["--some-flag", "--another_flag 1"]` would be equivalent to call `$ kmeans --some-flag --another_flag 1` on the worker.|no|
 |`preload_files`|dict[string,string]|Files that should be loaded on the worker's virtual filesystem prior to algorithm execution, which can be accessed from the algorithm. The dict key should be the absolute location and file name where the file will be available and the value should be the file readed from the driver's local filesystem using `motivus.read_file(path)`.|no|
 |`result_files`|dict[string,string]]|Files that should be extracted from the worker's virtual filesystem and returned as result to the driver. The key should be a string with the absolute file location on the virtual filesystem and the value should be a path on the driver's filesystem where the file should be stored.|no|
 |`wasm_path`|string|Where should the client look for the algorithm `.wasm` generated file.|required when no `algorithm` and `algorithm_version` are used.|
@@ -121,13 +118,19 @@ $ wasm-pack new kmeans
 ```rust
 // src/lib.rs
 #[wasm_bindgen]
-pub fn main(input: &JsValue, clusters: &JsValue) -> String {
-  let xs: Vec<Vec<f64>> = input.into_serde().unwrap();
-  let k: usize = clusters.into_serde().unwrap();
-  let clustering = kmeans(xs, k);
-  return format!("{:?}", clustering);
-} 
+pub fn main(input: &JsValue, clusters: &JsValue) -> Box<[JsValue]> {
+    let xs: Vec<Vec<f32>> = input.into_serde().unwrap();
+    let k: usize = clusters.into_serde().unwrap();
+    let clustering = kmeans(xs, k);
 
+    // Transform to JS array
+    clustering
+        .into_iter()
+        .map(|s| s as u32)
+        .map(JsValue::from)
+        .collect::<Vec<JsValue>>()
+        .into_boxed_slice()
+}
 ```
 3. Create a `motivus.yml` file, declaring some metadata of your algorithm for the framework to use.
 ```yaml
@@ -150,6 +153,8 @@ package:
       url: "https://motivus.cl/"
       upstream_url: "https://github.com/m0tivus/example-kmeans-rust"
       long_description: "k-means clustering is a method of vector quantization, originally from signal ..."
+      # you can also specify a file path of a markdown file
+      # long_description: ./README.md
 ```
 4. Build your algorithm using the *Motivus CLI tool*:
 ```sh
