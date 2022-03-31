@@ -36,7 +36,10 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     '&:invalid': {
-      border: 'red solid 1px',
+      //border: '2px solid #c83737',
+      textDecorationLine: 'line-through',
+      textDecorationColor: '#c83737',
+      textDecorationThickness: '3px',
     },
   },
 }))

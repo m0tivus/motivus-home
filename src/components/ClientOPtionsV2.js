@@ -8,7 +8,7 @@ export default function ClientOptionsV2() {
 
   return (
     <React.Fragment>
-      <Grid container l={12} spacing={5}>
+      <Grid container l={12}>
         {cardsContent.map((cardContent, i) => (
           <Grid item sm={6} xs={12} key={`ClientOptionsCard-${i}`}>
             <ClienOptionsCards

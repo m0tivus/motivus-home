@@ -52,6 +52,14 @@ const useStyles = makeStyles((theme) => ({
   poper: {
     background: theme.palette.background.inputBackground,
   },
+  input: {
+    '&:invalid': {
+      //border: '2px solid #c83737',
+      textDecorationLine: 'line-through',
+      textDecorationColor: '#c83737',
+      textDecorationThickness: '3px',
+    },
+  },
 }))
 
 const validationSchema = yup.object({
@@ -99,6 +107,9 @@ export default function UserProfile({ update, algorithm, refreshData }) {
       </Typography>
       <Box mt='50px' width={matches ? '70%' : '90%'}></Box>
       <Input formik={formik} id='username' />
+      <Typography variant='caption' color='inherit'>
+        Please only use: lowercase, hyphen and numbers{' '}
+      </Typography>
       <Box mt='20px'>
         <Button
           size='large'
@@ -109,6 +120,7 @@ export default function UserProfile({ update, algorithm, refreshData }) {
           Update profile
         </Button>
       </Box>
+
       <Box mb={matches ? '20px' : '70px'} />
     </form>
   )
@@ -126,6 +138,11 @@ function Input({ formik, id }) {
       label='nickname'
       type='text'
       id={id}
+      autoComplete='false'
+      inputProps={{
+        className: classes.input,
+        pattern: '^[a-z0-9]+([-_s]{1}[a-z0-9]+)*$',
+      }}
       InputLabelProps={{ classes: { root: classes.label } }}
       value={formik.values.username}
       onChange={formik.handleChange}

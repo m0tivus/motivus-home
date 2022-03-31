@@ -11,7 +11,7 @@ const React = require('react')
 exports.onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
     <React.Fragment key='widget-motivus'>
-      <script src='https://widget.motivus.cl/loader.js' async></script>
+      {/*}<script src='https://widget.motivus.cl/loader.js' async></script>*/}
       <script
         dangerouslySetInnerHTML={{
           __html:

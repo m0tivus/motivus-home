@@ -1,7 +1,13 @@
 const _ = require('lodash')
 
 const transformAlgorithm = (a) => {
-  const lastVersion = a.versions?.[0] || { metadata: {} }
+  //console.log(a.versions)
+  const lastVersion = _.sortBy(a.versions, 'inserted_at')[
+    a.versions.length - 1
+  ] || {
+    metadata: {},
+  }
+  //console.log(lastVersion, a.versions)
   const metadata = lastVersion.metadata
   return {
     ...a,

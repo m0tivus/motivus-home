@@ -29,7 +29,8 @@ import LightTheme from './LightTheme'
 import { Box } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Header from '../components/client/Header'
-import MobilNav from '../components/client/mobileNav'
+import MobilNav from '../components/mobileNav'
+import { accountRoutes } from '../components/Routes'
 
 const windowGlobal = typeof window !== 'undefined' && window
 
@@ -69,7 +70,7 @@ const Layout = ({ children, ...props }) => {
     <Theme>
       <CssBaseline></CssBaseline>
       {matches ? (
-        <MobilNav />
+        <MobilNav routes={accountRoutes} account={true} />
       ) : (
         <Header setDarkState={setDarkState} darkState={darkState} />
       )}
