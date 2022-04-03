@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/m0tivus/motivus-homepage/compare/v1.2.5...v1.3.0) (2022-04-03)
+
+
+### Features
+
+* disable offline plugin ([9adf4e6](https://github.com/m0tivus/motivus-homepage/commit/9adf4e609203e7193d24db7590934d1c9920dea3))
+
 ### [1.2.5](https://github.com/m0tivus/motivus-homepage/compare/v1.2.4...v1.2.5) (2022-03-31)
 
 ### [1.2.4](https://github.com/m0tivus/motivus-homepage/compare/v1.2.3...v1.2.4) (2022-03-28)
