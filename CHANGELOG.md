@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/m0tivus/motivus-homepage/compare/v1.3.0...v1.3.1) (2022-04-05)
+
+
+### Docs
+
+* **algorithm:** add template usage for new rust algorithm ([862719a](https://github.com/m0tivus/motivus-homepage/commit/862719ac589bacc1eda4fa374c3df582337374e6))
+
 ## [1.3.0](https://github.com/m0tivus/motivus-homepage/compare/v1.2.5...v1.3.0) (2022-04-03)
 
 
