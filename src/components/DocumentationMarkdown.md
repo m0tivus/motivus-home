@@ -110,11 +110,11 @@ To write, test and distribute your algorithm using the *Motivus Marketplace*, yo
 
 ## Steps
 
-1. The easiest way to scaffold a new Rust algorithm is by using `wasm-pack`:
+1. The easiest way to scaffold a new Rust algorithm is by using `wasm-pack` along with Motivus algorithm template. You will be asked a few questions about your algorithm to be used as metadata when building and publishing to Motivus Marketplace:
 ```
-$ wasm-pack new kmeans
+$ wasm-pack new kmeans --template https://github.com/m0tivus/wasm-pack-template.git
 ```
-2. Add a `main` function to `src/lib.rs` alongside your implementation, which will be invoked from your Driver program with `params` as function parameters, as follows.
+2. A `main` function in `src/lib.rs` will be created and invoked from your Driver program with `params` as function parameters on runtime. An example implementation:
 ```rust
 // src/lib.rs
 #[wasm_bindgen]
@@ -132,7 +132,7 @@ pub fn main(input: &JsValue, clusters: &JsValue) -> Box<[JsValue]> {
         .into_boxed_slice()
 }
 ```
-3. Create a `motivus.yml` file, declaring some metadata of your algorithm for the framework to use.
+3. A `motivus.yml` file is created, declaring some metadata of your algorithm for the framework to use.
 ```yaml
 # motivus.yml
 ---
@@ -154,19 +154,26 @@ package:
       upstream_url: "https://github.com/m0tivus/example-kmeans-rust"
       long_description: "k-means clustering is a method of vector quantization, originally from signal ..."
       # you can also specify a file path of a markdown file
-      # long_description: ./README.md
+      # long_description: ./USAGE.md
 ```
 4. Build your algorithm using the *Motivus CLI tool*:
 ```sh
 $ motivus build
 ```
-5. You can test your build on a local worker running your driver in loop-back mode
-6. Create an `.env` file with your personal access token:
+5. You can test your build on a local worker running your driver in loop-back mode:
+```sh
+$ motivus loopback
+```
+```sh
+WEBSOCKET_URI=ws://localhost:7070/client_socket/websocket python driver.py
+```
+6. To push your algorithm start by creating your algorithm in *Motivus Marketplace* using the same name as in `motivus.yml`
+7. Create an `.env` file with your personal access token:
 ```sh
 # .env
 PERSONAL_ACCESS_TOKEN=<your personal access token here>
 ```
-7. Upload your algorithm version to *Motivus Marketplace*:
+8. Upload your algorithm version to *Motivus Marketplace*:
 ```sh
 $ motivus push
 ```
