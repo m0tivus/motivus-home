@@ -1,5 +1,5 @@
 import React from 'react'
-import { fade, makeStyles, withStyles } from '@material-ui/core/styles'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -9,25 +9,46 @@ import AppBar from '@material-ui/core/AppBar'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import Button from '@material-ui/core/Button'
 import { navigate } from 'gatsby-link'
+import Div100vh from 'react-div-100vh'
 
 const styles = (Theme) => ({
-  grow: {
+  root: {
     position: 'fixed',
-    flexGrow: 1,
-    zIndex: 10,
-
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
     width: '100%',
-    bottom: '0%',
+    //border: '2px solid green',
+    zIndex: '20',
+    top: '0%',
+    pointerEvents: 'none',
   },
+  appBar: {
+    height: '55px',
+    pointerEvents: 'all',
+    //border: '2px solid red',
+  },
+
   menuButton: {
     left: '0px',
   },
+})
+
+const useStyles = makeStyles((theme) => ({
   loginButton: {
     borderRadius: '0px',
     height: '30px',
     marginLeft: '20px',
   },
-})
+}))
+
+function logout() {
+  if (window.localStorage) {
+    window.localStorage.removeItem('user_data')
+    window.localStorage.removeItem('token')
+  }
+  navigate('/')
+}
 
 class ToolbarComponent extends React.Component {
   state = {
@@ -39,36 +60,59 @@ class ToolbarComponent extends React.Component {
     const { classes } = this.props
 
     return (
-      <div className={classes.grow}>
-        <Theme2>
-          <Box display='flex' width='100%' alignItems='flex-end' bottom='0%'>
-            <AppBar position='static'>
-              <Toolbar>
-                <IconButton
-                  edge='start'
-                  className={classes.menuButton}
-                  color='secondary'
-                  aria-label='open drawer'
-                  onClick={this.props.openDrawerHandler}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography>Motivus | Get In! </Typography>
-                <Button
-                  variant='outlined'
-                  color='secondary'
-                  className={classes.loginButton}
-                  onClick={() => navigate('/account/login')}
-                >
-                  login
-                </Button>
-              </Toolbar>
-            </AppBar>
-          </Box>
-        </Theme2>
-      </div>
+      <Theme2>
+        <Div100vh className={classes.root}>
+          <AppBar className={classes.appBar} position='relative'>
+            <Toolbar>
+              <IconButton
+                edge='start'
+                className={classes.menuButton}
+                color='secondary'
+                aria-label='open drawer'
+                onClick={this.props.openDrawerHandler}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography>
+                {this.props.account ? 'Motivus' : 'Motivus | Get In!'}
+              </Typography>
+              <AccountAccess account={this.props.account} />
+            </Toolbar>
+          </AppBar>
+        </Div100vh>
+      </Theme2>
     )
   }
 }
 
 export default withStyles(styles)(ToolbarComponent)
+
+function AccountAccess({ account }) {
+  const classes = useStyles()
+
+  return (
+    <React.Fragment>
+      {!account ? (
+        <Button
+          variant='outlined'
+          color='secondary'
+          size='large'
+          className={classes.loginButton}
+          onClick={() => navigate('/account/login')}
+        >
+          login
+        </Button>
+      ) : (
+        <Button
+          variant='outlined'
+          color='secondary'
+          size='large'
+          className={classes.loginButton}
+          onClick={logout}
+        >
+          logout
+        </Button>
+      )}
+    </React.Fragment>
+  )
+}

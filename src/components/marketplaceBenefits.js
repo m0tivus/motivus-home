@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import { Box, Divider, Grid } from '@material-ui/core'
 import implementing from '../images/Implementing.svg'
@@ -7,6 +7,7 @@ import needs from '../images/needs.png'
 import { StaticImage } from 'gatsby-plugin-image'
 import { Height } from '@material-ui/icons'
 import { Link } from 'gatsby'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const benefits = [
   {
@@ -27,7 +28,7 @@ const benefits = [
   {
     title: 'Modular Development',
     description:
-      'Create complex solutions using sets of different algorithms, whether you or someone else\'s.',
+      "Create complex solutions using sets of different algorithms, whether you or someone else's.",
   },
 ]
 
@@ -60,7 +61,10 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function MarketplaceBenefits() {
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
   const classes = useStyles()
+
   return (
     <Box mb='80px' mt='40px' id='benefit'>
       <Box width='90%' margin='auto'>
@@ -72,7 +76,7 @@ export default function MarketplaceBenefits() {
         </Typography>
         <Divider />
         <Box mt='30px'>
-          <Grid container spacing={10}>
+          <Grid container spacing={matches ? 10 : 0}>
             <Grid item xs={12} sm={6}>
               <Box
                 height='380px'
@@ -96,7 +100,10 @@ export default function MarketplaceBenefits() {
                 height='100%'
               >
                 {benefits.map((benefit, i) => (
-                  <Box key={`marketplace-benefit-${i}`}>
+                  <Box
+                    key={`marketplace-benefit-${i}`}
+                    my={matches ? '0' : '20px'}
+                  >
                     <Typography
                       variant='h5'
                       color='primary'

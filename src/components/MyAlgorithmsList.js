@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { container, listItem } from './DropDownAnimation'
 import { transformAlgorithm } from '../utils'
 import { Algorithm } from '../models'
+import NoAlgorithms from './NoAlgorithms'
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
@@ -48,17 +49,21 @@ export default function MyAlgorithms({ variant }) {
           initial='hidden'
           animate='show'
         >
-          {algorithms.map((a, k) => (
-            <Grid
-              item
-              key={`my-algorithm-cards-${k}`}
-              xs={12}
-              component={motion.div}
-              variants={listItem}
-            >
-              <MyAlgorithmCards variant={variant} {...a} />
-            </Grid>
-          ))}
+          {algorithms ? (
+            algorithms.map((a, k) => (
+              <Grid
+                item
+                key={`my-algorithm-cards-${k}`}
+                xs={12}
+                component={motion.div}
+                variants={listItem}
+              >
+                <MyAlgorithmCards variant={variant} {...a} />
+              </Grid>
+            ))
+          ) : (
+            <NoAlgorithms />
+          )}
         </Grid>
       </Box>
     </React.Fragment>

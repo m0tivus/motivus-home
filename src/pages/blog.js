@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import Divider from '@material-ui/core/Divider'
 import styles from '../styles/blog.module.css'
@@ -21,6 +21,7 @@ import _ from 'lodash'
 import LangSelectorBlog from '../components/LangSelectorBlog'
 import { container, listItem } from '../components/DropDownAnimation'
 import { motion } from 'framer-motion'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -69,6 +70,9 @@ const BlogPage = ({ data, ...props }) => {
   const classes = useStyles()
   const languages = _.uniq(_.map(data.allSanityPost.edges, 'node.i18n_lang'))
   const [lang, setLang] = React.useState('en_US')
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('sm'))
+
   return (
     <Layout {...props}>
       <SEO title='Blog' description='Blog Data' />
@@ -82,7 +86,7 @@ const BlogPage = ({ data, ...props }) => {
       </Box>
       <Grid
         container
-        spacing={2}
+        spacing={matches ? 5 : 0}
         component={motion.div}
         variants={container}
         initial='hidden'
@@ -105,45 +109,47 @@ const BlogPage = ({ data, ...props }) => {
               component={motion.div}
               variants={listItem}
             >
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <Link to={`/blog/${document.node.slug.current}`}>
-                    <GatsbyImage
-                      className={classes.cardMedia}
-                      image={document.node.image.asset.gatsbyImageData}
-                    ></GatsbyImage>
-                  </Link>
-                </CardActionArea>
-                <CardContent className={classes.cardContent}>
-                  <Box p={1}>
-                    <Link
-                      className={title}
-                      to={`/blog/${document.node.slug.current}`}
-                    >
-                      {document.node.title}
+              <Box width='100%' padding={matches ? '0px' : '25px'}>
+                <Card className={classes.card}>
+                  <CardActionArea>
+                    <Link to={`/blog/${document.node.slug.current}`}>
+                      <GatsbyImage
+                        className={classes.cardMedia}
+                        image={document.node.image.asset.gatsbyImageData}
+                      ></GatsbyImage>
                     </Link>
-                  </Box>
-                  <Divider />
-                  <Box p={1}>
-                    <Typography align='justify' variant='body2'>
-                      {document.node.abstract}
-                    </Typography>
-                  </Box>
-                </CardContent>
-                <CardActions>
-                  <Box p={1}>
-                    <Typography variant='caption' gutterBottom>
-                      <span className={classes.author}>
-                        {document.node.author.name}
-                      </span>
-                      ,{' '}
-                      {formatISO(parseJSON(document.node.publishedAt), {
-                        representation: 'date',
-                      })}
-                    </Typography>
-                  </Box>
-                </CardActions>
-              </Card>
+                  </CardActionArea>
+                  <CardContent className={classes.cardContent}>
+                    <Box p={1}>
+                      <Link
+                        className={title}
+                        to={`/blog/${document.node.slug.current}`}
+                      >
+                        {document.node.title}
+                      </Link>
+                    </Box>
+                    <Divider />
+                    <Box p={1}>
+                      <Typography align='justify' variant='body2'>
+                        {document.node.abstract}
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                  <CardActions>
+                    <Box p={1}>
+                      <Typography variant='caption' gutterBottom>
+                        <span className={classes.author}>
+                          {document.node.author.name}
+                        </span>
+                        ,{' '}
+                        {formatISO(parseJSON(document.node.publishedAt), {
+                          representation: 'date',
+                        })}
+                      </Typography>
+                    </Box>
+                  </CardActions>
+                </Card>
+              </Box>
             </Grid>
           ))}
       </Grid>

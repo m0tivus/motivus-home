@@ -68,6 +68,7 @@ export default function AlgorithmCards({
   cost,
   stars,
   variant,
+  charge_schema,
 }) {
   const classes = useStyles()
   const theme = useTheme()
@@ -159,7 +160,12 @@ export default function AlgorithmCards({
             </Box>
             <Box display='flex' flexDirection='column' alignItems='flex-end'>
               <Typography variant='body1' className={classes.info}>
-                Motivus credits / mins
+                {'Motivus credits / '}
+                {charge_schema === 'PER_EXECUTION'
+                  ? 'execution'
+                  : charge_schema === 'PER_MINUTE'
+                  ? 'minute'
+                  : ''}
               </Typography>
               <Typography variant='h5' className={classes.cost}>
                 {cost}

@@ -75,7 +75,7 @@ export default function userList({ usersList, setUsersList }) {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        console.log('onSubmit', JSON.stringify(values, null, 2))
+        //console.log('onSubmit', JSON.stringify(values, null, 2))
       }}
       render={({ values, errors, touched, handleChange, handleBlur }) => {
         return (

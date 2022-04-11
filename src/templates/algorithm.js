@@ -33,7 +33,6 @@ export default function AlgorithmTemplate({ name, ...props }) {
   }
   React.useEffect(() => {
     getAlgorithmData()
-    console.log(algorithm)
   }, [])
 
   return isLoading || isLoadingAlgorithm ? (

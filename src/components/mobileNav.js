@@ -3,7 +3,12 @@ import ToolbarComponent from './Mobil/Toolbar'
 import DrawerComponent from './Mobil/Drawer'
 import ContactUsDrawer from './ContactUsDrawer'
 
-const MobileNav = ({ openContact, setOpenContact, ...props }) => {
+const MobileNav = ({
+  openContact,
+  setOpenContact,
+  account = false,
+  ...props
+}) => {
   const [openNavigator, setOpenNavigator] = React.useState(false)
 
   const toggleNavigatorDrawer = () => {
@@ -20,8 +25,12 @@ const MobileNav = ({ openContact, setOpenContact, ...props }) => {
 
   return (
     <div className='App'>
-      <ToolbarComponent openDrawerHandler={openNavigatorDrawer} />
+      <ToolbarComponent
+        openDrawerHandler={openNavigatorDrawer}
+        account={account}
+      />
       <DrawerComponent
+        {...props}
         open={openNavigator}
         toggleDrawerHandler={toggleNavigatorDrawer}
       />

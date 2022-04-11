@@ -130,7 +130,7 @@ export const charactersList = [
       w: '300px',
       wM: '200px',
       mr: '-80px',
-      mrM: '-45px',
+      //mrM: '-45px',
       mb: '-20px',
     },
     item: {

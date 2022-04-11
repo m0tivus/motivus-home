@@ -16,6 +16,7 @@ function useUser() {
       const user_ = await User.current(token)
       if (user_) {
         setUser(user_)
+        window.localStorage.setItem('user_data', JSON.stringify(user_))
         setIsGuest(false)
       } else {
         setIsGuest(true)
