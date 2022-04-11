@@ -47,6 +47,11 @@ const useStyles = makeStyles((theme) => ({
   th: {
     borderColor: theme.palette.text.primary,
   },
+  table: {
+    display: 'block',
+    overflowX: 'auto',
+    whiteSpace: 'nowrap',
+  },
 }))
 
 export default function MarkdownDocumentationReader({ data }) {
@@ -97,6 +102,9 @@ export default function MarkdownDocumentationReader({ data }) {
             >
               {children}
             </Box>
+          ),
+          table: ({ children }) => (
+            <table className={classes.table}>{children}</table>
           ),
           th: ({ children }) => <th className={classes.th}>{children}</th>,
         }}

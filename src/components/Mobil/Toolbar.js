@@ -15,19 +15,20 @@ const styles = (Theme) => ({
   root: {
     position: 'fixed',
     display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
     width: '100%',
-    border: '2px solid red',
-    zIndex: '5',
+    //border: '2px solid green',
+    zIndex: '20',
     top: '0%',
+    pointerEvents: 'none',
   },
-  grow: {
-    position: 'fixed',
-    flexGrow: 1,
-    zIndex: 10,
+  appBar: {
+    height: '55px',
+    pointerEvents: 'all',
+    //border: '2px solid red',
+  },
 
-    width: '100%',
-    bottom: '0%',
-  },
   menuButton: {
     left: '0px',
   },
@@ -41,6 +42,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+function logout() {
+  if (window.localStorage) {
+    window.localStorage.removeItem('user_data')
+    window.localStorage.removeItem('token')
+  }
+  navigate('/')
+}
+
 class ToolbarComponent extends React.Component {
   state = {
     achorEl: false,
@@ -51,35 +60,27 @@ class ToolbarComponent extends React.Component {
     const { classes } = this.props
 
     return (
-      <Div100vh className={classes.root}>
-        <Theme2>
-          <Box
-            display='flex'
-            width='100%'
-            alignItems='flex-end'
-            bottom='0%'
-            border='3px solid blue'
-          >
-            <AppBar position='static'>
-              <Toolbar>
-                <IconButton
-                  edge='start'
-                  className={classes.menuButton}
-                  color='secondary'
-                  aria-label='open drawer'
-                  onClick={this.props.openDrawerHandler}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography>
-                  {this.props.account ? 'Motivus' : 'Motivus | Get In!'}
-                </Typography>
-                <AccountAccess account={this.props.account} />
-              </Toolbar>
-            </AppBar>
-          </Box>
-        </Theme2>
-      </Div100vh>
+      <Theme2>
+        <Div100vh className={classes.root}>
+          <AppBar className={classes.appBar} position='relative'>
+            <Toolbar>
+              <IconButton
+                edge='start'
+                className={classes.menuButton}
+                color='secondary'
+                aria-label='open drawer'
+                onClick={this.props.openDrawerHandler}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography>
+                {this.props.account ? 'Motivus' : 'Motivus | Get In!'}
+              </Typography>
+              <AccountAccess account={this.props.account} />
+            </Toolbar>
+          </AppBar>
+        </Div100vh>
+      </Theme2>
     )
   }
 }
@@ -107,7 +108,7 @@ function AccountAccess({ account }) {
           color='secondary'
           size='large'
           className={classes.loginButton}
-          onClick={() => navigate('/')}
+          onClick={logout}
         >
           logout
         </Button>

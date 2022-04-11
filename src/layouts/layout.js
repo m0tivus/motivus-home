@@ -23,6 +23,8 @@ import { SnackbarProvider } from 'notistack'
 import Button from '@material-ui/core/Button'
 import { navigate } from 'gatsby'
 import { homeRoutes } from '../components/Routes'
+import Avatar from '@material-ui/core/Avatar'
+import IconButton from '@material-ui/core/IconButton'
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -57,14 +59,14 @@ const Layout = ({ children, ...props }) => {
 
   useEffect(() => {
     if (isBrowser) {
-      const user_ = window.localStorage.getItem('user_data')
+      const user_ = JSON.parse(window.localStorage.getItem('user_data'))
       if (user_?.id) {
         setUser(user_)
       }
     }
-  }, [user])
+  }, [])
 
-  console.log(`usuario: ${user}`)
+  console.log(`usuario:`, user)
 
   return (
     <SnackbarProvider
@@ -132,15 +134,12 @@ function AccountAccess({ user }) {
   return (
     <React.Fragment>
       {user.id ? (
-        <Button
-          variant='outlined'
+        <IconButton
           color='secondary'
-          size='large'
-          className={classes.loginButton}
           onClick={() => navigate('/account/login')}
         >
-          test
-        </Button>
+          <Avatar alt='Cindy Baker' src={`${user.avatar_url}`} />
+        </IconButton>
       ) : (
         <Button
           variant='outlined'

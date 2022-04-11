@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 function logout() {
   if (window.localStorage) {
+    window.localStorage.removeItem('user_data')
     window.localStorage.removeItem('token')
   }
   navigate('/')
