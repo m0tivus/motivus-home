@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
     paddingLeft: '40px',
     height: 'max-content',
-    zIndex: 2,
+    zIndex: 1,
   },
   title: {
     fontSize: '1.7rem',
