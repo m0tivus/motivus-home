@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/m0tivus/motivus-homepage/compare/v1.4.0...v1.4.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* **gatsby-ssr:** floatingTool comment ([228f070](https://github.com/m0tivus/motivus-homepage/commit/228f0707ed0d1aecfca9723be8334bdbeb9e3d2f))
+
 ## [1.4.0](https://github.com/m0tivus/motivus-homepage/compare/v1.3.1...v1.4.0) (2022-04-11)
 
 
