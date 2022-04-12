@@ -36,6 +36,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px',
     height: '40px',
   },
+  iconButton: {
+    width: '40px',
+    height: '40px',
+  },
 }))
 
 const isBrowser = typeof window !== 'undefined'
@@ -99,6 +103,7 @@ const Layout = ({ children, ...props }) => {
             justifyContent='center'
             alignItems='center'
             zIndex='20'
+            //border='1px solid pink'
           >
             {!matches && <AccountAccess user={user} />}
           </Box>
@@ -137,6 +142,7 @@ function AccountAccess({ user }) {
         <IconButton
           color='secondary'
           onClick={() => navigate('/account/login')}
+          className={classes.iconButton}
         >
           <Avatar alt='Cindy Baker' src={`${user.avatar_url}`} />
         </IconButton>
@@ -144,7 +150,6 @@ function AccountAccess({ user }) {
         <Button
           variant='outlined'
           color='secondary'
-          size='large'
           className={classes.loginButton}
           onClick={() => navigate('/account/login')}
         >
