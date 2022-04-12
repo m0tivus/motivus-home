@@ -4,7 +4,6 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import Documentation from '../components/DocumentationMarkdown.md'
 import { Box, Divider, Typography } from '@material-ui/core'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({
   getStarted: {
