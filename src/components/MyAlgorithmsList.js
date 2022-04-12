@@ -57,7 +57,7 @@ export default function MyAlgorithms({ variant }) {
             initial='hidden'
             animate='show'
           >
-            {!algorithms.length ? (
+            {algorithms.length ? (
               algorithms.map((a, k) => (
                 <Grid
                   item
