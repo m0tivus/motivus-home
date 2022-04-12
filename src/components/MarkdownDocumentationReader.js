@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import Documentation from '../components/DocumentationMarkdown.md'
 import { Box, Divider, Typography } from '@material-ui/core'
-import { classicNameResolver } from 'typescript'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({
   getStarted: {
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MarkdownDocumentationReader({ data }) {
   const classes = useStyles()
-  const theme = useTheme()
+
   return (
     <React.Fragment>
       <Typography
