@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.4](https://github.com/m0tivus/motivus-homepage/compare/v1.4.3...v1.4.4) (2022-04-12)
+
+
+### Bug Fixes
+
+* **my-algorithmlist:** loading and noAlgorithm visualisation ([0fbf50a](https://github.com/m0tivus/motivus-homepage/commit/0fbf50acf05a7869ecdbcb1571fe48813e745f9f))
+* **myalgorithmslist:** !algorithms.length to algorithms.length ([38d080e](https://github.com/m0tivus/motivus-homepage/commit/38d080eeb440966d7ea575b958b1e921bd734d53))
+
 ### [1.4.3](https://github.com/m0tivus/motivus-homepage/compare/v1.4.2...v1.4.3) (2022-04-12)
 
 
