@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.3](https://github.com/m0tivus/motivus-homepage/compare/v1.4.2...v1.4.3) (2022-04-12)
+
+
+### Bug Fixes
+
+* **layout:** login iconButton size ([1aea823](https://github.com/m0tivus/motivus-homepage/commit/1aea8233c543a44fad00c72396d835a7334c9418))
+
 ### [1.4.2](https://github.com/m0tivus/motivus-homepage/compare/v1.4.1...v1.4.2) (2022-04-12)
 
 
