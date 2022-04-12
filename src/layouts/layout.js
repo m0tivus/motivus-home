@@ -70,7 +70,7 @@ const Layout = ({ children, ...props }) => {
     }
   }, [])
 
-  console.log(`usuario:`, user)
+  //console.log(`usuario:`, user)
 
   return (
     <SnackbarProvider
