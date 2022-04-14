@@ -1,31 +1,37 @@
 # What is Motivus?
-Motivus is an ecosystem for distributed computing that enables people and companies from all around the world to combine their computing power to solve real world problems.
 
-You can execute tasks on *Motivus Waterbear Cluster* using a driver program, that describes the task to be distributed to the workers and result handling.
+Motivus is a collaborative data processing platform; a marketplace of computing resources where high-performance distributed computing and algorithms interact to optimize processes in industry, science and technology.
 
-![components-diagram](https://motivus.cl/components-diagram.png "Components diagram")
+You can execute tasks on _Motivus Waterbear Cluster_ using a driver program, this program describes the way task to be distributed to the workers and result handling.
 
-The task definition references an *algorithm*; the code that each worker executes, and some inputs; files, execution arguments and/or function parameters.
+![components-diagram](https://motivus.cl/components-diagram.png 'Components diagram')
 
-*Algorithms* can be obtained directly from the *Motivus Marketplace* or compiled from source. We currently support algorithm compilation for programs written in C, C++ and Rust programming languages.
+The task definition references an _algorithm_; the code that each worker executes, and some inputs; files, execution arguments and/or function parameters.
 
-> You can also upload your own algorithm to *Motivus Marketplace* for other people to use it on their drivers.
+_Algorithms_ can be obtained directly from the _Motivus Marketplace_ or compiled from source. We currently support algorithm compilation for programs written in C, C++ and Rust programming languages.
+
+> You can upload your own algorithm to the _Motivus Marketplace_ for other people to use on their own drivers.
 
 # Writing a Driver program
-To write and run your driver program, you'll need to provide the following environment:
-* Python = 3.7 | 3.8 | 3.9
-    * We recommend using a `conda` environment.
-* [*Motivus Client library*](https://pypi.org/project/motivus/): `$ pip install motivus`
-* A *Motivus Application Token*
 
-The easiest way to write a driver is by using a listed algorithm in the *Motivus Marketplace*.
+To write and run your driver program, you'll need to provide the following environment:
+
+- Python = 3.7 | 3.8 | 3.9
+  - We recommend using a `conda` environment.
+- [_Motivus Client library_](https://pypi.org/project/motivus/): `$ pip install motivus`
+- A _Motivus Application Token_
+
+The easiest way to write a driver is by using a listed algorithm in the _Motivus Marketplace_.
 
 ## Steps
+
 1. Create an `.env` file containing your `APPLICATION_TOKEN` as follows:
+
 ```sh
 # .env
 APPLICATION_TOKEN=<your motivus application token>
 ```
+
 2. Create a python script and define your task, for example:
 
 ```python
@@ -67,25 +73,29 @@ print(result)
 # [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
 ```
 
-3. Run your driver on *Motivus Waterbear*: 
+3. Run your driver on _Motivus Waterbear_:
+
 ```sh
 $ python driver.py
 ```
 
 ## Running Algorithms In Loop-back Mode
-You can also run your Driver's algorithms using local loop-back workers. This feature is experimental.
 
-To enable loop-back mode follow this steps:
-1. Make sure *Motivus CLI* tool and docker are available
+You can also run your driver’s algorithms using local loop-back orkers. This feature is experimental.
+
+To enable loop-back mode, follow these steps:
+
+1. Make sure the _Motivus CLI_ tool and docker are available
 1. Execute `$ motivus loopback` and take note of the command output.
 1. Make the indicated environment variable available to your Driver's execution.
 1. Run your Driver as usual `$ python driver.py`
 
 ## Task Definition
-To define your task use a dict, this dict can declare several keys:
+
+To define your task, use a dict. This dict can declare several keys:
 |key|value type|description|required|
 |---|----------|-----------|--------|
-|`algorithm`|string|The algorithm name as published on *Motivus Marketplace*|yes|
+|`algorithm`|string|The algorithm name as published on _Motivus Marketplace_|yes|
 |`algorithm_name`|string|The algorithm version|yes|
 |`params`|list|Parameters to be passed to the algorithm main function invocation: i.e. `fun(list[0], list[1] ...)`|no|
 |`arguments`|string \| list[string]|Arguments to be passed to the algorithm invocation, as if where executed using command line arguments: i.e. having `["--some-flag", "--another_flag 1"]` would be equivalent to call `$ kmeans --some-flag --another_flag 1` on the worker.|no|
@@ -96,25 +106,29 @@ To define your task use a dict, this dict can declare several keys:
 |`data_link`|string|A URL with the algorithm default starting filesystem. When using a filesystem during algorithm compilation this file is generated as a `.data.zip` file.|required only for C\C++ algorithms.|
 
 # Writing Your Own Algorithm
-To write, test and distribute your algorithm using the *Motivus Marketplace*, you'll need to provide the following environment:
-* Docker
-    * Your user must belong to the `docker` group.
-* Python = 3.7 | 3.8 | 3.9
-    * We recommend using a `conda` environment.
-* [*Motivus CLI tool* and *Motivus Client library*](https://pypi.org/project/motivus/): `$ pip install motivus`
-* A *Motivus Personal Access Token*
-* A previously created algorithm on *Motivus Marketplace*, in this example we'll use `kmeans`
 
+To write, test and distribute your algorithm using the _Motivus Marketplace_, you'll need to provide the following environment:
+
+- Docker
+  - Your user must belong to the `docker` group.
+- Python = 3.7 | 3.8 | 3.9
+  - We recommend using a `conda` environment.
+- [_Motivus CLI tool_ and _Motivus Client library_](https://pypi.org/project/motivus/): `$ pip install motivus`
+- A _Motivus Personal Access Token_
+- A previously created algorithm on _Motivus Marketplace_, in this example we'll use `kmeans`
 
 **We'll describe the steps for a Rust algorithm.**
 
 ## Steps
 
 1. The easiest way to scaffold a new Rust algorithm is by using `wasm-pack` along with Motivus algorithm template. You will be asked a few questions about your algorithm to be used as metadata when building and publishing to Motivus Marketplace:
+
 ```
 $ wasm-pack new kmeans --template https://github.com/m0tivus/wasm-pack-template.git
 ```
+
 2. A `main` function in `src/lib.rs` will be created and invoked from your Driver program with `params` as function parameters on runtime. An example implementation:
+
 ```rust
 // src/lib.rs
 #[wasm_bindgen]
@@ -132,7 +146,9 @@ pub fn main(input: &JsValue, clusters: &JsValue) -> Box<[JsValue]> {
         .into_boxed_slice()
 }
 ```
+
 3. A `motivus.yml` file is created, declaring some metadata of your algorithm for the framework to use.
+
 ```yaml
 # motivus.yml
 ---
@@ -147,35 +163,44 @@ package:
   name: kmeans
   version: 0.0.1
   metadata:
-      short_description: "K-means clustering"
-      license: "MIT"
-      author: "Motivus"
-      url: "https://motivus.cl/"
-      upstream_url: "https://github.com/m0tivus/example-kmeans-rust"
-      long_description: "k-means clustering is a method of vector quantization, originally from signal ..."
-      # you can also specify a file path of a markdown file
-      # long_description: ./USAGE.md
+    short_description: 'K-means clustering'
+    license: 'MIT'
+    author: 'Motivus'
+    url: 'https://motivus.cl/'
+    upstream_url: 'https://github.com/m0tivus/example-kmeans-rust'
+    long_description: 'k-means clustering is a method of vector quantization, originally from signal ...'
+    # you can also specify a file path of a markdown file
+    # long_description: ./USAGE.md
 ```
-4. Build your algorithm using the *Motivus CLI tool*:
+
+4. Build your algorithm using the _Motivus CLI tool_:
+
 ```sh
 $ motivus build
 ```
+
 5. You can test your build on a local worker running your driver in loop-back mode:
+
 ```sh
 $ motivus loopback
 ```
+
 ```sh
 WEBSOCKET_URI=ws://localhost:7070/client_socket/websocket python driver.py
 ```
-6. To push your algorithm start by creating your algorithm in *Motivus Marketplace* using the same name as in `motivus.yml`
+
+6. To push your algorithm start by creating your algorithm in _Motivus Marketplace_ using the same name as in `motivus.yml`
 7. Create an `.env` file with your personal access token:
+
 ```sh
 # .env
 PERSONAL_ACCESS_TOKEN=<your personal access token here>
 ```
-8. Upload your algorithm version to *Motivus Marketplace*:
+
+8. Upload your algorithm version to _Motivus Marketplace_:
+
 ```sh
 $ motivus push
 ```
 
-Your algorithm is now published on *Motivus Marketplace*.
+Your algorithm is now published on _Motivus Marketplace_.

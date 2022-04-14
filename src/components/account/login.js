@@ -71,9 +71,9 @@ export default function Login({ open, setOpen }) {
                 color='textPrimary'
                 className={classes.text}
               >
-                Welcome to the Motivus comunity, please{' '}
+                Welcome to the Motivus comunity. Please{' '}
                 <span className={classes.robotoMono}>lOGIN</span> to start
-                session
+                session.
               </Typography>
             </Box>
             <Box display='flex' width='100%' justifyContent='flex-end'>
