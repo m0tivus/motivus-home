@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.5](https://github.com/m0tivus/motivus-homepage/compare/v1.4.4...v1.4.5) (2022-04-14)
+
+
+### Bug Fixes
+
+* documentation, marketplace, my-aglorithms ([748288a](https://github.com/m0tivus/motivus-homepage/commit/748288af45ea8acb4efbbebe3252a8d850ff8d70))
+* **intro:** change title and abstract text ([e8fd3c3](https://github.com/m0tivus/motivus-homepage/commit/e8fd3c391b8fc7904e6d582766adc89559da4985))
+
 ### [1.4.4](https://github.com/m0tivus/motivus-homepage/compare/v1.4.3...v1.4.4) (2022-04-12)
 
 
