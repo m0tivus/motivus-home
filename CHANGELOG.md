@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/m0tivus/motivus-homepage/compare/v1.4.5...v1.5.0) (2022-04-21)
+
+
+### Features
+
+* **intro:** change video link ([4d081de](https://github.com/m0tivus/motivus-homepage/commit/4d081de49706b5a987f657719cda1092485f859e))
+
 ### [1.4.5](https://github.com/m0tivus/motivus-homepage/compare/v1.4.4...v1.4.5) (2022-04-14)
 
 
