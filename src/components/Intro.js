@@ -50,7 +50,7 @@ export default function Intro() {
         </Typography>
         <Box justifyContent='center' display='flex'>
           <ReactPlayer
-            url='https://youtu.be/-AtRjZfEQ94'
+            url='https://youtu.be/_H_2k-YoR1E'
             width='854px'
             height='480px'
             controls
