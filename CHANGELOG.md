@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/m0tivus/motivus-homepage/compare/v1.5.0...v1.5.1) (2022-05-05)
+
+
+### Bug Fixes
+
+* **ci:** use docker image instead of executor ([62efad1](https://github.com/m0tivus/motivus-homepage/commit/62efad15489c23de399eb059e524507066e94899))
+* **ci:** use node version 16 for build ([829bf67](https://github.com/m0tivus/motivus-homepage/commit/829bf67b152cadf44bc9394983efe5de262604f5))
+* **ci:** yaml syntax ([442c133](https://github.com/m0tivus/motivus-homepage/commit/442c133dfc5d4b06f554501a235626d65576a26d))
+* **ci:** yarn global as current user ([443177c](https://github.com/m0tivus/motivus-homepage/commit/443177c117f018dd8ccbfad27109792be0101572))
+
+
+### Docs
+
+* **rust:** update command used to create a new rust algorithm ([2d6468b](https://github.com/m0tivus/motivus-homepage/commit/2d6468bb93c37dbd2006217513bba3b993b30596))
+
 ## [1.5.0](https://github.com/m0tivus/motivus-homepage/compare/v1.4.5...v1.5.0) (2022-04-21)
 
 
