@@ -5,7 +5,7 @@ orbs:
 defaults: &defaults
   working_directory: ~/repo
   docker: 
-    image: cimg/node:lts
+    - image: cimg/node:lts
   resource_class: large
 
 jobs:
