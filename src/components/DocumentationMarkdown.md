@@ -121,10 +121,10 @@ To write, test and distribute your algorithm using the _Motivus Marketplace_, yo
 
 ## Steps
 
-1. The easiest way to scaffold a new Rust algorithm is by using `wasm-pack` along with Motivus algorithm template. You will be asked a few questions about your algorithm to be used as metadata when building and publishing to Motivus Marketplace:
+1. Use our template to kick-start your Rust project. You will be asked a few questions about your algorithm to be used as metadata when building and publishing to Motivus Marketplace:
 
 ```
-$ wasm-pack new kmeans --template https://github.com/m0tivus/wasm-pack-template.git
+$ motivus new kmeans
 ```
 
 2. A `main` function in `src/lib.rs` will be created and invoked from your Driver program with `params` as function parameters on runtime. An example implementation:
