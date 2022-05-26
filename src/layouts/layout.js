@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -22,6 +22,9 @@ import ContactToggle from '../contexts/ContactToggle'
 import { SnackbarProvider } from 'notistack'
 import Button from '@material-ui/core/Button'
 import { navigate } from 'gatsby'
+import { homeRoutes } from '../components/Routes'
+import Avatar from '@material-ui/core/Avatar'
+import IconButton from '@material-ui/core/IconButton'
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -35,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+const isBrowser = typeof window !== 'undefined'
+
 const Layout = ({ children, ...props }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -47,10 +52,21 @@ const Layout = ({ children, ...props }) => {
   `)
 
   const [openContact, setOpenContact] = React.useState(false)
-
+  const [user, setUser] = React.useState({})
   const theme = useTheme()
   const classes = useStyles()
   const matches = useMediaQuery(theme.breakpoints.down('md'))
+
+  useEffect(() => {
+    if (isBrowser) {
+      const user_ = JSON.parse(window.localStorage.getItem('user_data'))
+      if (user_?.id) {
+        setUser(user_)
+      }
+    }
+  }, [])
+
+  console.log(`usuario:`, user)
 
   return (
     <SnackbarProvider
@@ -61,6 +77,7 @@ const Layout = ({ children, ...props }) => {
           {matches ? (
             <MobileNav
               {...props}
+              routes={homeRoutes}
               openContact={openContact}
               setOpenContact={setOpenContact}
             />
@@ -83,17 +100,7 @@ const Layout = ({ children, ...props }) => {
             alignItems='center'
             zIndex='20'
           >
-            {!matches && (
-              <Button
-                variant='outlined'
-                color='secondary'
-                size='large'
-                className={classes.loginButton}
-                onClick={() => navigate('/account/login')}
-              >
-                login
-              </Button>
-            )}
+            {!matches && <AccountAccess user={user} />}
           </Box>
           <SocialMedia />
           <div
@@ -118,3 +125,32 @@ Layout.propTypes = {
 }
 
 export default Layout
+
+function AccountAccess({ user }) {
+  const theme = useTheme()
+  const classes = useStyles()
+  const matches = useMediaQuery(theme.breakpoints.down('md'))
+
+  return (
+    <React.Fragment>
+      {user.id ? (
+        <IconButton
+          color='secondary'
+          onClick={() => navigate('/account/login')}
+        >
+          <Avatar alt='Cindy Baker' src={`${user.avatar_url}`} />
+        </IconButton>
+      ) : (
+        <Button
+          variant='outlined'
+          color='secondary'
+          size='large'
+          className={classes.loginButton}
+          onClick={() => navigate('/account/login')}
+        >
+          login
+        </Button>
+      )}
+    </React.Fragment>
+  )
+}

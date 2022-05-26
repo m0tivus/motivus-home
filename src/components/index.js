@@ -9,14 +9,12 @@ import Intro from '../components/Intro'
 import { Box } from '@material-ui/core'
 import Loading from '../components/Loading'
 import StaticLoading from '../components/StaticLoading'
-import NoAlgorithms from '../components/NoAlgorithms'
 
 const IndexPage = (props) => {
   return (
     <div>
       <Layout {...props}>
         <SEO title='Home' image='https://motivus.cl/icons/icon-256x256.png' />
-
         <StaticLoading />
         <Intro />
         <Box mt='80px'>

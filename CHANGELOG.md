@@ -2,6 +2,58 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/m0tivus/motivus-homepage/compare/v1.3.0...v1.3.1) (2022-04-05)
+
+
+### Docs
+
+* **algorithm:** add template usage for new rust algorithm ([862719a](https://github.com/m0tivus/motivus-homepage/commit/862719ac589bacc1eda4fa374c3df582337374e6))
+
+## [1.3.0](https://github.com/m0tivus/motivus-homepage/compare/v1.2.5...v1.3.0) (2022-04-03)
+
+
+### Features
+
+* disable offline plugin ([9adf4e6](https://github.com/m0tivus/motivus-homepage/commit/9adf4e609203e7193d24db7590934d1c9920dea3))
+
+### [1.2.5](https://github.com/m0tivus/motivus-homepage/compare/v1.2.4...v1.2.5) (2022-03-31)
+
+### [1.2.4](https://github.com/m0tivus/motivus-homepage/compare/v1.2.3...v1.2.4) (2022-03-28)
+
+
+### Docs
+
+* **algorithm:** update return type of exmaple implementation for rust ([a9d53e6](https://github.com/m0tivus/motivus-homepage/commit/a9d53e683284f6713f2845c323805fccaf648b5b))
+
+### [1.2.3](https://github.com/m0tivus/motivus-homepage/compare/v1.2.2...v1.2.3) (2022-03-22)
+
+
+### Bug Fixes
+
+* **algorithm seo:** alogorithm seo visualization in share ([f2d7f69](https://github.com/m0tivus/motivus-homepage/commit/f2d7f69eda4963c2aacd262f72b7855c44820aae))
+
+### [1.2.2](https://github.com/m0tivus/motivus-homepage/compare/v1.2.1...v1.2.2) (2022-03-22)
+
+### [1.2.1](https://github.com/m0tivus/motivus-homepage/compare/v1.2.0...v1.2.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* **algorithms:** seo description vizualisation ([3d16fd7](https://github.com/m0tivus/motivus-homepage/commit/3d16fd7ac44b561dd0e3626b10215faf18cb4b74))
+
+## [1.2.0](https://github.com/m0tivus/motivus-homepage/compare/v1.1.1...v1.2.0) (2022-03-21)
+
+
+### Features
+
+* **documentation:** change ducomentation png schema ([57be037](https://github.com/m0tivus/motivus-homepage/commit/57be03782188bb2e769841897055651ce1d53671))
+
+
+### Bug Fixes
+
+* **algorithm:** add seo to algorithms ([4c7c89a](https://github.com/m0tivus/motivus-homepage/commit/4c7c89afa59b0cc6154fd755272486b6c4f28af5))
+* **logo build problem:** logo build problem change from public to static ([1cda4e5](https://github.com/m0tivus/motivus-homepage/commit/1cda4e5f51c473223143f0d6b7205964dd129015))
+
 ### [1.1.1](https://github.com/m0tivus/motivus-homepage/compare/v1.1.0...v1.1.1) (2022-03-18)
 
 
