@@ -11,11 +11,11 @@ const React = require('react')
 exports.onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
     <React.Fragment key='widget-motivus'>
-      {/*}<script src='https://widget.motivus.cl/loader.js' async></script>*/}
+      {<script src='https://widget.motivus.cl/loader.js' async></script>}
       <script
         dangerouslySetInnerHTML={{
           __html:
-            "var Motivus = window.Motivus || {}; Motivus.client_id = '1234';",
+            'var Motivus = window.Motivus || {}; Motivus.client_id = \'1234\';',
         }}
       ></script>
     </React.Fragment>,

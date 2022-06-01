@@ -10,6 +10,8 @@ import { Box } from '@material-ui/core'
 import Loading from '../components/Loading'
 import StaticLoading from '../components/StaticLoading'
 import NoAlgorithms from '../components/NoAlgorithms'
+import DevelopersInvitation from '../components/DevelopersInvitation'
+import Challenges from './Challenges'
 
 const IndexPage = (props) => {
   return (
@@ -18,11 +20,13 @@ const IndexPage = (props) => {
         <SEO title='Home' image='https://motivus.cl/icons/icon-256x256.png' />
 
         <StaticLoading />
-        <Intro />
+        {/*<Intro />*/}
+        <DevelopersInvitation />
+        <Challenges />
         <Box mt='80px'>
           <CLientOptions />
         </Box>
-        <HowItWorks></HowItWorks>
+        {/*<HowItWorks></HowItWorks>*/}
         <Features></Features>
       </Layout>
     </div>

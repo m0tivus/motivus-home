@@ -55,25 +55,61 @@ const themeLight = createTheme({
     '1px 3px 2px 0px rgb(0, 0, 0, 0.2)',
     '1px 3px 2px 1px rgb(0, 0, 0, 0.3)',
   ],
-
+  shape: {
+    borderRadius: 0,
+  },
+})
+const { breakpoints } = themeLight
+const theme = {
+  ...themeLight,
   overrides: {
     MuiTypography: {
-      gutterBottom: {
-        marginBottom: 16,
+      h1: {
+        [breakpoints.down('xs')]: {
+          fontSize: '2.7rem',
+        },
+      },
+      h2: {
+        [breakpoints.down('xs')]: {
+          fontSize: '2.4rem',
+        },
+      },
+      h3: {
+        [breakpoints.down('xs')]: {
+          fontSize: '2rem',
+        },
+      },
+      h4: {
+        [breakpoints.down('xs')]: {
+          fontSize: '1.5rem',
+        },
+      },
+      h5: {
+        [breakpoints.down('xs')]: {
+          fontSize: '1.2rem',
+        },
+      },
+      h6: {
+        [breakpoints.down('xs')]: {
+          fontSize: '1rem',
+        },
+      },
+      body1: {
+        [breakpoints.down('xs')]: {
+          fontSize: '0.8rem',
+        },
+      },
+      body2: {
+        [breakpoints.down('xs')]: {
+          fontSize: 'rem',
+        },
       },
     },
   },
-  MuiTab: {
-    // Name of the rule
-    textColorSecondary: {
-      // Some CSS
-      color: '#aaa',
-    },
-  },
-})
+}
 
 const ThemeL = ({ children }) => {
-  return <ThemeProvider theme={themeLight}>{children}</ThemeProvider>
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }
 
 ThemeL.propTypes = {
