@@ -29,7 +29,7 @@ import IconButton from '@material-ui/core/IconButton'
 const useStyles = makeStyles((theme) => ({
   content: {
     [theme.breakpoints.down('md')]: {
-      padding: theme.spacing(8, 0, 6),
+      padding: theme.spacing(0, 0, 0),
     },
   },
   loginButton: {

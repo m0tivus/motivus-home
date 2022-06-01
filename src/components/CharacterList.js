@@ -82,7 +82,7 @@ export const charactersList = [
       )
     },
   },
-  {
+  /*{
     title: ' monetize my website',
     description:
       'Host the Motivus FloatingTool on your website and get paid whenever users process through it.',
@@ -161,5 +161,5 @@ export const charactersList = [
         </Typography>
       )
     },
-  },
+  },*/
 ]

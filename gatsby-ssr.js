@@ -15,7 +15,7 @@ exports.onRenderBody = ({ setHeadComponents }) => {
       <script
         dangerouslySetInnerHTML={{
           __html:
-            "var Motivus = window.Motivus || {}; Motivus.client_id = '1234';",
+            'var Motivus = window.Motivus || {}; Motivus.client_id = \'1234\';',
         }}
       ></script>
     </React.Fragment>,
