@@ -11,7 +11,7 @@ import Loading from '../components/Loading'
 import StaticLoading from '../components/StaticLoading'
 import NoAlgorithms from '../components/NoAlgorithms'
 import DevelopersInvitation from '../components/DevelopersInvitation'
-import Challenges from './Challenges'
+import Challenges from '../components/Challenges'
 
 const IndexPage = (props) => {
   return (
