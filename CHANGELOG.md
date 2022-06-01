@@ -2,6 +2,92 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/m0tivus/motivus-homepage/compare/v1.5.0...v1.5.1) (2022-05-05)
+
+
+### Bug Fixes
+
+* **ci:** use docker image instead of executor ([62efad1](https://github.com/m0tivus/motivus-homepage/commit/62efad15489c23de399eb059e524507066e94899))
+* **ci:** use node version 16 for build ([829bf67](https://github.com/m0tivus/motivus-homepage/commit/829bf67b152cadf44bc9394983efe5de262604f5))
+* **ci:** yaml syntax ([442c133](https://github.com/m0tivus/motivus-homepage/commit/442c133dfc5d4b06f554501a235626d65576a26d))
+* **ci:** yarn global as current user ([443177c](https://github.com/m0tivus/motivus-homepage/commit/443177c117f018dd8ccbfad27109792be0101572))
+
+
+### Docs
+
+* **rust:** update command used to create a new rust algorithm ([2d6468b](https://github.com/m0tivus/motivus-homepage/commit/2d6468bb93c37dbd2006217513bba3b993b30596))
+
+## [1.5.0](https://github.com/m0tivus/motivus-homepage/compare/v1.4.5...v1.5.0) (2022-04-21)
+
+
+### Features
+
+* **intro:** change video link ([4d081de](https://github.com/m0tivus/motivus-homepage/commit/4d081de49706b5a987f657719cda1092485f859e))
+
+### [1.4.5](https://github.com/m0tivus/motivus-homepage/compare/v1.4.4...v1.4.5) (2022-04-14)
+
+
+### Bug Fixes
+
+* documentation, marketplace, my-aglorithms ([748288a](https://github.com/m0tivus/motivus-homepage/commit/748288af45ea8acb4efbbebe3252a8d850ff8d70))
+* **intro:** change title and abstract text ([e8fd3c3](https://github.com/m0tivus/motivus-homepage/commit/e8fd3c391b8fc7904e6d582766adc89559da4985))
+
+### [1.4.4](https://github.com/m0tivus/motivus-homepage/compare/v1.4.3...v1.4.4) (2022-04-12)
+
+
+### Bug Fixes
+
+* **my-algorithmlist:** loading and noAlgorithm visualisation ([0fbf50a](https://github.com/m0tivus/motivus-homepage/commit/0fbf50acf05a7869ecdbcb1571fe48813e745f9f))
+* **myalgorithmslist:** !algorithms.length to algorithms.length ([38d080e](https://github.com/m0tivus/motivus-homepage/commit/38d080eeb440966d7ea575b958b1e921bd734d53))
+
+### [1.4.3](https://github.com/m0tivus/motivus-homepage/compare/v1.4.2...v1.4.3) (2022-04-12)
+
+
+### Bug Fixes
+
+* **layout:** login iconButton size ([1aea823](https://github.com/m0tivus/motivus-homepage/commit/1aea8233c543a44fad00c72396d835a7334c9418))
+
+### [1.4.2](https://github.com/m0tivus/motivus-homepage/compare/v1.4.1...v1.4.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* **page/documentation:** add margin in mobil ([3876d13](https://github.com/m0tivus/motivus-homepage/commit/3876d131c7c77b38226bfe3900e5832968aca27e))
+
+### [1.4.1](https://github.com/m0tivus/motivus-homepage/compare/v1.4.0...v1.4.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* **gatsby-ssr:** floatingTool comment ([228f070](https://github.com/m0tivus/motivus-homepage/commit/228f0707ed0d1aecfca9723be8334bdbeb9e3d2f))
+
+## [1.4.0](https://github.com/m0tivus/motivus-homepage/compare/v1.3.1...v1.4.0) (2022-04-11)
+
+
+### Features
+
+* **clientoptionsv2:** width ([4ac805b](https://github.com/m0tivus/motivus-homepage/commit/4ac805b5c7e7a5e9610638b8883eb0f2c4be312d))
+* disable offline plugin ([74132ef](https://github.com/m0tivus/motivus-homepage/commit/74132ef2dc98648138baf828b7bf2c2c247e18de))
+* **layout:** mobil navigation and account image ([1d85034](https://github.com/m0tivus/motivus-homepage/commit/1d850346846d8f1e42502f34f05a04f0ef6f250a))
+
+
+### Docs
+
+* **algorithm:** add template usage for new rust algorithm ([9525d0e](https://github.com/m0tivus/motivus-homepage/commit/9525d0e3d046b7b2872acba56b9593e3b6e93c77))
+* **algorithm:** update return type of exmaple implementation for rust ([0551f5e](https://github.com/m0tivus/motivus-homepage/commit/0551f5ecbfaac47e046bdcca00844c3e1189f9de))
+
+
+### Others
+
+* **release:** Release v1.2.0 :tada: [ci skip] ([3bea51d](https://github.com/m0tivus/motivus-homepage/commit/3bea51d16779dabd31758d12312bc8cbffb5a209))
+* **release:** Release v1.2.1 :tada: [ci skip] ([8aae469](https://github.com/m0tivus/motivus-homepage/commit/8aae46972326beed11e2f42331c5834fa2a6f7a2))
+* **release:** Release v1.2.2 :tada: [ci skip] ([e135f80](https://github.com/m0tivus/motivus-homepage/commit/e135f80ec05d21bd66c4a28a68e94b55245ff341))
+* **release:** Release v1.2.3 :tada: [ci skip] ([0099eed](https://github.com/m0tivus/motivus-homepage/commit/0099eed17fc9fad14a9ebaaa340b9a6fe0442a5a))
+* **release:** Release v1.2.4 :tada: [ci skip] ([5430a87](https://github.com/m0tivus/motivus-homepage/commit/5430a87325918c2a8b3b6f3dc5662d535b5822ff))
+* **release:** Release v1.2.5 :tada: [ci skip] ([1be7101](https://github.com/m0tivus/motivus-homepage/commit/1be7101397d6d61a4e6e3f02145ad76f090ab5ee))
+* **release:** Release v1.3.0 :tada: [ci skip] ([0560f58](https://github.com/m0tivus/motivus-homepage/commit/0560f58b2401436cd3db7309de5706531fc8a358))
+* **release:** Release v1.3.1 :tada: [ci skip] ([4d84e64](https://github.com/m0tivus/motivus-homepage/commit/4d84e6420367b984e201f8910d6c13453960ef71))
+
 ### [1.3.1](https://github.com/m0tivus/motivus-homepage/compare/v1.3.0...v1.3.1) (2022-04-05)
 
 

@@ -7,8 +7,11 @@ import { Box } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   bold: {
-    fontWeight: 400,
+    fontWeight: 500,
     color: theme.palette.secondary.main,
+  },
+  title: {
+    fontSize: '2.5rem',
   },
 }))
 
@@ -18,14 +21,15 @@ export default function Intro() {
     <Box>
       <Container component='main' className={classes.heroContent}>
         <Typography
-          variant='h3'
+          variant='h1'
           align='center'
           color='primary'
           component='subtitle'
           display='block'
           gutterBottom
+          className={classes.title}
         >
-          Join the revolution in distributed computing!
+          Welcome to our Collaborative Data Processing Platform!
         </Typography>
 
         <Typography
@@ -36,17 +40,17 @@ export default function Intro() {
           display='block'
           gutterBottom
         >
-          Motivus is a collaborative
+          Motivus is a marketplace of resources where high-performance
           <span className={classes.bold}>
             {' '}
-            High Performance Computing Network.
+            distributed computing and algorithms
           </span>{' '}
-          With our framework you can process big volumes of data, and also earn
-          extra income by renting your computer power to process data.
+          interact with each other to generate information and optimize
+          processes in industry, science and technology.
         </Typography>
         <Box justifyContent='center' display='flex'>
           <ReactPlayer
-            url='https://youtu.be/-AtRjZfEQ94'
+            url='https://youtu.be/_H_2k-YoR1E'
             width='854px'
             height='480px'
             controls
@@ -61,3 +65,11 @@ export default function Intro() {
     </Box>
   )
 }
+
+/*Motivus is a collaborative
+          <span className={classes.bold}>
+            {' '}
+            High Performance Computing Network.
+          </span>{' '}
+          With our framework you can process big volumes of data, and also earn
+          extra income by renting your computer power to process data.*/

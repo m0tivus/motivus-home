@@ -19,7 +19,7 @@ const styles = (Theme) => ({
     justifyContent: 'flex-end',
     width: '100%',
     //border: '2px solid green',
-    zIndex: '20',
+    zIndex: '2',
     top: '0%',
     pointerEvents: 'none',
   },

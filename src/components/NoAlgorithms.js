@@ -4,41 +4,20 @@ import React from 'react'
 import emptyAlgorithm from '../images/AlgorithmEmpty.png'
 import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles((theme) => ({
-  gridContainer: {
-    marginTop: '50px',
-    width: '89.75%',
-  },
-  secondaryColor: {
-    color: theme.palette.secondary.main,
-  },
-  animationContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: '20px',
-    //border: '1px solid red',
-  },
-  textColor: {
-    color: '#343434',
-  },
-  fixedLoader: {
-    background: '#fff',
-    zIndex: '20',
-  },
-}))
-
 export default function NoAlgorithms() {
   return (
     <React.Fragment>
       <Box
+        mt='50px'
         display='flex'
         width='100%'
-        justifyContent='center'
+        justifyContent='flex-start'
         alignItems='center'
         //border='1px solid red'
       >
-        <img src={emptyAlgorithm} width='50%' height='50%' />
+        <Box maxWidth='580px'>
+          <img src={emptyAlgorithm} />
+        </Box>
       </Box>
     </React.Fragment>
   )

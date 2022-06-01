@@ -4,9 +4,8 @@ orbs:
 
 defaults: &defaults
   working_directory: ~/repo
-  executor: 
-    name: node/default
-    tag: 'lts'
+  docker: 
+    - image: cimg/node:lts
   resource_class: large
 
 jobs:
@@ -56,7 +55,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run: sudo yarn global add aws-cdk@1.94.1
+      - run: yarn global add aws-cdk@1.94.1
       - run: CI="" cd deployment && yarn install && yarn build
       - run:
           name: Publish site
