@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/m0tivus/motivus-homepage/compare/v1.5.1...v1.6.0) (2022-06-07)
+
+
+### Features
+
+* **index:** invitation and challenge ([dd01cc3](https://github.com/m0tivus/motivus-homepage/commit/dd01cc3bca1731c41a6e570f2af1e207d5fe8d7c))
+* **static folder:** new images in static folder ([32ad4d8](https://github.com/m0tivus/motivus-homepage/commit/32ad4d81a6a7e081c90aa2bc086262ff49d6b6b5))
+
+
+### Bug Fixes
+
+* **build:** fix last push ([d940050](https://github.com/m0tivus/motivus-homepage/commit/d940050e221240c9a3bff2a6771c153e84a07861))
+* **index:** fix last commit ([7632185](https://github.com/m0tivus/motivus-homepage/commit/7632185ac0bb82ca9f4b85b4606172cca3cb39c7))
+
+
+### CI
+
+* **cdk:** cloud formation error codes ([14b8fd7](https://github.com/m0tivus/motivus-homepage/commit/14b8fd7811b6012877c63f3493b5e714a48a1df6))
+* **cdk:** migration to v2 ([32ceca2](https://github.com/m0tivus/motivus-homepage/commit/32ceca2d758f3039a48f6373d5dd5fbd1b91481f))
+* **cdk:** remove tests ([c2b600f](https://github.com/m0tivus/motivus-homepage/commit/c2b600f1394dd72b41c457f0114b4b7e165c1839))
+* **cdk:** upgrade binary version ([6278a31](https://github.com/m0tivus/motivus-homepage/commit/6278a31765ea65f1c0dfef5859666cd7b3857da8))
+* circle-ci executor image version ([5d974b7](https://github.com/m0tivus/motivus-homepage/commit/5d974b74ea8eff5fd3ccab9e80c1ea7b1df0de31))
+* **circle-ci:** cdk command not found ([6eea6ba](https://github.com/m0tivus/motivus-homepage/commit/6eea6baef2b2c132466c331ca4b0115716035c5a))
+
 ### [1.5.1](https://github.com/m0tivus/motivus-homepage/compare/v1.5.0...v1.5.1) (2022-05-05)
 
 
