@@ -83,7 +83,7 @@ export class StaticSite extends Construct {
     const distribution = new cloudfront.Distribution(this, 'SiteDistribution', {
       certificate: certificate,
       defaultRootObject: "index.html",
-      domainNames: [siteDomain],
+      domainNames: [props.domainName, siteDomain],
       minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
       errorResponses:[
         {
