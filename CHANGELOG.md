@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.3](https://github.com/m0tivus/motivus-homepage/compare/v1.6.2...v1.6.3) (2022-06-07)
+
+
+### CI
+
+* **cdk:** custom error codes mapping ([186ccfa](https://github.com/m0tivus/motivus-homepage/commit/186ccfaafafa14894f0383b06e4c471557f5ee4b))
+
 ### [1.6.2](https://github.com/m0tivus/motivus-homepage/compare/v1.6.1...v1.6.2) (2022-06-07)
 
 
