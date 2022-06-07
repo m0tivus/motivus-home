@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/m0tivus/motivus-homepage/compare/v1.6.0...v1.6.1) (2022-06-07)
+
+
+### CI
+
+* **cdk:** fix cloudfront distribution config ([1392294](https://github.com/m0tivus/motivus-homepage/commit/13922943ba4f1ee109bce09057b979dea7530b64))
+
 ## [1.6.0](https://github.com/m0tivus/motivus-homepage/compare/v1.5.1...v1.6.0) (2022-06-07)
 
 
