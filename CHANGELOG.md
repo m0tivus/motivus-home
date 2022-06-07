@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.2](https://github.com/m0tivus/motivus-homepage/compare/v1.6.1...v1.6.2) (2022-06-07)
+
+
+### CI
+
+* **cdk:** use 200 code for error view ([8b0a3bd](https://github.com/m0tivus/motivus-homepage/commit/8b0a3bd56a15bca78825841a7e5951bc3efd1eed))
+* **cdk:** use 404 as error status code ([1034261](https://github.com/m0tivus/motivus-homepage/commit/1034261d3e7e28d854067cdf767e2a8c5333cb6d))
+
 ### [1.6.1](https://github.com/m0tivus/motivus-homepage/compare/v1.6.0...v1.6.1) (2022-06-07)
 
 
