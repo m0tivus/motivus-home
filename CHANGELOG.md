@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.4](https://github.com/m0tivus/motivus-homepage/compare/v1.6.3...v1.6.4) (2022-06-07)
+
+
+### Bug Fixes
+
+* **login:** increase verbosity for debug ([45b5091](https://github.com/m0tivus/motivus-homepage/commit/45b5091c5423d59bbfe2481a52d356447edb9587))
+
 ### [1.6.3](https://github.com/m0tivus/motivus-homepage/compare/v1.6.2...v1.6.3) (2022-06-07)
 
 
