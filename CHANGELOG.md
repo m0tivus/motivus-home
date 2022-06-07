@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.9](https://github.com/m0tivus/motivus-homepage/compare/v1.6.8...v1.6.9) (2022-06-07)
+
+
+### CI
+
+* **cdk:** revert bucket configurations ([27f25ac](https://github.com/m0tivus/motivus-homepage/commit/27f25ac8b42da9ede2defa3a2f9d0688b1622d33))
+
 ### [1.6.8](https://github.com/m0tivus/motivus-homepage/compare/v1.6.7...v1.6.8) (2022-06-07)
 
 
