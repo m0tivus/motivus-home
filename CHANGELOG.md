@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.5](https://github.com/m0tivus/motivus-homepage/compare/v1.6.4...v1.6.5) (2022-06-07)
+
+
+### Bug Fixes
+
+* **login:** extra debug ([234a604](https://github.com/m0tivus/motivus-homepage/commit/234a604262dd13fabc946d2ca76e83eb373a18bd))
+
 ### [1.6.4](https://github.com/m0tivus/motivus-homepage/compare/v1.6.3...v1.6.4) (2022-06-07)
 
 
