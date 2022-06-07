@@ -86,6 +86,19 @@ export class StaticSite extends Construct {
       certificate: certificate,
       domainNames: [props.domainName, siteDomain],
       minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
+      errorResponses:[
+        {
+          httpStatus: 404,
+          responseHttpStatus: 200,
+          responsePagePath: '/index.html',
+          ttl: Duration.minutes(30),
+        },{
+          httpStatus: 403,
+          responseHttpStatus: 200,
+          responsePagePath: '/index.html',
+          ttl: Duration.minutes(30),
+        }
+      ],
       defaultBehavior: {
         origin: new cloudfront_origins.S3Origin(siteBucket, {originAccessIdentity: cloudfrontOAI}),
         compress: true,
