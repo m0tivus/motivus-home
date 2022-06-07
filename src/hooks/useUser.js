@@ -10,6 +10,7 @@ function useUser() {
 
   const getUserFromToken = async (token) => {
     try {
+      console.log('useuser_token', token)
       axios.defaults.headers.common = {
         Authorization: `Bearer ${token}`,
       }

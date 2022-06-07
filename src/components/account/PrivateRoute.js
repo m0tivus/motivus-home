@@ -7,6 +7,7 @@ const loginPath = '/account/login'
 const homePath = '/account/my-algorithms'
 
 const PrivateRoute = ({ component: Component, location, ...rest }) => {
+  console.log('on privateroute')
   const { user, isGuest, isLoading } = useUser()
 
   React.useEffect(() => {
