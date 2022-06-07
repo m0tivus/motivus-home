@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.10](https://github.com/m0tivus/motivus-homepage/compare/v1.6.9...v1.6.10) (2022-06-07)
+
+
+### CI
+
+* **cdk:** enable bucket static site ([54263bc](https://github.com/m0tivus/motivus-homepage/commit/54263bc09085e9e11576963f3f408cdc315e28cc))
+
 ### [1.6.9](https://github.com/m0tivus/motivus-homepage/compare/v1.6.8...v1.6.9) (2022-06-07)
 
 
