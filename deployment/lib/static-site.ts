@@ -51,9 +51,10 @@ export class StaticSite extends Construct {
     // Content bucket
     const siteBucket = new s3.Bucket(this, 'SiteBucket', {
       bucketName: props.domainName,
-      publicReadAccess: false,
-      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      publicReadAccess: true,
       removalPolicy: RemovalPolicy.DESTROY,
+      websiteIndexDocument: 'index.html',
+      websiteErrorDocument: 'index.html',
     })
 
     // Grant access to cloudfront
