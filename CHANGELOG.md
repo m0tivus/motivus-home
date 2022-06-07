@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.7](https://github.com/m0tivus/motivus-homepage/compare/v1.6.5...v1.6.7) (2022-06-07)
+
+
+### CI
+
+* **cdk:** add back error mapping ([d674c14](https://github.com/m0tivus/motivus-homepage/commit/d674c140902baa7040c731f146a4ea6601245158))
+* **cdk:** let bucket handle documents as web server ([4dfd20b](https://github.com/m0tivus/motivus-homepage/commit/4dfd20b93f094c37259c6784d928c30bf34e3e63))
+* **circle-ci:** improve resource executor ([b70d6d4](https://github.com/m0tivus/motivus-homepage/commit/b70d6d48e11942273eaff38118a018e64dee0de9))
+* **commitizen:** fix tag/version ([2ec709e](https://github.com/m0tivus/motivus-homepage/commit/2ec709ed0224a59141f32cbf4b4e2cea40f1b1e6))
+
 ### [1.6.5](https://github.com/m0tivus/motivus-homepage/compare/v1.6.4...v1.6.5) (2022-06-07)
 
 
