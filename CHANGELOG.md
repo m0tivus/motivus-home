@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.8](https://github.com/m0tivus/motivus-homepage/compare/v1.6.7...v1.6.8) (2022-06-07)
+
+
+### CI
+
+* **cdk:** root index ([0fa8808](https://github.com/m0tivus/motivus-homepage/commit/0fa880855c5954ac1d87c3bc1f19faea27096325))
+
 ### [1.6.7](https://github.com/m0tivus/motivus-homepage/compare/v1.6.5...v1.6.7) (2022-06-07)
 
 
