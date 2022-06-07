@@ -54,8 +54,6 @@ export class StaticSite extends Construct {
       publicReadAccess: false,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       removalPolicy: RemovalPolicy.DESTROY,
-      websiteIndexDocument: 'index.html',
-      websiteErrorDocument: 'index.html',
     })
 
     // Grant access to cloudfront
