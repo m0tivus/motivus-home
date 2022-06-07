@@ -87,8 +87,8 @@ export class StaticSite extends Construct {
       minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
       errorResponses:[
         {
-          httpStatus: 403,
-          responseHttpStatus: 403,
+          httpStatus: 200,
+          responseHttpStatus: 200,
           responsePagePath: '/index.html',
           ttl: Duration.minutes(30),
         }
