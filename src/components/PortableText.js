@@ -1,11 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
-import ReactDOM from 'react-dom'
 import BasePortableText from '@sanity/block-content-to-react'
 import BlockContent from '@sanity/block-content-to-react'
 import { Box, Divider, Typography } from '@material-ui/core'
-import urlBuilder from '@sanity/image-url'
 import { makeStyles } from '@material-ui/core/styles'
-import { BorderColor } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
   quotes: {
@@ -53,7 +51,7 @@ const serializers = {
   types: {
     codepen: (props) => <Divider></Divider>,
     image: (props) => (
-      <Box width='100%' display='flex' justifyContent='center'>
+      <Box width='100%' display='flex' justifyContent='center' mb='30px'>
         <img
           src={props.node.asset.url}
           alt={props.node.asset.originalFilename}
@@ -68,41 +66,58 @@ const serializers = {
         switch (level) {
           case 'h1':
             return (
-              <Typography variant='h1' gutterBottom>
-                {props.children}
-              </Typography>
+              // eslint-disable-next-line prettier/prettier
+              <Box my="45px">
+                <Typography variant='h1' color='secondary' gutterBottom>
+                  {props.children}
+                </Typography>
+              </Box>
             )
           case 'h2':
             return (
-              <Typography variant='h2' gutterBottom>
-                {props.children}
-              </Typography>
+              <Box my='25px'>
+                <Typography variant='h2' gutterBottom>
+                  {props.children}
+                </Typography>
+              </Box>
             )
           case 'h3':
-            return <Box className={classes.h3}>{props.children}</Box>
+            return (
+              <Box className={classes.h3} my='20px'>
+                {props.children}
+              </Box>
+            )
           case 'h4':
             return (
-              <Typography variant='h4' gutterBottom>
-                {props.children}
-              </Typography>
+              <Box my='15px'>
+                <Typography variant='h4' gutterBottom>
+                  {props.children}
+                </Typography>
+              </Box>
             )
           case 'h5':
             return (
-              <Typography variant='h5' gutterBottom>
-                {props.children}
-              </Typography>
+              <Box my='10px'>
+                <Typography variant='h5' gutterBottom>
+                  {props.children}
+                </Typography>
+              </Box>
             )
           case 'h6':
             return (
-              <Typography variant='h6' gutterBottom>
-                {props.children}
-              </Typography>
+              <Box my='10px'>
+                <Typography variant='h6' gutterBottom>
+                  {props.children}
+                </Typography>
+              </Box>
             )
           case 'h7':
             return (
-              <Typography variant='h7' gutterBottom>
-                {props.children}
-              </Typography>
+              <Box my='10px'>
+                <Typography variant='h7' gutterBottom>
+                  {props.children}
+                </Typography>
+              </Box>
             )
           default:
             return <span>{props.children}</span>
@@ -117,7 +132,7 @@ const serializers = {
       }
       if (style === 'normal') {
         return (
-          <Box width='100%'>
+          <Box width='100%' my='15px'>
             <Typography variant='body2' align='justify' gutterBottom>
               {props.children}
             </Typography>

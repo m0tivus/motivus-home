@@ -213,7 +213,7 @@ const Article = ({ data, ...props }) => {
         display='flex'
         ml='10%'
         mr='15%'
-        mt='20px'
+        mt={matches ? '40px' : '20px'}
         justifyContent='center'
         //border='1px solid red'
         flexWrap='wrap'
