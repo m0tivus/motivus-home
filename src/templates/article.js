@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import Layout from '../layouts/layout'
 import PortableText from '../components/PortableText'
 import SEO from '../components/seo'
-import { Box, Divider, Grid, Typography } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import '../components/layout.css'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import parseJSON from 'date-fns/parseJSON'
@@ -13,7 +13,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import LangSelector from '../components/LangSelector'
 import Share from '../components/Share'
 
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 const useStyles = makeStyles((theme) => ({
   header: {
