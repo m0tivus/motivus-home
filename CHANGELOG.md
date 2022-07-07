@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.17](https://github.com/m0tivus/motivus-homepage/compare/v1.6.16...v1.6.17) (2022-07-07)
+
+
+### Bug Fixes
+
+* **article:** unused variables ([f4af1f2](https://github.com/m0tivus/motivus-homepage/commit/f4af1f2023adcb36e317fec57d7bab97d1426067))
+* **portabletext and article:** add white space in text ([0f24f01](https://github.com/m0tivus/motivus-homepage/commit/0f24f01a416946e47a7cfe5b96510788af1abadd))
+
 ### [1.6.16](https://github.com/m0tivus/motivus-homepage/compare/v1.6.15...v1.6.16) (2022-07-07)
 
 ### [1.6.15](https://github.com/m0tivus/motivus-homepage/compare/v1.6.14...v1.6.15) (2022-07-07)
