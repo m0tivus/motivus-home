@@ -1,5 +1,5 @@
 #eval $(minikube docker-env)
-#docker build -t motivus/home:latest --build-arg MARKETPLACE_API_URL="http://api.marketplace.motivus.clx/" .
+#docker build -t motivus/home:latest --build-arg MARKETPLACE_API_URL="http://api.marketplace.motivus.clx" .
 
 FROM node:16.14-alpine as build
 ARG MARKETPLACE_API_URL
