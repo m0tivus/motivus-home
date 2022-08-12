@@ -4,6 +4,10 @@ const path = require('path')
 const { string } = require('prop-types')
 const axios = require('axios')
 const { transformAlgorithm } = require('./src/utils')
+const sharp = require('sharp')
+
+sharp.cache(false)
+sharp.simd(false)
 
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
