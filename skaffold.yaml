@@ -2,17 +2,22 @@ apiVersion: skaffold/v2beta27
 kind: Config
 metadata:
   name: motivus-home
-build:
-  artifacts:
-  - image: motivus/home
-    docker:
-      dockerfile: Dockerfile
-      buildArgs:
-        MARKETPLACE_API_URL: "http://marketplace.marketplace"
-deploy:
-  kubectl:
-    manifests:
-    - k8s/00-namespace.yaml
-    - k8s/01-home-deployment.yml
-    - k8s/03-home-service.yaml
-    - k8s/04-ingress-rule.yaml
+profiles:
+  - name: develop
+    build:
+      local:
+        useDockerCLI: false
+        useBuildkit: false
+      artifacts:
+      - image: motivus/home
+        docker:
+          dockerfile: Dockerfile
+          buildArgs:
+            MARKETPLACE_API_URL: "http://marketplace.api.motivus.cl"
+    deploy:
+      kubectl:
+        manifests:
+        - k8s/00-namespace.yaml
+        - k8s/01-home-deployment.yml
+        - k8s/03-home-service.yaml
+        - k8s/04-ingress-rule.yaml
