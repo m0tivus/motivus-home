@@ -35,5 +35,5 @@ profiles:
         manifests:
           - k8s/prod/00-namespace.yaml
           - k8s/prod/01-home-deployment.yml
-          - k8s/prod/03-home-service.yaml
-          - k8s/prod/04-ingress-rule.yaml
+          - k8s/prod/02-home-service.yaml
+          - k8s/prod/03-ingress-rule.yaml
