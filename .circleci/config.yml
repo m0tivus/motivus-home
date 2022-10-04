@@ -132,16 +132,16 @@ workflows:
                 - main
           requires:
             - test
-  # cms:
-  #   when:
-  #     equal: [api, << pipeline.trigger_source >>]
-  #   jobs:
-  #     - deploy-approval:
-  #         type: approval
-  #         filters:
-  #           branches:
-  #             only:
-  #               - main
-  #     - test:
-  #         requires:
-  #           - deploy-approval
+  cms:
+    when:
+      equal: [api, << pipeline.trigger_source >>]
+    jobs:
+      - deploy-approval:
+          type: approval
+          filters:
+            branches:
+              only:
+                - main
+      - test:
+          requires:
+            - deploy-approval
