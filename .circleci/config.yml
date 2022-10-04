@@ -129,7 +129,7 @@ workflows:
           filters:
             branches:
               only:
-                - sc-1851/skaffold
+                - main
           requires:
             - test
   # cms:
