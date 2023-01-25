@@ -7473,7 +7473,7 @@ gatsby-cli@^4.9.0:
     execa "^5.1.1"
     fs-exists-cached "^1.0.0"
     fs-extra "^10.0.0"
-    gatsby-core-utils "^3.9.0"
+    gatsby-core-utils "3.9.0"
     gatsby-telemetry "3.9.0"
     hosted-git-info "^3.0.8"
     is-valid-path "^0.1.1"
