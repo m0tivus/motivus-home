@@ -54,6 +54,7 @@
     "react-share": "^4.4.0",
     "react-swipeable-views": "^0.13.9",
     "remark-gfm": "^3.0.0",
+    "remove": "^0.1.5",
     "yup": "^0.32.11"
   },
   "devDependencies": {
