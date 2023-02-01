@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@4.1.0
   python: circleci/python@0.2.1
-  gcp-gke: circleci/gcp-gke@2.0.0
+  gcp-gke: circleci/gcp-gke@3.0
   gcr: circleci/gcp-gcr@0.15.0
   gcp-cli: circleci/gcp-cli@2.4.1
 
