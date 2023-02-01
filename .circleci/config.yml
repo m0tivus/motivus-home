@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@4.1.0
   python: circleci/python@0.2.1
-  gcp-gke: circleci/gcp-gke@3.0
+  gcp-gke: circleci/gcp-gke@0.2.0
   gcr: circleci/gcp-gcr@0.15.0
   gcp-cli: circleci/gcp-cli@2.4.1
 
@@ -87,9 +87,6 @@ jobs:
       - run:
           name: Install Skaffold
           command: curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.39.2/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
-      - run:
-          name: new auth
-          command: export USE_GKE_GCLOUD_AUTH_PLUGIN=True
       - run:
           name: Authorise GKE
           command: gcloud container clusters get-credentials << parameters.cluster-name >> --region $GOOGLE_REGION
