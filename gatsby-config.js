@@ -6,6 +6,9 @@ module.exports = {
     url: 'motivus.cl',
     siteUrl: 'https://www.motivus.cl',
   },
+  flags: {
+    PARALLEL_QUERY_RUNNING: true,
+  },
   plugins: [
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',

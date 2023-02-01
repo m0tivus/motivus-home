@@ -11,7 +11,7 @@ defaults: &defaults
   resource_class: large
   executor:
     name: node/default
-    tag: '16.14'
+    tag: '18'
 
 jobs:
   test:
