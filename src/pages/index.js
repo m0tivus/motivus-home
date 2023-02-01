@@ -18,7 +18,6 @@ const IndexPage = (props) => {
     <div>
       <Layout {...props}>
         <SEO title='Home' image='https://motivus.cl/icons/icon-256x256.png' />
-
         <StaticLoading />
         {/*<Intro />*/}
         <DevelopersInvitation />

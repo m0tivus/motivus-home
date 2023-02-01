@@ -20,7 +20,7 @@
 #COPY --from=build /usr/src/app/public /usr/share/nginx/html
 #CMD ["nginx", "-g", "daemon off;"]
 
-FROM node:18 AS builder
+FROM node:14 AS builder
 
 ARG MARKETPLACE_API_URL
 ENV GATSBY_MARKETPLACE_API_URL=$MARKETPLACE_API_URL

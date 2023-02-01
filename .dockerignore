@@ -3,4 +3,5 @@ deployment
 .cache
 .vscode
 .circleci
+docker-compose.yml
 
