@@ -88,11 +88,10 @@ jobs:
           name: Install Skaffold
           command: curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.39.2/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
       - run:
-        name: auth true
-        command: export USE_GKE_GCLOUD_AUTH_PLUGIN=True.
-      - run:
           name: Authorise GKE
           command: gcloud container clusters get-credentials << parameters.cluster-name >> --region $GOOGLE_REGION
+          environment:
+            USE_GKE_GCLOUD_AUTH_PLUGIN: 'True'
       - run:
           name: Set cluster details
           command: kubectl config set-context << parameters.cluster-context >> --namespace=<< parameters.namespace >>
