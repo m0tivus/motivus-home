@@ -89,7 +89,10 @@ jobs:
           command: curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.39.2/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
       - run:
           name: Authorise GKE
-          command: gcloud container clusters get-credentials << parameters.cluster-name >> --region $GOOGLE_REGION
+          command: apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
+            gcloud --quiet config set project "${GOOGLE_PROJECT_ID}"
+            gcloud container clusters get-credentials << parameters.cluster-name >> \
+            --zone "${GOOGLE_COMPUTE_ZONE}"
           environment:
             USE_GKE_GCLOUD_AUTH_PLUGIN: 'True'
       - run:
