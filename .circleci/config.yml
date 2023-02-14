@@ -75,7 +75,7 @@ jobs:
       #     docker-username: << parameters.dockerhub_user >>
       #     docker-password: << parameters.dockerhub_password >>
       #- gcp-gke/install
-      - gcp-gke/init
+      #- gcp-gke/init
       - gcr/gcr-auth:
           registry-url: southamerica-west1-docker.pkg.dev
       - run:
