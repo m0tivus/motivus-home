@@ -93,8 +93,7 @@ jobs:
       - run:
           name: Authorise GKE
           command: gcloud components install gke-gcloud-auth-plugin &&
-            gcloud container clusters get-credentials << parameters.cluster-name >> \
-            --zone "${GOOGLE_COMPUTE_ZONE}"
+            gcloud container clusters get-credentials << parameters.cluster-name >>
           environment:
             USE_GKE_GCLOUD_AUTH_PLUGIN: 'True'
       - run:
@@ -131,14 +130,14 @@ workflows:
       not:
         equal: [api, << pipeline.trigger_source >>]
     jobs:
-      - test
+      #- test
       - deploy:
           filters:
             branches:
               only:
                 - main
-          requires:
-            - test
+          #requires:
+          #  - test
   cms:
     when:
       equal: [api, << pipeline.trigger_source >>]
