@@ -93,7 +93,7 @@ jobs:
       - run:
           name: Authorise GKE
           command: gcloud components install gke-gcloud-auth-plugin &&
-            gcloud container clusters get-credentials << parameters.cluster-name >> --zone --zone=southamerica-west1
+            gcloud container clusters get-credentials << parameters.cluster-name >> --zone=southamerica-west1
           environment:
             USE_GKE_GCLOUD_AUTH_PLUGIN: 'True'
       - run:
