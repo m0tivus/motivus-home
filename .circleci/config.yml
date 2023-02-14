@@ -98,7 +98,7 @@ jobs:
             USE_GKE_GCLOUD_AUTH_PLUGIN: 'True'
       - run:
           name: Set cluster details
-          command: kubectl config set-context << parameters.cluster-context >> --namespace=<< parameters.namespace >>
+          command: gcloud components install kubectl && kubectl config set-context << parameters.cluster-context >> --namespace=<< parameters.namespace >>
       # - run:
       #     name: Run pre-deployment jobs (will build)
       #     command: skaffold run -f ./skaffold.yaml -p << parameters.environment >>-pre-deployment
